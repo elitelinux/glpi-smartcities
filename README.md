@@ -5,7 +5,22 @@ GLPI for Smart Cities
 
 Features
 ========
-
+Adaptable to this Standards:
+- IOT
+- IOE
+- ITIL
+- ISO 9000
+- ISO 14000
+- ISO 15489
+- ISO 18000
+- ISO 19000
+- ISO 20000
+- ISO 21000
+- ISO 27000
+- ISO 30300
+- ISO 31000
+- ISO 37120
+- ISO 37150
 
 General
 =======
@@ -41,7 +56,6 @@ Inventory
 - Inventory of the monitors with management of the connections to the computers 
 - Inventory of the network hardware fleet with management of the connections to the devices (IP, Mac addresses, VLANs...). 
 - Inventory of printers fleet with management of connections to the computers and management of consumable associated and consumption and the thresholds of alarm.
-
 - Inventory of the external devices (scanners, graphical tables...) with management of the connections to the computers - Inventory of the telephones fleet with management of connections to the computers 
 - Inventory if the software fleet with license and expiration dates management 
 - Assignment of the hardware by geographic area (room, floor...) 
