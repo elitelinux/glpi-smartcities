@@ -150,8 +150,15 @@ Link PHP: http://php.net/manual/en/install.php
 Link MySQL : http://dev.mysql.com/doc/refman/5.7/en/installing-source-distribution.html
 Link MariaDB: https://mariadb.com/kb/en/mariadb/documentation/getting-started/compiling-mariadb-from-source/
 - HTML for the Web pages 
+Link html: http://www.w3schools.com/html/default.asp
 - CSS for style sheets 
+Link CSS3: http://www.w3schools.com/css/default.asp
+- Javascript for some task
+Link Javascript: http://www.w3schools.com/js/default.asp
+- Jquery for some task
+Link Jquery: http://www.w3schools.com/jquery/default.asp
 - XML for report generation
+Link XML: http://www.w3schools.com/xml/default.asp
  
 Native support in:
 
