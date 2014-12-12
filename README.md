@@ -3,24 +3,74 @@ glpi-smartcities
 
 GLPI for Smart Cities
 
-Features
-========
-Adaptable to this Standards:
-- IOT
-- IOE
-- ITIL
-- ISO 9000
-- ISO 14000
-- ISO 15489
-- ISO 18000
-- ISO 19000
-- ISO 20000
-- ISO 21000
-- ISO 27000
-- ISO 30300
-- ISO 31000
-- ISO 37120
-- ISO 37150
+General Features
+================
+
+1) Change the state of mind and the culture
+2) 
+ 
+Change the state of mind and the culture
+========================================
+Best for implement, Check, Enable or improved in this areas (some maybe need plugins):
+- Projects
+- Help in the making of the Manuals and protocols
+- Document control
+- Control of records
+- Responsibility and authority
+- Management review
+- Help in the making of the DAFO for Training, competency and awareness
+- Infrastructure
+- Location and Work environment
+- Design and development
+- Purchasing and outsourcing
+- Control of measuring equipment
+- Internal audit
+- Corrective action
+- Preventive action
+- Operational controls
+- Special process validation
+- Incoming inspection
+
+Adaptable to Standards
+======================
+- Quality management ISO 9000 + Link: http://www.iso.org/iso/home/standards/management-standards/iso_9000.htm
+- Environmental management ISO 14000 Link: http://www.iso.org/iso/home/standards/management-standards/iso14000.htm
+- Information and documentation ISO 15489 Link: https://www.iso.org/obp/ui/#iso:std:iso:15489:-1:ed-1:v1:en
+- Service management ISO 20000 Link: http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=51986
+- Sustainable events ISO 20121 Link: http://www.iso.org/iso/home/standards/management-standards/iso20121.htm
+- Social responsibility ISO 26000 Link: http://www.iso.org/iso/home/standards/iso26000.htm
+- Information security management ISO 27001 Link: http://www.iso.org/iso/home/standards/management-standards/iso27001.htm
+- ISO 30300 Link: https://www.iso.org/obp/ui/#iso:std:iso:30300:ed-1:v1:en
+- Risk management ISO 31000 Link: http://www.iso.org/iso/home/standards/iso31000.htm
+- Sustainable development of communities ISO 37120 Link: https://www.iso.org/obp/ui/#iso:std:iso:37120:ed-1:v1:en
+- Smart community infrastructures ISO 37150 Link : https://www.iso.org/obp/ui/#iso:std:iso:tr:37150:ed-1:v1:en
+
+Adaptable to Methods
+====================
+- ITIL + Link:
+- 5W2H Link :
+- PDCA Link:
+- Hackathons link:
+ 
+Potentials
+=========================
+- CMS
+- CMDB
+- CRM Parts
+- FAQ System
+- Ticket System
+- Helpdesk Support
+- Groupware Parts
+
+Integrations
+============
+
+- Nagios Link: 
+- FusionInventory Link: http://www.fusioninventory.org/
+- Shinken Link: http://www.shinken-monitoring.org/
+- OCS Inventory NG - http://www.ocsinventory-ng.org/
+- 
+
 
 General
 =======
