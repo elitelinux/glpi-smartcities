@@ -23,8 +23,9 @@ The GLPI is complex to parameterize . You will need patience, a team of multi-di
 - Protocols
 - Methods
 - Standards
-Although you may not believe... And of course... 
-GNU/LINUX (are you mad bro?[trollface])
+
+Although you may not believe... And of course...
+* GNU/LINUX (are you mad bro?[trollface])
 
 Profile of the Team
 ===================
@@ -143,7 +144,7 @@ Final user
 
 Technicians
 ===========
-
+Technical aspects:
 - Interventions demands priority management 
 - Interventions demands templates with management of hidden, mandatory and predefined fields 
 - Tracking of interventions demands 
@@ -164,9 +165,7 @@ Technicians
 
 Statistics
 ==========
-
 Statistics reports by month, year, total in PNG, SVG or CSV.
-
 - Global 
 - By technician or enterprise 
 - By hardware, location or type 
