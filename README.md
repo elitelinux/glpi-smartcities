@@ -1,80 +1,67 @@
 glpi-smartcities
 ================
 
-GLPI for Smart Cities
+GLPI for Smart Cities by Juan Fernando Villa Hernández GLPI Evangelist aKa @elitelinux 
 
-General Features
-================
+Why GLPI?
+=========
+GLPI is an excellent software that has been undervalued and is little known or used. Many of the things you normally need to do, do not require platforms such as SAP, Groupwares, Some CRMs and ERPs . In GLPI is enough. Take a look at what can do a properly configured GLPI.
 
-1) Change the state of mind and the culture
-2) 
- 
-Change the state of mind and the culture
-========================================
-Best for implement, Check, Enable or improved in this areas (some maybe need plugins):
-- Projects
-- Help in the making of the Manuals and protocols
-- Document control
-- Control of records
-- Responsibility and authority
-- Management review
-- Help in the making of the DAFO for Training, competency and awareness
-- Infrastructure
-- Location and Work environment
-- Design and development
-- Purchasing and outsourcing
-- Control of measuring equipment
-- Internal audit
-- Corrective action
-- Preventive action
-- Operational controls
-- Special process validation
-- Incoming inspection
+The True
+========
+The GLPI is complex to parameterize . You will need patience, a team of multi-disciplinary, will need skilled in programming languages and information management, knowledge management, resource management, network systems, high availability, high performance systems, database management data, information security , protocols, methods and standards. Although you may not believe . and of course... LINUX (are you mad bro?[trollface])
 
-Adaptable to Standards
-======================
-- Quality management ISO 9000 + Link: http://www.iso.org/iso/home/standards/management-standards/iso_9000.htm
-- Environmental management ISO 14000 Link: http://www.iso.org/iso/home/standards/management-standards/iso14000.htm
-- Information and documentation ISO 15489 Link: https://www.iso.org/obp/ui/#iso:std:iso:15489:-1:ed-1:v1:en
-- Service management ISO 20000 Link: http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=51986
-- Sustainable events ISO 20121 Link: http://www.iso.org/iso/home/standards/management-standards/iso20121.htm
-- Social responsibility ISO 26000 Link: http://www.iso.org/iso/home/standards/iso26000.htm
-- Information security management ISO 27001 Link: http://www.iso.org/iso/home/standards/management-standards/iso27001.htm
-- ISO 30300 Link: https://www.iso.org/obp/ui/#iso:std:iso:30300:ed-1:v1:en
-- Risk management ISO 31000 Link: http://www.iso.org/iso/home/standards/iso31000.htm
-- Sustainable development of communities ISO 37120 Link: https://www.iso.org/obp/ui/#iso:std:iso:37120:ed-1:v1:en
-- Smart community infrastructures ISO 37150 Link : https://www.iso.org/obp/ui/#iso:std:iso:tr:37150:ed-1:v1:en
+Profile of the Team
+===================
+People with this knowledge or certifications will acellerate the process
+A+
+Network+
+ITIL (foundation)
+Project Management
+Web programmer (PHP, Shell, Python)
+Knowledge Management
+Linux+
+CISM
+ISO 9001 Certified
 
-Adaptable to Methods
-====================
-- ITIL + Link:
-- 5W2H Link :
-- PDCA Link:
-- Hackathons link:
- 
-Potentials
-=========================
-- CMS
-- CMDB
-- CRM Parts
-- FAQ System
-- Ticket System
-- Helpdesk Support
-- Groupware Parts
+Terms of implementation
+=======================
+The estimated duration for projects with GLPI phases: 
+- GLPI installation - 1 Week
+- Learn curve - 6-10 weeks
+- Audit (initial investigation) – 4-8 weeks
+- Design and description of a single process – 3-4 weeks
+- Automation of a single process – 1-3 months
+- Working smooth in many aspects - 1 year
 
-Integrations
-============
+Where is the magic?
+===================
+One of these features is to manage smart cities.
+Yes. You've read it correctly. After the thick haze of commercial words are always the same tasks that can be performed with known methods and tools but in an innovative way and according to current needs.
+Remember: Change the dress but not the bride. Good Luck!
 
-- Nagios Link: 
-- FusionInventory Link: http://www.fusioninventory.org/
-- Shinken Link: http://www.shinken-monitoring.org/
-- OCS Inventory NG - http://www.ocsinventory-ng.org/
-- 
+First
+=====
+The system must be configured, to be adapted and should be parameterized according to your needs to make " Magic"
+-This is not a turnkey solution-
+Know the naked GLPI: http://demo.glpi-project.org/ User: admin_en Password: admin
 
+Documentation
+=============
+Basic documentation about GLPI
+https://forge.indepnet.net/attachments/download/1901/glpidoc-0.85-en-partial.pdf
+
+Some Features
+=============
+-  Track everything. Capture and organize issues, plan and assign work, and follow team activity.
+-  Service and support for IT teams.
+-  Give your team one place to share, find, and collaborate on information and activities they need to get work done.
+-  Knowledge Base / FAQ
+-  Customizable dimensional support
 
 General
 =======
-
+Part of the features of GLPI:
 - Multi-entities management (multi-park, multi-structure) 
 - Multi-users management 
 - Multiple Authentication System (local, LDAP, AD, Pop/Imap, CAS, x509...) and multiple servers 
@@ -172,7 +159,7 @@ Statistics reports by month, year, total in PNG, SVG or CSV.
 - By category 
 - By priority
 
-Management
+General Management
 ==========
 
 - Management of enterprises (manufacturers, suppliers, conveyors, people receiving benefits...) and associated contacts 
@@ -181,56 +168,158 @@ Management
 - Management of the types of authorized documents 
 - Budget management
 
+ITSM processes
+==============
+- Configuration Management
+- Incident Management
+- Service Request Management
+- Problem Management
+- SLA Management
+- Knowledge Management
+- Accounting Management
+- Budget Management
+- Supplier Management
+- Contact Management
+- Contract Management
+- Document Management
+
 Reservation
 ===========
-
+Make by the easy way the reservations:
 - Management of the reservations for the material in affected inventory with the park of loan 
 - User interface (calendar) for reservation
 
 Knowledge Database
 ==================
-
+Make your own KB system for Knowledge management.
 - Management of a basic system of knowledge hierarchical 
 - Management of a public FAQ 
 - Content management by targets
 
 Reports
 =======
-
 Reports generation about the devices
-
 - By device-type 
 - By associated contract 
 - By commercial informations
 - Network Reports
 
+Quality Process
+===============
+- Projects
+- Help in the making of the Manuals and protocols
+- Document control
+- Control of records
+- Responsibility and authority
+- Management review
+- Help in the making of the DAFO for Training, competency and awareness
+- Infrastructure
+- Location and Work environment
+- Design and development
+- Purchasing and outsourcing
+- Control of measuring equipment
+- Internal audit
+- Corrective action
+- Preventive action
+- Operational controls
+- Special process validation
+- Incoming inspection
+
+Adaptable to Standards
+======================
+- Quality management ISO 9000 + Link: http://www.iso.org/iso/home/standards/management-standards/iso_9000.htm
+- Environmental management ISO 14000 Link: http://www.iso.org/iso/home/standards/management-standards/iso14000.htm
+- Information and documentation ISO 15489 Link: https://www.iso.org/obp/ui/#iso:std:iso:15489:-1:ed-1:v1:en
+- Service management ISO 20000 Link: http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=51986
+- Sustainable events ISO 20121 Link: http://www.iso.org/iso/home/standards/management-standards/iso20121.htm
+- Social responsibility ISO 26000 Link: http://www.iso.org/iso/home/standards/iso26000.htm
+- Information security management ISO 27001 Link: http://www.iso.org/iso/home/standards/management-standards/iso27001.htm
+- Management systems for records ISO 30300 Link: https://www.iso.org/obp/ui/#iso:std:iso:30300:ed-1:v1:en
+- Risk management ISO 31000 Link: http://www.iso.org/iso/home/standards/iso31000.htm
+- Sustainable development of communities ISO 37120 Link: https://www.iso.org/obp/ui/#iso:std:iso:37120:ed-1:v1:en
+- Smart community infrastructures ISO 37150 Link : https://www.iso.org/obp/ui/#iso:std:iso:tr:37150:ed-1:v1:en
+
+Adaptable or Compliant to Methods
+=================================
+- 8Ds Link: http://en.wikipedia.org/wiki/Eight_Disciplines_Problem_Solving
+- 9R Link: ?
+- ITIL Link: http://en.wikipedia.org/wiki/Information_Technology_Infrastructure_Library
+- 5W2H Link: http://healthit.ahrq.gov/health-it-tools-and-resources/workflow-assessment-health-it-toolkit/all-workflow-tools/5w2h
+- PDCA Link: http://en.wikipedia.org/wiki/PDCA
+- Six Sigma link: http://en.wikipedia.org/wiki/Six_Sigma
+- Kaizen Link: http://en.wikipedia.org/wiki/Kaizen
+- Hackathons link: http://en.wikipedia.org/wiki/Hackathon
+- GTD Link: http://en.wikipedia.org/wiki/Getting_Things_Done
+- Life Hacking link: http://en.wikipedia.org/wiki/Life_hacking
+ 
+Potentials
+==========
+Other Features of the GLPI in their core:
+- CMS
+- CMDB
+- CRM Parts
+- FAQ System
+- Ticket System
+- Helpdesk Support
+- Groupware Parts
+- Datawarehouse
+- Wiki System
+
+Integrations
+============
+Other applications integrable to GLPI:
+- Nagios Link: http://www.nagios.org/
+- FusionInventory Link: http://www.fusioninventory.org/
+- Shinken Link: http://www.shinken-monitoring.org/
+- OCS Inventory NG - http://www.ocsinventory-ng.org/
+- AD/LDAP
+- Mail system
+- SMTP plataforms
+- CRM systems
+- ERP systems
+
+Plugins
+=======
+List of the Plugins:
+barscode	link: https://forge.indepnet.net/projects/barscode	plugin available in 0.85
+Behaviors link:	https://forge.indepnet.net/projects/behaviors	plugin available in 0.85
+dashboard	link:https://forge.indepnet.net/projects/dashboard	plugin available in 0.85
+groupead	link: https://forge.indepnet.net/projects/groupead	plugin available in 0.85
+reforme	link: https://forge.indepnet.net/projects/reforme	plugin available in 0.85
+twins	link: https://forge.indepnet.net/projects/twins	plugin available in 0.85
+webnotifications link:	https://forge.indepnet.net/projects/webnotifications	plugin available in 0.85
+
+Extras
+======
+Rules:
+* https://www.siprossii.com/sites/default/files/rules_manufacturer_dictionnary_20140825.xml
+* https://www.siprossii.com/sites/default/files/rules_software_dictionnary_20140825.xml
+
+Internet of things
+==================
+Capabilities to become a IOT Monitoring and Inventory system
+- IOT/IOE link: http://en.wikipedia.org/wiki/Internet_of_Things
+- M2M link: http://en.wikipedia.org/wiki/Machine_to_machine
+
 TECHNICALS ASPECTS
 ==================
 GLPI use the following technologies :
-
-- PHP 
-Link PHP: http://php.net/manual/en/install.php
-- MySQL/MariaDB for the database
-Link MySQL : http://dev.mysql.com/doc/refman/5.7/en/installing-source-distribution.html
+- PHP  Link: http://php.net/manual/en/install.php
+- MySQL/MariaDB for the database Link MySQL : http://dev.mysql.com/doc/refman/5.7/en/installing-source-distribution.html
 Link MariaDB: https://mariadb.com/kb/en/mariadb/documentation/getting-started/compiling-mariadb-from-source/
-- HTML for the Web pages 
-Link html: http://www.w3schools.com/html/default.asp
-- CSS for style sheets 
-Link CSS3: http://www.w3schools.com/css/default.asp
-- Javascript for some task
-Link Javascript: http://www.w3schools.com/js/default.asp
-- Jquery for some task
-Link Jquery: http://www.w3schools.com/jquery/default.asp
-- XML for report generation
-Link XML: http://www.w3schools.com/xml/default.asp
+- HTML for the Web pages Link html: http://www.w3schools.com/html/default.asp
+- CSS for style sheets  Link CSS3: http://www.w3schools.com/css/default.asp
+- Javascript for some task Link Javascript: http://www.w3schools.com/js/default.asp
+- Jquery for some task Link Jquery: http://www.w3schools.com/jquery/default.asp
+- XML for report generation Link XML: http://www.w3schools.com/xml/default.asp
  
-Native support in:
-
+Work Better in
+==============
 - Linux
 - xBSD
 
-Compatible or SO Compliant
-
+Compatible with
+===============
 - - A/UX
 - - AIX
 - - BSD/OS
