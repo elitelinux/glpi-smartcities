@@ -9,20 +9,35 @@ GLPI is an excellent software that has been undervalued and is little known or u
 
 The True
 ========
-The GLPI is complex to parameterize . You will need patience, a team of multi-disciplinary, will need skilled in programming languages and information management, knowledge management, resource management, network systems, high availability, high performance systems, database management data, information security , protocols, methods and standards. Although you may not believe . and of course... LINUX (are you mad bro?[trollface])
+The GLPI is complex to parameterize . You will need patience, a team of multi-disciplinary, will need skilled people in:
+- Open Source
+- Programming languages
+- Information management
+- Knowledge management
+- Resource management
+- Network systems
+- High availability systems
+- High performance systems
+- Database management data
+- Information security
+- Protocols
+- Methods
+- Standards
+Although you may not believe... And of course... 
+GNU/LINUX (are you mad bro?[trollface])
 
 Profile of the Team
 ===================
 People with this knowledge or certifications will acellerate the process
-A+
-Network+
-ITIL (foundation)
-Project Management
-Web programmer (PHP, Shell, Python)
-Knowledge Management
-Linux+
-CISM
-ISO 9001 Certified
+- A+
+- Network+
+- ITIL (foundation)
+- Project Management
+- Web programmer (PHP, Shell, Python)
+- Knowledge Management
+- Linux+
+- CISM
+- ISO 9001 Certified
 
 Terms of implementation
 =======================
@@ -281,13 +296,13 @@ Other applications integrable to GLPI:
 Plugins
 =======
 List of the Plugins:
-barscode	link: https://forge.indepnet.net/projects/barscode	plugin available in 0.85
-Behaviors link:	https://forge.indepnet.net/projects/behaviors	plugin available in 0.85
-dashboard	link:https://forge.indepnet.net/projects/dashboard	plugin available in 0.85
-groupead	link: https://forge.indepnet.net/projects/groupead	plugin available in 0.85
-reforme	link: https://forge.indepnet.net/projects/reforme	plugin available in 0.85
-twins	link: https://forge.indepnet.net/projects/twins	plugin available in 0.85
-webnotifications link:	https://forge.indepnet.net/projects/webnotifications	plugin available in 0.85
+- Barscode	link: https://forge.indepnet.net/projects/barscode	plugin available in 0.85
+- Behaviors link:	https://forge.indepnet.net/projects/behaviors	plugin available in 0.85
+- Dashboard	link:https://forge.indepnet.net/projects/dashboard	plugin available in 0.85
+- Groupead	link: https://forge.indepnet.net/projects/groupead	plugin available in 0.85
+- Reforme	link: https://forge.indepnet.net/projects/reforme	plugin available in 0.85
+- Twins	link: https://forge.indepnet.net/projects/twins	plugin available in 0.85
+- Webnotifications link:	https://forge.indepnet.net/projects/webnotifications	plugin available in 0.85
 
 Extras
 ======
