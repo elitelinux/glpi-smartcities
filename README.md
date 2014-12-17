@@ -318,9 +318,8 @@ Capabilities to become a IOT Monitoring and Inventory system
 TECHNICALS ASPECTS
 ==================
 GLPI use the following technologies :
-- PHP  Link: http://php.net/manual/en/install.php
-- MySQL/MariaDB for the database Link MySQL : http://dev.mysql.com/doc/refman/5.7/en/installing-source-distribution.html
-Link MariaDB: https://mariadb.com/kb/en/mariadb/documentation/getting-started/compiling-mariadb-from-source/
+- PHP  Link: http://php.net/manual/en/install.php - http://www.w3schools.com/php/default.asp
+- MySQL/MariaDB for the database Link: MySQL http://dev.mysql.com/doc/refman/5.7/en/installing-source-distribution.html MariaDB https://mariadb.com/kb/en/mariadb/documentation/getting-started/compiling-mariadb-from-source/ - http://www.w3schools.com/sql/default.asp
 - HTML for the Web pages Link html: http://www.w3schools.com/html/default.asp
 - CSS for style sheets  Link CSS3: http://www.w3schools.com/css/default.asp
 - Javascript for some task Link Javascript: http://www.w3schools.com/js/default.asp
