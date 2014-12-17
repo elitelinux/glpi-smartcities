@@ -241,15 +241,15 @@ Quality Process
 
 Adaptable to Standards
 ======================
-- Quality management ISO 9000 + Link: http://www.iso.org/iso/home/standards/management-standards/iso_9000.htm
-- Environmental management ISO 14000 Link: http://www.iso.org/iso/home/standards/management-standards/iso14000.htm
+- Quality management ISO 9000 Link: https://www.iso.org/obp/ui/#iso:std:iso:9001:ed-4:v2:en 
+- Environmental management ISO 14001 Link: https://www.iso.org/obp/ui/#iso:std:iso:14001:ed-2:v1:en
 - Information and documentation ISO 15489 Link: https://www.iso.org/obp/ui/#iso:std:iso:15489:-1:ed-1:v1:en
-- Service management ISO 20000 Link: http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=51986
-- Sustainable events ISO 20121 Link: http://www.iso.org/iso/home/standards/management-standards/iso20121.htm
-- Social responsibility ISO 26000 Link: http://www.iso.org/iso/home/standards/iso26000.htm
-- Information security management ISO 27001 Link: http://www.iso.org/iso/home/standards/management-standards/iso27001.htm
+- Service management ISO 20000 Link: https://www.iso.org/obp/ui/#iso:std:iso-iec:20000:-1:ed-2:v1:en
+- Sustainable events ISO 20121 Link: https://www.iso.org/obp/ui/#iso:std:iso:20121:ed-1:v1:en
+- Social responsibility ISO 26000 Link: https://www.iso.org/obp/ui/#iso:std:iso:26000:ed-1:v1:en
+- Information security management ISO 27001 Link: https://www.iso.org/obp/ui/#iso:std:iso-iec:27001:ed-2:v1:en
 - Management systems for records ISO 30300 Link: https://www.iso.org/obp/ui/#iso:std:iso:30300:ed-1:v1:en
-- Risk management ISO 31000 Link: http://www.iso.org/iso/home/standards/iso31000.htm
+- Risk management ISO 31000 Link: https://www.iso.org/obp/ui/#iso:std:iso:31000:ed-1:v1:en
 - Sustainable development of communities ISO 37120 Link: https://www.iso.org/obp/ui/#iso:std:iso:37120:ed-1:v1:en
 - Smart community infrastructures ISO 37150 Link : https://www.iso.org/obp/ui/#iso:std:iso:tr:37150:ed-1:v1:en
 
