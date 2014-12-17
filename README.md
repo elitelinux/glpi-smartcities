@@ -269,15 +269,15 @@ Adaptable or Compliant to Methods
 Potentials
 ==========
 Other Features of the GLPI in their core:
-- CMS
-- CMDB
-- CRM Parts
-- FAQ System
-- Ticket System
-- Helpdesk Support
-- Groupware Parts
-- Datawarehouse
-- Wiki System
+- CMS link: http://en.wikipedia.org/wiki/Content_management_system
+- CMDB link: http://en.wikipedia.org/wiki/Configuration_management_database
+- CRM Parts: http://en.wikipedia.org/wiki/Customer_relationship_management
+- FAQ System: http://en.wikipedia.org/wiki/FAQ
+- Ticket System: (also issue tracking system, ITS, trouble ticket system, support ticket, request management or incident ticket system): http://en.wikipedia.org/wiki/Issue_tracking_system
+- Helpdesk Support: http://en.wikipedia.org/wiki/Help_desk
+- Collaborative software: http://en.wikipedia.org/wiki/Collaborative_software
+- Datawarehouse: http://en.wikipedia.org/wiki/Data_warehouse
+- Wiki System: http://en.wikipedia.org/wiki/Wiki
 
 Integrations
 ============
