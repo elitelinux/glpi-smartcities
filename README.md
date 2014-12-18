@@ -37,8 +37,8 @@ People with this knowledge or certifications will acellerate the process
 - Web programmer (PHP, Shell, Python)
 - Knowledge Management
 - Linux+
-- CISM
-- ISO 9001 Certified
+- CISM - CISA
+- Quality Systems Expert
 
 Terms of implementation
 =======================
