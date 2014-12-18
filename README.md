@@ -18,7 +18,7 @@ The GLPI is complex to parameterize . You will need patience, a team of multi-di
 - Network systems
 - High availability systems
 - High performance systems
-- Database management data
+- Database management
 - Information security
 - Protocols
 - Methods
