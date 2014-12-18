@@ -7,6 +7,14 @@ Why GLPI?
 =========
 GLPI is an excellent software that has been undervalued and is little known or used. Many of the things you normally need to do, do not require platforms such as SAP, Groupwares, Some CRMs and ERPs . In GLPI is enough. Take a look at what can do a properly configured GLPI.
 
+Improvements in this version compared to the original version
+=============================================================
+Improvements in:
+- Security in htaccess
+- Styles in GUI and Look and feel in CSS
+- HTML5 transition
+- Some code for user UX
+
 The True
 ========
 The GLPI is complex to parameterize . You will need patience, a team of multi-disciplinary, will need skilled people in:
