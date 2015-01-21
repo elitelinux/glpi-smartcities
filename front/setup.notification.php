@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: setup.notification.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: setup.notification.php 23285 2015-01-03 02:36:00Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -61,12 +61,14 @@ if (!$CFG_GLPI['use_mailing']) {
    } else {
       echo "<table class='tab_cadre'>";
       echo "<tr><th>" . _n('Notification', 'Notifications',2)."</th></tr>";
-      if (Session::haveRight("config", READ)) {
+      if (Session::haveRight("config", UPDATE)) {
          echo "<tr class='tab_bg_1'><td class='center'>".
               "<a href='notificationmailsetting.form.php'>". __('Email followups configuration') .
               "</a></td></tr>";
-            echo "<tr class='tab_bg_1'><td class='center'><a href='notificationtemplate.php'>" .
-                  _n('Notification template', 'Notification templates', 2) ."</a></td> </tr>";
+      }
+      if (Session::haveRight("config", READ)) {
+         echo "<tr class='tab_bg_1'><td class='center'><a href='notificationtemplate.php'>" .
+               _n('Notification template', 'Notification templates', 2) ."</a></td> </tr>";
       }
 
       if (Session::haveRight("notification", READ) && $CFG_GLPI['use_mailing']) {

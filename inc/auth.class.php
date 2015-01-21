@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: auth.class.php 22988 2014-06-04 06:37:43Z remi $
+ * @version $Id: auth.class.php 23282 2014-12-26 10:19:06Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -610,6 +610,7 @@ class Auth extends CommonGLPI {
             $this->user->fields['authtype'] = $authtype;
             $user_dn                        = false;
 
+            $ldapservers = '';
             //if LDAP enabled too, get user's infos from LDAP
             if (Toolbox::canUseLdap()) {
                $ldapservers = array();

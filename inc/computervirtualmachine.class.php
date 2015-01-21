@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: computervirtualmachine.class.php 23234 2014-11-19 12:38:45Z moyo $
+ * @version $Id: computervirtualmachine.class.php 23286 2015-01-08 10:48:51Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -171,13 +171,13 @@ class ComputerVirtualMachine extends CommonDBChild {
 
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Virtualization system')."</td>";
+      VirtualMachineType::dropdown(array('value' => $this->fields['virtualmachinetypes_id']));
       echo "<td>";
-      VirtualMachineSystem::dropdown(array('value' => $this->fields['virtualmachinesystems_id']));
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Virtualization model')."</td>";
-      VirtualMachineType::dropdown(array('value' => $this->fields['virtualmachinetypes_id']));
+      VirtualMachineSystem::dropdown(array('value' => $this->fields['virtualmachinesystems_id']));
       echo "<td>";
       echo "</td></tr>";
 

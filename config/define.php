@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: define.php 23273 2014-12-11 13:12:02Z moyo $
+ * @version $Id: define.php 23298 2015-01-21 09:57:42Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -32,7 +32,7 @@
 */
 
 // Current version of GLPI
-define("GLPI_VERSION","0.85.1");
+define("GLPI_VERSION","0.85.2");
 define("GLPI_DEMO_MODE","0");
 
 define("GLPI_USE_CSRF_CHECK", "1");

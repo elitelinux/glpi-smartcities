@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: ticket.class.php 23252 2014-11-27 19:59:17Z yllen $
+ * @version $Id: ticket.class.php 23291 2015-01-14 15:20:22Z tsmr $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -4129,7 +4129,7 @@ class Ticket extends CommonITILObject {
             $validation_right = 'validate_incident';
          }
          if (($values['type'] == self::DEMAND_TYPE)
-             && Session::haveRight('ticketvalidaton', TicketValidation::CREATEREQUEST)) {
+             && Session::haveRight('ticketvalidation', TicketValidation::CREATEREQUEST)) {
             $validation_right = 'validate_request';
          }
 
@@ -4410,7 +4410,6 @@ class Ticket extends CommonITILObject {
             echo "<input type='hidden' name='_link[tickets_id_1]' value='$ID'>\n";
             echo "</td><td width='70%'>";
             $linkparam = array('name'        => '_link[tickets_id_2]',
-                               'entity'      => $this->getEntityID(),
                                'displaywith' => array('id'));
 
             if (isset($values["_link"])) {

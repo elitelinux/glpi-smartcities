@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: dropdown.class.php 23260 2014-12-03 08:41:12Z moyo $
+ * @version $Id: dropdown.class.php 23286 2015-01-08 10:48:51Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -781,10 +781,10 @@ class Dropdown {
                                 ),
 
                     _n('Virtual machine', 'Virtual machines', 2)
-                        => array('VirtualMachineType'   => _n('Virtualization model',
-                                                              'Virtualization models', 2),
-                                 'VirtualMachineSystem' => _n('Virtualization system',
+                        => array('VirtualMachineType'   => _n('Virtualization system',
                                                               'Virtualization systems', 2),
+                                 'VirtualMachineSystem' => _n('Virtualization model',
+                                                              'Virtualization models', 2),
                                  'VirtualMachineState'  => _n('State of the virtual machine',
                                                               'States of the virtual machine', 2)
                                 ),

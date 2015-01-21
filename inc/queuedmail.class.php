@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: queuedmail.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: queuedmail.class.php 23297 2015-01-21 09:40:06Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -221,7 +221,7 @@ class QueuedMail extends CommonDBTM {
       $tab[7]['massiveaction']   = false;
 
       $tab[8]['table']           = $this->getTable();
-      $tab[8]['field']           = 'recipentname';
+      $tab[8]['field']           = 'recipientname';
       $tab[8]['name']            = __('Recipient name');
       $tab[8]['datatype']        = 'string';
       $tab[8]['massiveaction']   = false;

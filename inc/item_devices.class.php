@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: item_devices.class.php 23264 2014-12-11 08:48:39Z moyo $
+ * @version $Id: item_devices.class.php 23284 2015-01-02 13:29:49Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -63,6 +63,15 @@ class Item_Devices extends CommonDBRelation {
    var $no_form_page                    = false;
 
    static protected $forward_entity_to = array('Infocom');
+
+
+   /**
+    * @since version 0.85
+    * No READ right for devices and extends CommonDBRelation not CommonDevice
+   **/
+   static function canView() {
+      return true;
+   }
 
    /**
     * @since version 0.85
@@ -332,7 +341,10 @@ class Item_Devices extends CommonDBRelation {
       if (!$item->can($ID, READ)) {
          return false;
       }
-      $canedit = (($withtemplate != 2) && $item->canEdit($ID));
+
+      $canedit = (($withtemplate != 2)
+                  && $item->canEdit($ID)
+                  && Session::haveRightsOr('device', array(UPDATE, PURGE)));
       echo "<div class='spaced'>";
       $rand = mt_rand();
       if ($canedit) {
@@ -563,12 +575,12 @@ class Item_Devices extends CommonDBRelation {
          $leftjoin = '';
          $where = "";
          if (!empty($peer_type)) {
-            $leftjoin = "LEFT JOIN `".getTableForItemType($peer_type)."` 
+            $leftjoin = "LEFT JOIN `".getTableForItemType($peer_type)."`
                         ON (`".$this->getTable()."`.`items_id` = `".getTableForItemType($peer_type)."`.`id`
                             AND `".$this->getTable()."`.`itemtype` = '$peer_type')";
             $where = getEntitiesRestrictRequest(" AND", getTableForItemType($peer_type));
          }
-         
+
          $query = "SELECT `".$this->getTable()."`.*
                    FROM `".$this->getTable()."`
                    $leftjoin
@@ -627,7 +639,8 @@ class Item_Devices extends CommonDBRelation {
 
          }
 
-         if ($options['canedit']) {
+
+         if (Session::haveRight('device', UPDATE)) {
             $mode = __s('Update');
          } else {
             $mode = __s('View');
@@ -996,6 +1009,7 @@ class Item_Devices extends CommonDBRelation {
             echo "<td></td><td></td></tr>";
          }
       }
+      $options['canedit'] =  Session::haveRight('device', UPDATE);
       $this->showFormButtons($options);
 
       return true;

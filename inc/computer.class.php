@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: computer.class.php 23119 2014-08-08 09:03:30Z yllen $
+ * @version $Id: computer.class.php 23279 2014-12-20 17:29:42Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -148,7 +148,8 @@ class Computer extends CommonDBTM {
                $query = "SELECT *
                          FROM `glpi_computers_items`
                          WHERE `computers_id` = '".$this->fields["id"]."'
-                               AND `itemtype` = '".$t."'";
+                               AND `itemtype` = '".$t."'
+                               AND NOT `is_deleted`";
                if ($result = $DB->query($query)) {
                   $resultnum = $DB->numrows($result);
                   $item      = new $t();
@@ -197,7 +198,8 @@ class Computer extends CommonDBTM {
                $query = "SELECT *
                          FROM `glpi_computers_items`
                          WHERE `computers_id` = '".$this->fields["id"]."'
-                               AND `itemtype` = '".$t."'";
+                               AND `itemtype` = '".$t."'
+                               AND NOT `is_deleted`";
 
                if ($result = $DB->query($query)) {
                   $resultnum = $DB->numrows($result);
@@ -243,7 +245,8 @@ class Computer extends CommonDBTM {
                $query = "SELECT *
                          FROM `glpi_computers_items`
                          WHERE `computers_id` = '".$this->fields["id"]."'
-                               AND `itemtype` = '".$t."'";
+                               AND `itemtype` = '".$t."'
+                               AND NOT `is_deleted`";
 
                if ($result = $DB->query($query)) {
                   $resultnum = $DB->numrows($result);
@@ -285,7 +288,8 @@ class Computer extends CommonDBTM {
                $query = "SELECT *
                          FROM `glpi_computers_items`
                          WHERE `computers_id` = '".$this->fields["id"]."'
-                               AND `itemtype` = '".$t."'";
+                               AND `itemtype` = '".$t."'
+                               AND NOT `is_deleted`";
 
                if ($result = $DB->query($query)) {
                   $resultnum = $DB->numrows($result);
@@ -1032,7 +1036,7 @@ class Computer extends CommonDBTM {
                                           => array('table'      => 'glpi_computervirtualmachines',
                                                    'joinparams' => array('jointype' => 'child')));
 
-      $tab[162]['table']         = 'glpi_virtualmachinetypes';
+      $tab[162]['table']         = 'glpi_virtualmachinesystems';
       $tab[162]['field']         = 'name';
       $tab[162]['name']          = __('Virtualization model');
       $tab[162]['forcegroupby']  = true;

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: virtualmachinetype.class.php 23234 2014-11-19 12:38:45Z moyo $
+ * @version $Id: virtualmachinetype.class.php 23286 2015-01-08 10:48:51Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -42,7 +42,7 @@ class VirtualMachineType extends CommonDropdown {
 
 
    static function getTypeName($nb=0) {
-      return _n('Virtualization model', 'Virtualization models', $nb);
+      return _n('Virtualization system', 'Virtualization systems', $nb);
    }
 
 }

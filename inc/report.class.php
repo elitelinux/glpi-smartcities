@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: report.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: report.class.php 23290 2015-01-09 10:39:13Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -110,7 +110,7 @@ class Report extends CommonGLPI{
 
       $count    = count($report_list);
       $selected = -1;
-      $values   = array(-1 => Dropdown::EMPTY_VALUE);
+      $values   = array($CFG_GLPI["root_doc"].'/front/report.php' => Dropdown::EMPTY_VALUE);
 
       while ($data = each($report_list)) {
          $val           = $data[0];

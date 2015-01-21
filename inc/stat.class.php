@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: stat.class.php 23114 2014-08-01 15:14:09Z yllen $
+ * @version $Id: stat.class.php 23290 2015-01-09 10:39:13Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -1545,7 +1545,7 @@ class Stat extends CommonGLPI {
       echo "<tr><th colspan='2'>".__('Select statistics to be displayed')."</th></tr>";
       echo "<tr class='tab_bg_1'><td class='center'>";
 
-      $values   = array(-1 => Dropdown::EMPTY_VALUE);
+      $values   = array($CFG_GLPI["root_doc"].'/front/stat.php' => Dropdown::EMPTY_VALUE);
 
       $i        = 0;
       $selected = -1;

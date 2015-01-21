@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: notificationtargetticket.class.php 23256 2014-11-28 08:34:59Z yllen $
+ * @version $Id: notificationtargetticket.class.php 23294 2015-01-21 08:03:55Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -258,7 +258,7 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
                      ON (`glpi_profiles`.`id` = `glpi_profilerights`.`profiles_id`
                          AND `glpi_profilerights`.`name` = 'followup'
                          AND `glpi_profilerights`.`rights` & ".
-                            (TicketFollowup::SEEPRIVATE | TicketFollowup::SEEPUBLIC).") ";
+                            TicketFollowup::SEEPRIVATE.") ";
 
       }
       return $query;
@@ -486,6 +486,11 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
 
          $datas['##ticket.numberofchanges##'] = count($datas['changes']);
 
+         if (!isset($options['additionnaloption']['show_private'])
+             || !$options['additionnaloption']['show_private']) {
+            $restrict .= " AND `is_private` = '0'";
+         }
+         
          $restrict .= " ORDER BY `date` DESC, `id` ASC";
 
          //Followup infos

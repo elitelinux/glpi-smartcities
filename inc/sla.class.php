@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: sla.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: sla.class.php 23277 2014-12-11 15:58:42Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -372,7 +372,6 @@ class SLA extends CommonDBTM {
             if ($slalevel->fields['slas_id'] == $this->fields['id']) { // correct sla level
                $work_in_days = ($this->fields['definition_time'] == 'day');
                $delay        = $this->getResolutionTime();
-
                // Based on a calendar
                if ($this->fields['calendars_id'] > 0) {
                   $cal = new Calendar();
@@ -381,13 +380,13 @@ class SLA extends CommonDBTM {
                                                  $slalevel->fields['execution_time'] + $additional_delay,
                                                  $work_in_days);
                   }
-
-                  // No calendar defined or invalid calendar
-                  $delay    += $additional_delay+$slalevel->fields['execution_time'];
-                  $starttime = strtotime($start_date);
-                  $endtime   = $starttime+$delay;
-                  return date('Y-m-d H:i:s',$endtime);
                }
+                // No calendar defined or invalid calendar
+                $delay    += $additional_delay+$slalevel->fields['execution_time'];
+                $starttime = strtotime($start_date);
+                $endtime   = $starttime+$delay;
+                return date('Y-m-d H:i:s',$endtime);
+
             }
          }
       }

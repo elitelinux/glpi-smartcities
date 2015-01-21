@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: user.class.php 23238 2014-11-21 10:31:20Z yllen $
+ * @version $Id: user.class.php 23293 2015-01-21 07:26:09Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -690,7 +690,10 @@ class User extends CommonDBTM {
             }
          } else {
             //ldap jpegphoto synchronisation.
-            $input['picture'] = $this->syncLdapPhoto();
+            if (isset($this->fields["authtype"])
+                && (($this->fields["authtype"] == Auth::LDAP))) {
+                $input['picture'] = $this->syncLdapPhoto();
+            }
          }
       }
 

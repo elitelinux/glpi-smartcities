@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: ticket_ticket.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: ticket_ticket.class.php 23295 2015-01-21 08:16:12Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -172,7 +172,7 @@ class Ticket_Ticket extends CommonDBRelation {
                              "' alt=\"".Ticket::getStatus($ticket->fields["status"])."\"
                              title=\"". Ticket::getStatus($ticket->fields["status"])."\">";
                if ($canupdate) {
-                  $icons .= '&nbsp;'.Html::getSimpleForm(static::getFormURL(), 'delete',
+                  $icons .= '&nbsp;'.Html::getSimpleForm(static::getFormURL(), 'purge',
                                                          _x('button', 'Delete permanently'),
                                                          array('id'         => $linkID,
                                                                'tickets_id' => $ID),
