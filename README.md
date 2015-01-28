@@ -303,13 +303,24 @@ Other applications integrable to GLPI:
 Plugins
 =======
 List of the Plugins:
-- Barscode	link: https://forge.indepnet.net/projects/barscode	plugin available in 0.85
-- Behaviors link:	https://forge.indepnet.net/projects/behaviors	plugin available in 0.85
-- Dashboard	link:https://forge.indepnet.net/projects/dashboard	plugin available in 0.85
-- Groupead	link: https://forge.indepnet.net/projects/groupead	plugin available in 0.85
-- Reforme	link: https://forge.indepnet.net/projects/reforme	plugin available in 0.85
-- Twins	link: https://forge.indepnet.net/projects/twins	plugin available in 0.85
-- Webnotifications link:	https://forge.indepnet.net/projects/webnotifications	plugin available in 0.85
+- Accounts link: https://forge.indepnet.net/projects/accounts
+- Additional Alerts link: https://forge.indepnet.net/projects/additionalalerts
+- Badges link: https://forge.indepnet.net/projects/badges
+- Barscode	link: https://forge.indepnet.net/projects/barscode
+- Behaviors link:	https://forge.indepnet.net/projects/behaviors
+- Certificates link: https://forge.indepnet.net/projects/certificates
+- Dashboard	link:https://forge.indepnet.net/projects/dashboard
+- Enviroment link: https://forge.indepnet.net/projects/environment
+- Financials Reports link: https://forge.indepnet.net/projects/financialreports
+- Fusion Inventory link:http://forge.fusioninventory.org/projects/fusioninventory-for-glpi
+- Groupead	link: https://forge.indepnet.net/projects/groupead
+- Monitoring link https://forge.indepnet.net/projects/monitoring
+- Racks link: https://forge.indepnet.net/projects/racks
+- Reforme	link: https://forge.indepnet.net/projects/reforme
+- ShellCommands link: https://forge.indepnet.net/projects/shellcommands
+- Twins	link: https://forge.indepnet.net/projects/twins
+- Webapplications link: https://forge.indepnet.net/projects/webapplications
+- Webnotifications link:	https://forge.indepnet.net/projects/webnotifications
 
 Extras
 ======
