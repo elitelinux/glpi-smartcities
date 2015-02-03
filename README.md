@@ -34,7 +34,7 @@ The GLPI is complex to parameterize . You will need patience, a team of multi-di
 - Standards
 
 Although you may not believe... And of course...
-* GNU/LINUX (are you mad bro?[trollface])
+* GNU/LINUX 🐧 (are you mad bro?😜)
 
 Profile of the Team
 ===================
