@@ -311,6 +311,7 @@ List of the Plugins:
 - Barscode	link: https://forge.indepnet.net/projects/barscode
 - Behaviors link:	https://forge.indepnet.net/projects/behaviors
 - Certificates link: https://forge.indepnet.net/projects/certificates
+- Chat link: http://sourceforge.net/projects/glpichat/files/0.85/
 - Dashboard	link:https://forge.indepnet.net/projects/dashboard
 - Enviroment link: https://forge.indepnet.net/projects/environment
 - Financials Reports link: https://forge.indepnet.net/projects/financialreports
@@ -323,6 +324,7 @@ List of the Plugins:
 - Twins	link: https://forge.indepnet.net/projects/twins
 - Webapplications link: https://forge.indepnet.net/projects/webapplications
 - Webnotifications link:	https://forge.indepnet.net/projects/webnotifications
+- Webservice link: http://sourceforge.net/projects/glpiwebservices/files/
 
 Extras
 ======
@@ -330,7 +332,8 @@ Rules:
 * https://www.siprossii.com/sites/default/files/rules_manufacturer_dictionnary_20140825.xml
 * https://www.siprossii.com/sites/default/files/rules_software_dictionnary_20140825.xml
  
-Templates:
+Templates
+=========
 * http://sourceforge.net/projects/glpithemes/files/0.85/
 
 Internet of things
