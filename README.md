@@ -20,6 +20,7 @@ The True
 The GLPI is complex to parameterize . You will need patience, a team of multi-disciplinary, will need skilled people in:
 - Open Source
 - Programming languages
+- Project management
 - Information management
 - Knowledge management
 - Resource management
@@ -327,6 +328,9 @@ Extras
 Rules:
 * https://www.siprossii.com/sites/default/files/rules_manufacturer_dictionnary_20140825.xml
 * https://www.siprossii.com/sites/default/files/rules_software_dictionnary_20140825.xml
+ 
+Templates:
+* http://sourceforge.net/projects/glpithemes/files/0.85/
 
 Internet of things
 ==================
