@@ -313,6 +313,7 @@ List of the Plugins:
 - Certificates link: https://forge.indepnet.net/projects/certificates
 - Chat link: http://sourceforge.net/projects/glpichat/files/0.85/
 - Dashboard	link:https://forge.indepnet.net/projects/dashboard
+- Data Injection link: https://forge.indepnet.net/projects/datainjection
 - Enviroment link: https://forge.indepnet.net/projects/environment
 - Financials Reports link: https://forge.indepnet.net/projects/financialreports
 - Fusion Inventory link:http://forge.fusioninventory.org/projects/fusioninventory-for-glpi
