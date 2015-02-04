@@ -312,6 +312,7 @@ List of the Plugins:
 - Behaviors link:	https://forge.indepnet.net/projects/behaviors
 - Certificates link: https://forge.indepnet.net/projects/certificates
 - Chat link: http://sourceforge.net/projects/glpichat/files/0.85/
+- Custom Fields link: https://forge.indepnet.net/projects/customfields
 - Dashboard	link:https://forge.indepnet.net/projects/dashboard
 - Data Injection link: https://forge.indepnet.net/projects/datainjection
 - Enviroment link: https://forge.indepnet.net/projects/environment
