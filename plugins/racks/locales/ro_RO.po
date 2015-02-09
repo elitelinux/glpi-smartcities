@@ -1,0 +1,365 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Racks Development Team
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Doru  DEACONU <dumitrudeaconu@yahoo.com>, 2014
+# Doru  DEACONU <dumitrudeaconu@yahoo.com>, 2012
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Project - racks plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-29 12:17+0100\n"
+"PO-Revision-Date: 2014-11-21 17:29+0000\n"
+"Last-Translator: Doru  DEACONU <dumitrudeaconu@yahoo.com>\n"
+"Language-Team: Romanian (Romania) (http://www.transifex.com/projects/p/GLPI_racks/language/ro_RO/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ro_RO\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+
+#: hook.php:249 inc/rack.class.php:75 inc/rack.class.php:252
+#: inc/rack_item.class.php:1125 inc/rack_item.class.php:1214
+#: inc/report.class.php:255 inc/report.class.php:313
+#: inc/roomlocation.class.php:40
+msgid "Place"
+msgid_plural "Places"
+msgstr[0] "Amplasament"
+msgstr[1] "Amplasamente"
+msgstr[2] "Amplasamente"
+
+#: hook.php:251 inc/connection.class.php:39
+msgid "Power supply connection"
+msgid_plural "Power supply connections"
+msgstr[0] "Conexiune sursă alimentare"
+msgstr[1] "Conexiuni surse alimentare"
+msgstr[2] "Conexiuni surse alimentare"
+
+#: hook.php:252 inc/other.class.php:39 inc/othermodel.class.php:39
+msgid "Others equipments"
+msgstr "Alte echipamente"
+
+#: hook.php:267 inc/menu.class.php:35 inc/profile.class.php:115
+msgid "Rack enclosure"
+msgid_plural "Rack enclosures"
+msgstr[0] "Incintă rack"
+msgstr[1] "Incinte rack"
+msgstr[2] "Incinte rack"
+
+#: setup.php:86 front/report.php:62
+msgid "Report - Bays management"
+msgstr "Raport - Managementul  Bays"
+
+#: setup.php:93 inc/rack.class.php:48
+msgid "Rack enclosure management"
+msgid_plural "Rack enclosures management"
+msgstr[0] "Managementul incintei rack"
+msgstr[1] "Managementul incintelor rack"
+msgstr[2] "Managementul incintelor rack"
+
+#: setup.php:108
+msgid "This plugin requires GLPI >= 0.85"
+msgstr "Acest plugin necesită GLPI >= 0.85"
+
+#: front/config.form.php:49
+msgid "Please activate the plugin"
+msgstr "Activaţi vă rog pluginul"
+
+#: front/rack.form.php:90 front/rack.form.php:134
+msgid "No more place for insertion"
+msgstr "Nu mai este loc pentru inserare"
+
+#: inc/config.class.php:45
+msgid "Configuration of units"
+msgstr "Configurare unităţi"
+
+#: inc/config.class.php:60
+msgid "metric"
+msgstr "metrică"
+
+#: inc/config.class.php:65
+msgid "English"
+msgstr "Engleză"
+
+#: inc/config.class.php:84
+msgid "kg"
+msgstr "kg"
+
+#: inc/config.class.php:85
+msgid "btu/h"
+msgstr "btu/h"
+
+#: inc/config.class.php:86
+msgid "m3/h"
+msgstr "m3/h"
+
+#: inc/config.class.php:87
+msgid "mm"
+msgstr "mm"
+
+#: inc/config.class.php:89
+msgid "lbs"
+msgstr "lbs"
+
+#: inc/config.class.php:90
+msgid "watts"
+msgstr "waţi"
+
+#: inc/config.class.php:91
+msgid "CFM"
+msgstr "CFM"
+
+#: inc/config.class.php:92
+msgid "pouces"
+msgstr "inci"
+
+#: inc/itemspecificationcentral.class.php:39
+#: inc/itemspecification.class.php:39 inc/menu.class.php:65
+#: inc/menu.class.php:66 inc/profile.class.php:119
+msgid "Equipments models specifications"
+msgstr "Specificaţii modele de echipamente"
+
+#: inc/itemspecificationcentral.class.php:51
+msgid "Servers"
+msgstr "Servere"
+
+#: inc/itemspecificationcentral.class.php:52
+msgid "Network equipment"
+msgid_plural "Network equipments"
+msgstr[0] "Echipament reţea"
+msgstr[1] "Echipamente reţea"
+msgstr[2] "Echipamente reţea"
+
+#: inc/itemspecificationcentral.class.php:53
+msgid "Peripheral"
+msgid_plural "Peripherals"
+msgstr[0] "Periferic"
+msgstr[1] "Periferice"
+msgstr[2] "Periferice"
+
+#: inc/itemspecificationcentral.class.php:54
+msgid "Other equipment"
+msgid_plural "Others equipments"
+msgstr[0] "Alt echipament"
+msgstr[1] "Alte echipamente"
+msgstr[2] "Alte echipamente"
+
+#: inc/itemspecification.class.php:52 inc/menu.class.php:54
+#: inc/rack_item.class.php:170
+msgid "Specifications"
+msgstr "Specificaţii"
+
+#: inc/itemspecification.class.php:249 inc/itemspecification.class.php:337
+msgid "Full-depth item"
+msgstr "Element pe toată lungimea"
+
+#: inc/itemspecification.class.php:258 inc/itemspecification.class.php:326
+#: inc/rack.class.php:405
+msgid "Power supplies number"
+msgstr "Număr surse de alimentare"
+
+#: inc/itemspecification.class.php:263 inc/itemspecification.class.php:325
+#: inc/rack_item.class.php:615
+msgid "Total Current"
+msgstr "Curent consumat"
+
+#: inc/itemspecification.class.php:271 inc/itemspecification.class.php:327
+#: inc/rack.class.php:407 inc/rack_item.class.php:199
+#: inc/rack_item.class.php:616
+msgid "Calorific waste"
+msgstr "Căldură degajată"
+
+#: inc/itemspecification.class.php:278 inc/itemspecification.class.php:330
+#: inc/rack_item.class.php:620
+msgid "Flow Rate"
+msgstr "Debit de aer rece"
+
+#: inc/itemspecification.class.php:288 inc/itemspecification.class.php:334
+#: inc/rack.class.php:304 inc/rack.class.php:409 inc/rack_item.class.php:219
+#: inc/rack_item.class.php:624
+msgid "Weight"
+msgstr "Greutate"
+
+#: inc/itemspecification.class.php:324 inc/rack_item.class.php:479
+msgid "Equipment"
+msgstr "Echipament"
+
+#: inc/itemspecification.class.php:325 inc/rack.class.php:426
+#: inc/rack_item.class.php:191 inc/rack_item.class.php:615
+#: inc/rack_item.class.php:874 inc/rack_item.class.php:875
+msgid "amps"
+msgstr "amperi"
+
+#: inc/itemspecification.class.php:333 inc/rack.class.php:226
+#: inc/rack_item.class.php:844 inc/rack_item.class.php:856
+#: inc/rack_item.class.php:858 inc/rack_item.class.php:860
+#: inc/rack_item.class.php:862 inc/report.class.php:261
+#: inc/report.class.php:319
+msgid "U"
+msgstr "U"
+
+#: inc/itemspecification.class.php:371
+msgid "Add specifications for servers models"
+msgstr "Adaugă specificţii pentru noi modele de servere"
+
+#: inc/rack.class.php:104 inc/rack.class.php:288
+msgid "Height"
+msgstr "Înălţime"
+
+#: inc/rack.class.php:109 inc/rack.class.php:271
+msgid "Width"
+msgstr "Lărgime"
+
+#: inc/rack.class.php:114 inc/rack.class.php:322
+msgid "Depth"
+msgstr "Adâncime"
+
+#: inc/rack.class.php:406 inc/rack_item.class.php:191
+msgid "Total current"
+msgstr "Curent consumat"
+
+#: inc/rack.class.php:408 inc/rack_item.class.php:209
+msgid "Flow rate"
+msgstr "Debit de aer rece"
+
+#: inc/rack_item.class.php:64 inc/rack_item.class.php:68
+#: inc/rack_item.class.php:1164 inc/rack_item.class.php:1226
+#: inc/report.class.php:264 inc/report.class.php:322 inc/report.class.php:426
+#: inc/report.class.php:549 inc/report.class.php:559
+msgid "Front"
+msgstr "Faţa"
+
+#: inc/rack_item.class.php:71 inc/rack_item.class.php:75
+#: inc/rack_item.class.php:1166 inc/rack_item.class.php:1228
+#: inc/report.class.php:264 inc/report.class.php:322 inc/report.class.php:428
+#: inc/report.class.php:549 inc/report.class.php:559
+msgctxt "Rack enclosure"
+msgid "Back"
+msgstr "Spatele"
+
+#: inc/rack_item.class.php:173 inc/rack_item.class.php:612
+msgid "Power supply 1"
+msgstr "Sursă alimentare 1"
+
+#: inc/rack_item.class.php:183 inc/rack_item.class.php:613
+msgid "Power supply 2"
+msgstr "Sursă alimentare 2"
+
+#: inc/rack_item.class.php:478
+msgid "Add equipment"
+msgstr "Adaugă echipament"
+
+#: inc/rack_item.class.php:480
+msgid ""
+"Thanks to setup equipments models specifications prior to associate them"
+msgstr "Configuraţi vă rog  mai intâi specificaţiile modelelor inainte de a le asocia"
+
+#: inc/rack_item.class.php:483 inc/rack_item.class.php:608
+#: inc/rack_item.class.php:1123 inc/rack_item.class.php:1212
+#: inc/report.class.php:258 inc/report.class.php:316
+msgid "Position"
+msgstr "Poziţia"
+
+#: inc/rack_item.class.php:564
+msgid "Rack enclosure arrangement"
+msgstr "Dispunere incintă rack"
+
+#: inc/rack_item.class.php:614
+msgid "C13 Power Cord Quantity"
+msgstr "Cablu alimentare C13  necesar"
+
+#: inc/rack_item.class.php:856
+msgid "Total Servers"
+msgstr "Total Servere"
+
+#: inc/rack_item.class.php:858
+msgid "Total Network equipements"
+msgstr "Total echipamente reţea"
+
+#: inc/rack_item.class.php:860
+msgid "Total Peripherals"
+msgstr "Total Periferice"
+
+#: inc/rack_item.class.php:862
+msgid "Total Others"
+msgstr "Total Altele"
+
+#: inc/rack_item.class.php:868 inc/rack_item.class.php:870
+msgid "U availables"
+msgstr "U libere"
+
+#: inc/rack_item.class.php:873
+msgid "Total power Cords"
+msgstr "Total cabluri alimentare"
+
+#: inc/rack_item.class.php:874
+msgid "Amperage on power Cords"
+msgstr "Amperaj pe cabluri alimentare"
+
+#: inc/rack_item.class.php:948
+msgid "Left rack enclosure"
+msgstr "Incintă rack stânga"
+
+#: inc/rack_item.class.php:950
+msgid "No rack enclosure on the left"
+msgstr "Nu incintă rack pe stânga"
+
+#: inc/rack_item.class.php:971
+msgid "Right rack enclosure"
+msgstr "Incintă rack dreapta"
+
+#: inc/rack_item.class.php:973
+msgid "No rack enclosure on the right"
+msgstr "Nu incintă rack pe dreapta"
+
+#: inc/rack_item.class.php:1122 inc/rack_item.class.php:1211
+msgid "Disposition"
+msgstr "Dispunerea"
+
+#: inc/rack_item.class.php:1209
+msgid "Associated rack enclosure"
+msgid_plural "Associated rack enclosures"
+msgstr[0] "Incintă rack asociată"
+msgstr[1] "Incinte rack asociate"
+msgstr[2] "Incinte rack asociate"
+
+#: inc/report.class.php:190
+msgid "Encoding"
+msgstr "Codificare"
+
+#: inc/report.class.php:196
+msgid "Quotes"
+msgstr "Cotă"
+
+#: inc/report.class.php:202
+msgid "End of line"
+msgstr "Sfârşit de linie"
+
+#: inc/report.class.php:252 inc/report.class.php:310 inc/report.class.php:539
+msgid "Bay name"
+msgstr "Nume cumparator"
+
+#: inc/report.class.php:270 inc/report.class.php:325 inc/report.class.php:570
+msgid "Object name"
+msgstr "Nume obiect"
+
+#: inc/report.class.php:277 inc/report.class.php:328 inc/report.class.php:576
+msgid "Object location"
+msgstr "Locaţie obiect"
+
+#: inc/report.class.php:536
+msgid "Search criteria"
+msgstr "Criteiu de căutare"
+
+#: inc/report.class.php:563
+msgid "Field to export"
+msgstr "Câmp de exportat"
+
+#: inc/report.class.php:612
+msgid "Display options"
+msgstr "Opţiuni afişare"
+
+#: inc/report.class.php:620
+msgid "Group by bay name"
+msgstr "Grup dupa nume  bay"

@@ -1,0 +1,195 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-03 20:59+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: hook.php:130 hook.php:174 index.php:44 setup.php:129 front/manage.php:462
+#: inc/field.class.php:69 inc/profile.class.php:213
+msgid "Title"
+msgstr "Customfields"
+
+#: front/config.form.php:63 front/manage.php:46
+msgid "Manage Custom Fields"
+msgstr "Gérer les Champs Personnalisés"
+
+#: front/config.form.php:66 front/config.form.php:69
+msgid "Device Type"
+msgstr "Type de composant"
+
+#: front/config.form.php:67 front/config.form.php:70
+msgid "Status"
+msgstr "Statut"
+
+#: front/config.form.php:120
+msgid "Enabled"
+msgstr "Activé"
+
+#: front/config.form.php:126 front/manage.php:798
+msgid "Disabled"
+msgstr "Désactivé"
+
+#: front/config.form.php:148
+msgid "Setup of Custom Fields Plugin"
+msgstr "Installation du plugin Champs Personnalisés"
+
+#: front/config.form.php:151 front/dropdown.php:50 front/dropdown.php:206
+msgid "Manage Custom Dropdowns"
+msgstr "Gérer les listes déroulantes"
+
+#: front/dropdown.php:115 inc/dropdownsitem.class.php:210
+#: front/manage.php:812 inc/dropdownsitem.class.php:239
+msgid "Custom Dropdown"
+msgstr "Liste déroulante"
+
+#: front/dropdown.php:200
+msgid "Back to Manage Custom Fields"
+msgstr "Retour vers Gérer les Champs Personnalisés"
+
+#: front/dropdown.php:209 front/dropdown.php:343 front/manage.php:467
+#: front/manage.php:576
+msgid "Label"
+msgstr "Libellé"
+
+#: front/dropdown.php:210 front/dropdown.php:344 front/manage.php:468
+#: front/manage.php:577
+msgid "System Name"
+msgstr "Nom interne DB"
+
+#: front/dropdown.php:258
+#, php-format
+msgid "Used by %1$s device"
+msgid_plural "Used by %1$s devices"
+msgstr[0] "Champ utilisé par %1$s composant"
+msgstr[1] "Champ utilisé par %1$s composants"
+
+#: front/dropdown.php:323
+msgid "No custom dropdowns defined yet"
+msgstr "Aucune liste déroulante définie pour l'instant. Ajoutez-en ci-dessous."
+
+#: front/dropdown.php:340
+msgid "Add New Dropdown"
+msgstr "Ajouter une liste déroulante"
+
+#: front/manage.php:95
+msgid "Custom fields have been enabled for this device type"
+msgstr "Les Champs personnalisés sont activés pour ce type de composant."
+
+#: front/manage.php:253
+msgid "Custom Field"
+msgstr "Champ personnalisé"
+
+#: front/manage.php:469 front/manage.php:578
+msgid "Type"
+msgstr "Type"
+
+#: front/manage.php:470 front/manage.php:579 front/manage.php:659
+#: front/manage.php:722
+msgid "Sort"
+msgstr "Tri"
+
+#: front/manage.php:471
+msgid "Required"
+msgstr "Required"
+
+#: front/manage.php:472
+msgid "Entities"
+msgstr "Entities"
+
+#: front/manage.php:560
+msgid "No custom field yet"
+msgstr "Aucun champ personnalisé n'existe. Ajoutez-en ci-dessous."
+
+#: front/manage.php:573
+msgid "Add New Field"
+msgstr "Ajouter un nouveau champ"
+
+#: front/manage.php:596
+msgid "general"
+msgstr "General"
+
+#: front/manage.php:599
+msgid "text_explained"
+msgstr "Texte (lignes multiples)"
+
+#: front/manage.php:602
+msgid "notes_explained"
+msgstr "Notes (zone de texte)"
+
+#: front/manage.php:605
+msgid "date"
+msgstr "Date"
+
+#: front/manage.php:608
+msgid "number"
+msgstr "Nombre"
+
+#: front/manage.php:611
+msgid "money"
+msgstr "Monétaire"
+
+#: front/manage.php:614
+msgid "yesno"
+msgstr "Oui/Non"
+
+#: front/manage.php:617
+msgid "sectionhead"
+msgstr "Entête de section"
+
+#: front/manage.php:656
+msgid "Clone Field"
+msgstr "Cloner un champ (depuis un autre type de composant)"
+
+#: front/manage.php:658
+msgid "Field"
+msgstr "Champ"
+
+#: front/manage.php:718 front/manage.php:761 inc/dropdownsitem.class.php:192
+msgid "Add Custom Dropdown"
+msgstr "Ajouter une liste déroulante"
+
+#: front/manage.php:721
+msgid "Dropdown Name"
+msgstr "Nom de la liste"
+
+#: front/manage.php:780
+msgid "Status of Custom Fields"
+msgstr "Statut du plugin Champs Personnalisés pour ce composant"
+
+#: front/manage.php:787 front/manage.php:806
+msgid "Enable"
+msgstr "Activer"
+
+#: front/manage.php:790
+msgid "Disable"
+msgstr "Désactiver"
+
+#: inc/dropdownsitem.class.php:265
+msgid "You have not selected Dropdown"
+msgstr "Vous n'avez pas selectionné de liste déroulante"
+
+#: inc/field.class.php:447
+msgid "No fields available"
+msgstr "Aucun champ personnalisé n'existe. Ajoutez-en ci-dessous."
+
+#: inc/function.php:612
+msgid "Customfields disabled for this device type"
+msgstr "Les Champs personnalisés sont désactivés pour ce type de composant."
+
+#: inc/profile.class.php:244
+msgid "There is no restricted field"
+msgstr "Aucun champ restreint"

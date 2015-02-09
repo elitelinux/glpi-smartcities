@@ -1,0 +1,12 @@
+[03-Feb-2015 14:08:31 America/Chicago] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home4/t3nshi/public_html/lechussa.com/ckm/inc/dbmysql.class.php on line 284
+[03-Feb-2015 14:08:56 America/Chicago] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home4/t3nshi/public_html/lechussa.com/ckm/inc/dbmysql.class.php on line 284
+[03-Feb-2015 14:10:47 America/Chicago] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home4/t3nshi/public_html/lechussa.com/ckm/inc/dbmysql.class.php on line 284
+[03-Feb-2015 14:10:58 America/Chicago] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home4/t3nshi/public_html/lechussa.com/ckm/inc/dbmysql.class.php on line 284
+[03-Feb-2015 14:12:54 America/Chicago] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home4/t3nshi/public_html/lechussa.com/ckm/inc/dbmysql.class.php on line 284
+[03-Feb-2015 14:13:02 America/Chicago] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home4/t3nshi/public_html/lechussa.com/ckm/inc/dbmysql.class.php on line 284
+[03-Feb-2015 14:15:28 America/Chicago] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home4/t3nshi/public_html/lechussa.com/ckm/inc/dbmysql.class.php on line 284
+[03-Feb-2015 14:15:29 America/Chicago] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home4/t3nshi/public_html/lechussa.com/ckm/inc/dbmysql.class.php on line 284
+[03-Feb-2015 19:07:21 America/Chicago] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home4/t3nshi/public_html/lechussa.com/ckm/inc/dbmysql.class.php on line 284
+[03-Feb-2015 19:09:50 America/Chicago] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home4/t3nshi/public_html/lechussa.com/ckm/inc/dbmysql.class.php on line 284
+[03-Feb-2015 19:56:24 America/Chicago] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home4/t3nshi/public_html/lechussa.com/ckm/inc/dbmysql.class.php on line 284
+[03-Feb-2015 19:58:25 America/Chicago] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home4/t3nshi/public_html/lechussa.com/ckm/inc/dbmysql.class.php on line 284

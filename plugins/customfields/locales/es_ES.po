@@ -1,0 +1,203 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-03 19:42+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: hook.php:130 hook.php:174 index.php:44 setup.php:129 front/manage.php:462
+#: inc/profile.class.php:213
+msgid "Title"
+msgstr "Campos Personalizados"
+
+#: front/config.form.php:63 front/manage.php:46
+msgid "Manage Custom Fields"
+msgstr "Gestionar Campos Personalizados"
+
+#: front/config.form.php:66 front/config.form.php:69
+msgid "Device Type"
+msgstr "Tipo de dispositivo"
+
+#: front/config.form.php:67 front/config.form.php:70
+msgid "Status"
+msgstr "Estado"
+
+#: front/config.form.php:120
+msgid "Enabled"
+msgstr "Habilitado"
+
+#: front/config.form.php:126
+msgid "Disabled"
+msgstr "Deshabilitado"
+
+#: front/config.form.php:148
+msgid "Setup of Custom Fields Plugin"
+msgstr "Configuración de Campos Personalizados Plugin"
+
+#: front/config.form.php:151 front/dropdown.php:50 front/dropdown.php:206
+msgid "Manage Custom Dropdowns"
+msgstr "Gestionar desplegables personalizados"
+
+#: front/dropdown.php:115
+msgid "Custom Dropdown"
+msgstr "Desplegable personalizado"
+
+#: front/dropdown.php:200
+msgid "Back to Manage Custom Fields"
+msgstr "Volver a Gestionar Campos Personalizados"
+
+#: front/dropdown.php:209 front/dropdown.php:343 front/manage.php:467
+#: front/manage.php:576
+msgid "Label"
+msgstr "Etiqueta"
+
+#: front/dropdown.php:210 front/dropdown.php:344 front/manage.php:468
+#: front/manage.php:577
+msgid "System Name"
+msgstr "Nombre en el sistema"
+
+#: front/dropdown.php:258
+#, php-format
+msgid "Used by %1$s device"
+msgid_plural "Used by %1$s devices"
+msgstr[0] "Usado por %1$s dispositvo"
+msgstr[1] "Usado por %1$s dispositvos"
+
+#: front/dropdown.php:323
+msgid "No custom dropdowns defined yet"
+msgstr "No hay campos desplegables definidos todavía. Añádalos abajo."
+
+#: front/dropdown.php:340
+msgid "Add New Dropdown"
+msgstr "Añadir nuevo desplegable"
+
+#: front/manage.php:95
+msgid "Custom fields have been enabled for this device type"
+msgstr "Campos personalizados habilitados para este tipo de dispositivo."
+
+#: front/manage.php:253
+msgid "Custom Field"
+msgstr "Campo personalizado"
+
+#: front/manage.php:469 front/manage.php:578
+msgid "Type"
+msgstr "Tipo"
+
+#: front/manage.php:470 front/manage.php:579 front/manage.php:659
+#: front/manage.php:722
+msgid "Sort"
+msgstr "Ordenar"
+
+#: front/manage.php:471
+msgid "Required"
+msgstr "Requerido"
+
+#: front/manage.php:472
+msgid "Entities"
+msgstr "Entidades"
+
+#: front/manage.php:560
+msgid "No custom field yet"
+msgstr "No hay campos personalizado todavía. Añádalos abajo"
+
+#: front/manage.php:573
+msgid "Add New Field"
+msgstr "Añadir nuevo"
+
+#: front/manage.php:596
+msgid "general"
+msgstr "General"
+
+#: front/manage.php:599
+msgid "text_explained"
+msgstr "Texto (múltiples líneas)"
+
+#: front/manage.php:602
+msgid "notes_explained"
+msgstr "Notas (área grande de texto)"
+
+#: front/manage.php:605
+msgid "date"
+msgstr "Fecha"
+
+#: front/manage.php:608
+msgid "number"
+msgstr "Número"
+
+#: front/manage.php:611
+msgid "money"
+msgstr "Dinero"
+
+#: front/manage.php:614
+msgid "yesno"
+msgstr "Sí/No"
+
+#: front/manage.php:617
+msgid "sectionhead"
+msgstr "Cabecera de sección"
+
+#: front/manage.php:656
+msgid "Clone Field"
+msgstr "Clonar campo (desde otro tipo de dispoitivo)"
+
+#: front/manage.php:658
+msgid "Field"
+msgstr "Campo"
+
+#: front/manage.php:718 front/manage.php:761 inc/dropdownsitem.class.php:192
+msgid "Add Custom Dropdown"
+msgstr "Añadir campo desplegable"
+
+#: front/manage.php:721
+msgid "Dropdown Name"
+msgstr "Nombre del campo desplegable"
+
+#: front/manage.php:780
+msgid "Status of Custom Fields"
+msgstr "Estado de Campos Personalizados"
+
+#: front/manage.php:787 front/manage.php:806
+msgid "Enable"
+msgstr "Habilitar"
+
+#: front/manage.php:790
+msgid "Disable"
+msgstr "Deshabilitar"
+
+#: front/manage.php:798
+msgid "Disabled "
+msgstr "Deshabilitado "
+
+#: front/manage.php:812 inc/dropdownsitem.class.php:210
+#: inc/dropdownsitem.class.php:239
+msgid "Custom Dropdown "
+msgstr "Desplegable personalizado "
+
+#: inc/dropdownsitem.class.php:265
+msgid "You have not selected Dropdown"
+msgstr "No ha seleccionado combo"
+
+#: inc/field.class.php:447
+msgid "No fields available"
+msgstr "No hay campos adicionales configurados"
+
+#: inc/function.php:612
+msgid "Customfields disabled for this device type"
+msgstr "Campos personalizado deshabilitados para este tipo de dispositivo."
+
+#: inc/profile.class.php:244
+msgid "There is no restricted field"
+msgstr "No hay ningún campo restringido"

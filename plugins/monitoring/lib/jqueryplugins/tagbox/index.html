@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gte IE 9]>     <html class="gte-ie9"> <![endif]-->
+
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+        <title>TAGBOX - jQuery plugin for selection of predefined tags</title>
+
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <script src="js/jquery.tagbox.js"></script>
+
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/jquery.tagbox.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="tagbox-title">TAGBOX</div>
+        <div id="tagbox-desc">jQuery plugin for selection of predefined tags</div>
+        <div id="tagbox-container"></div>
+
+        <a id="footer" href="http://www.leandigo.com" target="_blank">&copy;2013 Leandigo</a>
+
+        <script>
+            $('#tagbox-container').tagbox({
+                taglist: ['Spoon', 'Banana', 'Strawberry', 'Pillsberry', 'Blue Balloon', 'Alligator'],
+                selectedlist: ['Banana', 'Pillsberry'],
+                cols: 3,
+                maxtags: 4
+            });
+        </script>
+    </body>
+</html>

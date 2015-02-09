@@ -1,0 +1,127 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Certificates Development Team
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Rafael Ferreira <rafael.f.f1@gmail.com>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Project - certificates plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-14 16:09+0100\n"
+"PO-Revision-Date: 2013-11-20 10:28+0000\n"
+"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/GLPI_certificates/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: hook.php:332 inc/certificate_item.class.php:508
+msgid "Does not expire"
+msgstr "Não expira"
+
+#: hook.php:400
+msgid "Associate to certificate"
+msgstr "Associar a certificado"
+
+#: setup.php:107 inc/certificate.class.php:43
+msgid "Certificate"
+msgid_plural "Certificates"
+msgstr[0] "Certificado"
+msgstr[1] "Certificados"
+
+#: setup.php:119
+msgid "This plugin requires GLPI >= 0.84"
+msgstr "Este plug-in requer GLPI >= 0.84"
+
+#: inc/certificate.class.php:80 inc/certificate.class.php:295
+#: inc/certificate_item.class.php:454
+msgid "DNS name"
+msgstr "Nome DNS"
+
+#: inc/certificate.class.php:84 inc/certificate.class.php:309
+#: inc/certificate_item.class.php:455
+msgid "DNS suffix"
+msgstr "Sufixo DNS"
+
+#: inc/certificate.class.php:100 inc/certificate.class.php:286
+msgid "Root CA"
+msgstr "AC Raiz"
+
+#: inc/certificate.class.php:105 inc/certificate.class.php:339
+msgid "Self-signed"
+msgstr "Auto-assinado"
+
+#: inc/certificate.class.php:110 inc/certificate.class.php:330
+msgid "Notification email"
+msgstr "e-mail de notificação"
+
+#: inc/certificate.class.php:137 inc/certificate.class.php:353
+msgid "Command used"
+msgstr "Comando usado"
+
+#: inc/certificate.class.php:142 inc/certificate.class.php:359
+msgid "Certificate request (CSR)"
+msgstr "Requisição de certificado (CSR)"
+
+#: inc/certificate.class.php:572
+#: inc/notificationtargetcertificate.class.php:74
+msgid "Expired or expiring certificates"
+msgstr "Certificados expirando ou expirados"
+
+#: inc/certificate.class.php:653 inc/config.class.php:73
+msgid "Certificates expired since more"
+msgstr "Certificados expirados desde mais de"
+
+#: inc/certificate_item.class.php:427
+msgctxt "button"
+msgid "Associate a certificate"
+msgstr "Associar um certificado"
+
+#: inc/certificatestate.class.php:38
+msgid "Certificate status"
+msgid_plural "Certificate statuses"
+msgstr[0] "Status do certificado"
+msgstr[1] "Status dos certificados"
+
+#: inc/certificatetype.class.php:39
+msgid "Certificate type"
+msgid_plural "Certificate types"
+msgstr[0] "Tipo do certificado"
+msgstr[1] "Tipos dos certificados"
+
+#: inc/config.class.php:39
+msgid "Plugin Setup"
+msgstr "Confoiguração do plug-in"
+
+#: inc/config.class.php:64
+msgid "Time of checking of validity of certificates"
+msgstr "Intervalo de verificação da validade de certificados"
+
+#: inc/config.class.php:77
+msgid "Certificates expiring in less than"
+msgstr "Certificados expirando em menos de"
+
+#: inc/notificationstate.class.php:91
+msgid "add not-used status in expiration mail"
+msgstr "adicionar status de não-usado no e-mail de expiração"
+
+#: inc/notificationstate.class.php:117
+msgid "No used status in expiration mail"
+msgstr "Status de não-usado no e-mail de expiração"
+
+#: inc/notificationtargetcertificate.class.php:38
+#: inc/notificationtargetcertificate.class.php:48
+msgid "Expired certificates"
+msgstr "Certificados expirados"
+
+#: inc/notificationtargetcertificate.class.php:39
+#: inc/notificationtargetcertificate.class.php:49
+msgid "Expiring certificates"
+msgstr "Certificados expirando"
+
+#: inc/profile.class.php:37 inc/profile.class.php:144
+msgid "Rights management"
+msgstr "Gerenciamento de permissões"

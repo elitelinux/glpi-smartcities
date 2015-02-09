@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+   <name>Twins</name>
+   <key>twins</key>
+   <state>stable</state>
+    <logo>https://forge.indepnet.net/svn/reforme/images/logo-reforme.png</logo>
+   <description>
+      <short>
+         <fr><![CDATA[Plugin permettant de cloner un ordinateur ]]></fr>
+         <en></en>
+      </short>
+      <long>
+         <fr><![CDATA[Ce plugin a comme objectif de cloner un ordinateur:<br />
+
+1/ Enregistre le lieu, le responsable technique, le numéro usager, l'usager, le domaine <br />
+2/ Créé la machine dans le domaine <br />
+3/ Permet de gérer les groupes domaine <br />
+4/ imprime l'étiquette <br />
+         <en></en>
+      </long>
+   </description>
+   <homepage>https://forge.indepnet.net/projects/twins</homepage>
+   <download>https://forge.indepnet.net/projects/twins/files</download>
+   <authors>
+      <author>Tristan Fleury </author>
+      <author></author>
+   </authors>
+   <versions>
+      <version>
+          <num>1.0.4</num>
+          <compatibility>0.83,0.84,0.85</compatibility>
+      </version>
+
+   </versions>
+   <langs>
+      <lang>fr_FR</lang>
+   </langs>
+   <license><![CDATA[GPL v2+]]></license>
+   <tags>
+         <fr>
+            <tag>Inventaire</tag>
+         </fr>
+   </tags>
+</root>

@@ -1,0 +1,36 @@
+#tagbox-title {
+    position:   absolute;
+    font:       2.5em Arial, sans-serif;
+    font-weight: bold;
+    top:        20%;
+    left:       30%;
+    color:      #037da5;
+}
+
+#tagbox-desc {
+    position:   absolute;
+    font:       1.5em sans-serif;
+    top:        30%;
+    left:       30%;
+    color:      #444;
+}
+
+#tagbox-container {
+    position:   absolute;
+    top:        40%;
+    left:       30%;
+    width:      40%;
+}
+
+#footer {
+    text-decoration:    none;
+    font:               1.2em sans-serif;
+    color:              #888;
+    position:           absolute;
+    bottom:             1em;
+    right:              1em;
+}
+
+#footer:hover {
+    text-decoration:    underline;
+}

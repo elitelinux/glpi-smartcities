@@ -1,0 +1,131 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Certificates Development Team
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Doru  DEACONU <dumitrudeaconu@yahoo.com>, 2013
+# Doru  DEACONU <dumitrudeaconu@yahoo.com>, 2012
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Project - certificates plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-14 16:09+0100\n"
+"PO-Revision-Date: 2013-11-20 10:28+0000\n"
+"Last-Translator: Doru  DEACONU <dumitrudeaconu@yahoo.com>\n"
+"Language-Team: Romanian (Romania) (http://www.transifex.com/projects/p/GLPI_certificates/language/ro_RO/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ro_RO\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+
+#: hook.php:332 inc/certificate_item.class.php:508
+msgid "Does not expire"
+msgstr "Nu expiră"
+
+#: hook.php:400
+msgid "Associate to certificate"
+msgstr "Asociază la certificat"
+
+#: setup.php:107 inc/certificate.class.php:43
+msgid "Certificate"
+msgid_plural "Certificates"
+msgstr[0] "Certificat"
+msgstr[1] "Certificate"
+msgstr[2] "Certificate"
+
+#: setup.php:119
+msgid "This plugin requires GLPI >= 0.84"
+msgstr "Acest plugin necesită GLPI >= 0.84"
+
+#: inc/certificate.class.php:80 inc/certificate.class.php:295
+#: inc/certificate_item.class.php:454
+msgid "DNS name"
+msgstr "Nume DNS asociat"
+
+#: inc/certificate.class.php:84 inc/certificate.class.php:309
+#: inc/certificate_item.class.php:455
+msgid "DNS suffix"
+msgstr "Sufix DNS asociat"
+
+#: inc/certificate.class.php:100 inc/certificate.class.php:286
+msgid "Root CA"
+msgstr "Root CA"
+
+#: inc/certificate.class.php:105 inc/certificate.class.php:339
+msgid "Self-signed"
+msgstr "Autosemnată"
+
+#: inc/certificate.class.php:110 inc/certificate.class.php:330
+msgid "Notification email"
+msgstr "Notificare email"
+
+#: inc/certificate.class.php:137 inc/certificate.class.php:353
+msgid "Command used"
+msgstr "Comandă utilizată"
+
+#: inc/certificate.class.php:142 inc/certificate.class.php:359
+msgid "Certificate request (CSR)"
+msgstr "Cerere Certificat (CSR)"
+
+#: inc/certificate.class.php:572
+#: inc/notificationtargetcertificate.class.php:74
+msgid "Expired or expiring certificates"
+msgstr "Certificate expirate sau certificate ce vor expira"
+
+#: inc/certificate.class.php:653 inc/config.class.php:73
+msgid "Certificates expired since more"
+msgstr "Certificate expirate de mai mult de "
+
+#: inc/certificate_item.class.php:427
+msgctxt "button"
+msgid "Associate a certificate"
+msgstr "Asociază certificat"
+
+#: inc/certificatestate.class.php:38
+msgid "Certificate status"
+msgid_plural "Certificate statuses"
+msgstr[0] "Statut certificat"
+msgstr[1] "Statusuri certificate"
+msgstr[2] "Statusuri certificate"
+
+#: inc/certificatetype.class.php:39
+msgid "Certificate type"
+msgid_plural "Certificate types"
+msgstr[0] "Tip certificat"
+msgstr[1] "Tipuri certificat"
+msgstr[2] "Tipuri certificat"
+
+#: inc/config.class.php:39
+msgid "Plugin Setup"
+msgstr "Configurare plugin"
+
+#: inc/config.class.php:64
+msgid "Time of checking of validity of certificates"
+msgstr "Timp de verificare a valabilităţii certificatelor"
+
+#: inc/config.class.php:77
+msgid "Certificates expiring in less than"
+msgstr "Certificate ce expiră în mai puţin de"
+
+#: inc/notificationstate.class.php:91
+msgid "add not-used status in expiration mail"
+msgstr "Adaugă un statut neutilizat <br> în trimiterea  emailuri de expirare"
+
+#: inc/notificationstate.class.php:117
+msgid "No used status in expiration mail"
+msgstr "Statut neutilizat <br> în trimiterea  emailuri de expirare"
+
+#: inc/notificationtargetcertificate.class.php:38
+#: inc/notificationtargetcertificate.class.php:48
+msgid "Expired certificates"
+msgstr "Certificate expirate"
+
+#: inc/notificationtargetcertificate.class.php:39
+#: inc/notificationtargetcertificate.class.php:49
+msgid "Expiring certificates"
+msgstr "Cerificate ce vor expira"
+
+#: inc/profile.class.php:37 inc/profile.class.php:144
+msgid "Rights management"
+msgstr "Managementul drepturilor"

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+   <name>Reforme</name>
+   <key>Reforme</key>
+   <state>stable</state>
+    <logo>https://forge.indepnet.net/svn/groupead/images/logo-groupead.png</logo>
+   <description>
+      <short>
+         <fr><![CDATA[Plugin permettant de gérer le groupes Active Directory d'une machine]]></fr>
+         <en></en>
+      </short>
+      <long>
+         <fr><![CDATA[Plugin permettant de gérer le groupes Active Directory d'une machine:<br />
+
+1/ ajoute une machine dans un groupe <br />
+2/ retire une machine d'un groupe <br />
+3/ enregistre (log) les actions ]]> </fr>
+         <en></en>
+      </long>
+   </description>
+   <homepage>https://forge.indepnet.net/projects/show/groupead</homepage>
+   <download>https://forge.indepnet.net/projects/groupead/files</download>
+   <authors>
+      <author>Tristan Fleury </author>
+      <author></author>
+   </authors>
+   <versions>
+      <version>
+          <num>1.0.9</num>
+          <compatibility>0.83,0.84,0.85</compatibility>
+      </version>
+
+   </versions>
+   <langs>
+      <lang>fr_FR</lang>
+   </langs>
+   <license><![CDATA[GPL v2+]]></license>
+   <tags>
+         <fr>
+            <tag>Inventaire</tag>
+         </fr>
+   </tags>
+</root>

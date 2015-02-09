@@ -1,0 +1,159 @@
+/*
+    TAGBOX - A jQuery plugin for selection of predefined tags
+    ---------------------------------------------------------
+    Copyright (C) 2013, Leandigo (www.leandigo.com)
+    This code is released under the MIT License
+*/
+
+.tagbox {
+    position:       relative;
+    font-family:    sans-serif;
+    font-size:      1em;
+}
+    /* THE SELECTED CHOICES BOX */
+    .tagbox-field {
+        padding:        0.3em;
+        margin:         0.3em 0;
+        border-radius: .2em;
+        border:         1px solid #DDD;
+    }
+        .tagbox-input-wrapper {
+            position:       relative;
+            display:        inline-table;
+            width:          15em;
+            margin-top:     1px;
+            overflow:       visible;
+        }
+            .tagbox-field-input {
+                width:          100%;
+                font-size:      1em;
+                padding:        0.3em .5em;
+                color:          #888;
+                box-shadow:     none;
+                border:         0;
+            }
+
+            .tagbox-field-input:focus {
+                border-color:   #BBB;
+                outline:        0;
+            }
+
+            ::-webkit-input-placeholder {
+               color:       #CCC;
+               font-style:  italic;
+            }
+            :-moz-placeholder { /* Firefox 18- */
+               color:       #CCC;
+               font-style:  italic;
+            }
+            ::-moz-placeholder {  /* Firefox 19+ */
+               color:       #CCC;
+               font-style:  italic;
+            }
+            :-ms-input-placeholder {
+               color:       #CCC;
+               font-style:  italic;
+            }
+
+        /* DYNAMIC CHOICE SUGGESTIONS */
+        .tagbox-dropdown {
+            position:           absolute;
+            width:              100%;
+            padding:            0.3em .5em;
+            border:             1px solid #2caed6;
+            background-color:   #FFF;
+            z-index:            10000;
+        }
+            .tagbox-clickable-tag {
+                display:    baseline;
+                padding:    .2em 0;
+                color:      #888;
+            }
+
+            .tagbox-clickable-tag.selected,
+            .tagbox-clickable-tag:hover {
+                padding:        .2em;
+                background:     #037da5;
+                margin-left:    -.2em;
+                margin-right:    -.2em;
+                cursor:         pointer;
+                border-radius: .2em;
+                color:          #FFF;
+            }
+                .tagbox-match {
+                    font-weight:    bold;
+                    color:          #333;
+                }
+
+    .tagbox-selected-tag {
+        display:            inline-table;
+        padding:            .3em .5em;
+        margin-right:       .5em;
+        margin-bottom:      .5em;
+        background-color:   #361166;
+        color:              #FFF;
+        border-radius:      .3em;
+        white-space:        nowrap;
+    }
+
+    .tagbox-selected-tag:hover {
+        cursor: default;
+    }
+        .tagbox-selected-tag-remove {
+            color:  #037da5;
+        }
+        .tagbox-selected-tag-remove:hover {
+            cursor: pointer;
+            color:  #2caed6;
+        }
+
+    /* THE ALL CHOICES SUGGESTION BOX */
+    .tagbox-matrix-label {
+        margin:         .5em 0;
+        font-size:      1.1em;
+        font-style:     italic;
+        color:          #888;
+    }
+
+    .tagbox-matrix-label:hover {
+        cursor:             pointer;
+        text-decoration:    underline;
+    }
+        .tagbox-matrix-label-arrow {
+            font-style:     normal;
+        }
+
+    .tagbox-matrix {
+        background:     #FFF;
+        border:         1px solid #AAA;
+        padding:        .4em;
+        border-radius:  .3em;
+        z-index:        10000;
+    }
+        .tagbox-matrix-item {
+            display:    inline-block;
+            margin:     .1em;
+        }
+            .tagbox-matrix-checkbox {
+                display:        inline-table;
+                margin-right:   .5em !important;
+            }
+
+        .tagbox-matrix-tag {
+            display: inline-block;
+        }
+            .tagbox-matrix-tag .tagbox-matching:not(.selected) {
+                padding:        .2em;
+                background:     #EEE;
+                margin-left:    -.2em;
+                margin-right:    -.2em;
+                cursor:         pointer;
+                border-radius: .2em;
+            }
+
+            .tagbox-matrix-tag .tagbox-matching:not(.selected):hover {
+                background:     #037da5;
+            }
+
+
+

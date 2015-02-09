@@ -1,0 +1,130 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Financialreports Development Team
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Alexey Petukhov <lexx015@gmail.com>, 2014
+# Alexey Petukhov <lexx015@gmail.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Project - financialreports plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-14 09:42+0100\n"
+"PO-Revision-Date: 2014-10-13 15:18+0000\n"
+"Last-Translator: Alexey Petukhov <lexx015@gmail.com>\n"
+"Language-Team: Russian (Russia) (http://www.transifex.com/projects/p/GLPI_financialreports/language/ru_RU/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru_RU\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: hook.php:152 setup.php:65 inc/financialreport.class.php:38
+msgid "Asset situation"
+msgid_plural "Asset situations"
+msgstr[0] "Состояние оборудования"
+msgstr[1] "Состояния оборудования"
+msgstr[2] "Состояния оборудования"
+
+#: hook.php:153 inc/disposalitem.class.php:43
+#: inc/financialreport.class.php:561 inc/pdf.class.php:267
+msgid "Disposal date"
+msgid_plural "Disposal dates"
+msgstr[0] "Дата утилизации"
+msgstr[1] "Даты утилизации"
+msgstr[2] "Дата утилизации"
+
+#: hook.php:179 inc/disposalitem.class.php:168
+msgid "Indicate the date of disposal"
+msgstr "Показывать дату утилизации"
+
+#: setup.php:78
+msgid "This plugin requires GLPI >= 0.84"
+msgstr "Это дополненение требует версию GLPI >=0.84"
+
+#: front/config.form.php:71
+msgid "Please activate the plugin"
+msgstr "Пожалуйста включите это дополнение"
+
+#: front/financialreport.php:167
+msgid "Report date"
+msgstr "Дата отчета"
+
+#: inc/config.class.php:72 inc/config.class.php:87
+msgid "Disposal status"
+msgstr "Статус утилизации"
+
+#: inc/financialreport.class.php:322 inc/pdf.class.php:223
+msgid "Asset situation ended on"
+msgstr "Размещение оборудования закочилось"
+
+#: inc/financialreport.class.php:357 inc/financialreport.class.php:359
+#: inc/parameter.class.php:51
+msgid "Notebook"
+msgid_plural "Notebooks"
+msgstr[0] "Ноутбук"
+msgstr[1] "Ноутбуки"
+msgstr[2] "Ноутбуки"
+
+#: inc/financialreport.class.php:367 inc/financialreport.class.php:369
+#: inc/parameter.class.php:55
+msgid "Server"
+msgid_plural "Servers"
+msgstr[0] "Сервер"
+msgstr[1] "Серверы"
+msgstr[2] "Серверы"
+
+#: inc/financialreport.class.php:454 inc/financialreport.class.php:456
+msgid "Element out"
+msgid_plural "Elements out"
+msgstr[0] "Элемент закончился"
+msgstr[1] "Элементы закончились"
+msgstr[2] "Элементы закончились"
+
+#: inc/financialreport.class.php:478 inc/pdf.class.php:323
+msgid "General Total"
+msgstr "Итого"
+
+#: inc/financialreport.class.php:479 inc/financialreport.class.php:514
+#: inc/financialreport.class.php:540 inc/financialreport.class.php:564
+msgid "Euro"
+msgid_plural "Euros"
+msgstr[0] "Евро"
+msgstr[1] "Евро"
+msgstr[2] "Евро"
+
+#: inc/financialreport.class.php:526
+msgid "Hide"
+msgstr "Скрыть"
+
+#: inc/financialreport.class.php:528
+msgid "Display"
+msgstr "Отобразить"
+
+#: inc/financialreport.class.php:554 inc/pdf.class.php:259
+msgid "User / Group"
+msgstr "Пользователь / Группа"
+
+#: inc/financialreport.class.php:564
+msgid "Purchase Price HT in"
+msgstr "С НДС"
+
+#: inc/financialreport.class.php:595
+msgid "In stock / available"
+msgstr "В наличии / доступно"
+
+#: inc/parameter.class.php:43
+msgid "Identification parameters of inventory number"
+msgstr "Параметр, определяющий номер оборудования"
+
+#: inc/pdf.class.php:266 inc/pdf.class.php:270
+msgid "HT"
+msgstr "НДС"
+
+#: inc/profile.class.php:37 inc/profile.class.php:140
+msgid "Rights management"
+msgstr "Управление правами"
+
+#: inc/profile.class.php:143
+msgid "Generate report"
+msgstr "Создать отчет"

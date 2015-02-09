@@ -1,0 +1,81 @@
+.shellcommands_result_line{
+}
+
+.shellcommands_result_ok{
+   border : 1px #BCBCBC solid;
+   padding: 5px;
+   width:100px;
+   background-color: #8EE378;
+   text-align: center;
+   display:inline-block;
+}
+
+.shellcommands_result_ko{
+   border : 1px #BCBCBC solid;
+   padding: 5px;
+   width:100px;
+   background-color: #b81900;
+   text-align: center;
+   display:inline-block;
+}
+
+
+.shellcommands_result_warning{
+   border : 1px #BCBCBC solid;
+   padding: 5px;
+   width:100px;
+   background-color: #f09134;
+   text-align: center;
+   display:inline-block;
+}
+
+.shellcommands_menu_item{
+   border:solid 1px #CCCCCC;
+
+   -moz-border-radius: 3px;
+   -webkit-border-radius: 3px;
+   border-radius: 3px;
+}
+
+td.shellcommands_menu_item:hover{
+   border:solid 1px #535b5c;
+}
+
+.shellcommands_menu_a{
+   display:block;
+   width:150px;
+   height:100px;
+   margin-top:30px;
+}
+
+.shellcommands_menu_img{
+   width:64px;
+   height:64px;
+}
+
+.shellcommands_show_custom_fields{
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.shellcommands_show_values { 
+   padding:10px;
+   margin:0px 0px 10px 0px;
+   border: solid 1px #D5D5D5;
+
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   border-radius: 5px;
+}
+
+.shellcommands_custom_values{
+   text-align:left;
+   border:solid 1px #BCBCBC;
+   background-color: #ffffff;
+   padding:5px;
+   margin:5px;
+   
+   -moz-border-radius: 3px;
+   -webkit-border-radius: 3px;
+   border-radius: 3px;
+}

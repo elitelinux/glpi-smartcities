@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Shellcommands Development Team
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Doru  DEACONU <dumitrudeaconu@yahoo.com>, 2014
+# Doru  DEACONU <dumitrudeaconu@yahoo.com>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Project - shellcommands plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-28 10:55+0100\n"
+"PO-Revision-Date: 2014-11-21 18:29+0000\n"
+"Last-Translator: Doru  DEACONU <dumitrudeaconu@yahoo.com>\n"
+"Language-Team: Romanian (Romania) (http://www.transifex.com/projects/p/GLPI_shellcommands/language/ro_RO/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ro_RO\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+
+#: hook.php:136 inc/shellcommand.class.php:104 inc/shellcommand.class.php:186
+#: inc/shellcommandpath.class.php:38
+msgid "Path"
+msgid_plural "Pathes"
+msgstr[0] "Pathuri"
+msgstr[1] "Pathuri"
+msgstr[2] "Pathuri"
+
+#: hook.php:218
+msgid "Command launch"
+msgstr "Lansare comandă "
+
+#: hook.php:219
+msgid "Command group launch"
+msgstr "Lansare grup comada"
+
+#: setup.php:57 setup.php:85 inc/shellcommand.class.php:47
+msgid "Shell Command"
+msgid_plural "Shell Commands"
+msgstr[0] "Comandă Shell"
+msgstr[1] "Comenzi Shell"
+msgstr[2] "Comenzi  Shell "
+
+#: setup.php:63 inc/commandgroup.class.php:40
+#: inc/commandgroup_item.class.php:52
+msgid "Command group"
+msgid_plural "Command groups"
+msgstr[0] "Grup comanda"
+msgstr[1] "Grupuri comanda"
+msgstr[2] "Grupuri comanda"
+
+#: setup.php:69 inc/advanced_execution.class.php:40
+msgid "Advanced execution"
+msgid_plural "Advanced executions"
+msgstr[0] "Executie avansata"
+msgstr[1] "Executii avansate"
+msgstr[2] "Executii avansate"
+
+#: inc/commandgroup.class.php:107
+msgid "Check command"
+msgstr "Verifica comanda"
+
+#: inc/commandgroup_item.class.php:140
+msgid "Add a command"
+msgstr "Add o comanda"
+
+#: inc/commandgroup_item.class.php:190
+msgid "Add a command group"
+msgstr "Add o comanda group"
+
+#: inc/commandgroup_item.class.php:375
+msgid "Order"
+msgstr "Comanda"
+
+#: inc/commandgroup_item.class.php:519
+msgid "Host UP"
+msgstr "Host UP"
+
+#: inc/commandgroup_item.class.php:550
+msgid "Host DOWN"
+msgstr "Host DOWN"
+
+#: inc/menu.class.php:41
+msgid "Shellcommands menu"
+msgstr "Meniu comenzi Shell"
+
+#: inc/profile.class.php:38
+msgid "Rights management"
+msgstr "Drepturi management"
+
+#: inc/shellcommand.class.php:109 inc/shellcommand.class.php:181
+msgid "Windows"
+msgstr "Windows"
+
+#: inc/shellcommand.class.php:173
+msgid "Tag position"
+msgstr "Pozitie Tag"
+
+#: inc/shellcommand.class.php:175
+msgid "Before parameters"
+msgstr "Parametri inainte"
+
+#: inc/shellcommand.class.php:175
+msgid "After parameters"
+msgstr "Parametri dupa"
+
+#: inc/shellcommand_item.class.php:452
+msgid "Associated Commands"
+msgstr "Comenzi asociate"
+
+#: inc/shellcommand_item.class.php:808
+msgid "There is an error with socket creation"
+msgstr "Există o eroare cu crearea socketului"
+
+#: inc/shellcommand_item.class.php:847
+msgid "Magic packet sending to"
+msgstr "Pachet Magic trimis către"
+
+#: inc/shellcommand_item.class.php:849
+msgid "The packet cannot be send"
+msgstr "Pachetul nu poate fi trimis"

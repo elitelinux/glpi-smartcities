@@ -1,0 +1,70 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Webapplications Development Team
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI - Webapplications plugin 1.9.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-19 15:53+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: hook.php:356 inc/webapplication_item.class.php:413
+msgid "Associate a web application"
+msgstr ""
+
+#: setup.php:131 inc/webapplication.class.php:43
+msgid "Web application"
+msgid_plural "Web applications"
+msgstr[0] ""
+msgstr[1] ""
+
+#: setup.php:145
+msgid "This plugin requires GLPI >= 0.84"
+msgstr ""
+
+#: inc/profile.class.php:37 inc/profile.class.php:133
+msgid "Rights management"
+msgstr ""
+
+#: inc/webapplication.class.php:154 inc/webapplication.class.php:331
+msgid "Backoffice URL"
+msgstr ""
+
+#: inc/webapplication.class.php:167 inc/webapplication.class.php:310
+#: inc/webapplication.class.php:455
+msgid "Editor"
+msgstr ""
+
+#: inc/webapplication_item.class.php:763
+msgid "Associated web application"
+msgid_plural "Associated web applications"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/webapplicationservertype.class.php:38
+msgid "Type of treatment server"
+msgid_plural "Types of treatment server"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/webapplicationtechnic.class.php:38
+msgid "Language of treatment"
+msgid_plural "Languages of treatment"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/webapplicationtype.class.php:39
+msgid "Category"
+msgid_plural "Categories"
+msgstr[0] ""
+msgstr[1] ""

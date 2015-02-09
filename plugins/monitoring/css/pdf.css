@@ -1,0 +1,76 @@
+
+body {
+   font-family: 'Bitstream Vera Sans', arial, Tahoma, 'Sans serif';
+   font-size: 12px;
+   margin: 0;
+   padding: 0;
+   background:  #FFFFFF repeat-x;
+}
+
+table {
+   font-size: 11px;
+   /* Probem WIth EXTJS calendar -> to sons*/
+   /*margin: 0 auto;*/
+   border:0;
+}
+
+td { }
+
+.tab_cadre_fixe, .tab_cadre_fixehov {
+   margin: 0px auto 5px auto;
+   -moz-border-radius: 4px;
+   -webkit-border-radius: 4px;
+   -o-border-radius: 4px;
+   /*border: 1px solid #cccccc;*/
+   background: #f2f2f2;
+   z-index:1;
+   text-align: left;
+   font-size: 11px;
+   width:950px;
+}
+
+
+.tab_cadre_fixe img {
+   vertical-align: middle;	
+}
+
+.tab_cadre th, .tab_cadre_fixe th, .tab_cadre_fixehov th, .tab_cadrehov th, .tab_cadrehov_pointer th, .tab_cadre_report th {
+   font-size: 12px;
+   font-weight: bold;
+   background-color: #E1D39E;
+   text-align: center;
+   -moz-border-radius: 4px;
+   -webkit-border-radius: 4px;
+   -o-border-radius: 4px;
+   padding: 2px;
+   /*background:  url("../pics/fond_th.png") repeat-x; 
+   border-bottom:1px solid #cccccc;
+   padding: 2px;*/
+}
+
+.tab_cadre td, .tab_cadre_fixe td, .tab_cadre_fixehov td, .tab_cadrehov td, .tab_cadrehov_pointer td, 
+.tab_cadre_report td {
+   padding: 3px 5px;
+}
+
+.tab_bg_1 {
+   background-color: #f2f2f2;
+}
+
+.tab_bg_1_2 {
+   background-color: #F0EDCC;
+}
+
+td.numeric {
+   text-align:right;
+/*   width:10%;*/
+/*   padding-right:4%;*/
+}
+
+td.htmltable_upper_separation_cell {
+    border-top: dashed 1px #a0a0a0;
+}
+
+td.nopadding { 
+   padding:0;
+}

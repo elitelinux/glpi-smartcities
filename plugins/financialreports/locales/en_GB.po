@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Financialreports Development Team
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Project - financialreports plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-14 09:42+0100\n"
+"PO-Revision-Date: 2013-11-20 11:01+0000\n"
+"Last-Translator: Xavier CAILLAUD <tsmr@thetsmr.fr>\n"
+"Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/GLPI_financialreports/language/en_GB/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: hook.php:152 setup.php:65 inc/financialreport.class.php:38
+msgid "Asset situation"
+msgid_plural "Asset situations"
+msgstr[0] "Asset situation"
+msgstr[1] "Asset situations"
+
+#: hook.php:153 inc/disposalitem.class.php:43
+#: inc/financialreport.class.php:561 inc/pdf.class.php:267
+msgid "Disposal date"
+msgid_plural "Disposal dates"
+msgstr[0] "Disposal date"
+msgstr[1] "Disposal dates"
+
+#: hook.php:179 inc/disposalitem.class.php:168
+msgid "Indicate the date of disposal"
+msgstr "Indicate the date of disposal"
+
+#: setup.php:78
+msgid "This plugin requires GLPI >= 0.84"
+msgstr "This plugin requires GLPI >= 0.84"
+
+#: front/config.form.php:71
+msgid "Please activate the plugin"
+msgstr "Please activate the plugin"
+
+#: front/financialreport.php:167
+msgid "Report date"
+msgstr "Report date"
+
+#: inc/config.class.php:72 inc/config.class.php:87
+msgid "Disposal status"
+msgstr "Disposal status"
+
+#: inc/financialreport.class.php:322 inc/pdf.class.php:223
+msgid "Asset situation ended on"
+msgstr "Asset situation ended on"
+
+#: inc/financialreport.class.php:357 inc/financialreport.class.php:359
+#: inc/parameter.class.php:51
+msgid "Notebook"
+msgid_plural "Notebooks"
+msgstr[0] "Notebook"
+msgstr[1] "Notebooks"
+
+#: inc/financialreport.class.php:367 inc/financialreport.class.php:369
+#: inc/parameter.class.php:55
+msgid "Server"
+msgid_plural "Servers"
+msgstr[0] "Server"
+msgstr[1] "Servers"
+
+#: inc/financialreport.class.php:454 inc/financialreport.class.php:456
+msgid "Element out"
+msgid_plural "Elements out"
+msgstr[0] "Element out"
+msgstr[1] "Elements out"
+
+#: inc/financialreport.class.php:478 inc/pdf.class.php:323
+msgid "General Total"
+msgstr "General Total"
+
+#: inc/financialreport.class.php:479 inc/financialreport.class.php:514
+#: inc/financialreport.class.php:540 inc/financialreport.class.php:564
+msgid "Euro"
+msgid_plural "Euros"
+msgstr[0] "Euro"
+msgstr[1] "Euros"
+
+#: inc/financialreport.class.php:526
+msgid "Hide"
+msgstr "Hide"
+
+#: inc/financialreport.class.php:528
+msgid "Display"
+msgstr "Display"
+
+#: inc/financialreport.class.php:554 inc/pdf.class.php:259
+msgid "User / Group"
+msgstr "User / Group"
+
+#: inc/financialreport.class.php:564
+msgid "Purchase Price HT in"
+msgstr "Purchase Price HT in"
+
+#: inc/financialreport.class.php:595
+msgid "In stock / available"
+msgstr "In stock / available"
+
+#: inc/parameter.class.php:43
+msgid "Identification parameters of inventory number"
+msgstr "Identification parameters of inventory number"
+
+#: inc/pdf.class.php:266 inc/pdf.class.php:270
+msgid "HT"
+msgstr "HT"
+
+#: inc/profile.class.php:37 inc/profile.class.php:140
+msgid "Rights management"
+msgstr "Rights management"
+
+#: inc/profile.class.php:143
+msgid "Generate report"
+msgstr "Generate report"

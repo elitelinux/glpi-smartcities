@@ -1,0 +1,626 @@
+.msgboxmonit {
+    margin: 0 auto 20px;
+    width: 700px;
+    padding: 11px 0;
+    font-size: 11px;
+    text-align: center;
+    font-family: "Trebuchet MS", Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -o-border-radius: 7px;
+    -moz-box-shadow: 0px 1px 3px #888;
+    -webkit-box-shadow: 0px 1px 3px #888;
+    box-shadow: 0px 1px 3px #888;
+    /* Anciens navigateurs */
+    -o-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+ }
+
+ .msgboxmonit-red {
+    border: 1px red solid;
+    background-color: #FDD;
+    background-image: -webkit-gradient(linear,left top, left bottom,from(#FEE),to(#FDD));
+    background-image: -webkit-linear-gradient(top,#FEE,#FDD);
+    background-image: -moz-linear-gradient(top,#FEE,#FDD);
+    background-image: -o-linear-gradient(top,#FEE,#FDD);
+    background-image: linear-gradient(top,#FEE,#FDD);
+ }
+ 
+  .msgboxmonit-orange {
+    border: 1px orange solid;
+    background-color: #FFD;
+    background-image: -webkit-gradient(linear,left top, left bottom,from(#FFE),to(#FFD));
+    background-image: -webkit-linear-gradient(top,#FFE,#FFD);
+    background-image: -moz-linear-gradient(top,#FFE,#FFD);
+    background-image: -o-linear-gradient(top,#FFE,#FFD);
+    background-image: linear-gradient(top,#FFE,#FFD);
+ }
+
+ .msgboxmonit-green {
+    border: 1px #659900 solid;
+    background-color: #DFD;
+    background-image: -webkit-gradient(linear,left top, left bottom,from(#EFE),to(#DFD));
+    background-image: -webkit-linear-gradient(top,#EFE,#DFD);
+    background-image: -moz-linear-gradient(top,#EFE,#DFD);
+    background-image: -o-linear-gradient(top,#EFE,#DFD);
+    background-image: linear-gradient(top,#EFE,#DFD);
+ }
+
+ .msgboxmonit-grey {
+    border: 1px #CCC solid;
+    background-color: #DDD;
+    background-image: -webkit-gradient(linear,left top, left bottom,from(#FFF),to(#DDD));
+    background-image: -webkit-linear-gradient(top,#FFF,#DDD);
+    background-image: -moz-linear-gradient(top,#FFF,#DDD);
+    background-image: -o-linear-gradient(top,#FFF,#DDD);
+    background-image: linear-gradient(top,#FFF,#DDD);
+}
+
+.gridweathermap {
+   border: 1px solid rgba(0, 0, 0, .1);
+   border-collapse:collapse;
+}
+
+.gridweathermap td {
+   border: 1px solid rgba(0, 0, 0, .1);
+
+}
+
+
+
+.ch-item {
+	width: 180px;
+	height: 180px;
+	margin: auto;
+	border-radius: 50%;
+	position: relative;
+	cursor: default;
+	box-shadow:
+      inset 0 0 0 16px rgba(255,255,255,0.6),
+		0 1px 2px rgba(0,0,0,0.1);
+		
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+	width: 180px;
+	height: 180px;
+	display: block;
+}
+
+.ch-item div {
+	position: absolute;
+	width: inherit;
+	height: inherit;
+	border-radius: 50%;
+	opacity: 1;
+	
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+	
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-o-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+}
+
+.ch-info-crit {
+	background: rgba(255,0,0, 1);
+}
+
+.ch-info-warn {
+	background: rgba(255,184,0, 1);
+}
+
+.ch-info-ok{
+	background: rgba(76,180,73, 1);
+}
+
+.ch-info-counter{
+	background: rgba(196,196,196, 0.8);
+}
+
+.ch-item div>h1, .ch-itemup div>h1 {
+	color: #fff;
+	letter-spacing: 2px;
+	font-size: 14px;
+	margin: 0 30px;
+	padding: 25px 0 0 0;
+	height: 110px;
+	text-align:center;
+	font-family: 'Open Sans', Arial, sans-serif;
+	text-shadow: 
+		0 0 1px #fff, 
+		0 1px 2px rgba(0,0,0,0.3);
+	-webkit-transition: all 1s ease-in-out 0.4s;
+	-moz-transition: all 1s ease-in-out 0.4s;
+	-o-transition: all 1s ease-in-out 0.4s;
+	-ms-transition: all 1s ease-in-out 0.4s;
+	transition: all 1s ease-in-out 0.4s;
+}
+
+.ch-item div>h1>a, .ch-itemup div>h1>a {
+	color: #fff;
+	font-size: 16px;
+	text-align:center;
+}
+
+.ch-item div>p {
+	color: #fff;
+	padding: 5px 5px;
+	position: relative;
+	top: -45px;
+	font-weight: bold;
+	font-style: italic;
+	margin: 0 15px;
+	font-size: 40px;
+	border-top: 1px solid rgba(255,255,255,0.5);
+	text-align:center;
+	opacity: 1;
+	-webkit-transition: all 1s ease-in-out 0.4s;
+	-moz-transition: all 1s ease-in-out 0.4s;
+	-o-transition: all 1s ease-in-out 0.4s;
+	-ms-transition: all 1s ease-in-out 0.4s;
+	transition: all 1s ease-in-out 0.4s;
+}
+
+.ch-item div>p>a, .ch-itemdown div>p>a {
+   color: #fff;
+	padding: 5px 5px;
+	position: relative;
+	margin: 0 15px;
+	font-size: 40px;
+	text-align:center;
+	opacity: 1;
+}
+
+.ch-itemup {
+	width: 180px;
+	height: 90px;
+	margin: auto;
+	border-radius: 90px 90px 0% 0%;
+	position: relative;
+	cursor: default;
+	box-shadow:
+      inset 0 0 0 16px rgba(255,255,255,0.6),
+		0 1px 2px rgba(0,0,0,0.1);
+		
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+	display: block;
+}
+
+.ch-itemup div {
+	position: absolute;
+	width: inherit;
+	height: inherit;
+	border-radius: 90px 90px 0% 0%;
+	opacity: 1;
+	
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+	
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-o-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+}
+
+.ch-itemdown {
+	width: 180px;
+	height: 90px;
+	margin: auto;
+	border-radius: 0% 0% 90px 90px;
+	position: relative;
+	cursor: default;
+	opacity: 0.8;
+	box-shadow:
+      inset 0 0 0 16px rgba(255,255,255,0.6),
+		0 1px 2px rgba(0,0,0,0.1);
+		
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+	display: block;
+}
+
+.ch-itemdown div {
+	position: absolute;
+	width: inherit;
+	height: inherit;
+	border-radius: 0% 0% 90px 90px;
+	opacity: 1;
+	
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+	
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-o-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+}
+
+.ch-itemdown div>p {
+	color: #fff;
+	padding: 5px 5px;
+	position: relative;
+	top: 0px;
+	font-style: bold;
+	margin: 0 15px;
+	font-size: 50px;
+	border-top: 1px solid rgba(255,255,255,0.5);
+	text-align:center;
+	opacity: 1;
+	-webkit-transition: all 1s ease-in-out 0.4s;
+	-moz-transition: all 1s ease-in-out 0.4s;
+	-o-transition: all 1s ease-in-out 0.4s;
+	-ms-transition: all 1s ease-in-out 0.4s;
+	transition: all 1s ease-in-out 0.4s;
+}
+
+
+table .minemap {
+	margin: auto;
+	
+	display: table;
+	border-collapse: separate;
+	text-align: center;
+	border-spacing: 0;
+	
+	border: 1px #444 outset;
+}
+
+.minemapdiv {
+   position: relative;
+   top: -30px;
+}
+
+tr.services {
+	height: 40px;
+}
+
+th.vertical {
+	height: 100px;
+	width: 18px;
+	vertical-align: bottom;
+	text-align: center;
+	overflow: visible!important;
+	white-space: nowrap;
+	border-top: 0;
+	font-weight: normal;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+tr.services td.serviceState {
+	width: 20px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+/** 
+* Works everywhere ( IE7+, FF, Chrome, Safari, Opera )
+* Example: http://jsbin.com/afAQAWA/2/
+*/
+.rotated-text {
+    display: inline-block;
+    overflow: hidden;
+	font-weight: normal;
+	padding-left: 2px;
+	padding-right: 2px;
+	width: 16px;
+	margin: 0;
+	margin-bottom: 4px;
+}
+.rotated-text__inner {
+    display: inline-block;
+    white-space: nowrap;
+    /* this is for shity "non IE" browsers
+       that doesn't support writing-mode */
+    -webkit-transform: translate(1.1em,0) rotate(90deg);
+       -moz-transform: translate(1.1em,0) rotate(90deg);
+         -o-transform: translate(1.1em,0) rotate(90deg);
+            transform: translate(1.1em,0) rotate(90deg);
+    -webkit-transform-origin: 0 0;
+       -moz-transform-origin: 0 0;
+         -o-transform-origin: 0 0;
+            transform-origin: 0 0;
+   /* IE9+ */
+   -ms-transform: none;
+   -ms-transform-origin: none;
+   /* IE8+ */
+   -ms-writing-mode: tb-rl;
+   /* IE7 and below */
+   *writing-mode: tb-rl;
+}
+.rotated-text__inner:before {
+    content: "";
+    float: left;
+    margin-top: 100%;
+}
+
+
+.service {
+	width: 16px;
+	height: 16px;
+	margin: auto;
+	border-radius: 50%;
+}
+
+.serviceOK {
+	background-color: rgb(76,180,73);
+}
+.serviceWARNING {
+	background-color: rgb(212,161,94);
+}
+.serviceCRITICAL {
+	background-color: rgb(159,48,48);
+}
+.serviceUNKNOWN {
+	background-color: yellow;
+}
+.serviceACKNOWLEDGE {
+	background-color: rgb(18,158,255);
+}
+
+.serviceSOFT{
+	/* Background en dégradé blanc transparent */
+   /*
+	background-image: -webkit-linear-gradient(right top, rgba(255,255,255,.6) 0%, rgba(255,255,255,0) 100%);
+	background-image:    -moz-linear-gradient(right top, rgba(255,255,255,.6) 0%, rgba(255,255,255,0) 100%);
+	background-image:     -ms-linear-gradient(right top, rgba(255,255,255,.6) 0%, rgba(255,255,255,0) 100%);
+	background-image:      -o-linear-gradient(right top, rgba(255,255,255,.6) 0%, rgba(255,255,255,0) 100%);
+	background-image:         linear-gradient(right top, rgba(255,255,255,.6) 0%, rgba(255,255,255,0) 100%);
+   */
+   background-image:radial-gradient(rgba(255,255,255,.7), rgba(255,255,255,0) 100%);
+}
+
+
+.page {
+  background: #fff;
+  width: auto;
+  height: auto;
+  padding-left: 25px;
+  padding-right: 5px;
+   
+ /* Optional Gradient */
+  background: -moz-linear-gradient(top,  #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+  background: linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+}
+
+.foldtl {
+  position: relative;
+}
+ 
+.foldtl:before {
+  content: "";
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 0px;
+  height: 0px;
+
+  border-bottom: 15px solid #eee;
+  border-left: 15px solid #E7E7E2;
+  -webkit-box-shadow: 4px 4px 4px rgba(0,0,0,0.3);
+  -moz-box-shadow: 4px 4px 4px rgba(0,0,0,0.3);
+  box-shadow: 4px 4px 4px rgba(0,0,0,0.3);
+}
+
+.resourceOK:before, .resourceUP:before {
+	border-bottom: 15px solid rgb(76,180,73);
+}
+.resourceWARNING:before {
+	border-bottom: 15px solid rgb(212,161,94);
+}
+.resourceCRITICAL:before, .resourceDOWN:before {
+	border-bottom: 15px solid rgb(159,48,48);
+}
+.resourceUNKNOWN:before, .resourceUNREACHABLE:before {
+	border-bottom: 15px solid yellow;
+}
+.resourceACKNOWLEDGE:before {
+	border-bottom: 15px solid rgb(18,158,255);
+}
+
+.resourceHARD {
+	font-weight: bold;
+	color: black;
+}
+.resourceSOFT {
+	font-weight: normal;
+	color: darkgrey;
+}
+
+
+/***** tagBox *****/
+
+.tagbox-selected-tag {
+    display: inline-block;
+    padding: 0.417em 0.417em;
+    font-size: 1em;
+    line-height: 1.4em;
+    color: #8f5a0a;
+    background-color: #ffb94b;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
+    background-image: -webkit-linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: -moz-linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: -ms-linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: -o-linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: linear-gradient(top, #fddb6f, #ffb94b);
+   
+    /* For Internet Explorer 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#fddb6f, endColorstr=#ffb94b);
+    /* For Internet Explorer 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#fddb6f, endColorstr=#ffb94b)";
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;    
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d69e31 #e3a037 #d5982d #e3a037
+}
+
+.tagbox-selected-tag-remove {
+  text-decoration: none;
+  display: inline-block;
+  float: right;
+  color: #FFF;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 1em;
+  background: #7c7c7c;
+  margin-left: 0.5em;
+  padding: 0.35em 0.5em;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
+  -moz-box-shadow: 0 0 3px #FFF;
+  -webkit-box-shadow: 0 0 3px #FFF;
+  box-shadow: 0 0 3px #FFF;
+}
+
+.tagbox-selected-tag-remove:hover {
+  background-color: #ff3333;
+}
+
+.tagbox-field-input{
+  display: none;
+}
+
+.tagbox-matrix-label{
+  display: none;
+}
+
+/***** [End] tagBox *****/
+
+line.linkred {
+   stroke-width: 9; 
+   stroke: red;
+}
+
+line.linkorange {
+   stroke-width: 9; 
+   stroke: orange;
+}
+
+line.linkgreen {
+   stroke-width: 9; 
+   stroke: green;
+}
+
+line.linkgrey {
+   stroke-width: 9; 
+   stroke: #d0d0d0;
+}
+
+line.linkblack {
+   stroke-width: 9; 
+   stroke: #000;
+}
+
+.linklabel {
+   fill: #000;
+   font-size: 12px;
+   font-weight:bold;
+}
+
+.linklabelgreen {
+   fill: #000;
+   font-size: 12px;
+   font-weight:bold;
+}
+
+.linklabelorange {
+   fill: #000;
+   font-size: 12px;
+   font-weight:bold;
+}
+
+.linklabelred {
+   fill: #000;
+   font-size: 12px;
+   font-weight:bold;
+}
+
+.node circle {
+  stroke: #9f9f9f;
+  stroke-width: 1.5px;
+}
+
+.circlered {
+   fill: red;
+}
+
+.circleorange {
+   fill: orange;
+}
+
+.circlegreen {
+   fill: green;
+}
+
+.circlegrey {
+  fill: #dedede;
+}
+
+
+.tipsy { font-size: 10px; position: absolute; padding: 5px; z-index: 100000; }
+  .tipsy-inner { background-color: #f6f6f6; color: #000; width: 450px; padding: 5px 8px 4px 8px; text-align: center; }
+
+  /* Rounded corners */
+  .tipsy-inner { border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+  
+  /* Uncomment for shadow */
+  /*.tipsy-inner { box-shadow: 0 0 5px #000000; -webkit-box-shadow: 0 0 5px #000000; -moz-box-shadow: 0 0 5px #000000; }*/
+  
+  .tipsy-arrow { position: absolute; width: 0; height: 0; line-height: 0; border: 5px dashed #000; }
+  
+  /* Rules to colour arrows */
+  .tipsy-arrow-n { border-bottom-color: #000; }
+  .tipsy-arrow-s { border-top-color: #000; }
+  .tipsy-arrow-e { border-left-color: #000; }
+  .tipsy-arrow-w { border-right-color: #000; }
+  
+	.tipsy-n .tipsy-arrow { top: 0px; left: 50%; margin-left: -5px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-nw .tipsy-arrow { top: 0; left: 10px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent;}
+    .tipsy-ne .tipsy-arrow { top: 0; right: 10px; border-bottom-style: solid; border-top: none;  border-left-color: transparent; border-right-color: transparent;}
+  .tipsy-s .tipsy-arrow { bottom: 0; left: 50%; margin-left: -5px; border-top-style: solid; border-bottom: none;  border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-sw .tipsy-arrow { bottom: 0; left: 10px; border-top-style: solid; border-bottom: none;  border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-se .tipsy-arrow { bottom: 0; right: 10px; border-top-style: solid; border-bottom: none; border-left-color: transparent; border-right-color: transparent; }
+  .tipsy-e .tipsy-arrow { right: 0; top: 50%; margin-top: -5px; border-left-style: solid; border-right: none; border-top-color: transparent; border-bottom-color: transparent; }
+  .tipsy-w .tipsy-arrow { left: 0; top: 50%; margin-top: -5px; border-right-style: solid; border-left: none; border-top-color: transparent; border-bottom-color: transparent; }
+
+  

@@ -1,0 +1,118 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Shellcommands Development Team
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Ludovic Dupont <ludovic.dupont@infotel.com>, 2013
+# Xavier CAILLAUD <tsmr@thetsmr.fr>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Project - shellcommands plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-28 10:55+0100\n"
+"PO-Revision-Date: 2014-11-18 08:48+0000\n"
+"Last-Translator: Xavier CAILLAUD <tsmr@thetsmr.fr>\n"
+"Language-Team: French (France) (http://www.transifex.com/projects/p/GLPI_shellcommands/language/fr_FR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: hook.php:136 inc/shellcommand.class.php:104 inc/shellcommand.class.php:186
+#: inc/shellcommandpath.class.php:38
+msgid "Path"
+msgid_plural "Pathes"
+msgstr[0] "Chemin"
+msgstr[1] "Chemins"
+
+#: hook.php:218
+msgid "Command launch"
+msgstr "Lancement de la commande"
+
+#: hook.php:219
+msgid "Command group launch"
+msgstr "Lancement du groupe de commandes shell"
+
+#: setup.php:57 setup.php:85 inc/shellcommand.class.php:47
+msgid "Shell Command"
+msgid_plural "Shell Commands"
+msgstr[0] "Commande Shell"
+msgstr[1] "Commandes Shell"
+
+#: setup.php:63 inc/commandgroup.class.php:40
+#: inc/commandgroup_item.class.php:52
+msgid "Command group"
+msgid_plural "Command groups"
+msgstr[0] "Groupe de commandes"
+msgstr[1] "Groupes de commandes"
+
+#: setup.php:69 inc/advanced_execution.class.php:40
+msgid "Advanced execution"
+msgid_plural "Advanced executions"
+msgstr[0] "Exécution avancée"
+msgstr[1] "Exécutions avancées"
+
+#: inc/commandgroup.class.php:107
+msgid "Check command"
+msgstr "Commande de vérification initiale"
+
+#: inc/commandgroup_item.class.php:140
+msgid "Add a command"
+msgstr "Ajouter une commande"
+
+#: inc/commandgroup_item.class.php:190
+msgid "Add a command group"
+msgstr "Ajouter un groupe de commandes"
+
+#: inc/commandgroup_item.class.php:375
+msgid "Order"
+msgstr "Ordre"
+
+#: inc/commandgroup_item.class.php:519
+msgid "Host UP"
+msgstr "Hôte UP"
+
+#: inc/commandgroup_item.class.php:550
+msgid "Host DOWN"
+msgstr "Hôte DOWN"
+
+#: inc/menu.class.php:41
+msgid "Shellcommands menu"
+msgstr "Menu Commandes Shell"
+
+#: inc/profile.class.php:38
+msgid "Rights management"
+msgstr "Gestion des droits"
+
+#: inc/shellcommand.class.php:109 inc/shellcommand.class.php:181
+msgid "Windows"
+msgstr "Paramètres"
+
+#: inc/shellcommand.class.php:173
+msgid "Tag position"
+msgstr "Position de la balise"
+
+#: inc/shellcommand.class.php:175
+msgid "Before parameters"
+msgstr "Avant les paramètres"
+
+#: inc/shellcommand.class.php:175
+msgid "After parameters"
+msgstr "Après les paramètres"
+
+#: inc/shellcommand_item.class.php:452
+msgid "Associated Commands"
+msgstr "Commande(s) associée(s)"
+
+#: inc/shellcommand_item.class.php:808
+msgid "There is an error with socket creation"
+msgstr "Une erreur est survenue lors de la création du socket"
+
+#: inc/shellcommand_item.class.php:847
+msgid "Magic packet sending to"
+msgstr "Paquet magique envoyé à"
+
+#: inc/shellcommand_item.class.php:849
+msgid "The packet cannot be send"
+msgstr "Le paquet n'a pu être envoyé"

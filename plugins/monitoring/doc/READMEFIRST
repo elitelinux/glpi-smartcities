@@ -1,0 +1,5 @@
+===== 0.84+1.1 =====
+List of points to verify when upgrade:
+
+* Modification of host config, change command by components
+* You may use new glpi modules in Shinken to be compatible

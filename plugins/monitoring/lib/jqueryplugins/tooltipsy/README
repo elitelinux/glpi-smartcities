@@ -1,0 +1,55 @@
+tooltipsy by Brian Cray
+
+Lincensed under GPL2 - http://www.gnu.org/licenses/gpl-2.0.html
+
+HOW TO (THE EASY METHOD):
+
+1. Identify the HTML element that will trigger a tooltip, such as:
+    <a href="#">Foobar</a>
+2. Add a class name and title to the element
+    <a href="#" class="hastip" title="I am the tooltip text">Foobar</a>
+3. Link to it with jQuery
+    $('.hastip').tooltipsy();
+4. Style it with CSS however you like, for example:
+    .tooltipsy
+    {
+        padding: 10px;
+        max-width: 200px;
+        color: #303030;
+        background-color: #f5f5b5;
+        border: 1px solid #deca7e;
+    }
+5. Enjoy lovely tooltips
+
+OPTION QUICK REFERENCE:
+
+- alignTo: "element" or "cursor" (Defaults to "element")
+- offset: Tooltipsy distance from element or mouse cursor, dependent on alignTo setting. Set as array [x, y] (Defaults to [0, -1])
+- content: HTML or text content of tooltip. Defaults to "" (empty string), which pulls content from target element's title attribute
+- show: function(event, tooltip) to show the tooltip. Defaults to a show(100) effect
+- showEvent: Set a custom event to bind the show function. Defaults to mouseenter
+- hide: function(event, tooltip) to hide the tooltip. Defaults to a fadeOut(100) effect
+- hideEvent: Set a custom event to bind the show function. Defaults to mouseleave
+- delay: A delay in milliseconds before showing a tooltip. Set to 0 for no delay. Defaults to 200
+- css: object containing CSS properties and values. Defaults to {} to use stylesheet for styles
+- className: DOM class for styling tooltips with CSS. Defaults to "tooltipsy"
+
+METHOD QUICK REFERENCE:
+
+- $('.hastip').data('tooltipsy').show(): Force the tooltip to show
+- $('.hastip').data('tooltipsy').hide(): Force the tooltip to hide
+- $('.hastip').data('tooltipsy').destroy(): Remove the tooltip from DOM
+
+OTHER GREAT THINGS TO KNOW:
+
+- You can use ajax, for example:
+    $('.hastip').tooltipsy({
+        content: function ($el, $tip) {
+            $.get('api.php', function (data) {
+                $el.html(data);
+            });
+            return 'Fallback content';
+        }
+    });
+
+MORE INFORMATION VISIT http://tooltipsy.com/

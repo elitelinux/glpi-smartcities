@@ -1,0 +1,393 @@
+<?php
+//============================================================================//
+//==    Plugin pour GLPI - Dévelloppeur: Viduc (Fleury Tristan) - ©2013     ==//
+//==            http://viduc.sugarbox.fr - viduc@sugarbox.fr                ==//
+//============================================================================//
+
+require_once 'gestionAD.class.php';
+/**
+ * Class principale du projet
+ * Gère toute la partie réforme d'une machine
+ */
+class PluginTwinsTwins extends CommonDBTM
+{
+    /**
+     * Fonction native GLPI
+     * @param int $with_comment
+     * @return string Nom du plugin
+     */
+    function getName($with_comment = 0){return "twins";} 
+    
+    /**
+     * Fonction native GLPI
+     * @param CommonGLPI $item
+     * @param int $withtemplate
+     * @return string Nom du Tab
+     */
+    function getTabNameForItem(CommonGLPI $item, $withtemplate=0)
+    {
+        if(Session::haveRight('plugin_twins_twins', CREATE)){
+            return "Twins";
+        }
+    }
+    
+    /**
+     * Fonction native GLPI
+     * @param CommonGLPI $item
+     * @param int $tabnum
+     * @param int $withtemplate
+     * @return boolean
+     */
+    static function displayTabContentForItem(CommonGLPI $item, $tabnum=1, $withtemplate=0)
+    {
+        if ($item->getType() == 'Computer'){
+            if(Session::haveRight('plugin_twins_twins', CREATE)){
+                $groupeAD = new self();
+                $ID = $item->getField('id');
+                $Name = $item->getField('name');
+                // j'affiche le formulaire
+                $groupeAD->showForm($ID, $Name);
+            }
+        }
+        return true;
+    }  
+    
+    /**
+     * Fonction qui affiche le formulaire du plugin
+     * @param type $id
+     * @param type $options
+     * @return boolean
+     */
+    function showForm($ID)     
+    {
+        global $DB;
+        $target = $this->getFormURL();
+        $cheminSmarty = $this->getAbsolutePath()."plugins/twins/Smarty";
+
+        // définition de l'emplacement de la bibliothèque
+        define('SMARTY_DIR', $cheminSmarty."/libs/");
+        
+        // instanciation de la class Smarty
+        require_once(SMARTY_DIR . 'Smarty.class.php');
+        $smarty = new Smarty();
+        
+        // définition des dossiers Smarty
+        $smarty->template_dir = $cheminSmarty."/templates/";
+        $smarty->compile_dir = $cheminSmarty."/templates_c/";
+        $smarty->config_dir = $cheminSmarty."/configs/";
+        $smarty->cache_dir = $cheminSmarty."/cache/";
+ 
+        $smarty->assign('targetCSS', $this->getHttpPath()."plugins/twins/css/twins.css");
+        $smarty->assign('target',$target);
+        $smarty->assign('httpPath', $this->getHttpPath());
+        $smarty->assign('idOrdinateur', $ID);
+        $smarty->assign('endform', HTML::closeForm(false));
+        $smarty->display('twins.tpl');
+    }
+  
+    /**
+     * Récupère la liste des ordinateurs actifs dans glpi
+     * @return liste des ordinateurs clé=id, valeur = name ou false si aucun retour
+     */    
+    function getListeOrdinateur($idOrdinateur)
+    {
+        global $DB;
+        $query = "SELECT id,name FROM glpi_computers WHERE is_deleted='0'";
+        $listeComputer = false;
+        if ($result = $DB->query($query)){
+            if ($DB->numrows($result) > 0) {
+                while ($row = $DB->fetch_assoc($result)){
+                    if(!empty($row['id']) && $idOrdinateur != $row['id']){
+                        $id = $row['id'];
+                        if(!empty($row['name'])){$name = $row['name'];} 
+                        $listeComputer[$id]=$name;
+                    } 
+                }
+            }
+        }
+    sort($listeComputer);
+    return $listeComputer;
+    }
+  
+    /**
+     * Récupère les informations d'un ordinateur
+     * @param int $id id de l'ordinateur
+     * @return un tableau contenant les informations ou false si aucune info
+     */    
+    function getInfoOrdinateur($id)
+    {
+        global $DB;
+        $query = "SELECT * FROM glpi_computers WHERE id='".$id."'";
+        $info = false;
+        $info['name'] = "null";$info['lieu'] = "null";$info['tech'] = "null";$info['usager_num'] = "null";
+        $info['usager'] = "null";$info['utilisateur'] = "null";$info['domaine'] = "null";
+        if ($result = $DB->query($query)){
+            if ($DB->numrows($result) > 0) {
+                $row = $DB->fetch_assoc($result);
+                if (!empty($row['id'])){$info['id'] = $row['id'];}
+                if (!empty($row['name'])){$info['name'] = $this->nettoyerChaine($row['name']);}
+                if (!empty($row['locations_id'])){$info['lieu'] = $row['locations_id'];}
+                if (!empty($row['users_id_tech'])){$info['tech'] = $row['users_id_tech'];}
+                if (!empty($row['contact_num'])){$info['usager_num'] = $row['contact_num'];}
+                if (!empty($row['contact'])){$info['usager'] = $this->nettoyerChaine($row['contact']);}
+                if (!empty($row['users_id'])){$info['utilisateur'] = $row['users_id'];}
+                if (!empty($row['domains_id'])){$info['domaine'] = $row['domains_id'];}
+            }
+        }   
+        return $info;
+    }
+        
+    /**
+     * Récupère les valeurs réelles des informations d'un ordinateur
+     * @return un tableau contenant les informations ou false si aucune info
+     */    
+    function getValueInfoOrdinateur($info)
+    {
+        global $DB;
+        $AD = new PluginTwinsGestionAD();
+        
+        if($info['lieu'] != "null"){
+            $query = "SELECT * FROM glpi_locations WHERE id='".$info['lieu']."'";
+            if ($result = $DB->query($query)){
+                if ($DB->numrows($result) > 0) {
+                    $row = $DB->fetch_assoc($result);
+                    if (!empty($row['name'])){$info['lieu'] = $row['name'];}
+                }
+            }
+        }
+        if($info['tech'] != "null"){
+            $query = "SELECT * FROM glpi_users WHERE id='".$info['tech']."'";
+            if ($result = $DB->query($query)){
+                if ($DB->numrows($result) > 0) {
+                    $row = $DB->fetch_assoc($result);
+                    if (!empty($row['name'])){$info['tech'] = $row['name'];}
+                }
+            }
+        }
+        if($info['utilisateur'] != "null"){
+            $query = "SELECT * FROM glpi_users WHERE id='".$info['utilisateur']."'";
+            if ($result = $DB->query($query)){
+                if ($DB->numrows($result) > 0) {
+                    $row = $DB->fetch_assoc($result);
+                    if (!empty($row['name'])){$info['utilisateur'] = $row['name'];}
+                }
+            }
+        }
+        if($info['domaine'] != "null"){
+            $info['domaine'] = $AD->getDomain($info['id']);
+            $info['groupe'] = $AD->getGroupeAD($info['id']);
+        }
+        return $info;
+    }        
+    
+    /**
+     * Appel de fonction gestionAD (relais pour ajax)
+     * @param String $action (add/supp)
+     * @param String $groupe (le groupe cible)
+     * @param int $id (l'id de la machine
+     * @return Array Le tableau des nouveaux groupes modifiés
+     */
+    public function changeGroupe($action, $groupe, $groupeModif, $id)
+    {
+        $AD = new PluginTwinsGestionAD();
+        return $AD->changeGroupe($action, $groupe, $groupeModif, $id);
+    }
+        
+    /**
+     * Appel de fonction gestionAD (relais pour ajax)
+     * @param int $id (l'id de la machine
+     */
+    public function getGroupe($id)
+    {
+        $AD = new PluginTwinsGestionAD();
+        return $AD->getGroupe($id);
+    }        
+        
+    /**
+     * Clone un ordinateur
+     * @global type $DB
+     * @param int $idOrdinateur
+     * @param int $idCloner
+     * @return boolean
+     */    
+    public function clonerOrdinateur($idOrdinateur,$idCloner,$groupe)
+    {
+        global $DB; 
+        $AD = new PluginTwinsGestionAD();
+        $return = false;
+        $info = $this->getInfoOrdinateur($idCloner);
+        $query = "UPDATE glpi_computers SET ";
+        $query .= "locations_id='".$info['lieu']."',";
+        $log = "Lieu de l'ordinateur modifié: ".$info['lieu'];
+        $this->setLog($idOrdinateur,'Computer',$log);
+        $query .= "users_id_tech='".$info['tech']."',";
+        $log = "Technicien de l'ordinateur modifié: ".$info['tech'];
+        $this->setLog($idOrdinateur,'Computer',$log);
+        $query .= "contact_num='".$info['usager_num']."',";
+        $log = "Numéro du contact de l'ordinateur modifié: ".$info['usager_num'];
+        $this->setLog($idOrdinateur,'Computer',$log);
+        $query .= "contact='".$info['usager']."',";
+        $log = "Contact de l'ordinateur modifié: ".$info['usager'];
+        $this->setLog($idOrdinateur,'Computer',$log);
+        $query .= "users_id='".$info['utilisateur']."',";
+        $log = "Utilisateur de l'ordinateur modifié: ".$info['utilisateur'];
+        $this->setLog($idOrdinateur,'Computer',$log);
+        $query .= "domains_id='".$info['domaine']."'";
+        $log = "Domaine de l'ordinateur modifié: ".$info['domaine'];
+        $this->setLog($idOrdinateur,'Computer',$log);
+        $query .= "WHERE id='".$idOrdinateur."'";
+        if($DB->query($query)){$return = true;}
+        if($groupe != null){return $AD->clonerOrdiAD($idOrdinateur,$idCloner, $groupe,$this);}
+        
+        return $return;
+    }
+        
+    /**
+     * Permet l'impression d'une étiquette
+     * @param type $id
+     * @return string
+     */
+    function impression($id)
+    {
+        $info = $this->getInfoOrdinateur($id);
+        $stockage = $this->getAjaxAbsolutePath()."etiquette";
+        //Chargement de la Class fpdf
+        $cheminFpdf = $this->getAjaxAbsolutePath()."fpdf";
+        require($cheminFpdf .'/fpdf.php');
+        $pdf = new FPDF();
+        $size[] = 100;
+        $size[] = 60;
+        $pdf->AddPage("L",$size);
+        $pdf->Image('../pics/logo.jpg',1,1,'JPG');
+        $pdf->SetXY(31,4);
+        $pdf->SetFont('Times','',13);
+        $text = "Nom Machine: ".$info['name']."\n ID GLPI: ".$info['id']. " \n\n ";
+        $text .= "HOTLINE 2 68 68 \n Pour toute demande d'intervention: ";
+        $text .= "http://dsi.u-grenoble3.fr";
+        $pdf->MultiCell(68, 5, $text, 0, 'C');
+        $pdf->Output($stockage.'/etiquette.pdf', 'F');
+        return $cheminFpdf;
+    } 
+    
+    /**
+     * Réupère l'historique du clonage d'une machine
+     * @global type $DB
+     * @param type $id
+     * @return type
+     */
+    function getHistorique($id)
+    {
+        global $DB; 
+        
+        $query = "SELECT * FROM glpi_plugin_twins_log WHERE id_item = '$id' AND type_item = 'Computer'";
+        $retour = null; $i=0;
+        if ($result = $DB->query($query)){
+            if ($DB->numrows($result) > 0){
+                while ($row = $DB->fetch_assoc($result)) {
+                    if (!empty($row['technicien'])) 
+                        {$retour[$i]['technicien'] = $row['technicien'];}
+                    if (!empty($row['date'])) 
+                        {$retour[$i]['date'] = $row['date'];}
+                    if (!empty($row['info'])) 
+                        {$retour[$i]['info'] = htmlentities ($row['info']);}  
+                    $i++;
+                }
+            }
+        }
+        return $retour;
+    }
+        
+    /**
+     * Enregistre une entrée de log
+     * @global type $DB
+     * @param int $idOrdinateur
+     * @param string $typeItem
+     * @param string $info
+     */
+    function setLog($idOrdinateur,$typeItem,$info){
+        global $DB;
+        $DB->query("INSERT INTO glpi_plugin_twins_log 
+        (id_item,type_item,technicien,date,info) VALUES ('".
+        $idOrdinateur."','$typeItem','".$_SESSION['glpiname']."','".date('j-m-Y|H:m:s')."',\"".$info."\")") or die($DB->error());
+    }
+    
+    /**
+     * Nettoie une chaine de caractère
+     * @param String $chaine
+     * @return String
+     */
+    function nettoyerChaine($chaine)
+    {
+	$caracteres = array(
+		'À' => 'a', 'Á' => 'a', 'Â' => 'a', 'Ä' => 'a', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ä' => 'a', '@' => 'a',
+		'È' => 'e', 'É' => 'e', 'Ê' => 'e', 'Ë' => 'e', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', '€' => 'e',
+		'Ì' => 'i', 'Í' => 'i', 'Î' => 'i', 'Ï' => 'i', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i',
+		'Ò' => 'o', 'Ó' => 'o', 'Ô' => 'o', 'Ö' => 'o', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'ö' => 'o',
+		'Ù' => 'u', 'Ú' => 'u', 'Û' => 'u', 'Ü' => 'u', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'u', 'µ' => 'u',
+		'Œ' => 'oe', 'œ' => 'oe',
+		'$' => 's');
+ 
+	$chaine = strtr($chaine, $caracteres);
+	$chaine = preg_replace('#[^A-Za-z0-9]+#', '-', $chaine);
+	$chaine = trim($chaine, '-');
+	$chaine = strtolower($chaine);
+ 
+	return $chaine;
+    }    
+//=========================== Méthodes générales =============================//
+    /**
+     * renvoie l'id d'un utilisateur
+     * @global type $DB
+     * @param String $name le login de l'utilisateur recherché
+     * @return int l'id de l'utilisateur, false si pas trouvé
+     */
+    function getUserId($name)
+    {
+        global $DB;
+        $query = "SELECT id FROM glpi_users WHERE name='$name'";
+        
+        if ($result = $DB->query($query)){
+            if ($DB->numrows($result) > 0){
+                $row = $DB->fetch_assoc($result);
+                if (!empty($row['id'])){return $row['id'];}
+            }
+        }
+        return false;
+    }   
+
+    /**
+     * Récupère le chemin absolue de l'instance glpi
+     * @return String : le chemin absolue (racine principale)
+     */
+    function getAbsolutePath()
+        {return str_replace("ajax/common.tabs.php", "", $_SERVER['SCRIPT_FILENAME']);}
+
+    /**
+     * Récupère le chemin absolue de l'instance glpi depuis l'appel ajax de groupead
+     * @return String : le chemin absolue (racine principale)
+     */
+    function getAjaxAbsolutePath()
+        {return str_replace("ajax/twins.ajax.php", "", $_SERVER['SCRIPT_FILENAME']);}
+        
+    /**
+     * Récupère le chemin absolue de l'instance glpi
+     * @return String : le chemin absolue (racine principale)
+     */
+    function getAbsolutePathForm()
+        {return str_replace("front/twins.form.php", "", $_SERVER['SCRIPT_FILENAME']);}
+        
+    /**
+     * Récupère le chemin http absolu de l'application glpi
+     * @return string : le chemin http absolue de l'application
+     */
+    function getHttpPath(){
+        $temp = explode("/",$_SERVER['HTTP_REFERER']);
+        $Ref = "";
+        foreach ($temp as $value){
+            if($value != "front"){$Ref.= $value."/";}
+            else{break;}
+        }
+        return $Ref;
+    }
+}
+?>

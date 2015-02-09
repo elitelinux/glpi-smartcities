@@ -1,0 +1,92 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Badges Development Team
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Rafael Ferreira <rafael.f.f1@gmail.com>, 2012
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Project - badges plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-12-17 15:35+0100\n"
+"PO-Revision-Date: 2013-11-20 10:02+0000\n"
+"Last-Translator: Xavier CAILLAUD <tsmr@thetsmr.fr>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/GLPI_badges/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: setup.php:113
+msgid "This plugin requires GLPI >= 0.84"
+msgstr "Este plugin requer GLPI >= 0.84"
+
+#: inc/badge.class.php:39
+msgid "Badge"
+msgid_plural "Badges"
+msgstr[0] "Insígnia"
+msgstr[1] "Insígnias"
+
+#: inc/badge.class.php:72 inc/badge.class.php:207
+msgid "Affectation date"
+msgstr "Data de "
+
+#: inc/badge.class.php:77 inc/badge.class.php:220
+#: inc/notificationtargetbadge.class.php:52
+#: inc/notificationtargetbadge.class.php:72
+msgid "Date of end of validity"
+msgstr "Data do fim da validade"
+
+#: inc/badge.class.php:221
+msgid "Empty for infinite"
+msgstr "Vazio, para infinito"
+
+#: inc/badge.class.php:351 inc/notificationtargetbadge.class.php:39
+#: inc/notificationtargetbadge.class.php:49
+msgid "Badges which expires"
+msgstr "Insígnias que expiram"
+
+#: inc/badge.class.php:431 inc/notificationtargetbadge.class.php:38
+#: inc/notificationtargetbadge.class.php:48
+msgid "Badges at the end of the validity"
+msgstr "Insígnias no final da validade"
+
+#: inc/badgetype.class.php:37
+msgid "Type of badge"
+msgid_plural "Types of badge"
+msgstr[0] "Tipo de insígnia"
+msgstr[1] "Tipos de insígnias"
+
+#: inc/config.class.php:39
+msgid "Plugin Setup"
+msgstr "Configuração do plugin"
+
+#: inc/config.class.php:64
+msgid "Time of checking of validity of the badges"
+msgstr "Intervalo de verificação de validade de insígnias"
+
+#: inc/config.class.php:74
+msgid "Badges expired for more than "
+msgstr "Insígnias expiradas a mais de "
+
+#: inc/config.class.php:77
+msgid "Badges expiring in less than "
+msgstr "Insígnias expirando em menos de "
+
+#: inc/notificationstate.class.php:91 inc/notificationstate.class.php:121
+msgid "Unused status for expiration mailing"
+msgstr "Status não usado para enviar email de expirados"
+
+#: inc/notificationtargetbadge.class.php:54
+#: inc/notificationtargetbadge.class.php:73
+msgid "Allotted to"
+msgstr "Lotado a"
+
+#: inc/notificationtargetbadge.class.php:80
+msgid "Badges expired or badges which expires"
+msgstr "Insígnia expiraram ou que vão expirar"
+
+#: inc/profile.class.php:37 inc/profile.class.php:145
+msgid "Rights management"
+msgstr "Gerenciamento de permissões"

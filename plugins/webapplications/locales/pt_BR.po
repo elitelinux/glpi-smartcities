@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Webapplications Development Team
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Rafael Ferreira <rafael.f.f1@gmail.com>, 2012-2013
+# Xavier CAILLAUD <tsmr@thetsmr.fr>, 2012
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Project - webapplications plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-19 15:53+0100\n"
+"PO-Revision-Date: 2013-11-20 09:39+0000\n"
+"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/GLPI_webapplications/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: hook.php:356 inc/webapplication_item.class.php:413
+msgid "Associate a web application"
+msgstr "Associar uma aplicação web"
+
+#: setup.php:131 inc/webapplication.class.php:43
+msgid "Web application"
+msgid_plural "Web applications"
+msgstr[0] "Aplicação web"
+msgstr[1] "Aplicações web"
+
+#: setup.php:145
+msgid "This plugin requires GLPI >= 0.84"
+msgstr "Este plug-in requer GLPI >= 0.84"
+
+#: inc/profile.class.php:37 inc/profile.class.php:133
+msgid "Rights management"
+msgstr "Gerenciar Direitos"
+
+#: inc/webapplication.class.php:154 inc/webapplication.class.php:331
+msgid "Backoffice URL"
+msgstr "URL de retaguarda"
+
+#: inc/webapplication.class.php:167 inc/webapplication.class.php:310
+#: inc/webapplication.class.php:455
+msgid "Editor"
+msgstr "Editor"
+
+#: inc/webapplication_item.class.php:763
+msgid "Associated web application"
+msgid_plural "Associated web applications"
+msgstr[0] "Aplicação web associada"
+msgstr[1] "Aplicações web associadas"
+
+#: inc/webapplicationservertype.class.php:38
+msgid "Type of treatment server"
+msgid_plural "Types of treatment server"
+msgstr[0] "Tipo de servidor de tratamento"
+msgstr[1] "Tipos de servidores de tratamento"
+
+#: inc/webapplicationtechnic.class.php:38
+msgid "Language of treatment"
+msgid_plural "Languages of treatment"
+msgstr[0] "Idioma de tratamento"
+msgstr[1] "Idiomas de tratamento"
+
+#: inc/webapplicationtype.class.php:39
+msgid "Category"
+msgid_plural "Categories"
+msgstr[0] "Categoria"
+msgstr[1] "Categorias"

@@ -1,0 +1,29 @@
+Versão 0.5.6:
+
+- Correção na Lista de localizações;
+
+- Relatório SLA;
+
+- Vencimento do chamado exibido na página de Chamados;
+
+- Totais de chamados por status nos relatórios e gráficos.
+
+- Você agora pode me comprar uma cerveja pelo paypal; :)
+
+- Correção de bugs.
+
+
+
+Version 0.5.6:
+
+- Correction in the locations list;
+
+- SLA Report;
+
+- Due date of the ticket appears in the Tickets page;
+
+- Number of tickets by status in reports and graphs.
+
+- Buy me a beer in Paypal;
+
+- Fixed various bugs.

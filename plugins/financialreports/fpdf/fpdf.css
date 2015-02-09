@@ -1,0 +1,51 @@
+/*
+ * @version $Id: HEADER 15930 2011-10-30 15:47:55Z tsmr $
+ -------------------------------------------------------------------------
+ Financialreports plugin for GLPI
+ Copyright (C) 2003-2011 by the Financialreports Development Team.
+
+ https://forge.indepnet.net/projects/financialreports
+ -------------------------------------------------------------------------
+
+ LICENSE
+		
+ This file is part of Financialreports.
+
+ Financialreports is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ Financialreports is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with Financialreports. If not, see <http://www.gnu.org/licenses/>.
+ --------------------------------------------------------------------------
+ */
+
+body {font-family:"Times New Roman",serif}
+h1 {font-size:150%; color:#4000A0}
+h2 {color:#4000A0}
+h3 {font-size:100%; margin-top:1.2em}
+dl.param dt {text-decoration:underline}
+dl.param dd {margin-top:1em; margin-bottom:1em}
+dl.param ul {margin-top:1em; margin-bottom:1em}
+tt, code, kbd {font-family:"Courier New",Courier,monospace; font-size:82%}
+div.source {margin-top:1.4em; margin-bottom:1.3em}
+div.source pre {display:table; border:1px solid #24246A; width:100%; margin:0em; font-family:inherited; font-size:100%}
+div.source code {display:block; border:1px solid #C5C5EC; background-color:#F0F5FF; padding:6px; color:#000000}
+div.doc-source {margin-top:1.4em; margin-bottom:1.3em}
+div.doc-source pre {display:table; width:100%; margin:0em; font-family:inherited; font-size:100%}
+div.doc-source code {display:block; background-color:#E0E0E0; padding:4px}
+.st {font-weight:bold; color:#900000}
+.kw {color:#000080; font-weight:bold}
+.str {color:#CC0000}
+.cmt {color:#008000}
+p.demo {text-align:center; margin-top:-0.9em}
+a.demo {text-decoration:none; font-weight:bold; color:#0000CC}
+a.demo:link {text-decoration:none; font-weight:bold; color:#0000CC}
+a.demo:hover {text-decoration:none; font-weight:bold; color:#0000FF}
+a.demo:active {text-decoration:none; font-weight:bold; color:#0000FF}

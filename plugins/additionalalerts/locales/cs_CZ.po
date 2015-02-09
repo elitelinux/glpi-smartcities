@@ -1,0 +1,116 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Additionalalerts Development Team
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Ondrej Krejcik <ondra@tachec.org>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Project - additionalalerts plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-19 14:12+0100\n"
+"PO-Revision-Date: 2014-12-19 13:40+0000\n"
+"Last-Translator: Xavier CAILLAUD <tsmr@thetsmr.fr>\n"
+"Language-Team: Czech (Czech Republic) (http://www.transifex.com/projects/p/GLPI_additionalalerts/language/cs_CZ/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: cs_CZ\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: setup.php:66 inc/additionalalert.class.php:40 inc/menu.class.php:34
+#: inc/profile.class.php:71
+msgid "Other alert"
+msgid_plural "Others alerts"
+msgstr[0] "Další upozornění"
+msgstr[1] "Další upozornění"
+msgstr[2] "Dalších upozornění"
+
+#: setup.php:80
+msgid "This plugin requires GLPI >= 0.85"
+msgstr ""
+
+#: inc/additionalalert.class.php:96
+msgid "No used alerts"
+msgstr "Žádné upozornění se nepoužívá"
+
+#: inc/additionalalert.class.php:127
+msgid "No computers with no buy date"
+msgstr "Žádné počítače bez data nákupu"
+
+#: inc/additionalalert.class.php:153 inc/config.class.php:85
+#: inc/notificationtargetocsalert.class.php:41 inc/ocsalert.class.php:315
+#: inc/ocsalert.class.php:421
+msgid "New imported computers from OCS-NG"
+msgstr "Nově naimportované počítače z OCS-NG"
+
+#: inc/additionalalert.class.php:161 inc/additionalalert.class.php:202
+#: inc/notificationtargetocsalert.class.php:68
+#: inc/notificationtargetocsalert.class.php:112
+msgid "Last OCSNG inventory date"
+msgstr "Poslední datum OCSNG inventarizace "
+
+#: inc/additionalalert.class.php:162 inc/additionalalert.class.php:203
+#: inc/notificationtargetocsalert.class.php:69
+#: inc/notificationtargetocsalert.class.php:113
+msgid "Import date in GLPI"
+msgstr "Datum importu v GLPI"
+
+#: inc/additionalalert.class.php:163 inc/additionalalert.class.php:204
+#: inc/notificationtargetocsalert.class.php:70
+#: inc/notificationtargetocsalert.class.php:114
+msgid "OCSNG server"
+msgstr "OCSNG server"
+
+#: inc/additionalalert.class.php:170
+msgid "No new imported computer from OCS-NG"
+msgstr "Žádné nově naimportované počítače z OCS-NG"
+
+#: inc/additionalalert.class.php:194
+#: inc/notificationtargetocsalert.class.php:59
+msgid "Computers not synchronized with OCS-NG since more"
+msgstr "Počítače, které nejsou dlouhodobě synchronizovány s OCS-NG"
+
+#: inc/additionalalert.class.php:212
+msgid "No computer not synchronized since more"
+msgstr "Žádný počítač, který by nebyl dlouhodobě synchronizován"
+
+#: inc/config.class.php:79 inc/config.class.php:85
+msgid "Reminders frequency"
+msgstr "Frekvence upomínání"
+
+#: inc/config.class.php:90 inc/ocsalert.class.php:69
+#: inc/ocsalert.class.php:428
+msgid "OCS-NG Synchronization alerts"
+msgstr "Upozornění na OCS-NG synchronizaci"
+
+#: inc/infocomalert.class.php:40
+msgid "Computer with no buy date"
+msgid_plural "Computers with no buy date"
+msgstr[0] "Počítač bez data nákupu"
+msgstr[1] "Počítače bez data nákupu"
+msgstr[2] "Počítačů bez data nákupu"
+
+#: inc/infocomalert.class.php:46 inc/ocsalert.class.php:46
+msgid "Plugin setup"
+msgstr "Nastavení pluginu"
+
+#: inc/infocomalert.class.php:264 inc/ocsalert.class.php:363
+msgid "Parameter"
+msgstr "Parametr"
+
+#: inc/infocomalert.class.php:265
+msgid "Type not used for check of buy date"
+msgstr "Typ, který se nepoužívá pro kontrolu data nákupu"
+
+#: inc/ocsalert.class.php:40
+msgid "OCSNG synchronization"
+msgstr "OCSNG synchronizace"
+
+#: inc/ocsalert.class.php:73
+msgid "Alert for the new imported computers"
+msgstr "Upozornění na nově naimportované počítače"
+
+#: inc/ocsalert.class.php:364
+msgid "Status used by OCS-NG"
+msgstr "Stav užívaný systémem OCS-NG"
