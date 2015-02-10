@@ -291,11 +291,14 @@ Other Features of the GLPI in their core:
 
 Integrations
 ============
-Other applications integrable to GLPI:
+
 - Nagios Link: http://www.nagios.org/
 - FusionInventory Link: http://www.fusioninventory.org/
 - Shinken Link: http://www.shinken-monitoring.org/
-- OCS Inventory NG - http://www.ocsinventory-ng.org/
+- OCS Inventory NG link - http://www.ocsinventory-ng.org/
+- Zabbix link: http://www.zabbix.com/
+- Mantis link: http://www.mantisbt.org/
+Other applications integrable to GLPI:
 - AD/LDAP
 - Mail system
 - SMTP plataforms
@@ -326,6 +329,7 @@ List of the Plugins:
 - Racks link: https://forge.indepnet.net/projects/racks
 - Reforme	link: https://forge.indepnet.net/projects/reforme
 - ShellCommands link: https://forge.indepnet.net/projects/shellcommands
+- SIM Card link: https://github.com/pluginsGLPI/simcard
 - Talk link: https://github.com/TECLIB/talk/releases
 - Twins	link: https://forge.indepnet.net/projects/twins
 - Webapplications link: https://forge.indepnet.net/projects/webapplications
