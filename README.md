@@ -325,6 +325,7 @@ List of the Plugins:
 - Racks link: https://forge.indepnet.net/projects/racks
 - Reforme	link: https://forge.indepnet.net/projects/reforme
 - ShellCommands link: https://forge.indepnet.net/projects/shellcommands
+- Talk link: https://github.com/TECLIB/talk/releases
 - Twins	link: https://forge.indepnet.net/projects/twins
 - Webapplications link: https://forge.indepnet.net/projects/webapplications
 - Webnotifications link:	https://forge.indepnet.net/projects/webnotifications
