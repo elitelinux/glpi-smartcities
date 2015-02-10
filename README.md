@@ -298,6 +298,7 @@ Integrations
 - OCS Inventory NG link - http://www.ocsinventory-ng.org/
 - Zabbix link: http://www.zabbix.com/
 - Mantis link: http://www.mantisbt.org/
+
 Other applications integrable to GLPI:
 - AD/LDAP
 - Mail system
