@@ -312,11 +312,13 @@ List of the Plugins:
 - Behaviors link:	https://forge.indepnet.net/projects/behaviors
 - Certificates link: https://forge.indepnet.net/projects/certificates
 - Chat link: http://sourceforge.net/projects/glpichat/files/0.85/
+- Custom Colors link:https://github.com/TECLIB/custom/releases
 - Custom Fields link: https://forge.indepnet.net/projects/customfields
 - Dashboard	link:https://forge.indepnet.net/projects/dashboard
 - Data Injection link: https://forge.indepnet.net/projects/datainjection
 - Enviroment link: https://forge.indepnet.net/projects/environment
 - Financials Reports link: https://forge.indepnet.net/projects/financialreports
+- Form Creator link: https://github.com/TECLIB/formcreator/releases
 - Fusion Inventory link:http://forge.fusioninventory.org/projects/fusioninventory-for-glpi
 - Groupead	link: https://forge.indepnet.net/projects/groupead
 - Monitoring link https://forge.indepnet.net/projects/monitoring
