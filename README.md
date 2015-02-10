@@ -321,7 +321,8 @@ List of the Plugins:
 - Form Creator link: https://github.com/TECLIB/formcreator/releases
 - Fusion Inventory link:http://forge.fusioninventory.org/projects/fusioninventory-for-glpi
 - Groupead	link: https://forge.indepnet.net/projects/groupead
-- Monitoring link https://forge.indepnet.net/projects/monitoring
+- Monitoring (Nagios-Shinken)link https://forge.indepnet.net/projects/monitoring
+- OCS Inventory link: https://forge.indepnet.net/projects/ocsinventoryng/
 - Racks link: https://forge.indepnet.net/projects/racks
 - Reforme	link: https://forge.indepnet.net/projects/reforme
 - ShellCommands link: https://forge.indepnet.net/projects/shellcommands
