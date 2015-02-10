@@ -305,6 +305,7 @@ Other applications integrable to GLPI:
 - SMTP plataforms
 - CRM systems
 - ERP systems
+- CMS
 
 Plugins
 =======
