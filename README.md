@@ -257,10 +257,12 @@ Adaptable to Standards
 - Sustainable events ISO 20121 Link: https://www.iso.org/obp/ui/#iso:std:iso:20121:ed-1:v1:en
 - Social responsibility ISO 26000 Link: https://www.iso.org/obp/ui/#iso:std:iso:26000:ed-1:v1:en
 - Information security management ISO 27001 Link: https://www.iso.org/obp/ui/#iso:std:iso-iec:27001:ed-2:v1:en
+- Information Security Management System ISO 27002 link: https://www.iso.org/obp/ui/#iso:std:iso-iec:27002:ed-2:v1:en
 - Management systems for records ISO 30300 Link: https://www.iso.org/obp/ui/#iso:std:iso:30300:ed-1:v1:en
 - Risk management ISO 31000 Link: https://www.iso.org/obp/ui/#iso:std:iso:31000:ed-1:v1:en
 - Sustainable development of communities ISO 37120 Link: https://www.iso.org/obp/ui/#iso:std:iso:37120:ed-1:v1:en
 - Smart community infrastructures ISO 37150 Link : https://www.iso.org/obp/ui/#iso:std:iso:tr:37150:ed-1:v1:en
+Check Complete collection link: https://www.iso.org/obp/ui/#iso:pub:PUB200013:en
 
 Adaptable or Compliant to Methods
 =================================
