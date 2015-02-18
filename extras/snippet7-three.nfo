@@ -1,4 +1,5 @@
 http://cdnjs.com/libraries/three.js/
+https://developers.google.com/speed/libraries/devguide
 three.js
 snippet: <script src="https://ajax.googleapis.com/ajax/libs/threejs/r69/three.min.js"></script>
 site: threejs.org
