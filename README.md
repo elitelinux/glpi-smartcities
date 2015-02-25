@@ -255,6 +255,7 @@ Adaptable to Standards
 - Information and documentation ISO 15489 Link: https://www.iso.org/obp/ui/#iso:std:iso:15489:-1:ed-1:v1:en
 - Service management ISO 20000 Link: https://www.iso.org/obp/ui/#iso:std:iso-iec:20000:-1:ed-2:v1:en
 - Sustainable events ISO 20121 Link: https://www.iso.org/obp/ui/#iso:std:iso:20121:ed-1:v1:en
+- Guidance on Project Management ISO 21500 Link: https://www.iso.org/obp/ui/#iso:std:iso:21500:ed-1:v1:en
 - Social responsibility ISO 26000 Link: https://www.iso.org/obp/ui/#iso:std:iso:26000:ed-1:v1:en
 - Information security management ISO 27001 Link: https://www.iso.org/obp/ui/#iso:std:iso-iec:27001:ed-2:v1:en
 - Information Security Management System ISO 27002 link: https://www.iso.org/obp/ui/#iso:std:iso-iec:27002:ed-2:v1:en
@@ -262,7 +263,9 @@ Adaptable to Standards
 - Risk management ISO 31000 Link: https://www.iso.org/obp/ui/#iso:std:iso:31000:ed-1:v1:en
 - Sustainable development of communities ISO 37120 Link: https://www.iso.org/obp/ui/#iso:std:iso:37120:ed-1:v1:en
 - Smart community infrastructures ISO 37150 Link : https://www.iso.org/obp/ui/#iso:std:iso:tr:37150:ed-1:v1:en
+- Occupational Health and Safety Management Standard ISO 45000 Link: https://www.iso.org/obp/ui/#iso:std:iso:45000:ed-1:v1:en
 Check Complete collection link: https://www.iso.org/obp/ui/#iso:pub:PUB200013:en
+Check another possible compliants: link: http://en.wikipedia.org/wiki/List_of_International_Organization_for_Standardization_standards
 
 Adaptable or Compliant to Methods
 =================================
@@ -277,6 +280,10 @@ Adaptable or Compliant to Methods
 - Hackathons link: http://en.wikipedia.org/wiki/Hackathon
 - GTD Link: http://en.wikipedia.org/wiki/Getting_Things_Done
 - Life Hacking link: http://en.wikipedia.org/wiki/Life_hacking
+
+Adaptable or Compliant to Frameworks
+====================================
+- Cybersecurity Framework link: http://www.nist.gov/cyberframework/
  
 Potentials
 ==========
