@@ -284,6 +284,7 @@ Adaptable or Compliant to Methods
 Adaptable or Compliant to Frameworks
 ====================================
 - Cybersecurity Framework link: http://www.nist.gov/cyberframework/
+- Cyber Risk and Resilience Management link: http://cert.org/resilience/
  
 Potentials
 ==========
