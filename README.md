@@ -383,7 +383,7 @@ Work Better in
 Comparison
 ==========
 - Issue Tracking system Link: http://en.wikipedia.org/wiki/Comparison_of_issue-tracking_systems
-- Help Desk system link: en.wikipedia.org/wiki/Comparison_of_help_desk_issue_tracking_software
+- Help Desk system Link: http://en.wikipedia.org/wiki/Comparison_of_help_desk_issue_tracking_software
 
 
 Compatible with
