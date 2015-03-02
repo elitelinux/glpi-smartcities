@@ -1,7 +1,8 @@
 glpi-smartcities
 ================
 
-GLPI for Smart Cities by Juan Fernando Villa Hernández | GLPI Evangelist aKa @elitelinux 
+GLPI for Smart Cities by Juan Fernando Villa Hernández | GLPI Evangelist aKa @elitelinux
+link to GLPI: https://fr.wikipedia.org/wiki/Gestion_libre_de_parc_informatique
 
 Why GLPI?
 =========
