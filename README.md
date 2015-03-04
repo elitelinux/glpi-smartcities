@@ -254,11 +254,12 @@ Adaptable to Standards
 - Quality management ISO 9000 Link: https://www.iso.org/obp/ui/#iso:std:iso:9001:ed-4:v2:en 
 - Environmental management ISO 14001 Link: https://www.iso.org/obp/ui/#iso:std:iso:14001:ed-2:v1:en
 - Information and documentation ISO 15489 Link: https://www.iso.org/obp/ui/#iso:std:iso:15489:-1:ed-1:v1:en
+- Quality Managemen Systems ISO 18091 link: https://www.iso.org/obp/ui/#iso:std:iso:18091:ed-1:v1:en
 - Service management ISO 20000 Link: https://www.iso.org/obp/ui/#iso:std:iso-iec:20000:-1:ed-2:v1:en
 - Sustainable events ISO 20121 Link: https://www.iso.org/obp/ui/#iso:std:iso:20121:ed-1:v1:en
 - Guidance on Project Management ISO 21500 Link: https://www.iso.org/obp/ui/#iso:std:iso:21500:ed-1:v1:en
 - Social responsibility ISO 26000 Link: https://www.iso.org/obp/ui/#iso:std:iso:26000:ed-1:v1:en
-- Information security management ISO 27001 Link: https://www.iso.org/obp/ui/#iso:std:iso-iec:27001:ed-2:v1:en
+- Information Security Management ISO 27001 Link: https://www.iso.org/obp/ui/#iso:std:iso-iec:27001:ed-2:v1:en
 - Information Security Management System ISO 27002 link: https://www.iso.org/obp/ui/#iso:std:iso-iec:27002:ed-2:v1:en
 - Management systems for records ISO 30300 Link: https://www.iso.org/obp/ui/#iso:std:iso:30300:ed-1:v1:en
 - Risk management ISO 31000 Link: https://www.iso.org/obp/ui/#iso:std:iso:31000:ed-1:v1:en
