@@ -267,7 +267,8 @@ Adaptable to Standards
 - Smart community infrastructures ISO 37150 Link : https://www.iso.org/obp/ui/#iso:std:iso:tr:37150:ed-1:v1:en
 - Occupational Health and Safety Management Standard ISO 45000 Link: https://www.iso.org/obp/ui/#iso:std:iso:45000:ed-1:v1:en
 
-Check Complete collection link: https://www.iso.org/obp/ui/#iso:pub:PUB200013:en
+Check a Complete collection link: https://www.iso.org/obp/ui/#iso:pub:PUB200013:en
+
 Check another possible compliants: link: http://en.wikipedia.org/wiki/List_of_International_Organization_for_Standardization_standards
 
 Adaptable or Compliant to Methods
