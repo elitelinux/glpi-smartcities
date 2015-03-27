@@ -4,6 +4,25 @@ glpi-smartcities
 GLPI for Smart Cities by Juan Fernando Villa Hernández | GLPI Evangelist aKa @elitelinux
 link to GLPI: https://fr.wikipedia.org/wiki/Gestion_libre_de_parc_informatique
 
+What is a Smart City?
+=========
+Smart City is a "Buzzword".
+
+What is a Buzzword?
+===================
+check here: 
+- http://www.urbandictionary.com/define.php?term=buzz+words.
+- projects.wsj.com/buzzwords2014/
+- http://en.wikipedia.org/wiki/Buzzword
+
+Seriously. What is a Smart City?
+================================
+According to wikipedia is a smart city: See link http://en.wikipedia.org/wiki/Smart_city
+
+From another perspective academic a Smart City is one city where their services and products are aimed at improving the quality of life of its inhabitants, increasing their welfare, economic prosperity through the use of best practices and standards, taking and implementing a model technocratic government. In that city, the use of comparative advantages is done to achieve various surplus needed to generate the necessary human capital and sustain investments in diverse areas needed and involve becoming a Smart City
+
+
+
 Why GLPI?
 =========
 GLPI is an excellent software that has been undervalued and is little known or used. Many of the things you normally need to do, do not require platforms such as SAP, Groupwares, Some CRMs and ERPs . In GLPI is enough. Take a look at what can do a properly configured GLPI.
