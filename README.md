@@ -12,7 +12,7 @@ What is a Buzzword?
 ===================
 check here: 
 - http://www.urbandictionary.com/define.php?term=buzz+words.
-- projects.wsj.com/buzzwords2014/
+- http://projects.wsj.com/buzzwords2014/
 - http://en.wikipedia.org/wiki/Buzzword
 
 Seriously. What is a Smart City?
