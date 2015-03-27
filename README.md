@@ -17,11 +17,10 @@ check here:
 
 Seriously. What is a Smart City?
 ================================
-According to wikipedia is a smart city: See link http://en.wikipedia.org/wiki/Smart_city
+According to wikipedia this is a smart city: See link http://en.wikipedia.org/wiki/Smart_city
+From another perspective academic a Smart City is one city where their services and products are aimed at improving the quality of life of its inhabitants, increase their welfare and security, economic prosperity through the use of best practices and standards, assuming e implementing a model of technocratic government. In that city, the use of comparative advantages is done to achieve various surplus needed to generate the necessary human capital and sustain investments in diverse areas needed and involve becoming a Smart City.
 
-From another perspective academic a Smart City is one city where their services and products are aimed at improving the quality of life of its inhabitants, increasing their welfare, economic prosperity through the use of best practices and standards, taking and implementing a model technocratic government. In that city, the use of comparative advantages is done to achieve various surplus needed to generate the necessary human capital and sustain investments in diverse areas needed and involve becoming a Smart City
-
-
+Easy right? and this is just the beginning.
 
 Why GLPI?
 =========
