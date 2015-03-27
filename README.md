@@ -4,6 +4,10 @@ glpi-smartcities
 GLPI for Smart Cities by Juan Fernando Villa Hernández | GLPI Evangelist aKa @elitelinux
 link to GLPI: https://fr.wikipedia.org/wiki/Gestion_libre_de_parc_informatique
 
+License
+========
+See link: https://es.wikipedia.org/wiki/GNU_General_Public_License
+
 What is a Smart City?
 =========
 Smart City is a "Buzzword".
@@ -77,6 +81,11 @@ The estimated duration for projects with GLPI phases:
 - Design and description of a single process – 3-4 weeks
 - Automation of a single process – 1-3 months
 - Working smooth in many aspects - 1 year
+
+How much is this software?
+==========================
+How much is this software? It depends. The software is "Open Source" and "Free" where they must comply with the GPL license with which this comes.
+On the other hand if you do not want to pay for support or seek a professional You MUST do it all by yourself. and believe me you take long have ready the GLPI. You need to hire a group of people with knowledge and technical skills for this activity, you need to buy your cloud computing and adjust the equipment and the necessary infrastructure to carry out this project.
 
 Where is the magic?
 ===================
