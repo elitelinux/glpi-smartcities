@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: projecttask.form.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: projecttask.form.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -71,7 +71,7 @@ if (isset($_POST["add"])) {
               sprintf(__('%s updates a task'), $_SESSION["glpiname"]));
    Html::back();
 } else {
-   Html::header(ProjectTask::getTypeName(2), $_SERVER['PHP_SELF'], "tools", "project");
+   Html::header(ProjectTask::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "tools", "project");
    $task->display(array('id'          => $_GET["id"],
                         'projects_id' => $_GET["projects_id"]));
    Html::footer();

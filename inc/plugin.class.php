@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: plugin.class.php 22942 2014-04-22 22:38:54Z moyo $
+ * @version $Id: plugin.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -67,7 +67,7 @@ class Plugin extends CommonDBTM {
     * @since version 0.85
    **/
    static function getMenuName() {
-      return static::getTypeName(2);
+      return static::getTypeName(Session::getPluralNumber());
    }
 
 
@@ -351,7 +351,7 @@ class Plugin extends CommonDBTM {
       if (!empty($pluglist)) {
          echo "<tr><th>".__('Name')."</th><th>"._n('Version', 'Versions',1)."</th>";
          echo "<th>".__('License')."</th>";
-         echo "<th>".__('Status')."</th><th>"._n('Author', 'Authors',2)."</th>";
+         echo "<th>".__('Status')."</th><th>"._n('Author', 'Authors', Session::getPluralNumber())."</th>";
          echo "<th>".__('Website')."</th>";
          echo "<th>".__('CSRF compliant')."</th>";
          echo "<th colspan='2'>&nbsp;</th></tr>\n";

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: update_084_085.php 23059 2014-06-26 06:24:54Z moyo $
+ * @version $Id: update_084_085.php 23310 2015-01-21 16:25:48Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -1803,7 +1803,7 @@ function update084to085() {
    }
 
    Config::setConfigurationValues('core', array('keep_devices_when_purging_item' => 0));
-   $migration->addField("glpi_users", "keep_devices_when_purging_item", "tinyint(1) DEFAULT NULL");
+   $migration->addField("glpi_users", "keep_devices_when_purging_item", "int(11) DEFAULT NULL");
 
    Config::setConfigurationValues('core', array('maintenance_mode' => 0));
    Config::setConfigurationValues('core', array('maintenance_text' => ''));

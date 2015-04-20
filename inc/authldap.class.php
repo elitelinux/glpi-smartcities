@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: authldap.class.php 23268 2014-12-11 09:23:15Z moyo $
+ * @version $Id: authldap.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -981,7 +981,7 @@ class AuthLDAP extends CommonDBTM {
       $ldap_servers = self::getLdapServers();
 
       if (!empty($ldap_servers)) {
-         echo "<tr class='tab_bg_2'><th>" . self::getTypeName(2) . "</th></tr>\n";
+         echo "<tr class='tab_bg_2'><th>" . self::getTypeName(Session::getPluralNumber()) . "</th></tr>\n";
          echo "<tr class='tab_bg_1'><td><pre>\n&nbsp;\n";
          foreach ($ldap_servers as $ID => $value) {
             $fields = array('Server'            => 'host',
@@ -1263,7 +1263,7 @@ class AuthLDAP extends CommonDBTM {
             Html::checkAllAsCheckbox('mass'.__CLASS__.$rand);
             echo "</th>";
             $num = 0;
-            echo Search::showHeaderItem(Search::HTML_OUTPUT, _n('User', 'Users', 2), $num,
+            echo Search::showHeaderItem(Search::HTML_OUTPUT, _n('User', 'Users', Session::getPluralNumber()), $num,
                                         $_SERVER['PHP_SELF'].
                                             "?order=".($values['order']=="DESC"?"ASC":"DESC"));
             echo "<th>".__('Last update in the LDAP directory')."</th>";
@@ -1317,7 +1317,7 @@ class AuthLDAP extends CommonDBTM {
             Html::checkAllAsCheckbox('mass'.__CLASS__.$rand);
             echo "</th>";
             $num = 0;
-            echo Search::showHeaderItem(Search::HTML_OUTPUT, _n('User', 'Users', 2), $num,
+            echo Search::showHeaderItem(Search::HTML_OUTPUT, _n('User', 'Users', Session::getPluralNumber()), $num,
                                         $_SERVER['PHP_SELF'].
                                                 "?order=".($values['order']=="DESC"?"ASC":"DESC"));
             echo "<th>".__('Last update in the LDAP directory')."</th>";
@@ -3050,12 +3050,12 @@ class AuthLDAP extends CommonDBTM {
           && $item->can($item->getField('id'),READ)) {
          $ong     = array();
          $ong[1]  = _sx('button','Test');                     // test connexion
-         $ong[2]  = _n('User', 'Users', 2);
-         $ong[3]  = _n('Group', 'Groups', 2);
+         $ong[2]  = _n('User', 'Users', Session::getPluralNumber());
+         $ong[3]  = _n('Group', 'Groups', Session::getPluralNumber());
 /// TODO clean fields entity_XXX if not used         
 //          $ong[4]  = __('Entity');                  // params for entity config
          $ong[5]  = __('Advanced information');   // params for entity advanced config
-         $ong[6]  = _n('Replicate', 'Replicates', 2);
+         $ong[6]  = _n('Replicate', 'Replicates', Session::getPluralNumber());
 
          return $ong;
       }

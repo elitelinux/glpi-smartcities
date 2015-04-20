@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: backup.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: backup.class.php 23371 2015-02-27 14:22:59Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -47,6 +47,16 @@ class Backup extends CommonGLPI {
    static $rightname = 'backup';
 
    const CHECKUPDATE = 1024;
+
+
+
+   /**
+    * @since version 0.85.3
+    **/
+   static function canView() {
+      return Session::haveRight(self::$rightname, READ);
+   }
+
 
    static function getTypeName($nb=0) {
       return __('Maintenance');

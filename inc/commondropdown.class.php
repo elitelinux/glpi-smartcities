@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: commondropdown.class.php 22810 2014-03-21 12:04:41Z yllen $
+ * @version $Id: commondropdown.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -96,7 +96,7 @@ abstract class CommonDropdown extends CommonDBTM {
 
       $menu = array();
       if (get_called_class() == 'CommonDropdown') {
-         $menu['title']             = static::getTypeName(2);
+         $menu['title']             = static::getTypeName(Session::getPluralNumber());
          $menu['shortcut']          = 'n';
          $menu['page']              = '/front/dropdown.php';
          $menu['config']['default'] = '/front/dropdown.php';
@@ -158,7 +158,7 @@ abstract class CommonDropdown extends CommonDBTM {
    function title() {
 
       if ($this->display_dropdowntitle) {
-         Dropdown::showItemTypeMenu(_n('Dropdown', 'Dropdowns', 2),
+         Dropdown::showItemTypeMenu(_n('Dropdown', 'Dropdowns', Session::getPluralNumber()),
                                     Dropdown::getStandardDropdownItemTypes(),
                                     $this->getSearchURL());
       }
@@ -170,7 +170,7 @@ abstract class CommonDropdown extends CommonDBTM {
       if (empty($this->third_level_menu)) {
         $this->third_level_menu = $this->getType();
       }
-      Html::header($this->getTypeName(2), '', $this->first_level_menu, $this->second_level_menu,
+      Html::header($this->getTypeName(Session::getPluralNumber()), '', $this->first_level_menu, $this->second_level_menu,
                    $this->third_level_menu);
    }
 

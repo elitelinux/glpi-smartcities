@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: computer.class.php 23279 2014-12-20 17:29:42Z yllen $
+ * @version $Id: computer.class.php 23435 2015-04-09 13:37:15Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -103,6 +103,7 @@ class Computer extends CommonDBTM {
       $this->addStandardTab('ComputerVirtualMachine', $ong, $options);
       $this->addStandardTab('Ticket', $ong, $options);
       $this->addStandardTab('Item_Problem', $ong, $options);
+      $this->addStandardTab('Change_Item', $ong, $options);
       $this->addStandardTab('Link', $ong, $options);
       $this->addStandardTab('Lock', $ong, $options);
       $this->addStandardTab('Notepad', $ong, $options);
@@ -812,7 +813,7 @@ class Computer extends CommonDBTM {
 
       $tab += Notepad::getSearchOptionsToAdd();
 
-      $tab['periph']             = _n('Component', 'Components', 2);
+      $tab['periph']             = _n('Component', 'Components', Session::getPluralNumber());
 
       $items_device_joinparams   = array('jointype'          => 'itemtype_item',
                                          'specific_itemtype' => 'Computer');
@@ -950,7 +951,7 @@ class Computer extends CommonDBTM {
                                           => array('table'      => 'glpi_items_devicepowersupplies',
                                                    'joinparams' => $items_device_joinparams));
 
-      $tab['disk']               = _n('Volume', 'Volumes', 2);
+      $tab['disk']               = _n('Volume', 'Volumes', Session::getPluralNumber());
 
       $tab[156]['table']         = 'glpi_computerdisks';
       $tab[156]['field']         = 'name';
@@ -1016,7 +1017,7 @@ class Computer extends CommonDBTM {
                                          => array('table'      => 'glpi_computerdisks',
                                                   'joinparams' => array('jointype' => 'child')));
 
-      $tab['virtualmachine']     = _n('Virtual machine', 'Virtual machines', 2);
+      $tab['virtualmachine']     = _n('Virtual machine', 'Virtual machines', Session::getPluralNumber());
 
       $tab[160]['table']         = 'glpi_computervirtualmachines';
       $tab[160]['field']         = 'name';

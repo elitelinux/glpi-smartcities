@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: ruleticket.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: ruleticket.class.php 23346 2015-02-03 15:11:10Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -237,7 +237,7 @@ class RuleTicket extends Rule {
                   break;
 
                case 'fromitem' :
-                  if ($action->fields['field'] == 'locations_id') {
+                  if ($action->fields['field'] == 'locations_id' && isset($output['items_locations'])) {
                      $output['locations_id'] = $output['items_locations'];
                   }
                   break;
@@ -524,7 +524,7 @@ class RuleTicket extends Rule {
       $actions['status']['name']                            = __('Status');
       $actions['status']['type']                            = 'dropdown_status';
 
-      $actions['affectobject']['name']                      = __('Associated element');
+      $actions['affectobject']['name']                      = _n('Associated element', 'Associated elements', Session::getPluralNumber());
       $actions['affectobject']['type']                      = 'text';
       $actions['affectobject']['force_actions']             = array('affectbyip', 'affectbyfqdn',
                                                                     'affectbymac');

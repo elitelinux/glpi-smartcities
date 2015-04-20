@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: computer_item.class.php 22961 2014-04-28 19:59:30Z moyo $
+ * @version $Id: computer_item.class.php 23304 2015-01-21 14:46:37Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -767,10 +767,10 @@ class Computer_Item extends CommonDBRelation{
             case 'Monitor' :
                if (Computer::canView()) {
                   if ($_SESSION['glpishow_count_on_tabs']) {
-                     return self::createTabEntry(_n('Connection','Connections',2),
+                     return self::createTabEntry(_n('Connection','Connections', Session::getPluralNumber()),
                                                  self::countForItem($item));
                   }
-                  return _n('Connection','Connections',2);
+                  return _n('Connection','Connections', Session::getPluralNumber());
                }
                break;
 
@@ -780,10 +780,10 @@ class Computer_Item extends CommonDBRelation{
                    || Peripheral::canView()
                    || Monitor::canView()) {
                   if ($_SESSION['glpishow_count_on_tabs']) {
-                     return self::createTabEntry(_n('Connection','Connections',2),
+                     return self::createTabEntry(_n('Connection','Connections', Session::getPluralNumber()),
                                                  self::countForComputer($item));
                   }
-                  return _n('Connection','Connections',2);
+                  return _n('Connection','Connections', Session::getPluralNumber());
                }
                break;
          }

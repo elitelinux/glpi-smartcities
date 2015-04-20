@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: ruleright.class.php 22695 2014-02-26 09:52:50Z moyo $
+ * @version $Id: ruleright.class.php 23304 2015-01-21 14:46:37Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -317,7 +317,7 @@ class RuleRight extends Rule {
       $actions['_affect_entity_by_completename']['force_actions'] = array('regex_result');
       $actions['_affect_entity_by_completename']['duplicatewith'] = 'entities_id';
 
-      $actions['profiles_id']['name']                       = _n('Profile', 'Profiles', 2);
+      $actions['profiles_id']['name']                       = _n('Profile', 'Profiles', Session::getPluralNumber());
       $actions['profiles_id']['type']                       = 'dropdown';
       $actions['profiles_id']['table']                      = 'glpi_profiles';
 

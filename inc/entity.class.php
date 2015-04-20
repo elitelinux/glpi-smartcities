@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: entity.class.php 22695 2014-02-26 09:52:50Z moyo $
+ * @version $Id: entity.class.php 23428 2015-04-09 10:27:44Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -81,6 +81,7 @@ class Entity extends CommonTreeDropdown {
                                        'notification'
                                           => array('admin_email', 'admin_reply', 'admin_email_name',
                                                    'admin_reply_name', 'delay_send_emails',
+                                                   'is_notif_enable_default',
                                                    'default_cartridges_alarm_threshold',
                                                    'default_consumables_alarm_threshold',
                                                    'default_contract_alert', 'default_infocom_alert',
@@ -299,11 +300,11 @@ class Entity extends CommonTreeDropdown {
          switch ($item->getType()) {
             case __CLASS__ :
                $ong    = array();
-               $ong[1] = $this->getTypeName(2);
+               $ong[1] = $this->getTypeName(Session::getPluralNumber());
                $ong[2] = __('Address');
                $ong[3] = __('Advanced information');
                if (Notification::canView()) {
-                  $ong[4] = _n('Notification', 'Notifications',2);
+                  $ong[4] = _n('Notification', 'Notifications', Session::getPluralNumber());
                }
                if (Session::haveRightsOr(self::$rightname,
                                          array(self::READHELPDESK, self::UPDATEHELPDESK))) {
@@ -561,6 +562,13 @@ class Entity extends CommonTreeDropdown {
       $tab[60]['unit']          = 'minute';
       $tab[60]['toadd']         = array(self::CONFIG_PARENT => __('Inheritance of the parent entity'));
 
+      $tab[61]['table']         = $this->getTable();
+      $tab[61]['field']         = 'is_notif_enable_default';
+      $tab[61]['name']          = __('Enable notifications by default');
+      $tab[61]['massiveaction'] = false;
+      $tab[61]['nosearch']      = true;
+      $tab[61]['datatype']      = 'bool';
+      
       $tab[18]['table']         = $this->getTable();
       $tab[18]['field']         = 'admin_email';
       $tab[18]['name']          = __('Administrator email');
@@ -1249,7 +1257,7 @@ class Entity extends CommonTreeDropdown {
                               array('value' => $entity->getField('autofill_warranty_date')));
       echo "</td><td colspan='2'></td></tr>";
 
-      echo "<tr><th colspan='4'>"._n('Software', 'Software', 2)."</th></tr>";
+      echo "<tr><th colspan='4'>"._n('Software', 'Software', Session::getPluralNumber())."</th></tr>";
       echo "<tr class='tab_bg_2'>";
       echo "<td> " . __('Entity for software creation') . "</td>";
       echo "<td>";
@@ -1367,6 +1375,27 @@ class Entity extends CommonTreeDropdown {
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
+      echo "<td>".__('Enable notifications by default')."</td>";
+      echo "<td>";
+
+      Alert::dropdownYesNo(array('name'           => "is_notif_enable_default",
+                                 'value'          =>  $entity->getField('is_notif_enable_default'),
+                                 'inherit_parent' => (($ID > 0) ? 1 : 0)));
+      
+
+      if ($entity->fields['is_notif_enable_default'] == self::CONFIG_PARENT) {
+         $tid = self::getUsedConfig('is_notif_enable_default', $entity->getField('entities_id'));
+         echo "<font class='green'><br>";
+         echo $entity->getValueToDisplay('is_notif_enable_default', $tid, array('html' => true));
+         echo "</font>";
+      }
+      echo "</td>";
+      echo "<td colspan='2'>&nbsp;</td>";
+      
+      echo "</tr>";
+      
+      
+      echo "<tr class='tab_bg_1'>";
       echo "<td class='middle right'>" . __('Email signature') . "</td>";
       echo "<td colspan='3'>";
       echo "<textarea cols='60' rows='5' name='mailing_signature'>".
@@ -1379,7 +1408,7 @@ class Entity extends CommonTreeDropdown {
 
       echo "<tr class='tab_bg_1'>";
       echo "<th colspan='2' rowspan='2'>";
-      echo _n('Cartridge', 'Cartridges', 2);
+      echo _n('Cartridge', 'Cartridges', Session::getPluralNumber());
       echo "</th>";
       echo "<td>" . __('Reminders frequency for alarms on cartridges') . "</td><td>";
       $default_value = $entity->fields['cartridges_alert_repeat'];
@@ -1419,7 +1448,7 @@ class Entity extends CommonTreeDropdown {
 
       echo "<tr class='tab_bg_1'>";
       echo "<th colspan='2' rowspan='2'>";
-      echo _n('Consumable', 'Consumables', 2);
+      echo _n('Consumable', 'Consumables', Session::getPluralNumber());
       echo "</th>";
 
       echo "<td>" . __('Reminders frequency for alarms on consumables') . "</td><td>";
@@ -1461,7 +1490,7 @@ class Entity extends CommonTreeDropdown {
 
       echo "<tr class='tab_bg_1'>";
       echo "<th colspan='2' rowspan='3'>";
-      echo _n('Contract', 'Contracts', 2);
+      echo _n('Contract', 'Contracts', Session::getPluralNumber());
       echo "</th>";
       echo "<td>" . __('Alarms on contracts') . "</td><td>";
       $default_value = $entity->fields['use_contracts_alert'];
@@ -1552,7 +1581,7 @@ class Entity extends CommonTreeDropdown {
 
       echo "<tr class='tab_bg_1'>";
       echo "<th colspan='2' rowspan='2'>";
-      echo _n('License', 'Licenses', 2);
+      echo _n('License', 'Licenses', Session::getPluralNumber());
       echo "</th>";
       echo "<td>" . __('Alarms on expired licenses') . "</td><td>";
       $default_value = $entity->fields['use_licenses_alert'];
@@ -1585,7 +1614,7 @@ class Entity extends CommonTreeDropdown {
 
       echo "<tr class='tab_bg_1'>";
       echo "<th colspan='2' rowspan='1'>";
-      echo _n('Reservation', 'Reservations', 2);
+      echo _n('Reservation', 'Reservations', Session::getPluralNumber());
       echo "</th>";
       echo "<td>" . __('Alerts on reservations') . "</td><td>";
       Alert::dropdownIntegerNever('use_reservations_alert',
@@ -1603,7 +1632,7 @@ class Entity extends CommonTreeDropdown {
 
       echo "<tr class='tab_bg_1'>";
       echo "<th colspan='2' rowspan='1'>";
-      echo _n('Ticket', 'Tickets', 2);
+      echo _n('Ticket', 'Tickets', Session::getPluralNumber());
       echo "</th>";
       echo "<td >". __('Alerts on tickets which are not solved since'). "</td><td>";
       Alert::dropdownIntegerNever('notclosed_delay', $entity->fields["notclosed_delay"],

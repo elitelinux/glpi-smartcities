@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: central.class.php 23240 2014-11-21 17:17:38Z yllen $
+ * @version $Id: central.class.php 23421 2015-04-08 09:06:11Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -63,7 +63,7 @@ class Central extends CommonGLPI {
          $tabs[1] = __('Personal View');
          $tabs[2] = __('Group View');
          $tabs[3] = __('Global View');
-         $tabs[4] = _n('RSS feed', 'RSS feeds', 2);
+         $tabs[4] = _n('RSS feed', 'RSS feeds', Session::getPluralNumber());
 
          return $tabs;
       }
@@ -187,9 +187,13 @@ class Central extends CommonGLPI {
          Ticket::showCentralList(0,"tovalidate",false);
       }
       if ($showticket) {
+
          if (Ticket::isAllowedStatus(Ticket::SOLVED, Ticket::CLOSED)) {
             Ticket::showCentralList(0, "toapprove", false);
          }
+
+         Ticket::showCentralList(0, "survey", false);
+         
          Ticket::showCentralList(0, "rejected", false);
          Ticket::showCentralList(0, "requestbyself", false);
          Ticket::showCentralList(0, "observed", false);

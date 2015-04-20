@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: notificationtargetreservation.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: notificationtargetreservation.class.php 23346 2015-02-03 15:11:10Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -206,7 +206,7 @@ class NotificationTargetReservation extends NotificationTarget {
             if (($itemtype != NOT_AVAILABLE) && ($itemtype != '')
                 && ($item = getItemForItemtype($itemtype))) {
                $item->getFromDB($ri->getField('items_id'));
-               $this->target_object = $item;
+               $this->target_object[] = $item;
             }
          }
       }

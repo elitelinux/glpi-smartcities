@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: getDropdownFindNum.php 22977 2014-05-15 10:46:36Z tsmr $
+ * @version $Id: getDropdownFindNum.php 23346 2015-02-03 15:11:10Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -63,6 +63,10 @@ if ($item->isEntityAssign()) {
 
 } else {
    $where = "WHERE 1";
+}
+
+if(isset($_GET['used']) && !empty($_GET['used'])){
+   $where .= " AND `id` NOT IN ('".implode("','" ,$_GET['used'])."') ";
 }
 
 if ($item->maybeDeleted()) {

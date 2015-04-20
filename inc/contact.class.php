@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: contact.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: contact.class.php 23304 2015-01-21 14:46:37Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -358,7 +358,7 @@ class Contact extends CommonDBTM{
 
       $tab[8]['table']          = 'glpi_suppliers';
       $tab[8]['field']          = 'name';
-      $tab[8]['name']           = _n('Associated supplier', 'Associated suppliers', 2);
+      $tab[8]['name']           = _n('Associated supplier', 'Associated suppliers', Session::getPluralNumber());
       $tab[8]['forcegroupby']   = true;
       $tab[8]['datatype']       = 'itemlink';
       $tab[8]['joinparams']     = array('beforejoin'

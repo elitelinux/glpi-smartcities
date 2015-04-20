@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: report.class.php 23290 2015-01-09 10:39:13Z yllen $
+ * @version $Id: report.class.php 23371 2015-02-27 14:22:59Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -45,6 +45,14 @@ class Report extends CommonGLPI{
    static protected $notable = false;
    static $rightname         = 'reports';
 
+
+
+   /**
+    * @since version 0.85.3
+   **/
+   static function canView() {
+      return Session::haveRight(self::$rightname, READ);
+   }
 
 
    static function getTypeName($nb=0) {
@@ -100,7 +108,7 @@ class Report extends CommonGLPI{
           || Peripheral::canView()
           || Printer::canView()
           || Phone::canView()) {
-         $report_list["state"]["name"] = _n('Status', 'Statuses', 2);
+         $report_list["state"]["name"] = _n('Status', 'Statuses', Session::getPluralNumber());
          $report_list["state"]["file"] = "report.state.php";
       }
       //Affichage du tableau de presentation des stats
@@ -169,7 +177,7 @@ class Report extends CommonGLPI{
       global $DB;
 
       # Title
-      echo "<span class='big b'>GLPI ".Report::getTypeName(2)."</span><br><br>";
+      echo "<span class='big b'>GLPI ".Report::getTypeName(Session::getPluralNumber())."</span><br><br>";
 
       # 1. Get counts of itemtype
       $items     = array('Computer', 'Monitor', 'NetworkEquipment', 'Peripheral', 'Phone',
@@ -199,7 +207,7 @@ class Report extends CommonGLPI{
          $result = $DB->query($query);
          $number = $DB->result($result,0,0);
 
-         echo "<tr class='tab_bg_2'><td>".$itemtype::getTypeName(2)."</td>";
+         echo "<tr class='tab_bg_2'><td>".$itemtype::getTypeName(Session::getPluralNumber())."</td>";
          echo "<td class='numeric'>$number</td></tr>";
       }
 
@@ -235,7 +243,7 @@ class Report extends CommonGLPI{
       $items = array_flip($val);
 
       foreach ($items as $itemtype) {
-         echo "<tr class='tab_bg_1'><td colspan='2' class='b'>".$itemtype::getTypeName(2).
+         echo "<tr class='tab_bg_1'><td colspan='2' class='b'>".$itemtype::getTypeName(Session::getPluralNumber()).
               "</td></tr>";
 
          $table_item = getTableForItemType($itemtype);

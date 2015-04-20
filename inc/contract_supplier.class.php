@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: contract_supplier.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: contract_supplier.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -93,20 +93,20 @@ class Contract_Supplier extends CommonDBRelation {
             case 'Supplier' :
                if (Contract::canView()) {
                   if ($_SESSION['glpishow_count_on_tabs']) {
-                     return self::createTabEntry(Contract::getTypeName(2),
+                     return self::createTabEntry(Contract::getTypeName(Session::getPluralNumber()),
                                                  self::countForSupplier($item));
                   }
-                  return Contract::getTypeName(2);
+                  return Contract::getTypeName(Session::getPluralNumber());
                }
                break;
 
             case 'Contract' :
                if (Session::haveRight("contact_enterprise", READ)) {
                   if ($_SESSION['glpishow_count_on_tabs']) {
-                     return self::createTabEntry(Supplier::getTypeName(2),
+                     return self::createTabEntry(Supplier::getTypeName(Session::getPluralNumber()),
                                                  self::countForContract($item));
                   }
-                  return Supplier::getTypeName(2);
+                  return Supplier::getTypeName(Session::getPluralNumber());
                }
                break;
          }

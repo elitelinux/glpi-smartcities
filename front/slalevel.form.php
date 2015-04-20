@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: slalevel.form.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: slalevel.form.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -91,7 +91,7 @@ if (isset($_POST["update"])) {
    Html::back();
 
 } else if (isset($_GET["id"]) && ($_GET["id"] > 0)) { //print computer information
-   Html::header(SlaLevel::getTypeName(2), $_SERVER['PHP_SELF'], "config", "sla");
+   Html::header(SlaLevel::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "config", "sla");
    //show computer form to add
    $item->display(array('id' => $_GET["id"]));
    Html::footer();

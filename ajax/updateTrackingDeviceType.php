@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: updateTrackingDeviceType.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: updateTrackingDeviceType.php 23346 2015-02-03 15:11:10Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -38,7 +38,7 @@ header("Content-Type: text/html; charset=UTF-8");
 Html::header_nocache();
 
 Session::checkRight("ticket", UPDATE);
-Ticket::dropdownMyDevices($_POST["userID"], $_POST["entity_restrict"]);
+Item_Ticket::dropdownMyDevices($_POST["userID"], $_POST["entity_restrict"]);
 
 Html::ajaxFooter();
 ?>

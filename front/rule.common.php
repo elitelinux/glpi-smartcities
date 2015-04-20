@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: rule.common.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: rule.common.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -59,7 +59,7 @@ if (isset($_POST["action"])) {
    $max = get_cfg_var("max_execution_time");
    $max = $start + ($max>0 ? $max/2.0 : 30.0);
 
-   Html::header(Rule::getTypeName(2), $_SERVER['PHP_SELF'], "admin", $rulecollection->menu_type,
+   Html::header(Rule::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "admin", $rulecollection->menu_type,
                 $rulecollection->menu_option);
 
    if (!(isset($_POST['replay_confirm']) || isset($_GET['offset']))
@@ -110,7 +110,7 @@ if (isset($_POST["action"])) {
    exit();
 }
 
-Html::header(Rule::getTypeName(2), $_SERVER['PHP_SELF'], 'admin', $rulecollection->menu_type,
+Html::header(Rule::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], 'admin', $rulecollection->menu_type,
              $rulecollection->menu_option);
 
 $rulecollection->display();

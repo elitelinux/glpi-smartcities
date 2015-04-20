@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: report.reservation.php 22930 2014-04-17 12:21:36Z tsmr $
+ * @version $Id: report.reservation.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -35,7 +35,7 @@ include ('../inc/includes.php');
 
 Session::checkRight("reports", READ);
 
-Html::header(Report::getTypeName(2), $_SERVER['PHP_SELF'], "tools", "report");
+Html::header(Report::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "tools", "report");
 
 if (!isset($_GET["id"])) {
    $_GET["id"] = 0;

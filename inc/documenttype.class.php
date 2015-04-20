@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: documenttype.class.php 22810 2014-03-21 12:04:41Z yllen $
+ * @version $Id: documenttype.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -154,7 +154,7 @@ class DocumentType  extends CommonDropdown {
       echo "</a>";
       Ajax::createIframeModalWindow('documenttypelist',
                                     $CFG_GLPI["root_doc"]."/front/documenttype.list.php",
-                                    array('title' => static::getTypeName(2)));
+                                    array('title' => static::getTypeName(Session::getPluralNumber())));
    }
 }
 ?>

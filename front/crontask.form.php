@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: crontask.form.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: crontask.form.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -75,7 +75,7 @@ if (isset($_POST['execute'])) {
    if (!isset($_GET["id"]) || empty($_GET["id"])) {
       exit();
    }
-   Html::header(Crontask::getTypeName(2), $_SERVER['PHP_SELF'], 'config', 'crontask');
+   Html::header(Crontask::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], 'config', 'crontask');
    $crontask->display(array('id' =>$_GET["id"]));
    Html::footer();
 }

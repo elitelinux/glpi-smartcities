@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: consumableitem.class.php 23174 2014-10-05 16:17:36Z moyo $
+ * @version $Id: consumableitem.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -60,7 +60,7 @@ class ConsumableItem extends CommonDBTM {
     * @since version 0.85
    **/
    static function getMenuName() {
-      return Consumable::getTypeName(2);
+      return Consumable::getTypeName(Session::getPluralNumber());
    }
 
 
@@ -259,7 +259,7 @@ class ConsumableItem extends CommonDBTM {
       $tab[9]['table']              = 'glpi_consumableitems';
       $tab[9]['field']              = '_virtual';
       $tab[9]['linkfield']          = '_virtual';
-      $tab[9]['name']               = _n('Consumable','Consumables',2);
+      $tab[9]['name']               = _n('Consumable','Consumables', Session::getPluralNumber());
       $tab[9]['datatype']           = 'specific';
       $tab[9]['massiveaction']      = false;
       $tab[9]['nosearch']           = true;

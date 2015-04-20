@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: notificationtargetchange.class.php 23215 2014-11-09 17:09:30Z yllen $
+ * @version $Id: notificationtargetchange.class.php 23304 2015-01-21 14:46:37Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -321,9 +321,9 @@ class NotificationTargetChange extends NotificationTargetCommonITILObject {
 
 
       //Foreach global tags
-      $tags = array('tickets'  => _n('Ticket', 'Tickets', 2),
-                    'problems' => _n('Problem', 'Problems', 2),
-                    'items'    => _n('Item', 'Items', 2));
+      $tags = array('tickets'  => _n('Ticket', 'Tickets', Session::getPluralNumber()),
+                    'problems' => _n('Problem', 'Problems', Session::getPluralNumber()),
+                    'items'    => _n('Item', 'Items', Session::getPluralNumber()));
 
       foreach ($tags as $tag => $label) {
          $this->addTagToList(array('tag'     => $tag,
@@ -333,9 +333,9 @@ class NotificationTargetChange extends NotificationTargetCommonITILObject {
       }
 
       //Tags with just lang
-      $tags = array('change.tickets'   => _n('Ticket', 'Tickets', 2),
-                    'change.problems'  => _n('Problem', 'Problems', 2),
-                    'items'            => _n('Item', 'Items', 2));
+      $tags = array('change.tickets'   => _n('Ticket', 'Tickets', Session::getPluralNumber()),
+                    'change.problems'  => _n('Problem', 'Problems', Session::getPluralNumber()),
+                    'items'            => _n('Item', 'Items', Session::getPluralNumber()));
 
       foreach ($tags as $tag => $label) {
          $this->addTagToList(array('tag'   => $tag,

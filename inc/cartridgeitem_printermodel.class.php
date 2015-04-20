@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: cartridgeitem_printermodel.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: cartridgeitem_printermodel.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -76,10 +76,10 @@ class CartridgeItem_PrinterModel extends CommonDBRelation {
          switch ($item->getType()) {
             case 'CartridgeItem' :
                if ($_SESSION['glpishow_count_on_tabs']) {
-                  return self::createTabEntry(PrinterModel::getTypeName(2),
+                  return self::createTabEntry(PrinterModel::getTypeName(Session::getPluralNumber()),
                                               self::countForCartridgeItem($item));
                }
-               return PrinterModel::getTypeName(2);
+               return PrinterModel::getTypeName(Session::getPluralNumber());
                break;
          }
       }

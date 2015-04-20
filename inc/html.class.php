@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: html.class.php 23270 2014-12-11 11:00:39Z moyo $
+ * @version $Id: html.class.php 23370 2015-02-27 08:49:30Z remi $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -68,7 +68,12 @@ class Html {
                               );
 
       $value = preg_replace($search, '', $value);
+      
+      $search        = array('@<!DOCTYPE[^>]*?>@si', // Strip out !DOCTYPE
+                              );
 
+      $value = preg_replace($search, '', $value);
+      
       include_once(GLPI_HTMLAWED);
 
       $value = htmLawed($value, array('elements' => 'none',
@@ -1157,7 +1162,7 @@ class Html {
          $menu['tools']['types']        = array('Project', 'Reminder', 'RSSFeed', 'KnowbaseItem',
                                                 'ReservationItem', 'Report', 'MigrationCleaner');
 
-         $menu['plugins']['title']      = _n('Plugin', 'Plugins',2);
+         $menu['plugins']['title']      = _n('Plugin', 'Plugins', Session::getPluralNumber());
          $menu['plugins']['types']      = array();
 
          $menu['admin']['title']        = __('Administration');
@@ -1954,7 +1959,7 @@ class Html {
           || Session::haveRight("followup", TicketFollowup::SEEPUBLIC)) {
          echo "<li id='menu3'>";
          echo "<a href='".$CFG_GLPI["root_doc"]."/front/ticket.php' title=\"".
-                __s('Ticket followup')."\" class='itemP'>"._n('Ticket','Tickets',2)."</a>";
+                __s('Ticket followup')."\" class='itemP'>"._n('Ticket','Tickets', Session::getPluralNumber())."</a>";
          echo "</li>";
       }
 
@@ -1962,8 +1967,8 @@ class Html {
       if (Session::haveRight("reservation", ReservationItem::RESERVEANITEM)) {
          echo "<li id='menu4'>";
          echo "<a href='".$CFG_GLPI["root_doc"]."/front/reservationitem.php' title=\"".
-                _sn('Reservation', 'Reservations', 2)."\" class='itemP'>".
-                _n('Reservation', 'Reservations', 2)."</a>";
+                _sn('Reservation', 'Reservations', Session::getPluralNumber())."\" class='itemP'>".
+                _n('Reservation', 'Reservations', Session::getPluralNumber())."</a>";
          echo "</li>";
       }
 
@@ -1996,7 +2001,7 @@ class Html {
 
          asort($list);
          echo "<li id='menu5' onmouseover=\"javascript:menuAff('menu5','menu');\">";
-         echo "<a href='#' title=\""._sn('Plugin', 'Plugins', 2)."\" class='itemP'>".
+         echo "<a href='#' title=\""._sn('Plugin', 'Plugins', Session::getPluralNumber())."\" class='itemP'>".
                 __('Plugins')."</a>";  // default none
          echo "<ul class='ssmenu'>";
 
@@ -2643,7 +2648,7 @@ class Html {
       $p['rand']              = '';
       $p['container']         = '';
       $p['display_arrow']     = true;
-      $p['title']             = _n('Action', 'Actions', 2);
+      $p['title']             = _n('Action', 'Actions', Session::getPluralNumber());
       $p['item']              = false;
       $p['tag_to_send']      = 'common';
 
@@ -5118,7 +5123,7 @@ class Html {
          && is_array($p['values']['filename']) && count($p['values']['filename'])) {
          foreach ($p['values']['filename'] as $key => $name) {
             if (isset($p['values']['tag'][$key])) {
-               $file = GLPI_ROOT.'/files/_tmp/'.$p['values']['filename'][$key];
+               $file = GLPI_TMP_DIR.'/'.$p['values']['filename'][$key];
                if (file_exists($file)) {
                   $display = sprintf('%1$s %2$s', $p['values']['filename'][$key],
                                                   Toolbox::getSize(filesize($file)));

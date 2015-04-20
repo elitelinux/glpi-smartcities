@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: contract.class.php 23026 2014-06-18 08:07:35Z moyo $
+ * @version $Id: contract.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -340,7 +340,7 @@ class Contract extends CommonDBTM {
    static function getSearchOptionsToAdd() {
 
       $tab                       = array();
-      $tab['contract']           = self::getTypeName(2);
+      $tab['contract']           = self::getTypeName(Session::getPluralNumber());
 
       $joinparams                = array('beforejoin'
                                           => array('table'      => 'glpi_contracts_items',
@@ -720,7 +720,7 @@ class Contract extends CommonDBTM {
 
       $tab[29]['table']             = 'glpi_suppliers';
       $tab[29]['field']             = 'name';
-      $tab[29]['name']              = _n('Associated supplier', 'Associated suppliers', 2);
+      $tab[29]['name']              = _n('Associated supplier', 'Associated suppliers', Session::getPluralNumber());
       $tab[29]['forcegroupby']      = true;
       $tab[29]['datatype']          = 'itemlink';
       $tab[29]['massiveaction']     = false;
@@ -745,7 +745,7 @@ class Contract extends CommonDBTM {
 
       $tab[41]['table']             = 'glpi_contractcosts';
       $tab[41]['field']             = 'cost';
-      $tab[41]['name']              = _n('Cost', 'Costs', 2);
+      $tab[41]['name']              = _n('Cost', 'Costs', Session::getPluralNumber());
       $tab[41]['datatype']          = 'decimal';
       $tab[41]['forcegroupby']      = true;
       $tab[41]['massiveaction']     = false;

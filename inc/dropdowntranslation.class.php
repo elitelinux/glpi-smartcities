@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: dropdowntranslation.class.php 23301 2015-01-21 12:45:57Z moyo $
+ * @version $Id: dropdowntranslation.class.php 23437 2015-04-09 14:12:25Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -67,10 +67,10 @@ class DropdownTranslation extends CommonDBChild {
 
       if (self::canBeTranslated($item)) {
          if ($_SESSION['glpishow_count_on_tabs']) {
-            return self::createTabEntry(self::getTypeName(2),
+            return self::createTabEntry(self::getTypeName(Session::getPluralNumber()),
                                         self::getNumberOfTranslationsForItem($item));
          }
-         return self::getTypeName(2);
+         return self::getTypeName(Session::getPluralNumber());
       }
       return '';
    }
@@ -166,7 +166,7 @@ class DropdownTranslation extends CommonDBChild {
       // Add to session
       $_SESSION['glpi_dropdowntranslations'][$this->fields['itemtype']][$this->fields['field']]
             = $this->fields['field'];
-
+            
       if (!isset($this->input['_no_completename'])) {
          $translation = new self();
          $translation->generateCompletename($this->fields, true);
@@ -240,6 +240,8 @@ class DropdownTranslation extends CommonDBChild {
    **/
    function generateCompletename($input, $add=true) {
       global $DB;
+      // Force completename translated : used for the first translation
+      $_SESSION['glpi_dropdowntranslations'][$input['itemtype']]['completename'] = 'completename';
       
       //If there's already a completename for this language, get it's ID, otherwise 0
       $completenames_id = self::getTranslationID($input['items_id'], $input['itemtype'],
@@ -250,7 +252,7 @@ class DropdownTranslation extends CommonDBChild {
           && isset($input['language'])) {
          $item->getFromDB($input['items_id']);
          $foreignKey = $item->getForeignKeyField() ;
-
+         
          //Regenerate completename : look for item's ancestors
          $completename = "";
 
@@ -288,18 +290,17 @@ class DropdownTranslation extends CommonDBChild {
                 $translation->add($tmp);
             }
          }
-      }
         
-    $query = "SELECT `id`
-             FROM `".$item->getTable()."`
-             WHERE `$foreignKey` = '".$item->getID()."'";
-             
-    foreach ($DB->request($query) as $tmp) {
-        $input2 = $input;
-        $input2['items_id'] = $tmp['id'];
-        $this->generateCompletename($input2, $add);
-    }
-      
+        $query = "SELECT `id`
+                FROM `".$item->getTable()."`
+                WHERE `$foreignKey` = '".$item->getID()."'";
+                
+        foreach ($DB->request($query) as $tmp) {
+            $input2 = $input;
+            $input2['items_id'] = $tmp['id'];
+            $this->generateCompletename($input2, $add);
+        }
+     }
    }
 
 

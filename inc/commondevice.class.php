@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: commondevice.class.php 22959 2014-04-28 18:59:22Z yllen $
+ * @version $Id: commondevice.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -99,7 +99,7 @@ abstract class CommonDevice extends CommonDropdown {
 
       $menu = array();
       if (Session::haveRightsOr('device', array(CREATE, UPDATE, PURGE))) {
-         $menu['title'] = static::getTypeName(2);
+         $menu['title'] = static::getTypeName(Session::getPluralNumber());
          $menu['page']  = '/front/device.php';
 
          $dps = Dropdown::getDeviceItemTypes();
@@ -233,7 +233,7 @@ abstract class CommonDevice extends CommonDropdown {
 
    function title() {
 
-      Dropdown::showItemTypeMenu(_n('Component', 'Components', 2),
+      Dropdown::showItemTypeMenu(_n('Component', 'Components', Session::getPluralNumber()),
                                  Dropdown::getDeviceItemTypes(), $this->getSearchURL());
    }
 

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: commonitilcost.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: commonitilcost.class.php 23398 2015-03-16 09:03:30Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -65,12 +65,12 @@ abstract class CommonITILCost extends CommonDBChild {
           && static::canView()) {
 
          if ($_SESSION['glpishow_count_on_tabs']) {
-            return self::createTabEntry(self::getTypeName(2),
+            return self::createTabEntry(self::getTypeName(Session::getPluralNumber()),
                                         countElementsInTable($this->getTable(),
                                                              "`".$item->getForeignKeyField()."`
                                                                 = '".$item->getID()."'"));
          }
-         return self::getTypeName(2);
+         return self::getTypeName(Session::getPluralNumber());
       }
       return '';
    }
@@ -182,6 +182,7 @@ abstract class CommonITILCost extends CommonDBChild {
       $tab[42]['name']           = __('Time cost');
       $tab[42]['datatype']       = 'decimal';
       $tab[42]['forcegroupby']   = true;
+      $tab[42]['usehaving']      = true;
       $tab[42]['massiveaction']  = false;
       $tab[42]['joinparams']     = array('jointype'  => 'child');
       $tab[42]['computation']    = "(SUM(TABLE.`cost_time`*TABLE.`actiontime`/".HOUR_TIMESTAMP.")
@@ -193,6 +194,7 @@ abstract class CommonITILCost extends CommonDBChild {
       $tab[49]['name']           = sprintf(__('%1$s - %2$s'), __('Cost'), __('Duration'));
       $tab[49]['datatype']       = 'timestamp';
       $tab[49]['forcegroupby']   = true;
+      $tab[49]['usehaving']      = true;
       $tab[49]['massiveaction']  = false;
       $tab[49]['joinparams']     = array('jointype'  => 'child');
 
@@ -201,6 +203,7 @@ abstract class CommonITILCost extends CommonDBChild {
       $tab[43]['name']           = __('Fixed cost');
       $tab[43]['datatype']       = 'decimal';
       $tab[43]['forcegroupby']   = true;
+      $tab[43]['usehaving']      = true;
       $tab[43]['massiveaction']  = false;
       $tab[43]['joinparams']     = array('jointype'  => 'child');
       $tab[43]['computation']    = "(SUM(TABLE.`cost_fixed`) / COUNT(TABLE.`id`))
@@ -211,6 +214,7 @@ abstract class CommonITILCost extends CommonDBChild {
       $tab[44]['name']           = __('Material cost');
       $tab[44]['datatype']       = 'decimal';
       $tab[44]['forcegroupby']   = true;
+      $tab[44]['usehaving']      = true;
       $tab[44]['massiveaction']  = false;
       $tab[44]['joinparams']     = array('jointype'  => 'child');
       $tab[44]['computation']    = "(SUM(TABLE.`cost_material`) / COUNT(TABLE.`id`))

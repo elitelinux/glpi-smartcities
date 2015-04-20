@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: supplier.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: supplier.class.php 23436 2015-04-09 14:06:48Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -103,6 +103,8 @@ class Supplier extends CommonDBTM {
       $this->addStandardTab('Infocom', $ong, $options);
       $this->addStandardTab('Document_Item', $ong, $options);
       $this->addStandardTab('Ticket', $ong, $options);
+      $this->addStandardTab('Item_Problem', $ong, $options);
+      $this->addStandardTab('Change_Item', $ong, $options);      
       $this->addStandardTab('Link', $ong, $options);
       $this->addStandardTab('Notepad', $ong, $options);
       $this->addStandardTab('Log', $ong, $options);
@@ -291,7 +293,7 @@ class Supplier extends CommonDBTM {
       }
       $tab[8]['table']              = 'glpi_contacts';
       $tab[8]['field']              = 'completename';
-      $tab[8]['name']               = _n('Associated contact', 'Associated contacts', 2);
+      $tab[8]['name']               = _n('Associated contact', 'Associated contacts', Session::getPluralNumber());
       $tab[8]['forcegroupby']       = true;
       $tab[8]['datatype']           = 'itemlink';
       $tab[8]['massiveaction']      = false;
@@ -319,7 +321,7 @@ class Supplier extends CommonDBTM {
 
       $tab[29]['table']             = 'glpi_contracts';
       $tab[29]['field']             = 'name';
-      $tab[29]['name']              = _n('Associated contract', 'Associated contracts', 2);
+      $tab[29]['name']              = _n('Associated contract', 'Associated contracts', Session::getPluralNumber());
       $tab[29]['forcegroupby']      = true;
       $tab[29]['datatype']          = 'itemlink';
       $tab[29]['massiveaction']     = false;

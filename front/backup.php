@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: backup.php 22955 2014-04-25 16:32:57Z yllen $
+ * @version $Id: backup.php 23371 2015-02-27 14:22:59Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -697,16 +697,20 @@ if (count($files)) {
       echo "<tr class='tab_bg_1'><td colspan='6'><hr noshade></td></tr>".
            "<tr class='tab_bg_2'><td>$file&nbsp;</td>".
             "<td class='right'>".Toolbox::getSize($taille_fic)."</td>".
-            "<td>&nbsp;" . Html::convDateTime(date("Y-m-d H:i",$date)) . "</td>".
-            "<td colspan=2>";
-      //TRANS: %s is the filename
-      $string = sprintf(__('Delete the file %s?'),$file);
-      Html::showSimpleForm($_SERVER['PHP_SELF'], 'delfile', _x('button', 'Delete permanently'),
-                           array('file' => $file),'','',$string);
-      echo "</td>";
-      echo "<td>&nbsp;<a class='vsubmit' href=\"document.send.php?file=_dumps/$file\">".
-                       __('Download')."</a></td>".
-           "</tr>";
+            "<td>&nbsp;" . Html::convDateTime(date("Y-m-d H:i",$date)) . "</td>";
+      if (Session::haveRight('backup', PURGE)) {
+         echo "<td colspan=2>";
+         //TRANS: %s is the filename
+         $string = sprintf(__('Delete the file %s?'),$file);
+         Html::showSimpleForm($_SERVER['PHP_SELF'], 'delfile', _x('button', 'Delete permanently'),
+                              array('file' => $file),'','',$string);
+         echo "</td>";
+      }
+      if (Session::haveRight('backup', CREATE)) {
+         echo "<td>&nbsp;<a class='vsubmit' href=\"document.send.php?file=_dumps/$file\">".
+                       __('Download')."</a></td>";
+      }
+      echo "</tr>";
    }
 }
 closedir($dir);

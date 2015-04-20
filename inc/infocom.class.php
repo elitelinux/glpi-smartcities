@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: infocom.class.php 22884 2014-04-09 11:48:04Z moyo $
+ * @version $Id: infocom.class.php 23452 2015-04-17 12:40:14Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -132,9 +132,9 @@ class Infocom extends CommonDBChild {
          switch ($item->getType()) {
             case 'Supplier' :
                if ($_SESSION['glpishow_count_on_tabs']) {
-                  return self::createTabEntry(_n('Item', 'Items', 2), self::countForSupplier($item));
+                  return self::createTabEntry(_n('Item', 'Items', Session::getPluralNumber()), self::countForSupplier($item));
                }
-               return _n('Item', 'Items', 2);
+               return _n('Item', 'Items', Session::getPluralNumber());
 
             default :
                if ($_SESSION['glpishow_count_on_tabs']) {
@@ -332,25 +332,25 @@ class Infocom extends CommonDBChild {
                break;
 
              case self::COPY_WARRANTY_DATE :
-               if ($infocoms[$field] && isset($infocoms['warranty_date'])) {
+               if (isset($infocoms['warranty_date'])) {
                   $infocoms[$field] = $infocoms['warranty_date'];
                }
                break;
 
             case self::COPY_BUY_DATE :
-               if ($infocoms[$field] && isset($infocoms['buy_date'])) {
+               if (isset($infocoms['buy_date'])) {
                   $infocoms[$field] = $infocoms['buy_date'];
                }
                break;
 
             case self::COPY_ORDER_DATE :
-               if ($infocoms[$field] && isset($infocoms['order_date'])) {
+               if (isset($infocoms['order_date'])) {
                   $infocoms[$field] = $infocoms['order_date'];
                }
                break;
 
             case self::COPY_DELIVERY_DATE :
-               if ($infocoms[$field] && isset($infocoms['delivery_date'])) {
+               if (isset($infocoms['delivery_date'])) {
                   $infocoms[$field] = $infocoms['delivery_date'];
                }
                break;

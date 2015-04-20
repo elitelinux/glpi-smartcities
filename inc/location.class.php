@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: location.class.php 23043 2014-06-20 13:04:32Z tsmr $
+ * @version $Id: location.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -181,8 +181,8 @@ class Location extends CommonTreeDropdown {
          switch ($item->getType()) {
             case __CLASS__ :
                $ong    = array();
-               $ong[1] = $this->getTypeName(2);
-               $ong[2] = _n('Item', 'Items', 2);
+               $ong[1] = $this->getTypeName(Session::getPluralNumber());
+               $ong[2] = _n('Item', 'Items', Session::getPluralNumber());
                return $ong;
          }
       }

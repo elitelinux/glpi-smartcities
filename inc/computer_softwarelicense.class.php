@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: computer_softwarelicense.class.php 23116 2014-08-03 09:21:45Z moyo $
+ * @version $Id: computer_softwarelicense.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -662,7 +662,7 @@ class Computer_SoftwareLicense extends CommonDBRelation {
                   $nb = self::countForLicense($item->getID());
                }
                return array(1 => __('Summary'),
-                            2 => self::createTabEntry(Computer::getTypeName(2), $nb));
+                            2 => self::createTabEntry(Computer::getTypeName(Session::getPluralNumber()), $nb));
             }
             break;
       }

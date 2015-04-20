@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: peripheral.form.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: peripheral.form.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -103,7 +103,7 @@ if (isset($_POST["add"])) {
    Html::redirect($CFG_GLPI["root_doc"]."/front/peripheral.form.php?id=".$_POST["id"]);
 
 } else {
-   Html::header(Peripheral::getTypeName(2), $_SERVER['PHP_SELF'], "assets", "peripheral");
+   Html::header(Peripheral::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "assets", "peripheral");
    $peripheral->display(array('id'           => $_GET["id"],
                               'withtemplate' => $_GET["withtemplate"]));
    Html::footer();

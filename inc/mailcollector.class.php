@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: mailcollector.class.php 23271 2014-12-11 11:15:36Z moyo $
+ * @version $Id: mailcollector.class.php 23417 2015-04-04 13:24:24Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -58,6 +58,8 @@ class MailCollector  extends CommonDBTM {
    var $structure = false;
    /// structure used to store files attached to a mail
    var $files;
+   /// structure used to store alt files attached to a mail
+   var $altfiles;
    /// Tag used to recognize embedded images of a mail
    var $tags;
    /// Message to add to body to build ticket
@@ -198,7 +200,7 @@ class MailCollector  extends CommonDBTM {
       if (!$withtemplate) {
          switch ($item->getType()) {
             case __CLASS__ :
-               return _n('Action', 'Actions', 2);
+               return _n('Action', 'Actions', Session::getPluralNumber());
          }
       }
       return '';
@@ -662,14 +664,12 @@ class MailCollector  extends CommonDBTM {
 
       // max size = 0 : no import attachments
       if ($this->fields['filesize_max'] > 0) {
-         if (is_writable(GLPI_DOC_DIR."/_tmp/")) {
-            $tkt['_filename'] = $this->getAttached($i, GLPI_DOC_DIR."/_tmp/",
-                                                   $this->fields['filesize_max']);
+         if (is_writable(GLPI_TMP_DIR)) {
+            $tkt['_filename'] = $this->getAttached($i, GLPI_TMP_DIR, $this->fields['filesize_max']);
             $tkt['_tag']      = $this->tags;
          } else {
             //TRANS: %s is a directory
-            Toolbox::logInFile('mailgate', sprintf(__('%s is not writable'),
-                                                   GLPI_DOC_DIR."/_tmp/"));
+            Toolbox::logInFile('mailgate', sprintf(__('%s is not writable'), GLPI_TMP_DIR));
          }
       }
       //  Who is the user ?
@@ -746,16 +746,21 @@ class MailCollector  extends CommonDBTM {
          $tkt['tickets_id'] = intval($match[1]);
       }
 
+      $is_html = false;
       //If files are present and content is html
       if (isset($this->files)
           && count($this->files)
           && ($tkt['content'] != strip_tags($tkt['content']))) {
-
+         $is_html = true;
          $tkt['content'] = Ticket::convertContentForTicket($tkt['content'],
-                                                           $this->files, $this->tags);
+                                                           array_merge($this->files, $this->altfiles),
+                                                           $this->tags);
       }
-
       $tkt['content'] = $this->cleanMailContent($tkt['content']);
+
+      if ($is_html) {
+         $tkt['content'] = nl2br($tkt['content']);
+      }
 
       $tkt['_supplier_email'] = false;
       // Found ticket link
@@ -1393,12 +1398,22 @@ class MailCollector  extends CommonDBTM {
             }
 
             if (file_put_contents($path.$filename, $message)) {
-               $this->files[] = $filename;
+               $this->files[$filename] = $filename;
                // If embeded image, we add a tag
                if (($structure->type == 5)
                    && $structure->subtype) {
                   end($this->files);
-                  $this->tags[key($this->files)]  = Rule::getUuid();
+                  $tag = Rule::getUuid();
+                  $this->tags[$filename]  = $tag;
+
+                  // Link file based on id
+                  if (isset($structure->id)) {
+                    $clean = array('<' => '',
+                                    '>' => '');
+
+                    $this->altfiles[strtr($structure->id, $clean)] = $filename;
+                  }
+
                }
             }
          } // fetchbody
@@ -1419,6 +1434,7 @@ class MailCollector  extends CommonDBTM {
 
       $this->getStructure($mid);
       $this->files     = array();
+      $this->altfiles  = array();
       $this->addtobody = "";
       $this->getRecursiveAttached($mid, $path, $maxsize, $this->structure);
 
@@ -1457,7 +1473,6 @@ class MailCollector  extends CommonDBTM {
     * @return Boolean
    **/
    function deleteMails($mid, $folder='') {
-
       if (!empty($folder) && isset($this->fields[$folder]) && !empty($this->fields[$folder])) {
          $name = mb_convert_encoding($this->fields[$folder], "UTF7-IMAP","UTF-8");
          if (imap_mail_move($this->marubox, $mid, $name)) {
@@ -1674,7 +1689,7 @@ class MailCollector  extends CommonDBTM {
 
       if (count($buttons)) {
          Html::displayTitle($CFG_GLPI["root_doc"] . "/pics/users.png",
-                            _n('Receiver', 'Receivers', 2), $message, $buttons);
+                            _n('Receiver', 'Receivers', Session::getPluralNumber()), $message, $buttons);
       }
 
    }

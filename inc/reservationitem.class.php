@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: reservationitem.class.php 23161 2014-09-12 16:40:59Z yllen $
+ * @version $Id: reservationitem.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -75,7 +75,7 @@ class ReservationItem extends CommonDBChild {
     * @since version 0.85
    **/
    static function getMenuName() {
-      return Reservation::getTypeName(2);
+      return Reservation::getTypeName(Session::getPluralNumber());
    }
 
 

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: networkportmigration.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: networkportmigration.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -39,7 +39,7 @@ if (!TableExists('glpi_networkportmigrations')) {
    Html::displayNotFoundError();
 }
 
-Html::header(NetworkPortMigration::getTypeName(2), $_SERVER['PHP_SELF'], "tools",
+Html::header(NetworkPortMigration::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "tools",
              "migration", "networkportmigration");
 
 Search::show('NetworkPortMigration');

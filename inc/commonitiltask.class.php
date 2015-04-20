@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: commonitiltask.class.php 23232 2014-11-17 07:57:31Z moyo $
+ * @version $Id: commonitiltask.class.php 23347 2015-02-03 15:13:26Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -179,10 +179,10 @@ abstract class CommonITILTask  extends CommonDBTM {
                                    OR `users_id` = '" . Session::getLoginUserID() . "') ";
             }
 
-            return self::createTabEntry(self::getTypeName(2),
+            return self::createTabEntry(self::getTypeName(Session::getPluralNumber()),
                                         countElementsInTable($this->getTable(), $restrict));
          }
-         return self::getTypeName(2);
+         return self::getTypeName(Session::getPluralNumber());
       }
       return '';
    }
@@ -467,7 +467,11 @@ abstract class CommonITILTask  extends CommonDBTM {
          $this->fields['is_private'] = 1;
       }
       // Default is todo
-      $this->fields['state'] = 1;
+      $this->fields['state'] = Planning::TODO;
+      if (isset($_SESSION['glpitask_state'])) {
+
+         $this->fields['state'] = $_SESSION['glpitask_state'];
+      }
    }
 
 
@@ -562,7 +566,7 @@ abstract class CommonITILTask  extends CommonDBTM {
 
       $tab                       = array();
 
-      $tab['task']               = _n('Task', 'Tasks', 2);
+      $tab['task']               = _n('Task', 'Tasks', Session::getPluralNumber());
 
       $tab[26]['table']          = static::getTable();
       $tab[26]['field']          = 'content';
@@ -812,9 +816,12 @@ abstract class CommonITILTask  extends CommonDBTM {
 
                      /// Specific for tickets
                      $interv[$key]["device"] = '';
-                     if (isset($parentitem->hardwaredatas)) {
-                        $interv[$key]["device"] = ($parentitem->hardwaredatas
-                                                   ?$parentitem->hardwaredatas->getName() :'');
+                     if (isset($parentitem->hardwaredatas) && !empty($parentitem->hardwaredatas)) {
+                        foreach($parentitem->hardwaredatas as $hardwaredata){
+                           $interv[$key]["device"][$hardwaredata->fields['id']] = ($hardwaredata
+                                                      ? $hardwaredata->getName() :'');
+                        }
+                        $interv[$key]["device"] = implode("<br>", $interv[$key]["device"]);
                      }
 //                  }
                }

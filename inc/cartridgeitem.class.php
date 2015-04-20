@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: cartridgeitem.class.php 23174 2014-10-05 16:17:36Z moyo $
+ * @version $Id: cartridgeitem.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -62,7 +62,7 @@ class CartridgeItem extends CommonDBTM {
     * @since version 0.85
    **/
    static function getMenuName() {
-      return Cartridge::getTypeName(2);
+      return Cartridge::getTypeName(Session::getPluralNumber());
    }
 
 
@@ -297,7 +297,7 @@ class CartridgeItem extends CommonDBTM {
 
       $tab[9]['table']              = 'glpi_cartridgeitems';
       $tab[9]['field']              = '_virtual';
-      $tab[9]['name']               = _n('Cartridge','Cartridges',2);
+      $tab[9]['name']               = _n('Cartridge','Cartridges', Session::getPluralNumber());
       $tab[9]['datatype']           = 'specific';
       $tab[9]['massiveaction']      = false;
       $tab[9]['nosearch']           = true;
@@ -372,7 +372,7 @@ class CartridgeItem extends CommonDBTM {
       $tab[40]['table']             = 'glpi_printermodels';
       $tab[40]['field']             = 'name';
       $tab[40]['datatype']          = 'dropdown';
-      $tab[40]['name']              = _n('Printer model', 'Printer models', 2);
+      $tab[40]['name']              = _n('Printer model', 'Printer models', Session::getPluralNumber());
       $tab[40]['forcegroupby']      = true;
       $tab[40]['joinparams']        = array('beforejoin'
                                              => array('table'

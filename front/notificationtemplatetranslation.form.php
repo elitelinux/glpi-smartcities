@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: notificationtemplatetranslation.form.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: notificationtemplatetranslation.form.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -67,7 +67,7 @@ if (isset($_POST["add"])) {
    Html::back();
 
 } else {
-   Html::header(NotificationTemplate::getTypeName(2), $_SERVER['PHP_SELF'], "config", "notification",
+   Html::header(NotificationTemplate::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "config", "notification",
                 "notificationtemplate");
 
    if ($_GET["id"] == '') {

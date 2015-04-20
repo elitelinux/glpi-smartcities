@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: crontasklog.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: crontasklog.class.php 23304 2015-01-21 14:46:37Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -77,14 +77,14 @@ class CronTaskLog extends CommonDBTM{
                $ong    = array();
                $ong[1] = __('Statistics');
                if ($_SESSION['glpishow_count_on_tabs']) {
-                  $ong[2] = self::createTabEntry(_n('Log', 'Logs', 2),
+                  $ong[2] = self::createTabEntry(_n('Log', 'Logs', Session::getPluralNumber()),
                                                  countElementsInTable($this->getTable(),
                                                                       "crontasks_id
                                                                         = '".$item->getID()."'
                                                                        AND `state`
                                                                         = '".self::STATE_STOP."' "));
                } else {
-                  $ong[2] = _n('Log', 'Logs', 2);
+                    $ong[2] = _n('Log', 'Logs', Session::getPluralNumber());
                }
                return $ong;
          }

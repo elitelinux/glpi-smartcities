@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: printer.class.php 23009 2014-06-11 20:33:36Z ddurieux $
+ * @version $Id: printer.class.php 23435 2015-04-09 13:37:15Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -84,6 +84,7 @@ class Printer  extends CommonDBTM {
       $this->addStandardTab('Document_Item', $ong, $options);
       $this->addStandardTab('Ticket', $ong, $options);
       $this->addStandardTab('Item_Problem', $ong, $options);
+      $this->addStandardTab('Change_Item', $ong, $options);
       $this->addStandardTab('Link', $ong, $options);
       $this->addStandardTab('Notepad', $ong, $options);
       $this->addStandardTab('Reservation', $ong, $options);
@@ -421,7 +422,7 @@ class Printer  extends CommonDBTM {
       echo "</td></tr>\n";
 
       echo "<tr class='tab_bg_1'>";
-      echo "<td>"._n('Port','Ports',2)."</td>";
+      echo "<td>"._n('Port','Ports', Session::getPluralNumber())."</td>";
       echo "<td>\n<table>";
       // serial interface
       echo "<tr><td>".__('Serial')."</td><td width='80'>";
@@ -636,7 +637,7 @@ class Printer  extends CommonDBTM {
       $tab[9]['table']             = 'glpi_printers';
       $tab[9]['field']             = '_virtual';
       $tab[9]['linkfield']         = '_virtual';
-      $tab[9]['name']              = _n('Cartridge','Cartridges',2);
+      $tab[9]['name']              = _n('Cartridge','Cartridges', Session::getPluralNumber());
       $tab[9]['datatype']          = 'specific';
       $tab[9]['massiveaction']     = false;
       $tab[9]['nosearch']          = true;

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: contact.form.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: contact.form.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -102,7 +102,7 @@ if (isset($_GET['getvcard'])) {
    Html::back();
 
 } else {
-   Html::header(Contact::getTypeName(2), $_SERVER['PHP_SELF'], "management", "contact");
+   Html::header(Contact::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "management", "contact");
    $contact->display(array('id' => $_GET["id"]));
    Html::footer();
 }

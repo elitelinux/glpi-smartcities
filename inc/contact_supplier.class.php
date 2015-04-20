@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: contact_supplier.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: contact_supplier.class.php 23303 2015-01-21 14:24:35Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -73,17 +73,17 @@ class Contact_Supplier extends CommonDBRelation{
          switch ($item->getType()) {
             case 'Supplier' :
                if ($_SESSION['glpishow_count_on_tabs']) {
-                  return self::createTabEntry(_n('Contact', 'Contacts', 2),
+                  return self::createTabEntry(_n('Contact', 'Contacts', Session::getPluralNumber()),
                                               self::countForSupplier($item));
                }
-               return _n('Contact', 'Contacts', 2);
+               return _n('Contact', 'Contacts', Session::getPluralNumber());
 
             case 'Contact' :
                if ($_SESSION['glpishow_count_on_tabs']) {
-                  return self::createTabEntry(_n('Supplier', 'Suppliers', 2),
+                  return self::createTabEntry(_n('Supplier', 'Suppliers', Session::getPluralNumber()),
                                               self::countForContact($item));
                }
-               return _n('Supplier', 'Suppliers', 2);
+               return _n('Supplier', 'Suppliers', Session::getPluralNumber());
          }
       }
       return '';

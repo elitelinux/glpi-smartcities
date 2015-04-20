@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: commonglpi.class.php 23254 2014-11-27 20:58:36Z ddurieux $
+ * @version $Id: commonglpi.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -368,7 +368,7 @@ class CommonGLPI {
     * @return character menu shortcut key
    **/
    static function getMenuName() {
-      return static::getTypeName(2);
+      return static::getTypeName(Session::getPluralNumber());
    }
 
 

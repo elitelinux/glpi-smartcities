@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: rssfeed.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: rssfeed.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -36,7 +36,7 @@ include ('../inc/includes.php');
 
 Session::checkCentralAccess();
 
-Html::header(RSSFeed::getTypeName(2),$_SERVER['PHP_SELF'],"tools","rssfeed");
+Html::header(RSSFeed::getTypeName(Session::getPluralNumber()),$_SERVER['PHP_SELF'],"tools","rssfeed");
 
 Search::show('RSSFeed');
 

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: migrationcleaner.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: migrationcleaner.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -55,7 +55,7 @@ class MigrationCleaner extends CommonGLPI {
    static function getAdditionalMenuOptions() {
 
       if (static::canView()) {
-         $options['networkportmigration']['title']  = NetworkPortMigration::getTypeName(2);
+         $options['networkportmigration']['title']  = NetworkPortMigration::getTypeName(Session::getPluralNumber());
          $options['networkportmigration']['page']   = NetworkPortMigration::getSearchURL(false);
          $options['networkportmigration']['search'] = NetworkPortMigration::getSearchURL(false);
 

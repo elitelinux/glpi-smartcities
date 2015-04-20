@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: link.class.php 23041 2014-06-20 12:17:28Z tsmr $
+ * @version $Id: link.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -52,11 +52,11 @@ class Link extends CommonDBTM {
 
       if (self::canView()) {
          if ($_SESSION['glpishow_count_on_tabs']) {
-            return self::createTabEntry(_n('Link','Links',2),
+            return self::createTabEntry(_n('Link','Links', Session::getPluralNumber()),
                                         countElementsInTable('glpi_links_itemtypes',
                                                              "`itemtype` = '".$item->getType()."'"));
          }
-         return _n('Link','Links',2);
+         return _n('Link','Links', Session::getPluralNumber());
       }
       return '';
    }
@@ -415,7 +415,7 @@ class Link extends CommonDBTM {
       echo "<div class='spaced'><table class='tab_cadre_fixe'>";
 
       if ($DB->numrows($result) > 0) {
-         echo "<tr><th>".self::getTypeName(2)."</th></tr>";
+         echo "<tr><th>".self::getTypeName(Session::getPluralNumber())."</th></tr>";
          while ($data = $DB->fetch_assoc($result)) {
             $links = self::getAllLinksFor($item, $data);
 
@@ -427,7 +427,7 @@ class Link extends CommonDBTM {
          echo "</table></div>";
 
       } else {
-         echo "<tr class='tab_bg_2'><th>".self::getTypeName(2)."</th></tr>";
+         echo "<tr class='tab_bg_2'><th>".self::getTypeName(Session::getPluralNumber())."</th></tr>";
          echo "<tr class='tab_bg_2'><td class='center b'>".__('No link defined')."</td></tr>";
          echo "</table></div>";
       }
@@ -520,7 +520,7 @@ class Link extends CommonDBTM {
 
       $tab[145]['table']             = 'glpi_links';
       $tab[145]['field']             = '_virtual';
-      $tab[145]['name']              = _n('External link', 'External links', 2);
+      $tab[145]['name']              = _n('External link', 'External links', Session::getPluralNumber());
       $tab[145]['datatype']          = 'specific';
       $tab[145]['additionalfields']  = array('id','link', 'name', 'data', 'open_window');
       $tab[145]['nosearch']          = true;

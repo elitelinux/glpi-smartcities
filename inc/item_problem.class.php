@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: item_problem.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: item_problem.class.php 23436 2015-04-09 14:06:48Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -271,8 +271,35 @@ class Item_Problem extends CommonDBRelation{
                                              "`problems_id` = '".$item->getID()."'");
                }
 
-               return self::createTabEntry(_n('Item', 'Items', 2), $nb);
+               return self::createTabEntry(_n('Item', 'Items', Session::getPluralNumber()), $nb);
 
+            case 'User' :
+               $nb = 0;
+               if ($_SESSION['glpishow_count_on_tabs']) {
+                  $nb = countDistinctElementsInTable('glpi_problems_users', 'problems_id',
+                                             "`users_id` = '".$item->getID()."'");
+               }
+
+               return self::createTabEntry(Problem::getTypeName(Session::getPluralNumber()), $nb);
+            case 'Group' :
+               $nb = 0;
+               if ($_SESSION['glpishow_count_on_tabs']) {
+                  $nb = countDistinctElementsInTable('glpi_groups_problems', 'problems_id',
+                                             "`groups_id` = '".$item->getID()."'");
+               }
+
+               return self::createTabEntry(Problem::getTypeName(Session::getPluralNumber()), $nb);
+               
+            case 'Supplier' :
+               $nb = 0;
+               if ($_SESSION['glpishow_count_on_tabs']) {
+                  $nb = countDistinctElementsInTable('glpi_problems_suppliers','problems_id',
+                                             "`suppliers_id` = '".$item->getID()."'");
+               }
+
+               return self::createTabEntry(Problem::getTypeName(Session::getPluralNumber()), $nb);
+               
+               
             default :
                if (Session::haveRight("problem", Problem::READALL)) {
                   $nb = 0;
@@ -294,7 +321,7 @@ class Item_Problem extends CommonDBRelation{
                         }
                      }
                   }
-                  return self::createTabEntry(Problem::getTypeName(2), $nb);
+                  return self::createTabEntry(Problem::getTypeName(Session::getPluralNumber()), $nb);
                }
          }
       }

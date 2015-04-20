@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: projecttask.class.php 23231 2014-11-14 11:50:46Z yllen $
+ * @version $Id: projecttask.class.php 23312 2015-01-21 17:16:49Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -259,6 +259,11 @@ class ProjectTask extends CommonDBChild {
 
 
    function prepareInputForUpdate($input) {
+      if (isset($input['is_milestone']) 
+            && $input['is_milestone']){
+         $input['plan_end_date'] = $input['plan_start_date'];
+         $input['real_end_date'] = $input['real_start_date'];
+      }   
       return Project::checkPlanAndRealDates($input);
    }
 
@@ -270,6 +275,12 @@ class ProjectTask extends CommonDBChild {
       }
       if (!isset($input['date'])) {
          $input['date'] = $_SESSION['glpi_currenttime'];
+      }
+
+      if (isset($input['is_milestone']) 
+            && $input['is_milestone']){
+         $input['plan_end_date'] = $input['plan_start_date'];
+         $input['real_end_date'] = $input['real_start_date'];
       }
 
       return Project::checkPlanAndRealDates($input);
@@ -344,7 +355,7 @@ class ProjectTask extends CommonDBChild {
 
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'><td>"._n('Project', 'Projects', 2)."</td>";
+      echo "<tr class='tab_bg_1'><td>"._n('Project', 'Projects', Session::getPluralNumber())."</td>";
       echo "<td>";
       if ($this->isNewID($ID)) {
          echo "<input type='hidden' name='projects_id' value='$projects_id'>";
@@ -405,7 +416,12 @@ class ProjectTask extends CommonDBChild {
                                                  'unit'  => '%'));
 
       echo "</td>";
-      echo "<td colspan='2'>&nbsp;</td>";
+      echo "<td>";
+      _e('Milestone');
+      echo "</td>";
+      echo "<td>";
+      Dropdown::showYesNo("is_milestone", $this->fields["is_milestone"]);
+      echo "</td>";      
       echo "</tr>";
 
       echo "<tr><td colspan='4' class='subheader'>".__('Planning')."</td></tr>";
@@ -679,6 +695,11 @@ class ProjectTask extends CommonDBChild {
       $tab[16]['name']              = __('Comments');
       $tab[16]['datatype']          = 'text';
 
+      $tab[18]['table']             = $this->getTable();
+      $tab[18]['field']             = 'is_milestone';
+      $tab[18]['name']              = __('Milestone');
+      $tab[18]['datatype']          = 'bool';
+
       $tab[80]['table']             = 'glpi_entities';
       $tab[80]['field']             = 'completename';
       $tab[80]['name']              = __('Entity');
@@ -711,7 +732,7 @@ class ProjectTask extends CommonDBChild {
          return false;
       }
 
-      $columns = array('name'             => self::getTypeName(2),
+      $columns = array('name'             => self::getTypeName(Session::getPluralNumber()),
                        'tname'            => __('Type'),
                        'sname'            => __('Status'),
                        'percent_done'     => __('Percent done'),
@@ -859,20 +880,20 @@ class ProjectTask extends CommonDBChild {
          switch ($item->getType()) {
             case 'Project' :
                if ($_SESSION['glpishow_count_on_tabs']) {
-                  return self::createTabEntry(self::getTypeName(2),
+                  return self::createTabEntry(self::getTypeName(Session::getPluralNumber()),
                                               countElementsInTable($this->getTable(),
                                                                    "projects_id
                                                                         = '".$item->getID()."'"));
                }
-               return self::getTypeName(2);
+               return self::getTypeName(Session::getPluralNumber());
             case __CLASS__ :
                if ($_SESSION['glpishow_count_on_tabs']) {
-                  return self::createTabEntry(self::getTypeName(2),
+                  return self::createTabEntry(self::getTypeName(Session::getPluralNumber()),
                                               countElementsInTable($this->getTable(),
                                                                    "projecttasks_id
                                                                         = '".$item->getID()."'"));
                }
-               return self::getTypeName(2);
+               return self::getTypeName(Session::getPluralNumber());
          }
       }
       return '';
@@ -965,7 +986,7 @@ class ProjectTask extends CommonDBChild {
          $header_bottom .= "</th>";
       }
       $header_end .= "<th>".__('Type')."</th>";
-      $header_end .= "<th>"._n('Member', 'Members', 2)."</th>";
+      $header_end .= "<th>"._n('Member', 'Members', Session::getPluralNumber())."</th>";
       $header_end .= "</tr>";
       echo $header_begin.$header_top.$header_end;
 
@@ -1023,6 +1044,7 @@ class ProjectTask extends CommonDBChild {
                                                                 'real_start_date'))) as $data) {
             $subtasks += static::getDataToDisplayOnGantt($data['id']);
          }
+         
          $real_begin = NULL;
          $real_end   = NULL;
          // Use real if set
@@ -1069,6 +1091,12 @@ class ProjectTask extends CommonDBChild {
             $parents = count(getAncestorsOf("glpi_projecttasks", $ID));
          }
 
+         if ($task->fields['is_milestone']){
+            $percent = "";
+         }else{
+            $percent = isset($task->fields['percent_done'])?$task->fields['percent_done']:0;
+         }
+
          // Add current task
          $todisplay[$real_begin.'#'.$real_end.'#task'.$task->getID()]
                         = array('id'    => $task->getID(),
@@ -1076,10 +1104,11 @@ class ProjectTask extends CommonDBChild {
                               'desc'    => $task->fields['content'],
                               'link'    => $task->getlink(),
                               'type'    => 'task',
-                              'percent' => isset($task->fields['percent_done'])?$task->fields['percent_done']:0,
+                              'percent' => $percent,
                               'from'    => $real_begin,
                               'parents' => $parents,
-                              'to'      => $real_end);
+                              'to'      => $real_end,
+                              'is_milestone' => $task->fields['is_milestone']);
 
          // Add ordered subtasks
          foreach($subtasks as $key => $val) {

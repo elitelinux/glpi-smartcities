@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: knowbaseitem.class.php 23230 2014-11-14 10:32:46Z yllen $
+ * @version $Id: knowbaseitem.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -76,7 +76,7 @@ class KnowbaseItem extends CommonDBTM {
       if (!Session::haveRight('knowbase', READ)) {
          return __('FAQ');
       } else {
-         return static::getTypeName(2);
+         return static::getTypeName(Session::getPluralNumber());
       }
    }
 
@@ -178,7 +178,7 @@ class KnowbaseItem extends CommonDBTM {
                      $ong[2] = self::createTabEntry(_n('Target','Targets',$nb),
                                                     $nb);
                   } else {
-                     $ong[2] = _n('Target','Targets',2);
+                     $ong[2] = _n('Target','Targets', Session::getPluralNumber());
                   }
                   $ong[3] = __('Edit');
                }
@@ -1546,7 +1546,7 @@ class KnowbaseItem extends CommonDBTM {
 
       $tab[9]['table']          = $this->getTable();
       $tab[9]['field']          = 'view';
-      $tab[9]['name']           = _n('View', 'Views', 2);
+      $tab[9]['name']           = _n('View', 'Views', Session::getPluralNumber());
       $tab[9]['datatype']       = 'integer';
       $tab[9]['massiveaction']  = false;
 
@@ -1662,7 +1662,7 @@ class KnowbaseItem extends CommonDBTM {
          $header_end    .= "</th>";
       }
       $header_end .= "<th>".__('Type')."</th>";
-      $header_end .= "<th>"._n('Recipient', 'Recipients', 2)."</th>";
+      $header_end .= "<th>"._n('Recipient', 'Recipients', Session::getPluralNumber())."</th>";
       $header_end .= "</tr>";
       echo $header_begin.$header_top.$header_end;
 

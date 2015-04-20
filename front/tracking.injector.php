@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: tracking.injector.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: tracking.injector.php 23346 2015-02-03 15:11:10Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -50,15 +50,15 @@ if (empty($_POST) || (count($_POST) == 0)) {
 }
 
 if (isset($_POST["_type"]) && ($_POST["_type"] == "Helpdesk")) {
-   Html::nullHeader(Ticket::getTypeName(2));
+   Html::nullHeader(Ticket::getTypeName(Session::getPluralNumber()));
 } else if ($_POST["_from_helpdesk"]) {
    Html::helpHeader(__('Simplified interface'), '', $_SESSION["glpiname"]);
 } else {
    Html::header(__('Simplified interface'), '', $_SESSION["glpiname"], "helpdesk", "tracking");
 }
 
-if (isset($_POST["_my_items"]) && !empty($_POST["_my_items"])) {
-   $splitter = explode("_",$_POST["_my_items"]);
+if (isset($_POST["my_items"]) && !empty($_POST["my_items"])) {
+   $splitter = explode("_",$_POST["my_items"]);
    if (count($splitter) == 2) {
       $_POST["itemtype"] = $splitter[0];
       $_POST["items_id"] = $splitter[1];

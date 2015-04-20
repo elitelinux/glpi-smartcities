@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: planning.class.php 23115 2014-08-01 16:33:35Z moyo $
+ * @version $Id: planning.class.php 23304 2015-01-21 14:46:37Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -99,8 +99,8 @@ class Planning extends CommonGLPI {
             $tabs[2] = __('Group View');
          }
          if (Session::haveRight(self::$rightname, self::READALL)) {
-            $tabs[3] = _n('User', 'Users', 2);
-            $tabs[4] = _n('Group', 'Groups', 2);
+            $tabs[3] = _n('User', 'Users', Session::getPluralNumber());
+            $tabs[4] = _n('Group', 'Groups', Session::getPluralNumber());
          }
 
          return $tabs;

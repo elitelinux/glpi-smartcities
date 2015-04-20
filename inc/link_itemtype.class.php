@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: link_itemtype.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: link_itemtype.class.php 23304 2015-01-21 14:46:37Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -159,11 +159,11 @@ class Link_Itemtype extends CommonDBChild {
          switch ($item->getType()) {
             case 'Link' :
                if ($_SESSION['glpishow_count_on_tabs']) {
-                  return self::createTabEntry(_n('Associated item type', 'Associated item types',2),
+                  return self::createTabEntry(_n('Associated item type', 'Associated item types', Session::getPluralNumber()),
                                               countElementsInTable($this->getTable(),
                                                                    "links_id = '".$item->getID()."'"));
                }
-               return _n('Associated item type', 'Associated item types',2);
+               return _n('Associated item type', 'Associated item types', Session::getPluralNumber());
          }
       }
       return '';

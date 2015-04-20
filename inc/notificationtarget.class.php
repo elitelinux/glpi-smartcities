@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: notificationtarget.class.php 23069 2014-07-10 17:01:57Z moyo $
+ * @version $Id: notificationtarget.class.php 23446 2015-04-16 13:57:07Z tsmr $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -72,7 +72,7 @@ class NotificationTarget extends CommonDBChild {
    var $obj                         = null;
 
    //Object which is associated with the event
-   var $target_object               = null;
+   var $target_object               = array();
 
    // array of event name => event label
    var $events                      = array();
@@ -314,7 +314,7 @@ class NotificationTarget extends CommonDBChild {
 
          }
          echo "<table class='tab_cadre_fixe'>";
-         echo "<tr><th colspan='4'>" . _n('Recipient', 'Recipients', 2) . "</th></tr>";
+         echo "<tr><th colspan='4'>" . _n('Recipient', 'Recipients', Session::getPluralNumber()) . "</th></tr>";
          echo "<tr class='tab_bg_2'>";
 
          $values = array();
@@ -572,10 +572,11 @@ class NotificationTarget extends CommonDBChild {
    **/
    function getItemGroupAddress() {
 
-      if ($this->target_object) {
-         $id = $this->target_object->getField('groups_id');
-         if ($id > 0) {
-            $this->getAddressesByGroup(0, $id);
+      if (!empty($this->target_object)) {
+         foreach($this->target_object as $val){
+            if ($val->fields['groups_id'] > 0) {
+               $this->getAddressesByGroup(0, $val['groups_id']);
+            }
          }
       }
    }
@@ -588,10 +589,11 @@ class NotificationTarget extends CommonDBChild {
    **/
    function getItemGroupSupervisorAddress() {
 
-      if ($this->target_object) {
-         $id = $this->target_object->getField('groups_id');
-         if ($id > 0) {
-            $this->getAddressesByGroup(1, $id);
+      if (!empty($this->target_object)) {
+         foreach ($this->target_object as $val) {
+            if ($val->fields['groups_id'] > 0) {
+               $this->getAddressesByGroup(1, $val->fields['groups_id']);
+            }
          }
       }
    }
@@ -604,10 +606,11 @@ class NotificationTarget extends CommonDBChild {
    **/
    function getItemGroupWithoutSupervisorAddress() {
 
-      if ($this->target_object) {
-         $id = $this->target_object->getField('groups_id');
-         if ($id > 0) {
-            $this->getAddressesByGroup(2, $id);
+      if (!empty($this->target_object)) {
+         foreach ($this->target_object as $val) {
+            if ($val->fields['groups_id'] > 0) {
+               $this->getAddressesByGroup(2, $val->fields['groups_id']);
+            }
          }
       }
    }
@@ -796,7 +799,7 @@ class NotificationTarget extends CommonDBChild {
     * @return the object associated with the itemtype
    **/
    function getObjectItem($event='') {
-      $this->target_object = $this->obj;
+      $this->target_object[] = $this->obj;
    }
 
 
@@ -811,20 +814,22 @@ class NotificationTarget extends CommonDBChild {
    function getUserByField($field, $search_in_object=false) {
       global $DB;
 
-      $id = 0;
+      $id = array();
       if (!$search_in_object) {
-         $id = $this->obj->getField($field);
+         $id[] = $this->obj->getField($field);
 
-      } else if ($this->target_object) {
-         $id = $this->target_object->getField($field);
+      } else if (!empty($this->target_object)) {
+         foreach ($this->target_object as $val) {
+            $id[] = $val->fields[$field];
+         }
       }
 
-      if ($id) {
+      if (!empty($id)) {
          //Look for the user by his id
          $query = $this->getDistinctUserSql()."
                   FROM `glpi_users`".
                   $this->getProfileJoinSql()."
-                  WHERE `glpi_users`.`id` = '$id'";
+                  WHERE `glpi_users`.`id` IN ('".implode("','", $id)."')";
 
          foreach ($DB->request($query) as $data) {
             //Add the user email and language in the notified users list
@@ -847,10 +852,11 @@ class NotificationTarget extends CommonDBChild {
    **/
    function getItemGroupTechInChargeAddress() {
 
-      if ($this->target_object) {
-         $id = $this->target_object->getField('groups_id_tech');
-         if ($id > 0) {
-            $this->getAddressesByGroup(0, $id);
+      if (!empty($this->target_object)) {
+         foreach ($this->target_object as $val) {
+            if ($val->fields['groups_id'] > 0) {
+               $this->getAddressesByGroup(0, $val->fields['groups_id']);
+            }
          }
       }
    }
@@ -1128,19 +1134,19 @@ class NotificationTarget extends CommonDBChild {
          switch ($item->getType()) {
             case 'Group' :
                if ($_SESSION['glpishow_count_on_tabs']) {
-                  return self::createTabEntry(Notification::getTypeName(2),
+                  return self::createTabEntry(Notification::getTypeName(Session::getPluralNumber()),
                                               self::countForGroup($item));
                }
-               return Notification::getTypeName(2);
+               return Notification::getTypeName(Session::getPluralNumber());
 
             case 'Notification' :
                if ($_SESSION['glpishow_count_on_tabs']) {
-                  return self::createTabEntry(self::getTypeName(2),
+                  return self::createTabEntry(self::getTypeName(Session::getPluralNumber()),
                                               countElementsInTable($this->getTable(),
                                                                    "notifications_id
                                                                         = '".$item->getID()."'"));
                }
-               return self::getTypeName(2);
+               return self::getTypeName(Session::getPluralNumber());
          }
       }
       return '';

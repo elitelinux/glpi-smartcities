@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: netpoint.class.php 23199 2014-10-22 16:04:02Z moyo $
+ * @version $Id: netpoint.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -220,12 +220,12 @@ class Netpoint extends CommonDropdown {
          switch ($item->getType()) {
             case 'Location' :
                if ($_SESSION['glpishow_count_on_tabs']) {
-                  return self::createTabEntry(self::getTypeName(2),
+                  return self::createTabEntry(self::getTypeName(Session::getPluralNumber()),
                                               countElementsInTable($this->getTable(),
                                                                    "locations_id
                                                                         = '".$item->getID()."'"));
                }
-               return self::getTypeName(2);
+               return self::getTypeName(Session::getPluralNumber());
          }
       }
       return '';
@@ -283,7 +283,7 @@ class Netpoint extends CommonDropdown {
          echo "<form action='".$netpoint->getFormURL()."' method='post'>";
          echo "<table class='tab_cadre_fixe'>";
          echo "<tr class='tab_bg_2 center'>";
-         echo "<td class='b'>"._n('Network outlet', 'Network outlets', 2)."</td>";
+         echo "<td class='b'>"._n('Network outlet', 'Network outlets', Session::getPluralNumber())."</td>";
          echo "<td>".__('Name')."</td><td>";
          echo "<input type='text' maxlength='100' size='10' name='_before'>&nbsp;";
          Dropdown::showNumber('_from', array('value' => 0,

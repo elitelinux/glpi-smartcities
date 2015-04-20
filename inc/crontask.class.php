@@ -1,7 +1,7 @@
 <?php
 
 /*
- * @version $Id: crontask.class.php 22974 2014-05-13 18:15:51Z moyo $
+ * @version $Id: crontask.class.php 23349 2015-02-03 15:39:25Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -155,6 +155,21 @@ class CronTask extends CommonDBTM{
       return 0;
    }
 
+   /**
+    * Get all itemtypes used
+    *
+    * @return array of itemtypes
+   **/
+   static function getUsedItemtypes() {
+      global $DB;
+      
+      $types= array();
+      foreach  ($DB->request("SELECT DISTINCT(`itemtype`)
+                            FROM `glpi_crontasks`") as $data) {
+        $types[] = $data['itemtype'];
+      }
+      return $types;
+    }
 
    /**
     * Start a task, timer, stat, log, ...
@@ -1303,6 +1318,8 @@ class CronTask extends CommonDBTM{
       $tab[8]['name']          = __('Item type');
       $tab[8]['massiveaction'] = false;
       $tab[8]['datatype']      = 'itemtypename';
+      $tab[8]['types']         = self::getUsedItemtypes();
+      
 
       $tab[16]['table']        = $this->getTable();
       $tab[16]['field']        = 'comment';

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: dropdownItilActors.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: dropdownItilActors.php 23430 2015-04-09 11:08:12Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -65,7 +65,8 @@ if (isset($_POST["type"])
                $withemail     = (isset($_POST["allow_email"]) ? $_POST["allow_email"] : false);
                $paramscomment = array('value'       => '__VALUE__',
                                       'allow_email' => $withemail,
-                                      'field'       => "_itil_".$_POST["actortype"]);
+                                      'field'       => "_itil_".$_POST["actortype"],
+                                      'use_notification' => $_POST["use_notif"]);
                // Fix rand value
                $options['rand']     = $rand;
                $options['toupdate'] = array('value_fieldname' => 'value',
@@ -104,7 +105,7 @@ if (isset($_POST["type"])
                echo "<br><span id='notif_user_$rand'>";
                if ($withemail) {
                   echo __('Email followup').'&nbsp;';
-                  $rand = Dropdown::showYesNo('_itil_'.$_POST["actortype"].'[use_notification]', 1);
+                  $rand = Dropdown::showYesNo('_itil_'.$_POST["actortype"].'[use_notification]', $_POST["use_notif"]);
                   echo '<br>';
                   printf(__('%1$s: %2$s'),__('Email'),
                          "<input type='text' size='25' name='_itil_".$_POST["actortype"].
@@ -153,7 +154,8 @@ if (isset($_POST["type"])
                $paramscomment = array('value'       => '__VALUE__',
                                       'allow_email' => $withemail,
                                       'field'       => '_itil_'.$_POST["actortype"],
-                                      'typefield'   => "supplier");
+                                      'typefield'   => "supplier",
+                                      'use_notification' => $_POST["use_notif"]);
                // Fix rand value
                $options['rand']     = $rand;
                $options['toupdate'] = array('value_fieldname' => 'value',
@@ -186,7 +188,7 @@ if (isset($_POST["type"])
                echo "<br><span id='notif_supplier_$rand'>";
                if ($withemail) {
                   echo __('Email followup').'&nbsp;';
-                  $rand = Dropdown::showYesNo('_itil_'.$_POST["actortype"].'[use_notification]', 1);
+                  $rand = Dropdown::showYesNo('_itil_'.$_POST["actortype"].'[use_notification]', $_POST['use_notif']);
                   echo '<br>';
                    printf(__('%1$s: %2$s'),__('Email'),
                           "<input type='text' size='25' name='_itil_".$_POST["actortype"].

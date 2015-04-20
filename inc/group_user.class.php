@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: group_user.class.php 23199 2014-10-22 16:04:02Z moyo $
+ * @version $Id: group_user.class.php 23317 2015-01-23 15:12:58Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -428,7 +428,7 @@ class Group_User extends CommonDBRelation{
 
       // Mini Search engine
       echo "<table class='tab_cadre_fixe'>";
-      echo "<tr class='tab_bg_1'><th colspan='2'>".User::getTypeName(2)."</th></tr>";
+      echo "<tr class='tab_bg_1'><th colspan='2'>".User::getTypeName(Session::getPluralNumber())."</th></tr>";
       echo "<tr class='tab_bg_1'><td class='center'>";
       echo _n('Criterion', 'Criteria', 1)."&nbsp;";
       $crits = array(''                => Dropdown::EMPTY_VALUE,
@@ -455,7 +455,7 @@ class Group_User extends CommonDBRelation{
       if ($number) {
          echo "<div class='spaced'>";
          Html::printAjaxPager(sprintf(__('%1$s (%2$s)'),
-                                      User::getTypeName(2), __('D=Dynamic')),
+                                      User::getTypeName(Session::getPluralNumber()), __('D=Dynamic')),
                               $start, $number);
 
          Session::initNavigateListItems('User',
@@ -539,7 +539,7 @@ class Group_User extends CommonDBRelation{
             Html::closeForm();
          }
          Html::printAjaxPager(sprintf(__('%1$s (%2$s)'),
-                                      User::getTypeName(2), __('D=Dynamic')),
+                                      User::getTypeName(Session::getPluralNumber()), __('D=Dynamic')),
                               $start, $number);
 
          echo "</div>";
@@ -666,24 +666,24 @@ class Group_User extends CommonDBRelation{
             case 'User' :
                if (Group::canView()) {
                   if ($_SESSION['glpishow_count_on_tabs']) {
-                     return self::createTabEntry(Group::getTypeName(2),
+                     return self::createTabEntry(Group::getTypeName(Session::getPluralNumber()),
                                                  countElementsInTable($this->getTable(),
                                                                       "users_id
                                                                         = '".$item->getID()."'"));
                   }
-                  return Group::getTypeName(2);
+                  return Group::getTypeName(Session::getPluralNumber());
                }
                break;
 
             case 'Group' :
                if (User::canView()) {
                   if ($_SESSION['glpishow_count_on_tabs']) {
-                     return self::createTabEntry(User::getTypeName(2),
+                     return self::createTabEntry(User::getTypeName(Session::getPluralNumber()),
                                                  countElementsInTable("glpi_groups_users",
                                                                       "`groups_id`
                                                                         = '".$item->getID()."'" ));
                   }
-                  return User::getTypeName(2);
+                  return User::getTypeName(Session::getPluralNumber());
                }
                break;
          }
@@ -706,69 +706,6 @@ class Group_User extends CommonDBRelation{
       return true;
    }
 
-
-   /**
-    * @since version 0.85
-    *
-    * @see CommonDBTM::getSpecificMassiveActions()
-    **/
-   function getSpecificMassiveActions($checkitem=NULL) {
-
-      $isadmin = static::canUpdate();
-      $actions = parent::getSpecificMassiveActions($checkitem);
-      if ($isadmin) {
-         $actions[__CLASS__.MassiveAction::CLASS_ACTION_SEPARATOR.'change_group_user']
-               = __("Move to group");
-      }
-
-      return $actions;
-   }
-
-
-   /**
-    * @since version 0.85
-    *
-    * @see CommonDBTM::showMassiveActionsSubForm()
-    **/
-   static function showMassiveActionsSubForm(MassiveAction $ma) {
-      global $CFG_GLPI;
-
-      $input = $ma->getInput();
-      switch ($ma->getAction()) {
-         case 'change_group_user' :
-            Group::dropdown(array('condition'  => '`is_usergroup`'));
-            echo "<br><br>";
-            echo Html::submit(_x('button','Post'), array('name' => 'massiveaction'))."</span>";
-            return true;
-      }
-      return parent::showMassiveActionsSubForm($ma);
-   }
-
-
-   /**
-    * @since version 0.85
-   **/
-   static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
-                                                       array $ids) {
-      global $CFG_GLPI;
-
-      $action = $ma->getAction();
-
-      switch ($action) {
-         case 'change_group_user' :
-            $groupuser = new self();
-            foreach ($ids as $key => $val) {
-               if ($groupuser->getFromDB($key)) {
-                  $user = $groupuser->getField('users_id');
-                  $inputcg = array('groups_id' => $ma->POST['groups_id'],
-                                   'users_id'  => $user,
-                                   'id'        => $key);
-                  $groupuser->update($inputcg);
-               }
-            }
-            break;
-      }
-   }
 
 }
 ?>

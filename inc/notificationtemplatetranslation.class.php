@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: notificationtemplatetranslation.class.php 23090 2014-07-22 08:17:00Z moyo $
+ * @version $Id: notificationtemplatetranslation.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -392,12 +392,12 @@ class NotificationTemplateTranslation extends CommonDBChild {
          switch ($item->getType()) {
             case 'NotificationTemplate' :
                if ($_SESSION['glpishow_count_on_tabs']) {
-                  return self::createTabEntry(_n('Translation', 'Translations',2),
+                  return self::createTabEntry(_n('Translation', 'Translations', Session::getPluralNumber()),
                                               countElementsInTable($this->getTable(),
                                                                    "notificationtemplates_id
                                                                         = '".$item->getID()."'"));
                }
-               return self::getTypeName(2);
+               return self::getTypeName(Session::getPluralNumber());
          }
       }
       return '';

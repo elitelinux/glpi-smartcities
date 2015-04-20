@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: sla.class.php 23277 2014-12-11 15:58:42Z moyo $
+ * @version $Id: sla.class.php 23304 2015-01-21 14:46:37Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -174,9 +174,9 @@ class SLA extends CommonDBTM {
       echo "<td>";
       Dropdown::showNumber("resolution_time", array('value' => $this->fields["resolution_time"],
                                                     'min'   => 0));
-      $possible_values = array('minute'   => _n('Minute', 'Minutes', 2),
-                               'hour'     => _n('Hour', 'Hours', 2),
-                               'day'      => _n('Day', 'Days', 2));
+      $possible_values = array('minute'   => _n('Minute', 'Minutes', Session::getPluralNumber()),
+                               'hour'     => _n('Hour', 'Hours', Session::getPluralNumber()),
+                               'day'      => _n('Day', 'Days', Session::getPluralNumber()));
       $rand = Dropdown::showFromArray('definition_time', $possible_values,
                                       array('value'     => $this->fields["definition_time"],
                                             'on_change' => 'appearhideendofworking()'));

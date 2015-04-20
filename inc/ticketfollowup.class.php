@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: ticketfollowup.class.php 23187 2014-10-13 18:08:32Z moyo $
+ * @version $Id: ticketfollowup.class.php 23443 2015-04-10 11:26:35Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -178,12 +178,12 @@ class TicketFollowup  extends CommonDBTM {
       if ($item->getType() == 'Ticket') {
          if (Session::haveRight(self::$rightname, self::SEEPUBLIC)) {
             if ($_SESSION['glpishow_count_on_tabs']) {
-               return self::createTabEntry(self::getTypeName(2),
+               return self::createTabEntry(self::getTypeName(Session::getPluralNumber()),
                                            countElementsInTable('glpi_ticketfollowups',
                                                                 "`tickets_id`
                                                                      = '".$item->getID()."'"));
             }
-            return self::getTypeName(2);
+            return self::getTypeName(Session::getPluralNumber());
          }
       }
       return '';
@@ -272,19 +272,26 @@ class TicketFollowup  extends CommonDBTM {
 
 
    function prepareInputForAdd($input) {
+      global $CFG_GLPI;
 
       $input["_job"] = new Ticket();
 
+      if (empty($input['content'])) {
+         return false;
+      }
       if (!$input["_job"]->getFromDB($input["tickets_id"])) {
          return false;
       }
-      
+      if ($CFG_GLPI["use_rich_text"]) {
+         $input['content'] = $input["_job"]->setSimpleTextContent($input["content"]);
+      }
       // Manage File attached (from mailgate)
       // Pass filename if set to ticket
       if (isset($input['_filename'])) {
          $input["_job"]->input['_filename'] = $input['_filename'];
       }
-      $docadded = $input["_job"]->addFiles();
+      // Add docs without notif
+      $docadded = $input["_job"]->addFiles(0,1);
 
       if (count($docadded) > 0) {
          $input['content'] .= "\n";
@@ -738,7 +745,7 @@ class TicketFollowup  extends CommonDBTM {
             $lastlastmonday = $lastmonday;
             $lastmonday = $today;
          }
-         
+
          $steps = array(0 => array('end'   => $today,
                                    'name'  => __('Today')),
                         1 => array('end'   => $lastmonday,

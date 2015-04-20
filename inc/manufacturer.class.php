@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: manufacturer.class.php 22810 2014-03-21 12:04:41Z yllen $
+ * @version $Id: manufacturer.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -68,7 +68,7 @@ class Manufacturer extends CommonDropdown {
    function getAdditionalFields() {
 
       return array(array('name'  => 'none',
-                         'label' => RegisteredID::getTypeName(2).
+                         'label' => RegisteredID::getTypeName(Session::getPluralNumber()).
                                        RegisteredID::showAddChildButtonForItemForm($this,
                                                                                    '_registeredID',
                                                                                    NULL, false),

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: ticketrecurrent.class.php 22959 2014-04-28 18:59:22Z yllen $
+ * @version $Id: ticketrecurrent.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -82,7 +82,7 @@ class TicketRecurrent extends CommonDropdown {
       if (Session::haveRight('tickettemplate', READ)) {
          switch ($item->getType()) {
             case 'TicketRecurrent' :
-               $ong[1] = _n('Information', 'Information', 2);
+               $ong[1] = _n('Information', 'Information', Session::getPluralNumber());
                return $ong;
          }
       }
@@ -392,7 +392,7 @@ class TicketRecurrent extends CommonDropdown {
 
       switch ($name) {
          case 'ticketrecurrent' :
-            return array('description' => self::getTypeName(2));
+            return array('description' => self::getTypeName(Session::getPluralNumber()));
       }
       return array();
    }

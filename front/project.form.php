@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: project.form.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: project.form.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -92,7 +92,7 @@ if (isset($_POST["add"])) {
    Html::back();
 
 } else {
-   Html::header(Project::getTypeName(2), $_SERVER['PHP_SELF'], "tools", "project");
+   Html::header(Project::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "tools", "project");
 
    if (isset($_GET['showglobalgantt']) && $_GET['showglobalgantt']) {
       $project->showGantt(-1);

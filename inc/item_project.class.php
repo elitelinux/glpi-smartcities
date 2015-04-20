@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: item_project.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: item_project.class.php 23362 2015-02-06 10:16:57Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -133,7 +133,7 @@ class Item_Project extends CommonDBRelation{
 
          echo "<tr class='tab_bg_1'><td>";
          Dropdown::showSelectItemFromItemtypes(array('itemtypes'
-                                                      => $CFG_GLPI["asset_types"],
+                                                      => $CFG_GLPI["project_asset_types"],
                                                      'entity_restrict'
                                                       => ($project->fields['is_recursive']
                                                           ?getSonsOf('glpi_entities',
@@ -268,7 +268,7 @@ class Item_Project extends CommonDBRelation{
                                              "`projects_id` = '".$item->getID()."'");
                }
 
-               return self::createTabEntry(_n('Item', 'Items', 2), $nb);
+               return self::createTabEntry(_n('Item', 'Items', Session::getPluralNumber()), $nb);
 
             default :
                // Not used now
@@ -292,7 +292,7 @@ class Item_Project extends CommonDBRelation{
                         }
                      }
                   }
-                  return self::createTabEntry(Project::getTypeName(2), $nb);
+                  return self::createTabEntry(Project::getTypeName(Session::getPluralNumber()), $nb);
                }
          }
       }

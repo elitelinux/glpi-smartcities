@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: budget.class.php 23236 2014-11-20 18:12:36Z yllen $
+ * @version $Id: budget.class.php 23441 2015-04-10 09:08:51Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -74,7 +74,7 @@ class Budget extends CommonDropdown{
          switch ($item->getType()) {
             case __CLASS__ :
                return array(1 => __('Main'),
-                            2 => _n('Item', 'Items', 2));
+                            2 => _n('Item', 'Items', Session::getPluralNumber()));
          }
       }
       return '';
@@ -394,8 +394,14 @@ class Budget extends CommonDropdown{
                                   AND `glpi_infocoms`.`budgets_id` = '$budgets_id' ".
                                   getEntitiesRestrictRequest(" AND", $item->getTable())."
                                   ".($item->maybeTemplate()?" AND NOT `".$item->getTable()."`.`is_template`":'')."
-                            ORDER BY `".$item->getTable()."`.`entities_id`,
-                                     `".$item->getTable()."`.`name`";
+                            ORDER BY `".$item->getTable()."`.`entities_id`,";
+                if ($item instanceof Item_Devices) {
+                   $query .= " `".$item->getTable()."`.`itemtype`";
+                } else {
+                   $query .= " `".$item->getTable()."`.`name`";
+                }
+
+
                break;
             }
 
@@ -426,7 +432,14 @@ class Budget extends CommonDropdown{
                   for ($prem=true ; $data=$DB->fetch_assoc($result_linked) ; $prem=false) {
                      $name = NOT_AVAILABLE;
                      if ($item->getFromDB($data["id"])) {
-                        $name = $item->getLink(array('additional' => true));
+                        if ($item instanceof Item_Devices) {
+                           $tmpitem = new $item::$itemtype_2();
+                           if ($tmpitem->getFromDB($data[$item::$items_id_2])) {
+                              $name = $tmpitem->getLink(array('additional' => true));
+                           }
+                        } else {
+                           $name = $item->getLink(array('additional' => true));
+                        }
                      }
                      echo "<tr class='tab_bg_1'>";
                      if ($prem) {

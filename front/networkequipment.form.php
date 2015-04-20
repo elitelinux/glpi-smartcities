@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: networkequipment.form.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: networkequipment.form.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -93,7 +93,7 @@ if (isset($_POST["add"])) {
    Html::back();
 
 } else {
-   Html::header(NetworkEquipment::getTypeName(2), $_SERVER['PHP_SELF'], "assets", "networkequipment");
+   Html::header(NetworkEquipment::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "assets", "networkequipment");
    $netdevice->display(array('id'           => $_GET["id"],
                              'withtemplate' => $_GET["withtemplate"]));
    Html::footer();

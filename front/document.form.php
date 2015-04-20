@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: document.form.php 22958 2014-04-28 18:56:16Z moyo $
+ * @version $Id: document.form.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -99,7 +99,7 @@ if (isset($_POST["add"])) {
 } else if (isset($_GET['popup'])) {
    $doc->showImagePaste($_GET["name"]);
 } else {
-   Html::header(Document::getTypeName(2), $_SERVER['PHP_SELF'], "management","document");
+   Html::header(Document::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "management","document");
    $doc->display(array('id' =>$_GET["id"]));
    Html::footer();
 }

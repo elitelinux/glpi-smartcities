@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: stat.class.php 23290 2015-01-09 10:39:13Z yllen $
+ * @version $Id: stat.class.php 23449 2015-04-17 10:29:02Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -436,8 +436,8 @@ class Stat extends CommonGLPI {
             echo Search::showHeaderItem($output_type, __('Number of late tickets'), $header_num);
             echo Search::showHeaderItem($output_type, __('Number of closed tickets'), $header_num);
          } else {
-            echo Search::showHeaderItem($output_type, _nx('ticket','Opened','Opened',2), $header_num);
-            echo Search::showHeaderItem($output_type, _nx('ticket','Solved', 'Solved', 2),
+            echo Search::showHeaderItem($output_type, _nx('ticket','Opened','Opened', Session::getPluralNumber()), $header_num);
+            echo Search::showHeaderItem($output_type, _nx('ticket','Solved', 'Solved', Session::getPluralNumber()),
                                         $header_num);
             echo Search::showHeaderItem($output_type, __('Late'), $header_num);
             echo Search::showHeaderItem($output_type, __('Closed'), $header_num);
@@ -455,9 +455,9 @@ class Stat extends CommonGLPI {
                                            $header_num);
 
             } else {
-               echo Search::showHeaderItem($output_type, _nx('survey','Opened','Opened',2),
+               echo Search::showHeaderItem($output_type, _nx('survey','Opened','Opened', Session::getPluralNumber()),
                                            $header_num);
-               echo Search::showHeaderItem($output_type, _nx('survey','Answered','Answered',2),
+               echo Search::showHeaderItem($output_type, _nx('survey','Answered','Answered', Session::getPluralNumber()),
                                            $header_num);
                echo Search::showHeaderItem($output_type, __('Average'), $header_num);
             }
@@ -865,9 +865,16 @@ class Stat extends CommonGLPI {
             $devtable = getTableForItemType('Computer_'.$value2);
             $fkname   = getForeignKeyFieldForTable(getTableForItemType($value2));
             //select computers IDs that are using this device;
-            $LEFTJOIN = " INNER JOIN `glpi_computers`
-                              ON (`glpi_computers`.`id` = `$table`.`items_id`
-                                  AND `$table`.`itemtype` = 'Computer')
+            $LEFTJOIN = '';
+            $linkdetable = $table;
+            if ($itemtype == 'Ticket') {
+               $linkedtable = 'glpi_items_tickets';
+               $LEFTJOIN .= " LEFT JOIN `glpi_items_tickets`
+                                 ON (`glpi_tickets`.`id` = `glpi_items_tickets`.`tickets_id`)";
+            }
+            $LEFTJOIN .= " INNER JOIN `glpi_computers`
+                              ON (`glpi_computers`.`id` = `$linkedtable`.`items_id`
+                                  AND `$linkedtable`.`itemtype` = 'Computer')
                           INNER JOIN `$devtable`
                               ON (`glpi_computers`.`id` = `$devtable`.`computers_id`
                                   AND `$devtable`.`$fkname` = '$value')";
@@ -877,9 +884,16 @@ class Stat extends CommonGLPI {
          case "comp_champ" :
             $ftable   = getTableForItemType($value2);
             $champ    = getForeignKeyFieldForTable($ftable);
-            $LEFTJOIN = " INNER JOIN `glpi_computers`
-                              ON (`glpi_computers`.`id` = `$table`.`items_id`
-                                  AND `$table`.`itemtype` = 'Computer')";
+                  $LEFTJOIN = '';
+            $linkdetable = $table;
+            if ($itemtype == 'Ticket') {
+               $linkedtable = 'glpi_items_tickets';
+               $LEFTJOIN .= " LEFT JOIN `glpi_items_tickets`
+                                 ON (`glpi_tickets`.`id` = `glpi_items_tickets`.`tickets_id`)";
+            }
+            $LEFTJOIN .= " INNER JOIN `glpi_computers`
+                              ON (`glpi_computers`.`id` = `$linkedtable`.`items_id`
+                                  AND `$linkedtable`.`itemtype` = 'Computer')";
             $WHERE   .= " AND `glpi_computers`.`$champ` = '$value'
                           AND `glpi_computers`.`is_template` <> '1'";
             break;
@@ -1425,16 +1439,18 @@ class Stat extends CommonGLPI {
       }
       $date1 .= " 00:00:00";
 
-      $query = "SELECT `itemtype`,
-                       `items_id`,
+      $query = "SELECT `glpi_items_tickets`.`itemtype`,
+                       `glpi_items_tickets`.`items_id`,
                        COUNT(*) AS NB
                 FROM `glpi_tickets`
+                LEFT JOIN `glpi_items_tickets`
+                   ON (`glpi_tickets`.`id` = `glpi_items_tickets`.`tickets_id`)
                 WHERE `date` <= '$date2'
-                      AND `date` >= '$date1' ".
+                      AND `glpi_tickets`.`date` >= '$date1' ".
                       getEntitiesRestrictRequest("AND","glpi_tickets")."
-                      AND `itemtype` <> ''
-                      AND `items_id` > 0
-                GROUP BY `itemtype`, `items_id`
+                      AND `glpi_items_tickets`.`itemtype` <> ''
+                      AND `glpi_items_tickets`.`items_id` > 0
+                GROUP BY `glpi_items_tickets`.`itemtype`, `glpi_items_tickets`.`items_id`
                 ORDER BY NB DESC";
 
       $result  = $DB->query($query);
@@ -1456,7 +1472,7 @@ class Stat extends CommonGLPI {
          echo Search::showHeader($output_type, $end_display-$start+1, 2, 1);
          $header_num = 1;
          echo Search::showNewLine($output_type);
-         echo Search::showHeaderItem($output_type, __('Associated element'), $header_num);
+         echo Search::showHeaderItem($output_type, _n('Associated element', 'Associated elements', 2), $header_num);
          if ($view_entities) {
             echo Search::showHeaderItem($output_type, __('Entity'), $header_num);
          }
@@ -1523,7 +1539,7 @@ class Stat extends CommonGLPI {
       $stat_list["Ticket"]["Ticket_Item"]["file"]     = "stat.item.php";
 
       if (Problem::canView()) {
-         $opt_list["Problem"]                               = _n('Problem', 'Problems', 2);
+         $opt_list["Problem"]                               = _n('Problem', 'Problems', Session::getPluralNumber());
 
          $stat_list["Problem"]["Problem_Global"]["name"]    = __('Global');
          $stat_list["Problem"]["Problem_Global"]["file"]    = "stat.global.php?itemtype=Problem";
@@ -1532,7 +1548,7 @@ class Stat extends CommonGLPI {
       }
 
       if (Change::canView()) {
-         $opt_list["Change"]                             = _n('Change', 'Changes', 2);
+         $opt_list["Change"]                             = _n('Change', 'Changes', Session::getPluralNumber());
 
          $stat_list["Change"]["Change_Global"]["name"]   = __('Global');
          $stat_list["Change"]["Change_Global"]["file"]   = "stat.global.php?itemtype=Change";

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: getDropdownValue.php 23260 2014-12-03 08:41:12Z moyo $
+ * @version $Id: getDropdownValue.php 23423 2015-04-09 05:45:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -142,9 +142,9 @@ if ($item instanceof CommonTreeDropdown) {
          }
          // Also search by id
          if ($displaywith && in_array('id', $_GET['displaywith'])) {
-            $where .= " OR `$table`.`id` ".$search;         
+            $where .= " OR `$table`.`id` ".$search;
          }
-         
+
          $where .= ")";
       }
    }
@@ -437,6 +437,8 @@ if ($item instanceof CommonTreeDropdown) {
    $field = "name";
    if ($item instanceof CommonDevice) {
       $field = "designation";
+   } else if ($item instanceof Item_Devices) {
+      $field = "itemtype";
    }
 
    if ($one_item >= 0) {
@@ -454,7 +456,7 @@ if ($item instanceof CommonTreeDropdown) {
          }
          // Also search by id
          if ($displaywith && in_array('id', $_GET['displaywith'])) {
-            $where .= " OR `$table`.`id` ".$search;         
+            $where .= " OR `$table`.`id` ".$search;
          }
 
          $where .= ')';
@@ -567,6 +569,13 @@ if ($item instanceof CommonTreeDropdown) {
 
             if (isset($data['transname']) && !empty($data['transname'])) {
                $outputval = $data['transname'];
+            } else if ($field == 'itemtype' && class_exists($data['itemtype'])) {
+               $tmpitem = new $data[$field]();
+               if ($tmpitem->getFromDB($data['items_id'])) {
+                  $outputval = sprintf(__('%1$s - %2$s'), $tmpitem->getTypeName(),$tmpitem->getName());
+               } else {
+                  $outputval = $tmpitem->getTypeName();
+               }
             } else {
                $outputval = $data[$field];
             }

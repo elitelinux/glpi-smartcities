@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: stat.global.php 22784 2014-03-14 10:48:44Z yllen $
+ * @version $Id: stat.global.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -115,7 +115,7 @@ foreach ($available as $key => $name) {
 
 Stat::showGraph($toprint, array('title'     => _x('Quantity', 'Number'),
                                 'showtotal' => 1,
-                                'unit'      => $item->getTypeName(2)));
+                                'unit'      => $item->getTypeName(Session::getPluralNumber())));
 
 //Temps moyen de resolution d'intervention
 $values2['avgsolved'] = Stat::constructEntryValues($_GET['itemtype'] ,"inter_avgsolvedtime",

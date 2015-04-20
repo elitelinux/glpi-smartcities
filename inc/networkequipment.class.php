@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: networkequipment.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: networkequipment.class.php 23435 2015-04-09 13:37:15Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -68,7 +68,7 @@ class NetworkEquipment extends CommonDBTM {
    static function getAdditionalMenuOptions() {
 
       if (static::canView()) {
-         $options['networkport']['title'] = NetworkPort::getTypeName(2);
+         $options['networkport']['title'] = NetworkPort::getTypeName(Session::getPluralNumber());
          $options['networkport']['page']  = NetworkPort::getFormURL(false);
 
          return $options;
@@ -83,7 +83,7 @@ class NetworkEquipment extends CommonDBTM {
     * @since version 0.85
    **/
    static function getMenuName() {
-      return _n('Network', 'Networks', 2);
+      return _n('Network', 'Networks', Session::getPluralNumber());
    }
 
 
@@ -130,6 +130,7 @@ class NetworkEquipment extends CommonDBTM {
       $this->addStandardTab('Document_Item', $ong, $options);
       $this->addStandardTab('Ticket', $ong, $options);
       $this->addStandardTab('Item_Problem', $ong, $options);
+      $this->addStandardTab('Change_Item', $ong, $options);
       $this->addStandardTab('Link', $ong, $options);
       $this->addStandardTab('Notepad', $ong, $options);
       $this->addStandardTab('Reservation', $ong, $options);

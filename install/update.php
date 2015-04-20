@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: update.php 23298 2015-01-21 09:57:42Z moyo $
+ * @version $Id: update.php 23307 2015-01-21 15:34:24Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -766,7 +766,11 @@ function updateDbUpTo031() {
       case "0.85" :
       case "0.85.1" :
       case "0.85.2" :
-         break;
+         include("update_085_0853.php");
+         update085to0853();
+
+      case "0.85.3" :
+      break;
 
       default :
          include("update_031_04.php");
@@ -796,7 +800,7 @@ function updateDbUpTo031() {
    }
 
    // Update version number and default langage and new version_founded ---- LEAVE AT THE END
-   Config::setConfigurationValues('core', array('version'             => '0.85.2',
+   Config::setConfigurationValues('core', array('version'             => '0.85.3',
                                                 'language'            => $glpilanguage,
                                                 'founded_new_version' => ''));
 

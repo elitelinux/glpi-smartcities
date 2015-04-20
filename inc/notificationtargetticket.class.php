@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: notificationtargetticket.class.php 23294 2015-01-21 08:03:55Z moyo $
+ * @version $Id: notificationtargetticket.class.php 23376 2015-03-10 08:55:48Z tsmr $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -56,7 +56,8 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
     * @param $options   array
     */
    function __construct($entity='', $event='', $object=null, $options=array()) {
-
+      global $CFG_GLPI;
+      
       parent::__construct($entity, $event, $object, $options);
 
       $this->options['sendprivate'] = false;
@@ -67,6 +68,10 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
 
       if (isset($options['task_id'])) {
          $this->options['sendprivate'] = $options['is_private'];
+      }
+      
+      if ($CFG_GLPI["use_rich_text"]) {
+         $this->html_tags[] = '##ticket.content##';
       }
    }
 
@@ -175,13 +180,17 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
    **/
    function getObjectItem($event='') {
 
-      if ($this->obj) {
-         $itemtype = $this->obj->getField('itemtype');
-
-         if (($itemtype != NOT_AVAILABLE) && ($itemtype != '')
-             && ($item = getItemForItemtype($itemtype))) {
-            $item->getFromDB($this->obj->getField('items_id'));
-            $this->target_object = $item;
+      if ($this->obj && isset($this->obj->fields['id']) && !empty($this->obj->fields['id'])) {
+         $item_ticket = new Item_Ticket();
+         $data = $item_ticket->find("`tickets_id` = ".$this->obj->fields['id']);
+         foreach ($data as $val) {
+            if (($val['itemtype'] != NOT_AVAILABLE) 
+                    && ($val['itemtype'] != '') 
+                    && ($item = getItemForItemtype($val['itemtype']))) {
+               
+               $item->getFromDB($val['items_id']);
+               $this->target_object[] = $item;
+            }
          }
       }
    }
@@ -282,7 +291,13 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
 
       // Common ITIL datas
       $datas            = parent::getDatasForObject($item, $options, $simple);
+      $datas['##ticket.description##'] = Html::clean($datas['##ticket.description##']);
 
+      $datas['##ticket.description##']
+            = $item->convertContentForNotification($datas['##ticket.description##'],
+                                                   $item);
+                                                   
+      $datas['##ticket.content##'] = $datas['##ticket.description##'];
       // Specific datas
       $datas['##ticket.urlvalidation##']
                         = $this->formatURL($options['additionnaloption']['usertype'],
@@ -332,72 +347,85 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
       $datas['##ticket.item.serial##']        = '';
       $datas['##ticket.item.otherserial##']   = '';
       $datas['##ticket.item.location##']      = '';
-      $datas['##ticket.item.contact']         = '';
+      $datas['##ticket.item.contact##']       = '';
       $datas['##ticket.item.contactnumber##'] = '';
       $datas['##ticket.item.user##']          = '';
       $datas['##ticket.item.group##']         = '';
       $datas['##ticket.item.model##']         = '';
 
-      if (isset($item->fields['itemtype'])
-          && ($hardware = getItemForItemtype($item->fields['itemtype']))
-          && isset($item->fields["items_id"])
-          && $hardware->getFromDB($item->fields["items_id"])) {
-         //Object type
-         $datas['##ticket.itemtype##']  = $hardware->getTypeName();
+      $item_ticket = new Item_Ticket();
+      $items = $item_ticket->find("`tickets_id` = ".$this->obj->fields['id']);
+      $datas['items'] = array();
+      if (count($items)) {
+         foreach ($items as $val) {
+            if (isset($val['itemtype'])
+                && ($hardware = getItemForItemtype($val['itemtype']))
+                && isset($val["items_id"])
+                && $hardware->getFromDB($val["items_id"])) {
+               
+               $tmp = array();
+               
+               //Object type
+               $tmp['##ticket.itemtype##']  = $hardware->getTypeName();
 
-         //Object name
-         $datas['##ticket.item.name##'] = $hardware->getField('name');
+               //Object name
+               $tmp['##ticket.item.name##'] = $hardware->getField('name');
 
-         //Object serial
-         if ($hardware->isField('serial')) {
-            $datas['##ticket.item.serial##'] = $hardware->getField('serial');
-         }
+               //Object serial
+               if ($hardware->isField('serial')) {
+                  $tmp['##ticket.item.serial##'] = $hardware->getField('serial');
+               }
 
-         //Object contact
-         if ($hardware->isField('contact')) {
-            $datas['##ticket.item.contact##'] = $hardware->getField('contact');
-         }
+               //Object contact
+               if ($hardware->isField('contact')) {
+                  $tmp['##ticket.item.contact##'] = $hardware->getField('contact');
+               }
 
-         //Object contact num
-         if ($hardware->isField('contact_num')) {
-            $datas['##ticket.item.contactnumber##'] = $hardware->getField('contact_num');
-         }
+               //Object contact num
+               if ($hardware->isField('contact_num')) {
+                  $tmp['##ticket.item.contactnumber##'] = $hardware->getField('contact_num');
+               }
 
-         //Object otherserial
-         if ($hardware->isField('otherserial')) {
-            $datas['##ticket.item.otherserial##'] = $hardware->getField('otherserial');
-         }
+               //Object otherserial
+               if ($hardware->isField('otherserial')) {
+                  $tmp['##ticket.item.otherserial##'] = $hardware->getField('otherserial');
+               }
 
-         //Object location
-         if ($hardware->isField('locations_id')) {
-            $datas['##ticket.item.location##']
-                        = Dropdown::getDropdownName('glpi_locations',
-                                                    $hardware->getField('locations_id'));
-         }
+               //Object location
+               if ($hardware->isField('locations_id')) {
+                  $tmp['##ticket.item.location##']
+                              = Dropdown::getDropdownName('glpi_locations',
+                                                          $hardware->getField('locations_id'));
+               }
 
-         //Object user
-         if ($hardware->getField('users_id')) {
-            $user_tmp = new User();
-            if ($user_tmp->getFromDB($hardware->getField('users_id'))) {
-               $datas['##ticket.item.user##'] = $user_tmp->getName();
+               //Object user
+               if ($hardware->getField('users_id')) {
+                  $user_tmp = new User();
+                  if ($user_tmp->getFromDB($hardware->getField('users_id'))) {
+                     $tmp['##ticket.item.user##'] = $user_tmp->getName();
+                  }
+               }
+
+               //Object group
+               if ($hardware->getField('groups_id')) {
+                  $tmp['##ticket.item.group##']
+                              = Dropdown::getDropdownName('glpi_groups', $hardware->getField('groups_id'));
+               }
+
+               $modeltable = getSingular($hardware->getTable())."models";
+               $modelfield = getForeignKeyFieldForTable($modeltable);
+
+               if ($hardware->isField($modelfield)) {
+                  $tmp['##ticket.item.model##']
+                              = Dropdown::getDropdownName($modeltable, $hardware->getField($modelfield));
+               }
+               
+               $datas['items'][] = $tmp;
             }
          }
-
-         //Object group
-         if ($hardware->getField('groups_id')) {
-            $datas['##ticket.item.group##']
-                        = Dropdown::getDropdownName('glpi_groups', $hardware->getField('groups_id'));
-         }
-
-         $modeltable = getSingular($hardware->getTable())."models";
-         $modelfield = getForeignKeyFieldForTable($modeltable);
-
-         if ($hardware->isField($modelfield)) {
-            $datas['##ticket.item.model##']
-                        = Dropdown::getDropdownName($modeltable, $hardware->getField($modelfield));
-         }
-
       }
+      
+      $datas['##ticket.numberofitems##'] = count($datas['items']);
 
       // Get followups, log, validation, satisfaction, linked tickets
       if (!$simple) {
@@ -625,7 +653,7 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
                     'ticket.item.serial'           => __('Serial number'),
                     'ticket.item.otherserial'      => __('Inventory number'),
                     'ticket.item.location'         => sprintf(__('%1$s: %2$s'),
-                                                              __('Associated element'),
+                                                              _n('Associated element', 'Associated elements', 2),
                                                               __('Location')),
                     'ticket.item.model'            => __('Model'),
                     'ticket.item.contact'          => __('Alternate username'),
@@ -642,6 +670,7 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
                     'ticket.numberoflinkedtickets' => _x('quantity', 'Number of linked tickets'),
                     'ticket.numberofproblems'      => _x('quantity', 'Number of problems'),
                     'ticket.numberofchanges'       => _x('quantity', 'Number of changes'),
+                    'ticket.numberofitems'         => _x('quantity', 'Number of items'),
                     'ticket.autoclose'             => __('Automatic closing of solved tickets after'),
                     'ticket.location'              => __('Location'),
                     'ticket.globalvalidation'      => __('Global approval status'),
@@ -724,11 +753,12 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
       }
 
      //Foreach global tags
-     $tags = array('followups'     => _n('Followup', 'Followups', 2),
-                   'validations'   => _n('Validation','Validations',2),
-                   'linkedtickets' => _n('Linked ticket', 'Linked tickets', 2),
-                   'problems'      => _n('Problem', 'Problems', 2),
-                   'changes'       => _n('Change', 'Changes', 2));
+     $tags = array('followups'     => _n('Followup', 'Followups', Session::getPluralNumber()),
+                   'validations'   => _n('Validation','Validations', Session::getPluralNumber()),
+                   'linkedtickets' => _n('Linked ticket', 'Linked tickets', Session::getPluralNumber()),
+                   'problems'      => _n('Problem', 'Problems', Session::getPluralNumber()),
+                   'changes'       => _n('Change', 'Changes', Session::getPluralNumber()),
+                   'items'         => _n('Associated item', 'Associated items', Session::getPluralNumber()));
 
       foreach ($tags as $tag => $label) {
          $this->addTagToList(array('tag'     => $tag,
@@ -739,9 +769,9 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
 
 
       //Tags with just lang
-      $tags = array('ticket.linkedtickets'    => _n('Linked ticket', 'Linked tickets', 2),
-                    'ticket.problems'         => _n('Problem', 'Problems', 2),
-                    'ticket.changes'          => _n('Change', 'Changes', 2),
+      $tags = array('ticket.linkedtickets'    => _n('Linked ticket', 'Linked tickets', Session::getPluralNumber()),
+                    'ticket.problems'         => _n('Problem', 'Problems', Session::getPluralNumber()),
+                    'ticket.changes'          => _n('Change', 'Changes', Session::getPluralNumber()),
                     'ticket.autoclosewarning'
                      => sprintf(_n('Without a reply, the ticket will be automatically closed after %s day',
                                    'Without a reply, the ticket will be automatically closed after %s days',

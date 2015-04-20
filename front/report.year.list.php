@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: report.year.list.php 23162 2014-09-12 17:14:01Z yllen $
+ * @version $Id: report.year.list.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -35,7 +35,7 @@ include ("../inc/includes.php");
 
 Session::checkRight("reports", READ);
 
-Html::header(Report::getTypeName(2), $_SERVER['PHP_SELF'], "tools", "report");
+Html::header(Report::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "tools", "report");
 
 Report::title();
 

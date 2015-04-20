@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: ticket.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: ticket.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -36,9 +36,9 @@ include ('../inc/includes.php');
 Session::checkLoginUser();
 
 if ($_SESSION["glpiactiveprofile"]["interface"] == "helpdesk") {
-   Html::helpHeader(Ticket::getTypeName(2),'',$_SESSION["glpiname"]);
+   Html::helpHeader(Ticket::getTypeName(Session::getPluralNumber()),'',$_SESSION["glpiname"]);
 } else {
-   Html::header(Ticket::getTypeName(2),'',"helpdesk","ticket");
+   Html::header(Ticket::getTypeName(Session::getPluralNumber()),'',"helpdesk","ticket");
 }
 
 if ($_SESSION['glpirefresh_ticket_list'] > 0) {

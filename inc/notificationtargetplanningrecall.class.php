@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: notificationtargetplanningrecall.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: notificationtargetplanningrecall.class.php 23346 2015-02-03 15:11:10Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -63,7 +63,9 @@ class NotificationTargetPlanningRecall extends NotificationTarget {
    function getDatasForTemplate($event, $options=array()) {
 
       $events                             = $this->getAllEvents();
-
+      
+      $this->target_object = reset($this->target_object);
+      
       $this->datas['##recall.action##']   = $events[$event];
       $this->datas['##recall.itemtype##'] = $this->target_object->getTypeName(1);
       $this->datas['##recall.item.URL##'] = '';
@@ -178,7 +180,7 @@ class NotificationTargetPlanningRecall extends NotificationTarget {
       if ($this->obj) {
          if (($item = getItemForItemtype($this->obj->getField('itemtype')))
              && $item->getFromDB($this->obj->getField('items_id'))) {
-            $this->target_object = $item;
+            $this->target_object[] = $item;
          }
       }
    }

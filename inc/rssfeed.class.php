@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: rssfeed.class.php 22835 2014-04-02 07:00:53Z moyo $
+ * @version $Id: rssfeed.class.php 23401 2015-03-20 08:06:12Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -73,13 +73,17 @@ class RSSFeed extends CommonDBTM {
 
 
    static function getTypeName($nb=0) {
-      return _n('RSS feed', 'RSS feeds', $nb);
+
+      if (Session::haveRight('rssfeed_public',READ)) {
+         return _n('RSS feed', 'RSS feed', $nb);
+      }
+      return _n('Personal RSS feed', 'Personal RSS feed', $nb);
    }
 
 
    static function canCreate() {
 
-      return (Session::haveRight('rssfeed_public', CREATE)
+      return (Session::haveRight(self::$rightname, CREATE)
               || ($_SESSION['glpiactiveprofile']['interface'] != 'helpdesk'));
    }
 
@@ -111,6 +115,24 @@ class RSSFeed extends CommonDBTM {
       return (($this->fields['users_id'] == Session::getLoginUserID())
               || (Session::haveRight('rssfeed_public', UPDATE)
                   && $this->haveVisibilityAccess()));
+   }
+
+
+   /**
+    * @since 0.85
+    * for personal rss feed
+   **/
+   static function canUpdate() {
+      return ($_SESSION['glpiactiveprofile']['interface'] != 'helpdesk');
+   }
+
+
+   /**
+    * @since 0.85
+    * for personal rss feed
+   **/
+   static function canPurge() {
+      return ($_SESSION['glpiactiveprofile']['interface'] != 'helpdesk');
    }
 
 
@@ -468,13 +490,17 @@ class RSSFeed extends CommonDBTM {
       if (self::canView()) {
          switch ($item->getType()) {
             case 'RSSFeed' :
-               if ($_SESSION['glpishow_count_on_tabs']) {
-                  $nb = $item->countVisibilities();
-                  return array(1 => __('Content'),
-                               2 => self::createTabEntry(_n('Target','Targets', $nb),
-                                                         $nb));
+               $showtab = array(1 => __('Content'));
+               if (session::haveRight('rssfeed_public', UPDATE)) {
+                  if ($_SESSION['glpishow_count_on_tabs']) {
+                     $nb = $item->countVisibilities();
+                     $showtab[2] = self::createTabEntry(_n('Target','Targets', $nb),
+                                                         $nb);
+                     return $showtab;
+                  }
+                  $showtab[2] = _n('Target','Targets', Session::getPluralNumber());
                }
-               return array(2 => _n('Target','Targets',2));
+               return $showtab;
          }
       }
       return '';
@@ -856,7 +882,7 @@ class RSSFeed extends CommonDBTM {
                    ORDER BY `glpi_rssfeeds`.`name`";
 
          $titre = "<a href='".$CFG_GLPI["root_doc"]."/front/rssfeed.php'>".
-                    _n('Personal RSS feed', 'Personal RSS feeds', 2)."</a>";
+                    _n('Personal RSS feed', 'Personal RSS feeds', Session::getPluralNumber())."</a>";
 
       } else {
          // Show public rssfeeds / not mines : need to have access to public rssfeeds
@@ -879,9 +905,9 @@ class RSSFeed extends CommonDBTM {
 
          if ($_SESSION['glpiactiveprofile']['interface'] != 'helpdesk') {
             $titre = "<a href=\"".$CFG_GLPI["root_doc"]."/front/rssfeed.php\">".
-                       _n('Public RSS feed', 'Public RSS feeds', 2)."</a>";
+                       _n('Public RSS feed', 'Public RSS feeds', Session::getPluralNumber())."</a>";
          } else {
-            $titre = _n('Public RSS feed', 'Public RSS feeds', 2);
+            $titre = _n('Public RSS feed', 'Public RSS feeds', Session::getPluralNumber());
          }
       }
 
@@ -906,8 +932,9 @@ class RSSFeed extends CommonDBTM {
       echo "<br><table class='tab_cadrehov'>";
       echo "<tr class='noHover'><th colspan='2'><div class='relative'><span>$titre</span>";
 
-      if (self::canCreate()) {
-         echo "<span class='rssfeed_right'>";
+      if (($personal && self::canCreate())
+            || (!$personal && Session::haveRight('rssfeed_public', CREATE))) {
+         echo "<span class='floatright'>";
          echo "<a href='".$CFG_GLPI["root_doc"]."/front/rssfeed.form.php'>";
          echo "<img src='".$CFG_GLPI["root_doc"]."/pics/plus.png' alt='".__s('Add')."' title=\"".
                 __s('Add')."\"></a></span>";
@@ -1021,7 +1048,7 @@ class RSSFeed extends CommonDBTM {
          $header_end    .= "</th>";
       }
       $header_end .= "<th>".__('Type')."</th>";
-      $header_end .= "<th>"._n('Recipient', 'Recipients', 2)."</th>";
+      $header_end .= "<th>"._n('Recipient', 'Recipients', Session::getPluralNumber())."</th>";
       $header_end .= "</tr>";
       echo $header_begin.$header_top.$header_end;
 

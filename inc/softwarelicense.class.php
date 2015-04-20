@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: softwarelicense.class.php 22856 2014-04-02 14:03:42Z moyo $
+ * @version $Id: softwarelicense.class.php 23327 2015-02-02 17:15:33Z tsmr $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -678,7 +678,7 @@ class SoftwareLicense extends CommonDBTM {
       }
 
       // Display the pager
-      Html::printAjaxPager(self::getTypeName(2), $start, $number);
+      Html::printAjaxPager(self::getTypeName(Session::getPluralNumber()), $start, $number);
 
       $rand  = mt_rand();
       $query = "SELECT `glpi_softwarelicenses`.*,
@@ -805,7 +805,7 @@ class SoftwareLicense extends CommonDBTM {
             echo "<td class='numeric'>".(($tot > 0)?$tot."":__('Unlimited')).
                  "</td>";
             $color = ($software->fields['is_valid']?'green':'red');
-            echo "<td class='numeric $color'>".$tot_assoc."</td>";
+            echo "<td class='numeric $color'>".$tot_assoc."</td><td></td><td></td><td></td><td></td>";
             echo "</tr>";
             echo "</table>\n";
 
@@ -820,7 +820,7 @@ class SoftwareLicense extends CommonDBTM {
             _e('No item found');
          }
       }
-      Html::printAjaxPager(self::getTypeName(2), $start, $number);
+      Html::printAjaxPager(self::getTypeName(Session::getPluralNumber()), $start, $number);
 
       echo "</div>";
    }
@@ -863,10 +863,10 @@ class SoftwareLicense extends CommonDBTM {
             case 'Software' :
                if ($_SESSION['glpishow_count_on_tabs']) {
                   $count = self::countForSoftware($item->getID());
-                  return self::createTabEntry(self::getTypeName(2),
+                  return self::createTabEntry(self::getTypeName(Session::getPluralNumber()),
                                               (($count >= 0) ? $count : '&infin;'));
                }
-               return self::getTypeName(2);
+               return self::getTypeName(Session::getPluralNumber());
          }
       }
       return '';

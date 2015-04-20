@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: project.class.php 23082 2014-07-17 16:44:45Z moyo $
+ * @version $Id: project.class.php 23312 2015-01-21 17:16:49Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -130,9 +130,9 @@ class Project extends CommonDBTM {
                   $nb = countElementsInTable($this->getTable(),
                                              "`".$this->getForeignKeyField()."` = '".
                                                 $item->getID()."'");
-                  $ong[1] = self::createTabEntry($this->getTypeName(2), $nb);
+                  $ong[1] = self::createTabEntry($this->getTypeName(Session::getPluralNumber()), $nb);
                } else {
-                  $ong[1] = $this->getTypeName(2);
+                  $ong[1] = $this->getTypeName(Session::getPluralNumber());
                }
                $ong[2] = __('GANTT');
                return $ong;
@@ -186,7 +186,7 @@ class Project extends CommonDBTM {
       // No view to project by right on tasks add it
       if (!static::canView()
           && Session::haveRight('projecttask', ProjectTask::READMY)) {
-         $menu['project']['title']                    = Project::getTypeName(2);
+         $menu['project']['title']                    = Project::getTypeName(Session::getPluralNumber());
          $menu['project']['page']                     = ProjectTask::getSearchURL(false);
 
          $links = static::getAdditionalMenuLinks();
@@ -536,7 +536,7 @@ class Project extends CommonDBTM {
       $items[__('Last update')]        = "date_mod";
 
       if (count($_SESSION["glpiactiveentities"]) > 1) {
-         $items[_n('Entity', 'Entities', 2)] = "glpi_entities.completename";
+         $items[_n('Entity', 'Entities', Session::getPluralNumber())] = "glpi_entities.completename";
       }
 
       $items[__('Priority')]         = "priority";
@@ -1052,7 +1052,7 @@ class Project extends CommonDBTM {
          $header_end    .= "</th>";
       }
       $header_end .= "<th>".__('Type')."</th>";
-      $header_end .= "<th>"._n('Member', 'Members', 2)."</th>";
+      $header_end .= "<th>"._n('Member', 'Members', Session::getPluralNumber())."</th>";
       $header_end .= "</tr>";
       echo $header_begin.$header_top.$header_end;
 
@@ -1255,6 +1255,9 @@ class Project extends CommonDBTM {
                      break;
 
                   case 'task' :
+                     if (isset($val['is_milestone']) && $val['is_milestone']) {
+                        $color = 'ganttMilestone';
+                     }
                      $temp = array('name'   => ' ',
                                    'desc'   => str_repeat('-',$val['parents']).$val['link'],
                                    'values' => array(array('from'
@@ -1264,7 +1267,7 @@ class Project extends CommonDBTM {
                                                            'desc'
                                                             => $val['desc'],
                                                            'label'
-                                                            => $val['percent']."%",
+                                                            => strlen($val['percent']==0)?'':$val['percent']."%",
                                                            'customClass'
                                                             => $color))
                                  );
@@ -1309,11 +1312,6 @@ class Project extends CommonDBTM {
                                  onAddClick: function(dt, rowId) {
    //                                         alert('Empty space clicked - add an item!');
                                  },
-                                 onRender: function() {
-   //                                         if (window.console && typeof console.log === 'function') {
-   //                                                 console.log('chart rendered');
-   //                                         }
-                                 }
                            });";
          echo Html::scriptBlock($js);
       } else {

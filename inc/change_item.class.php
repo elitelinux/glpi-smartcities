@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: change_item.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: change_item.class.php 23436 2015-04-09 14:06:48Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -267,7 +267,57 @@ class Change_Item extends CommonDBRelation{
                                              "`changes_id` = '".$item->getID()."'");
                }
 
-               return self::createTabEntry(_n('Item', 'Items', 2), $nb);
+               return self::createTabEntry(_n('Item', 'Items', Session::getPluralNumber()), $nb);
+            case 'User' :
+               $nb = 0;
+               if ($_SESSION['glpishow_count_on_tabs']) {
+                
+                  $nb = countDistinctElementsInTable('glpi_changes_users','changes_id',
+                                             "`users_id` = '".$item->getID()."'");
+               }
+
+               return self::createTabEntry(Change::getTypeName(Session::getPluralNumber()), $nb);
+            case 'Group' :
+               $nb = 0;
+               if ($_SESSION['glpishow_count_on_tabs']) {
+                  $nb = countDistinctElementsInTable('glpi_changes_groups','changes_id',
+                                             "`groups_id` = '".$item->getID()."'");
+               }
+
+               return self::createTabEntry(Change::getTypeName(Session::getPluralNumber()), $nb);
+            case 'Supplier' :
+               $nb = 0;
+               if ($_SESSION['glpishow_count_on_tabs']) {
+                  $nb = countDistinctElementsInTable('glpi_changes_suppliers','changes_id',
+                                             "`suppliers_id` = '".$item->getID()."'");
+               }
+
+               return self::createTabEntry(Change::getTypeName(Session::getPluralNumber()), $nb);
+               
+            default :
+               if (Session::haveRight("change", Change::READALL)) {
+                  $nb = 0;
+                  if ($_SESSION['glpishow_count_on_tabs']) {
+                     // Direct one
+                     $nb = countElementsInTable('glpi_changes_items',
+                                                " `itemtype` = '".$item->getType()."'
+                                                   AND `items_id` = '".$item->getID()."'");
+                     // Linked items
+                     $linkeditems = $item->getLinkedItems();
+
+                     if (count($linkeditems)) {
+                        foreach ($linkeditems as $type => $tab) {
+                           foreach ($tab as $ID) {
+                              $nb += countElementsInTable('glpi_changes_items',
+                                                          " `itemtype` = '$type'
+                                                            AND `items_id` = '$ID'");
+                           }
+                        }
+                     }
+                  }
+                  return self::createTabEntry(Change::getTypeName(Session::getPluralNumber()), $nb);
+               }
+               
          }
       }
       return '';
@@ -276,11 +326,17 @@ class Change_Item extends CommonDBRelation{
 
    static function displayTabContentForItem(CommonGLPI $item, $tabnum=1, $withtemplate=0) {
 
-      if ($item->getType() == 'Change') {
-         self::showForChange($item);
+      switch ($item->getType()) {
+         case 'Change' :
+            self::showForChange($item);
+            break;
+
+         default :
+            Change::showListForItem($item);
       }
       return true;
-   }
+
+    }
 
 }
 ?>

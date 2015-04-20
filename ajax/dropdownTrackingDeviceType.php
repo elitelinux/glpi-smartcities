@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: dropdownTrackingDeviceType.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: dropdownTrackingDeviceType.php 23346 2015-02-03 15:11:10Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -55,6 +55,13 @@ if (isset($_POST["itemtype"])
               'entity_restrict'     => $_POST['entity_restrict'],
               'table'               => $table,
               'myname'              => $_POST["myname"]);
+
+   if(isset($_POST["used"]) && !empty($_POST["used"])){
+      if(isset($_POST["used"][$_POST["itemtype"]])){
+         $p["used"] = $_POST["used"][$_POST["itemtype"]];
+      }
+   }
+   
    echo Html::jsAjaxDropdown($_POST['myname'], $field_id,
                               $CFG_GLPI['root_doc']."/ajax/getDropdownFindNum.php",
                               $p);

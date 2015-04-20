@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: problem.class.php 23122 2014-08-14 17:56:05Z yllen $
+ * @version $Id: problem.class.php 23436 2015-04-09 14:06:48Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -398,8 +398,10 @@ class Problem extends CommonITILObject {
       if (ProblemTask::canCreate()) {
          $actions[__CLASS__.MassiveAction::CLASS_ACTION_SEPARATOR.'add_task'] = __('Add a new task');
       }
-      if (Session::haveRight(self::$rightname, UPDATE)) {
+      if ($this->canAdminActors()) {
          $actions[__CLASS__.MassiveAction::CLASS_ACTION_SEPARATOR.'add_actor'] = __('Add an actor');
+         $actions[__CLASS__.MassiveAction::CLASS_ACTION_SEPARATOR.'update_notif']
+               = __('Set notifications for all actors');
       }
 
       if ($isadmin) {
@@ -458,7 +460,7 @@ class Problem extends CommonITILObject {
 
       $tab += ProblemCost::getSearchOptionsToAdd();
 
-      $tab['ticket']             = Ticket::getTypeName(2);
+      $tab['ticket']             = Ticket::getTypeName(Session::getPluralNumber());
 
       $tab[141]['table']         = 'glpi_problems_tickets';
       $tab[141]['field']         = 'id';
@@ -856,7 +858,7 @@ class Problem extends CommonITILObject {
                Toolbox::append_params($options,'&amp;')."\">".__('Problem followup')."</a>";
 
       echo "</th></tr>";
-      echo "<tr><th>"._n('Problem','Problems',2)."</th><th>"._x('quantity', 'Number')."</th></tr>";
+      echo "<tr><th>"._n('Problem','Problems', Session::getPluralNumber())."</th><th>"._x('quantity', 'Number')."</th></tr>";
 
       foreach ($status as $key => $val) {
          $options['criteria'][0]['value'] = $key;
@@ -969,21 +971,23 @@ class Problem extends CommonITILObject {
       // In percent
       $colsize1 = '13';
       $colsize2 = '37';
-
+        
+      $default_use_notif = Entity::getUsedConfig('is_notif_enable_default', $_SESSION['glpiactive_entity'], '', 1);
+    
       // Set default options
       if (!$ID) {
          $values = array('_users_id_requester'        => Session::getLoginUserID(),
-                         '_users_id_requester_notif'  => array('use_notification'  => 1,
+                         '_users_id_requester_notif'  => array('use_notification'  => $default_use_notif,
                                                                'alternative_email' => ''),
                          '_groups_id_requester'       => 0,
                          '_users_id_assign'           => 0,
-                         '_users_id_assign_notif'     => array('use_notification'  => 1,
+                         '_users_id_assign_notif'     => array('use_notification'  => $default_use_notif,
                                                                'alternative_email' => ''),
                          '_groups_id_assign'          => 0,
                          '_users_id_observer'         => 0,
-                         '_users_id_observer_notif'   => array('use_notification'  => 1,
+                         '_users_id_observer_notif'   => array('use_notification'  => $default_use_notif,
                                                                'alternative_email' => ''),
-                         '_suppliers_id_assign_notif' => array('use_notification'  => 1,
+                         '_suppliers_id_assign_notif' => array('use_notification'  => $default_use_notif,
                                                                'alternative_email' => ''),
                          '_groups_id_observer'        => 0,
                          '_suppliers_id_assign'       => 0,
@@ -1009,6 +1013,7 @@ class Problem extends CommonITILObject {
                $options['urgency']             = $ticket->getField('urgency');
                $options['priority']            = $ticket->getField('priority');
                $options['itilcategories_id']   = $ticket->getField('itilcategories_id');
+               $options['due_date']            = $ticket->getField('due_date');
             }
          }
       }
@@ -1252,6 +1257,8 @@ class Problem extends CommonITILObject {
                   ON (`glpi_problems`.`id` = `glpi_groups_problems`.`problems_id`)
                LEFT JOIN `glpi_problems_users`
                   ON (`glpi_problems`.`id` = `glpi_problems_users`.`problems_id`)
+               LEFT JOIN `glpi_problems_suppliers`
+                  ON (`glpi_problems`.`id` = `glpi_problems_suppliers`.`problems_id`)
                LEFT JOIN `glpi_itilcategories`
                   ON (`glpi_problems`.`itilcategories_id` = `glpi_itilcategories`.`id`)
                $FROM";
@@ -1283,19 +1290,28 @@ class Problem extends CommonITILObject {
 
       switch ($item->getType()) {
          case 'User' :
-            $restrict   = "(`glpi_problems_users`.`users_id` = '".$item->getID()."'
-                            AND `glpi_problems_users`.`type` = ".CommonITILActor::REQUESTER.")";
+            $restrict   = "(`glpi_problems_users`.`users_id` = '".$item->getID()."')";
             $order      = '`glpi_problems`.`date_mod` DESC';
 
             $options['criteria'][0]['field']      = 4; // status
             $options['criteria'][0]['searchtype'] = 'equals';
             $options['criteria'][0]['value']      = $item->getID();
             $options['criteria'][0]['link']       = 'AND';
+
+            $options['criteria'][1]['field']      = 66; // status
+            $options['criteria'][1]['searchtype'] = 'equals';
+            $options['criteria'][1]['value']      = $item->getID();
+            $options['criteria'][1]['link']       = 'OR';
+            
+            $options['criteria'][5]['field']      = 5; // status
+            $options['criteria'][5]['searchtype'] = 'equals';
+            $options['criteria'][5]['value']      = $item->getID();
+            $options['criteria'][5]['link']       = 'OR';
+            
             break;
 
          case 'Supplier' :
-            $restrict   = "(`glpi_problems_suppliers`.`suppliers_id` = '".$item->getID()."'
-                            AND `glpi_problems_suppliers`.`type` = ".CommonITILActor::REQUESTER.")";
+            $restrict   = "(`glpi_problems_suppliers`.`suppliers_id` = '".$item->getID()."')";
             $order      = '`glpi_problems`.`date_mod` DESC';
 
             $options['criteria'][0]['field']      = 6;
@@ -1324,8 +1340,7 @@ class Problem extends CommonITILObject {
             } else {
                $restrict = "='".$item->getID()."'";
             }
-            $restrict   = "(`glpi_groups_problems`.`groups_id` $restrict
-                            AND `glpi_groups_problems`.`type` = ".CommonITILActor::REQUESTER.")";
+            $restrict   = "(`glpi_groups_problems`.`groups_id` $restrict)";
             $order      = '`glpi_problems`.`date_mod` DESC';
 
             $options['criteria'][0]['field']      = 71;

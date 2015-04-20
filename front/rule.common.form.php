@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: rule.common.form.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: rule.common.form.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -78,7 +78,7 @@ if (isset($_POST["add_action"])) {
    $rule->redirectToList();
 }
 
-Html::header(Rule::getTypeName(2), $_SERVER['PHP_SELF'], 'admin',
+Html::header(Rule::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], 'admin',
              $rulecollection->menu_type, $rulecollection->menu_option);
 
 $rule->display(array('id' => $_GET["id"]));

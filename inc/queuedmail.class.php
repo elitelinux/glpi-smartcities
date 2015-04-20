@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: queuedmail.class.php 23297 2015-01-21 09:40:06Z moyo $
+ * @version $Id: queuedmail.class.php 23376 2015-03-10 08:55:48Z tsmr $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -363,7 +363,7 @@ class QueuedMail extends CommonDBTM {
          } else {
             $mmail->isHTML(true);
             $mmail->Body = '';
-
+            $this->fields['body_html'] = Html::entity_decode_deep($this->fields['body_html']);
             $documents = importArrayFromDB($this->fields['documents']);
             $link_doc = array();
             if (is_array($documents) && count($documents)) {
@@ -386,12 +386,12 @@ class QueuedMail extends CommonDBTM {
                   }
                }
             }
+            $mmail->Body   .= $this->fields['body_html'];
             if (count($link_doc)) {
                $mmail->Body .= '<p style="border:1px solid #cccccc;padding:5px">'.
-                                '<b>'._n('Associated item','Associated items', 2).' : </b>'.
+                                '<b>'._n('Associated item','Associated items', Session::getPluralNumber()).' : </b>'.
                                 implode(', ', $link_doc).'</p>';
             }
-            $mmail->Body   .= $this->fields['body_html'];
             $mmail->AltBody = $this->fields['body_text'];
          }
 

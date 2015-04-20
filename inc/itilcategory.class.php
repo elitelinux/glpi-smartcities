@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: itilcategory.class.php 23023 2014-06-18 06:05:08Z moyo $
+ * @version $Id: itilcategory.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -257,7 +257,7 @@ class ITILCategory extends CommonTreeDropdown {
       if (Session::haveRight(self::$rightname, READ)) {
          switch ($item->getType()) {
             case 'TicketTemplate' :
-               $ong[1] = $this->getTypeName(2);
+               $ong[1] = $this->getTypeName(Session::getPluralNumber());
                return $ong;
          }
       }

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: notimportedemail.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: notimportedemail.class.php 23399 2015-03-20 07:59:15Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -107,7 +107,7 @@ class NotImportedEmail extends CommonDBTM {
       switch ($ma->getAction()) {
          case 'delete_email' :
          case 'import_email' :
-            if (!$item->canCreate()) {
+            if (!$item->canUpdate()) {
                $ma->itemDone($item->getType(), $ids, MassiveAction::ACTION_NORIGHT);
             } else {
                $input = $ma->getInput();

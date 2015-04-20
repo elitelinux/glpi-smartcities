@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: notepad.class.php 23003 2014-06-11 14:07:43Z moyo $
+ * @version $Id: notepad.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -104,9 +104,9 @@ class Notepad extends CommonDBChild {
 
       if (Session::haveRight($item::$rightname, READNOTE)) {
          if ($_SESSION['glpishow_count_on_tabs']) {
-            return self::createTabEntry(self::getTypeName(2), self::countForItem($item));
+            return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), self::countForItem($item));
          }
-         return self::getTypeName(2);
+         return self::getTypeName(Session::getPluralNumber());
       }
       return false;
    }
@@ -163,11 +163,11 @@ class Notepad extends CommonDBChild {
 
       $tab                      = array();
 
-      $tab['notepad']             = _n('Note', 'Notes',2);
+      $tab['notepad']             = _n('Note', 'Notes', Session::getPluralNumber());
 
       $tab[200]['table']          = 'glpi_notepads';
       $tab[200]['field']          = 'content';
-      $tab[200]['name']           = _n('Note', 'Notes',2);
+      $tab[200]['name']           = _n('Note', 'Notes', Session::getPluralNumber());
       $tab[200]['datatype']       = 'text';
       $tab[200]['joinparams']     = array('jointype' => 'itemtype_item');
       $tab[200]['forcegroupby']   = true;

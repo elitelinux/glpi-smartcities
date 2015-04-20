@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: helpdesk.public.php 23214 2014-11-08 13:27:07Z moyo $
+ * @version $Id: helpdesk.public.php 23421 2015-04-08 09:06:11Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -102,8 +102,13 @@ if (isset($_GET['create_ticket'])) {
       echo "<tr class='noHover'><td class='top'>";
       Ticket::showCentralCount(true);
       echo "</td></tr>";
+      echo "<tr class='noHover'><td class='top'>";
+      Ticket::showCentralList(0, "survey", false);
+      echo "</td></tr>";
    }
 
+   
+   
    if (Session::haveRight("reminder_public", READ)) {
       echo "<tr class='noHover'><td class='top'>";
       Reminder::showListForCentral(false);

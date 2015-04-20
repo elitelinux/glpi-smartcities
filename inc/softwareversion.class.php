@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: softwareversion.class.php 23111 2014-07-31 18:22:39Z yllen $
+ * @version $Id: softwareversion.class.php 23327 2015-02-02 17:15:33Z tsmr $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -111,7 +111,7 @@ class SoftwareVersion extends CommonDBChild {
 
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'><td>"._n('Software', 'Software', 2)."</td>";
+      echo "<tr class='tab_bg_1'><td>"._n('Software', 'Software', Session::getPluralNumber())."</td>";
       echo "<td>";
       if ($this->isNewID($ID)) {
          echo "<input type='hidden' name='softwares_id' value='$softwares_id'>";
@@ -282,10 +282,10 @@ class SoftwareVersion extends CommonDBChild {
       if ($result = $DB->query($query)) {
          if ($DB->numrows($result)) {
             echo "<table class='tab_cadre_fixehov'><tr>";
-            echo "<th>".self::getTypeName(2)."</th>";
+            echo "<th>".self::getTypeName(Session::getPluralNumber())."</th>";
             echo "<th>".__('Status')."</th>";
             echo "<th>".__('Operating system')."</th>";
-            echo "<th>"._n('Installation', 'Installations', 2)."</th>";
+            echo "<th>"._n('Installation', 'Installations', Session::getPluralNumber())."</th>";
             echo "<th>".__('Comments')."</th>";
             echo "</tr>\n";
 
@@ -305,7 +305,7 @@ class SoftwareVersion extends CommonDBChild {
             }
 
             echo "<tr class='tab_bg_1 noHover'><td class='right b' colspan='3'>".__('Total')."</td>";
-            echo "<td class='numeric b'>$tot</td></tr>";
+            echo "<td class='numeric b'>$tot</td><td></td></tr>";
             echo "</table>\n";
 
          } else {
@@ -325,12 +325,12 @@ class SoftwareVersion extends CommonDBChild {
          switch ($item->getType()) {
             case 'Software' :
                if ($_SESSION['glpishow_count_on_tabs']) {
-                  return self::createTabEntry(self::getTypeName(2),
+                  return self::createTabEntry(self::getTypeName(Session::getPluralNumber()),
                                               countElementsInTable($this->getTable(),
                                                                    "softwares_id
                                                                         = '".$item->getID()."'"));
                }
-               return self::getTypeName(2);
+               return self::getTypeName(Session::getPluralNumber());
          }
       }
       return '';

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: db.function.php 23058 2014-06-25 16:17:51Z moyo $
+ * @version $Id: db.function.php 23436 2015-04-09 14:06:48Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -329,6 +329,34 @@ function countElementsInTable($table, $condition="") {
    $ligne  = $DB->fetch_assoc($result);
    return $ligne['cpt'];
 }
+
+/**
+ * Count the number of elements in a table.
+ *
+ * @param $table        string/array   table names
+ * @param $condition    string         condition to use (default '')
+ *
+ * @return int nb of elements in table
+**/
+function countDistinctElementsInTable($table, $field='*', $condition="") {
+   global $DB;
+
+   if (is_array($table)) {
+      $table = implode('`,`',$table);
+   }
+
+   $query = "SELECT COUNT(DISTINCT $field) AS cpt
+             FROM `$table`";
+
+   if (!empty($condition)) {
+      $query .= " WHERE $condition ";
+   }
+
+   $result = $DB->query($query);
+   $ligne  = $DB->fetch_assoc($result);
+   return $ligne['cpt'];
+}
+
 
 
 /**

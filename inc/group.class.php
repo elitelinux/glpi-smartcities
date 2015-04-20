@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: group.class.php 23199 2014-10-22 16:04:02Z moyo $
+ * @version $Id: group.class.php 23436 2015-04-09 14:06:48Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -58,7 +58,7 @@ class Group extends CommonTreeDropdown {
    static function getAdditionalMenuOptions() {
 
       if (Session::haveRight('user', User::UPDATEAUTHENT)) {
-         $options['ldap']['title'] = AuthLDAP::getTypeName(2);
+         $options['ldap']['title'] = AuthLDAP::getTypeName(Session::getPluralNumber());
          $options['ldap']['page']  = "/front/ldap.group.php";
          return $options;
       }
@@ -211,6 +211,9 @@ class Group extends CommonTreeDropdown {
       if ($this->fields['is_requester']) {
          $this->addStandardTab('Ticket', $ong, $options);
       }
+      $this->addStandardTab('Item_Problem', $ong, $options);
+      $this->addStandardTab('Change_Item', $ong, $options);
+      
       $this->addStandardTab('Log',$ong, $options);
       return $ong;
    }
@@ -265,7 +268,7 @@ class Group extends CommonTreeDropdown {
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
-      echo "<td class='subheader'>".__('Can be notified')."</td>";
+      echo "<td>".__('Can be notified')."</td>";
       echo "<td>";
       Dropdown::showYesNo('is_notify', $this->fields['is_notify']);
       echo "</td></tr>";
@@ -285,13 +288,13 @@ class Group extends CommonTreeDropdown {
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
-      echo "<td>"._n('Item', 'Items', 2)."</td>";
+      echo "<td>"._n('Item', 'Items', Session::getPluralNumber())."</td>";
       echo "<td>";
       Dropdown::showYesNo('is_itemgroup', $this->fields['is_itemgroup']);
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
-      echo "<td>"._n('User', 'Users', 2)."</td><td>";
+      echo "<td>"._n('User', 'Users', Session::getPluralNumber())."</td><td>";
       Dropdown::showYesNo('is_usergroup', $this->fields['is_usergroup']);
       echo "</td>";
       echo "<td colspan='2' class='center'>";
@@ -327,10 +330,10 @@ class Group extends CommonTreeDropdown {
          $title                     = "";
 
       } else {
-         $title = self::getTypeName(2);
+         $title = self::getTypeName(Session::getPluralNumber());
       }
 
-      Html::displayTitle($CFG_GLPI["root_doc"] . "/pics/groupes.png", self::getTypeName(2), $title,
+      Html::displayTitle($CFG_GLPI["root_doc"] . "/pics/groupes.png", self::getTypeName(Session::getPluralNumber()), $title,
                          $buttons);
    }
 
@@ -470,12 +473,12 @@ class Group extends CommonTreeDropdown {
 
       $tab[17]['table']         = $this->getTable();
       $tab[17]['field']         = 'is_itemgroup';
-      $tab[17]['name']          = sprintf(__('%1$s %2$s'), __('Can contain'), _n('Item', 'Items', 2));
+      $tab[17]['name']          = sprintf(__('%1$s %2$s'), __('Can contain'), _n('Item', 'Items', Session::getPluralNumber()));
       $tab[17]['datatype']      = 'bool';
 
       $tab[15]['table']         = $this->getTable();
       $tab[15]['field']         = 'is_usergroup';
-      $tab[15]['name']          = sprintf(__('%1$s %2$s'), __('Can contain'), User::getTypeName(2));
+      $tab[15]['name']          = sprintf(__('%1$s %2$s'), __('Can contain'), User::getTypeName(Session::getPluralNumber()));
       $tab[15]['datatype']      = 'bool';
 
       $tab[70]['table']         = 'glpi_users';
@@ -696,7 +699,7 @@ class Group extends CommonTreeDropdown {
          $tree = 0;
       }
       if ($this->getField('is_usergroup')) {
-         echo "</td><td class='center'>".User::getTypeName(2)."&nbsp;";
+         echo "</td><td class='center'>".User::getTypeName(Session::getPluralNumber())."&nbsp;";
          Dropdown::showYesNo('user', $user, -1,
                              array('on_change' => 'reloadTab("start=0&user="+this.value)'));
       } else {

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: commondbconnexity.class.php 23223 2014-11-13 15:44:23Z moyo $
+ * @version $Id: commondbconnexity.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -509,14 +509,14 @@ abstract class CommonDBConnexity extends CommonDBTM {
                         $values[0] = __('First Item');
                      } else {
                         $itemtype_1 = $itemtype::$itemtype_1;
-                        $values[0]  = $itemtype_1::getTypeName(2);
+                        $values[0]  = $itemtype_1::getTypeName(Session::getPluralNumber());
                      }
                      if ((empty($itemtype::$itemtype_2))
                          || (preg_match('/^itemtype/', $itemtype::$itemtype_2))) {
                         $values[1] = __('Second Item');
                      } else {
                         $itemtype_2 = $itemtype::$itemtype_2;
-                        $values[1]  = $itemtype_2::getTypeName(2);
+                        $values[1]  = $itemtype_2::getTypeName(Session::getPluralNumber());
                      }
                      echo sprintf(__('Select a peer for %s:'), $itemtype::getTypeName());
                      Dropdown::showFromArray($peer_field, $values);

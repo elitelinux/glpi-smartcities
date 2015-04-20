@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: commonitilvalidation.class.php 23257 2014-11-28 12:32:56Z yllen $
+ * @version $Id: commonitilvalidation.class.php 23403 2015-03-21 19:59:17Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -201,9 +201,9 @@ abstract class CommonITILValidation  extends CommonDBChild {
               $restrict .= " AND `users_id_validate` = '".Session::getLoginUserID()."'";
             }
             $nb = countElementsInTable(static::getTable(),$restrict);
-            return self::createTabEntry(self::getTypeName(2), $nb);
+            return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $nb);
          }
-         return self::getTypeName(2);
+         return self::getTypeName(Session::getPluralNumber());
       }
       return '';
    }
@@ -729,7 +729,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
       }
       echo "<table class='tab_cadre_fixe'>";
       echo "<tr>";
-      echo "<th colspan='3'>".self::getTypeName(2)."</th>";
+      echo "<th colspan='3'>".self::getTypeName(Session::getPluralNumber())."</th>";
       echo "</tr>";
 
       echo "<tr class='tab_bg_1'>";
@@ -1226,17 +1226,16 @@ abstract class CommonITILValidation  extends CommonDBChild {
                      'user'  => __('User'),
                      'group' => __('Group'));
 
-      $type  = '__VALUE__';
-      if (!empty($params['users_id_validate'])) {
-         $type = 'list_users';
+      $type  = '';
+      if (isset($params['users_id_validate']['groups_id'])) {
+         $type = 'group';
+      } else if (!empty($params['users_id_validate'])) {
+         $type = 'user';
       }
 
-      if ($params['id'] > 0) {
-         unset($types['group']);
-      }
       $rand = Dropdown::showFromArray("validatortype", $types, array('value' => $type));
 
-      if ($params['id'] > 0) {
+      if ($type) {
          $params['validatortype'] = $type;
          Ajax::updateItem($params['applyto'], $CFG_GLPI["root_doc"]."/ajax/dropdownValidator.php",
                           $params);

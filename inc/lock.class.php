@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: lock.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: lock.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -97,7 +97,7 @@ class Lock {
                $tmp->getFromDB($line['items_id']);
                $header = true;
                if ($first) {
-                  echo "<tr><th colspan='2'>".$type::getTypeName(2)."</th></tr>\n";
+                  echo "<tr><th colspan='2'>".$type::getTypeName(Session::getPluralNumber())."</th></tr>\n";
                   $first = false;
                }
 
@@ -119,7 +119,7 @@ class Lock {
             foreach ($DB->request(getTableForItemType($type), $params) as $line) {
                $header = true;
                if ($first) {
-                  echo "<tr><th colspan='2'>".$type::getTypeName(2)."</th></tr>\n";
+                  echo "<tr><th colspan='2'>".$type::getTypeName(Session::getPluralNumber())."</th></tr>\n";
                   $first = false;
                }
 
@@ -149,7 +149,7 @@ class Lock {
          foreach ($DB->request($query) as $line) {
             $header = true;
             if ($first) {
-               echo "<tr><th colspan='2'>".Software::getTypeName(2)."</th></tr>\n";
+               echo "<tr><th colspan='2'>".Software::getTypeName(Session::getPluralNumber())."</th></tr>\n";
                $first = false;
             }
 
@@ -179,7 +179,7 @@ class Lock {
          foreach ($DB->request($query) as $line) {
             $header = true;
             if ($first) {
-               echo "<tr><th colspan='2'>".SoftwareLicense::getTypeName(2)."</th>".
+               echo "<tr><th colspan='2'>".SoftwareLicense::getTypeName(Session::getPluralNumber())."</th>".
                      "</tr>\n";
                $first = false;
             }
@@ -203,7 +203,7 @@ class Lock {
          $item->getFromDB($line['id']);
          $header = true;
          if ($first) {
-            echo "<tr><th colspan='2'>".NetworkPort::getTypeName(2)."</th></tr>\n";
+            echo "<tr><th colspan='2'>".NetworkPort::getTypeName(Session::getPluralNumber())."</th></tr>\n";
             $first = false;
          }
 
@@ -227,7 +227,7 @@ class Lock {
          $item->getFromDB($line['id']);
          $header = true;
          if ($first) {
-            echo "<tr><th colspan='2'>".NetworkName::getTypeName(2)."</th></tr>\n";
+            echo "<tr><th colspan='2'>".NetworkName::getTypeName(Session::getPluralNumber())."</th></tr>\n";
             $first = false;
          }
 
@@ -255,7 +255,7 @@ class Lock {
          $item->getFromDB($line['id']);
          $header = true;
          if ($first) {
-            echo "<tr><th colspan='2'>".IPAddress::getTypeName(2)."</th></tr>\n";
+            echo "<tr><th colspan='2'>".IPAddress::getTypeName(Session::getPluralNumber())."</th></tr>\n";
             $first = false;
          }
 
@@ -277,7 +277,7 @@ class Lock {
       }
       if ($nb) {
          $header = true;
-         echo "<tr><th colspan='2'>"._n('Component', 'Components', 2)."</th></tr>\n";
+         echo "<tr><th colspan='2'>"._n('Component', 'Components', Session::getPluralNumber())."</th></tr>\n";
          foreach ($types as $old => $type) {
             $associated_type  = str_replace('Item_', '', $type);
             $associated_table = getTableForItemType($associated_type);
@@ -328,7 +328,7 @@ class Lock {
    function getTabNameForItem(CommonGLPI $item, $withtemplate=0) {
 
       if ($item->isDynamic() && $item->canCreate()) {
-         return Lock::getTypeName(2);
+         return Lock::getTypeName(Session::getPluralNumber());
       }
       return '';
    }
@@ -478,16 +478,16 @@ class Lock {
 
       switch ($ma->getAction()) {
          case 'unlock' :
-            $types = array('Monitor'                => _n('Monitor', 'Monitors', 2),
-                           'Peripheral'             => _n('Device', 'Devices', 2),
-                           'Printer'                => _n('Printer', 'Printers', 2),
-                           'SoftwareVersion'        => _n('Version', 'Versions', 2),
-                           'NetworkPort'            => _n('Network port', 'Network ports', 2),
-                           'NetworkName'            => _n('Network name', 'Network names', 2),
-                           'IPAddress'              => _n('IP address', 'IP addresses', 2),
-                           'ComputerDisk'           => _n('Volume', 'Volumes', 2),
-                           'Device'                 => _n('Component', 'Components', 2),
-                           'ComputerVirtualMachine' => _n('Virtual machine', 'Virtual machines', 2));
+            $types = array('Monitor'                => _n('Monitor', 'Monitors', Session::getPluralNumber()),
+                           'Peripheral'             => _n('Device', 'Devices', Session::getPluralNumber()),
+                           'Printer'                => _n('Printer', 'Printers', Session::getPluralNumber()),
+                           'SoftwareVersion'        => _n('Version', 'Versions', Session::getPluralNumber()),
+                           'NetworkPort'            => _n('Network port', 'Network ports', Session::getPluralNumber()),
+                           'NetworkName'            => _n('Network name', 'Network names', Session::getPluralNumber()),
+                           'IPAddress'              => _n('IP address', 'IP addresses', Session::getPluralNumber()),
+                           'ComputerDisk'           => _n('Volume', 'Volumes', Session::getPluralNumber()),
+                           'Device'                 => _n('Component', 'Components', Session::getPluralNumber()),
+                           'ComputerVirtualMachine' => _n('Virtual machine', 'Virtual machines', Session::getPluralNumber()));
 
             _e('Select the type of the item that must be unlock');
             echo "<br><br>\n";

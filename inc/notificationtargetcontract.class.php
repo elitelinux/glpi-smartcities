@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: notificationtargetcontract.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: notificationtargetcontract.class.php 23304 2015-01-21 14:46:37Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -183,7 +183,7 @@ class NotificationTargetContract extends NotificationTarget {
       }
 
       //Foreach global tags
-      $tags = array('contracts' => _n('Contract', 'Contracts', 2));
+      $tags = array('contracts' => _n('Contract', 'Contracts', Session::getPluralNumber()));
 
       foreach ($tags as $tag => $label) {
          $this->addTagToList(array('tag'     => $tag,

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: dbconnection.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: dbconnection.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -438,7 +438,7 @@ class DBConnection extends CommonDBTM {
 
       // No need to translate, this part always display in english (for copy/paste to forum)
 
-      echo "<tr class='tab_bg_2'><th>".self::getTypeName(2)."</th></tr>";
+      echo "<tr class='tab_bg_2'><th>".self::getTypeName(Session::getPluralNumber())."</th></tr>";
 
       echo "<tr class='tab_bg_1'><td><pre>\n&nbsp;\n";
       if (self::isDBSlaveActive()) {

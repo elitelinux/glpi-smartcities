@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: commondbrelation.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: commondbrelation.class.php 23385 2015-03-13 16:02:40Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -1386,7 +1386,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
                      $ma->itemDone($item->getType(), $key, MassiveAction::ACTION_NORIGHT);
                      $ma->addMessage($link->getErrorMessage(ERROR_RIGHT));
                   }
-               } else {;
+               } else {
                   $link->getEmpty();
                   if (!$link->getFromDBForItems($item_1, $item_2)) {
                      if (($specificities['check_both_items_if_same_type'])

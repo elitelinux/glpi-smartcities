@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: document.class.php 22995 2014-06-06 12:56:30Z yllen $
+ * @version $Id: document.class.php 23417 2015-04-04 13:24:24Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -228,6 +228,10 @@ class Document extends CommonDBTM {
       // Tag
       if (isset($input["_tag_filename"]) && !empty($input["_tag_filename"]) == 1) {
          $input['tag'] = array_shift($input["_tag_filename"]);
+      }
+
+      if (!isset($input["tag"]) || empty($input["tag"])) {
+         $input['tag'] = Rule::getUuid();
       }
 
       // Upload failed : do not create document
@@ -712,7 +716,7 @@ class Document extends CommonDBTM {
    static function getSearchOptionsToAdd() {
 
       $tab                       = array();
-      $tab['document']           = self::getTypeName(2);
+      $tab['document']           = self::getTypeName(Session::getPluralNumber());
 
       $tab[119]['table']         = 'glpi_documents_items';
       $tab[119]['field']         = 'id';
@@ -861,9 +865,9 @@ class Document extends CommonDBTM {
    static function moveUploadedDocument(array &$input, $filename) {
       global $CFG_GLPI;
 
-      $fullpath = GLPI_DOC_DIR."/_uploads/".$filename;
+      $fullpath = GLPI_UPLOAD_DIR.$filename;
 
-      if (!is_dir(GLPI_DOC_DIR."/_uploads")) {
+      if (!is_dir(GLPI_UPLOAD_DIR)) {
          Session::addMessageAfterRedirect(__("Upload directory doesn't exist"), false, ERROR);
          return false;
       }
@@ -911,7 +915,7 @@ class Document extends CommonDBTM {
          $input['mime'] = mime_content_type($fullpath);
       }
 
-      if (is_writable(GLPI_DOC_DIR."/_uploads/")
+      if (is_writable(GLPI_UPLOAD_DIR)
           && is_writable ($fullpath)) { // Move if allowed
 
          if (self::renameForce($fullpath, GLPI_DOC_DIR."/".$new_path)) {
@@ -950,8 +954,8 @@ class Document extends CommonDBTM {
    static function moveDocument(array &$input, $filename) {
       global $CFG_GLPI;
 
-      $fullpath = GLPI_DOC_DIR."/_tmp/".$filename;
-      if (!is_dir(GLPI_DOC_DIR."/_tmp")) {
+      $fullpath = GLPI_TMP_DIR.$filename;
+      if (!is_dir(GLPI_TMP_DIR)) {
          Session::addMessageAfterRedirect(__("Temporary directory doesn't exist"), false, ERROR);
          return false;
       }
@@ -999,7 +1003,7 @@ class Document extends CommonDBTM {
          $input['mime'] = mime_content_type($fullpath);
       }
 
-      if (is_writable(GLPI_DOC_DIR."/_tmp/")
+      if (is_writable(GLPI_TMP_DIR)
           && is_writable ($fullpath)) { // Move if allowed
 
          if (self::renameForce($fullpath, GLPI_DOC_DIR."/".$new_path)) {
@@ -1160,10 +1164,10 @@ class Document extends CommonDBTM {
    static function showUploadedFilesDropdown($myname) {
       global $CFG_GLPI;
 
-      if (is_dir(GLPI_DOC_DIR."/_uploads")) {
+      if (is_dir(GLPI_UPLOAD_DIR)) {
          $uploaded_files = array('' => Dropdown::EMPTY_VALUE);
 
-         if ($handle = opendir(GLPI_DOC_DIR."/_uploads")) {
+         if ($handle = opendir(GLPI_UPLOAD_DIR)) {
             while (false !== ($file = readdir($handle))) {
                if (($file != ".") && ($file != "..")) {
                   $dir = self::isValidDoc($file);

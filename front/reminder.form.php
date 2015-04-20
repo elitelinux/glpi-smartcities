@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: reminder.form.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: reminder.form.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -106,9 +106,9 @@ if (isset($_POST["add"])) {
 
 }  else {
    if ($_SESSION["glpiactiveprofile"]["interface"] == "helpdesk") {
-      Html::helpHeader(Reminder::getTypeName(2),'',$_SESSION["glpiname"]);
+      Html::helpHeader(Reminder::getTypeName(Session::getPluralNumber()),'',$_SESSION["glpiname"]);
    } else {
-      Html::header(Reminder::getTypeName(2),'',"tools","reminder");
+      Html::header(Reminder::getTypeName(Session::getPluralNumber()),'',"tools","reminder");
    }
 
    $remind->display(array('id' =>$_GET["id"]));

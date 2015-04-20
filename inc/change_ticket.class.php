@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: change_ticket.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: change_ticket.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -79,14 +79,14 @@ class Change_Ticket extends CommonDBRelation{
                   $nb = countElementsInTable('glpi_changes_tickets',
                                              "`changes_id` = '".$item->getID()."'");
                }
-               return self::createTabEntry(Ticket::getTypeName(2), $nb);
+               return self::createTabEntry(Ticket::getTypeName(Session::getPluralNumber()), $nb);
 
             case 'Ticket' :
                if ($_SESSION['glpishow_count_on_tabs']) {
                   $nb = countElementsInTable('glpi_changes_tickets',
                                              "`tickets_id` = '".$item->getID()."'");
                }
-               return self::createTabEntry(Change::getTypeName(2), $nb);
+               return self::createTabEntry(Change::getTypeName(Session::getPluralNumber()), $nb);
          }
       }
       return '';

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: computervirtualmachine.class.php 23286 2015-01-08 10:48:51Z moyo $
+ * @version $Id: computervirtualmachine.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -63,12 +63,12 @@ class ComputerVirtualMachine extends CommonDBChild {
           && Computer::canView()) {
 
          if ($_SESSION['glpishow_count_on_tabs']) {
-            return self::createTabEntry(self::getTypeName(2),
+            return self::createTabEntry(self::getTypeName(Session::getPluralNumber()),
                                         countElementsInTable('glpi_computervirtualmachines',
                                                              "computers_id = '".$item->getID()."'
                                                                  AND `is_deleted`='0'"));
          }
-         return self::getTypeName(2);
+         return self::getTypeName(Session::getPluralNumber());
       }
       return '';
    }

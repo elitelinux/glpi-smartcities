@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: ticket.form.php 23099 2014-07-23 15:33:22Z moyo $
+ * @version $Id: ticket.form.php 23346 2015-02-03 15:11:10Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -44,8 +44,8 @@ if (!isset($_GET['id'])) {
 if (isset($_POST["add"])) {
    $track->check(-1, CREATE, $_POST);
 
-   if (isset($_POST["_my_items"]) && !empty($_POST["_my_items"])) {
-      $splitter = explode("_",$_POST["_my_items"]);
+   if (isset($_POST["my_items"]) && !empty($_POST["my_items"])) {
+      $splitter = explode("_",$_POST["my_items"]);
       if (count($splitter) == 2) {
          $_POST["itemtype"] = $splitter[0];
          $_POST["items_id"] = $splitter[1];
@@ -61,13 +61,7 @@ if (isset($_POST["add"])) {
 } else if (isset($_POST['update'])) {
    $track->check($_POST['id'], UPDATE);
 
-   if (isset($_POST["_my_items"]) && !empty($_POST["_my_items"])) {
-      $splitter = explode("_",$_POST["_my_items"]);
-      if (count($splitter) == 2) {
-         $_POST["itemtype"] = $splitter[0];
-         $_POST["items_id"] = $splitter[1];
-      }
-   }
+
    $track->update($_POST);
    Event::log($_POST["id"], "ticket", 4, "tracking",
               //TRANS: %s is the user login
@@ -155,9 +149,9 @@ if (isset($_POST["add"])) {
 
 if (isset($_GET["id"]) && ($_GET["id"] > 0)) {
    if ($_SESSION["glpiactiveprofile"]["interface"] == "helpdesk") {
-      Html::helpHeader(Ticket::getTypeName(2), '', $_SESSION["glpiname"]);
+      Html::helpHeader(Ticket::getTypeName(Session::getPluralNumber()), '', $_SESSION["glpiname"]);
    } else {
-      Html::header(Ticket::getTypeName(2), '', "helpdesk", "ticket");
+      Html::header(Ticket::getTypeName(Session::getPluralNumber()), '', "helpdesk", "ticket");
    }
 
    $available_options = array('load_kb_sol', '_openfollowup');

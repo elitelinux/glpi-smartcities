@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: monitor.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: monitor.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -35,7 +35,7 @@ include ('../inc/includes.php');
 
 Session::checkRight("monitor", READ);
 
-Html::header(Monitor::getTypeName(2), $_SERVER['PHP_SELF'], "assets", "monitor");
+Html::header(Monitor::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "assets", "monitor");
 
 Search::show('Monitor');
 

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: devicesoundcard.class.php 22884 2014-04-09 11:48:04Z moyo $
+ * @version $Id: devicesoundcard.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -54,7 +54,7 @@ class DeviceSoundCard extends CommonDevice {
                                      'label' => __('Type'),
                                      'type'  => 'text'),
                                array('name'  => 'none',
-                                     'label' => RegisteredID::getTypeName(2).
+                                     'label' => RegisteredID::getTypeName(Session::getPluralNumber()).
                                         RegisteredID::showAddChildButtonForItemForm($this,
                                                                                     '_registeredID',
                                                                                     NULL, false),

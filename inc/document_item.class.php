@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: document_item.class.php 22959 2014-04-28 18:59:22Z yllen $
+ * @version $Id: document_item.class.php 23445 2015-04-10 12:18:49Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -196,13 +196,13 @@ class Document_Item extends CommonDBRelation{
                $ong[1] = self::createTabEntry(_n('Associated item', 'Associated items',
                                               self::countForDocument($item)));
             }
-            $ong[1] = _n('Associated item', 'Associated items', 2);
+            $ong[1] = _n('Associated item', 'Associated items', Session::getPluralNumber());
 
             if ($_SESSION['glpishow_count_on_tabs']) {
-               $ong[2] = self::createTabEntry(Document::getTypeName(2),
+               $ong[2] = self::createTabEntry(Document::getTypeName(Session::getPluralNumber()),
                                                   self::countForItem($item));
             }
-            $ong[2] = Document::getTypeName(2);
+            $ong[2] = Document::getTypeName(Session::getPluralNumber());
             return $ong;
 
          default :
@@ -213,10 +213,10 @@ class Document_Item extends CommonDBRelation{
                 || ($item->getType() == 'KnowbaseItem')) {
 
                if ($_SESSION['glpishow_count_on_tabs']) {
-                  return self::createTabEntry(Document::getTypeName(2),
+                  return self::createTabEntry(Document::getTypeName(Session::getPluralNumber()),
                                               self::countForItem($item));
                }
-               return Document::getTypeName(2);
+               return Document::getTypeName(Session::getPluralNumber());
             }
       }
       return '';
@@ -368,9 +368,12 @@ class Document_Item extends CommonDBRelation{
          if ($item->canView()) {
             if ($item instanceof CommonDevice) {
                $column = "designation";
+            } else if ($item instanceof Item_Devices) {
+               $column = "itemtype";
             } else {
                $column = "name";
             }
+
             if ($itemtype == 'Ticket') {
                $column = "id";
             }
@@ -444,6 +447,8 @@ class Document_Item extends CommonDBRelation{
                      }
                      if ($item instanceof CommonDevice) {
                         $linkname = $data["designation"];
+                     } else if ($item instanceof Item_Devices) {
+                        $linkname = $data["itemtype"];
                      } else {
                         $linkname = $data["name"];
                      }
@@ -451,7 +456,12 @@ class Document_Item extends CommonDBRelation{
                          || empty($data["name"])) {
                         $linkname = sprintf(__('%1$s (%2$s)'), $linkname, $data["id"]);
                      }
-
+                     if ($item instanceof Item_Devices) {
+                        $tmpitem = new $item::$itemtype_2();
+                        if ($tmpitem->getFromDB($data[$item::$items_id_2])) {
+                           $linkname = $tmpitem->getLink();
+                        }
+                     }
                      $link = Toolbox::getItemTypeFormURL($itemtype);
                      $name = "<a href=\"".$link."?id=".$data["id"]."\">".$linkname."</a>";
 

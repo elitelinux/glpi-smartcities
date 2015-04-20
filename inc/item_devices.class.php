@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: item_devices.class.php 23284 2015-01-02 13:29:49Z yllen $
+ * @version $Id: item_devices.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -302,7 +302,7 @@ class Item_Devices extends CommonDBRelation {
             if (isset($nb)) {
                return self::createTabEntry(_n('Component', 'Components', $nb), $nb);
             }
-            return _n('Component', 'Components', 2);
+            return _n('Component', 'Components', Session::getPluralNumber());
          }
          if ($item instanceof CommonDevice) {
             if ($_SESSION['glpishow_count_on_tabs']) {
@@ -317,7 +317,7 @@ class Item_Devices extends CommonDBRelation {
             if (isset($nb)) {
                return self::createTabEntry(_n('Item', 'Items', $nb), $nb);
             }
-            return _n('Item', 'Items', 2);
+            return _n('Item', 'Items', Session::getPluralNumber());
          }
       }
       return '';
@@ -356,7 +356,7 @@ class Item_Devices extends CommonDBRelation {
 
       $table = new HTMLTableMain();
 
-      $table->setTitle(_n('Component', 'Components', 2));
+      $table->setTitle(_n('Component', 'Components', Session::getPluralNumber()));
       if ($canedit) {
          $delete_all_column = $table->addHeader('delete all',
                                                 Html::getCheckAllAsCheckbox("form_device_action$rand",
@@ -366,7 +366,7 @@ class Item_Devices extends CommonDBRelation {
          $delete_all_column = NULL;
       }
 
-      $column_label    = ($is_device ? _n('Item', 'Items', 2) : __('Type of component'));
+      $column_label    = ($is_device ? _n('Item', 'Items', Session::getPluralNumber()) : __('Type of component'));
       $common_column   = $table->addHeader('common', $column_label);
       $specific_column = $table->addHeader('specificities', __('Specificities'));
       $specific_column->setHTMLClass('center');
@@ -502,7 +502,7 @@ class Item_Devices extends CommonDBRelation {
             $column_label = __('Dissociated devices');
             $group_name   = 'None';
          } else {
-            $column_label = $peer_type::getTypeName(2);
+            $column_label = $peer_type::getTypeName(Session::getPluralNumber());
             $group_name   = $peer_type;
          }
 
@@ -514,7 +514,7 @@ class Item_Devices extends CommonDBRelation {
             //TRANS : %1$s is the type of the device
             //        %2$s is the type of the item
             //        %3$s is the name of the item (used for headings of a list),
-            $itemtype_nav_title = sprintf(__('%1$s of %2$s: %3$s'), $peer_type::getTypeName(2),
+            $itemtype_nav_title = sprintf(__('%1$s of %2$s: %3$s'), $peer_type::getTypeName(Session::getPluralNumber()),
                                           $item->getTypeName(1), $item->getName());
             $peer_column->setItemType($peer_type, $itemtype_nav_title);
          }
@@ -527,7 +527,7 @@ class Item_Devices extends CommonDBRelation {
          //TRANS : %1$s is the type of the device
          //        %2$s is the type of the item
          //        %3$s is the name of the item (used for headings of a list),
-         $options['itemtype_title'] = sprintf(__('%1$s of %2$s: %3$s'), $peer_type::getTypeName(2),
+         $options['itemtype_title'] = sprintf(__('%1$s of %2$s: %3$s'), $peer_type::getTypeName(Session::getPluralNumber()),
                                               $item->getTypeName(1), $item->getName());
 
          $peer_type::getHTMLTableHeader($item->getType(), $table_group, $common_column, NULL,
@@ -545,10 +545,10 @@ class Item_Devices extends CommonDBRelation {
          $specificity_columns[$field] = $spec_column;
       }
 
-      $infocom_column  = $table_group->addHeader('infocom', Infocom::getTypeName(2),
+      $infocom_column  = $table_group->addHeader('infocom', Infocom::getTypeName(Session::getPluralNumber()),
                                                  $specific_column, $spec_column);
 
-      $document_column = $table_group->addHeader('document', Document::getTypeName(2),
+      $document_column = $table_group->addHeader('document', Document::getTypeName(Session::getPluralNumber()),
                                                  $specific_column, $spec_column);
 
       if ($item->isDynamic()) {

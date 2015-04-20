@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: commonitilactor.class.php 23092 2014-07-23 13:59:00Z orthagh $
+ * @version $Id: commonitilactor.class.php 23433 2015-04-09 12:07:57Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -346,12 +346,14 @@ abstract class CommonITILActor extends CommonDBRelation {
       // Check object status and update it if needed
       if (!isset($this->input['_from_object'])) {
          if ($item->getFromDB($this->fields[static::getItilObjectForeignKey()])) {
-            if ($item->fields["status"] == CommonITILObject::INCOMING) {
+            if ($item->fields["status"] == CommonITILObject::INCOMING
+                && in_array(self::ASSIGNED, $item->getAllStatusArray())) {
                $item->update(array('id'     => $item->getID(),
                                    'status' => CommonITILObject::ASSIGNED));
             }
          }
       }
+
       parent::post_addItem();
    }
 

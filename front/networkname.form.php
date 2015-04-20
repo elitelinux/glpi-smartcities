@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: networkname.form.php 23216 2014-11-11 14:16:39Z yllen $
+ * @version $Id: networkname.form.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -110,7 +110,7 @@ if (isset($_POST["add"])) {
    }
 
    Session::checkRight("internet", READ);
-   Html::header(NetworkName::getTypeName(2), $_SERVER['PHP_SELF'], 'config', 'commondropdown',
+   Html::header(NetworkName::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], 'config', 'commondropdown',
                'NetworkName');
 
    $nn->display($_GET);
