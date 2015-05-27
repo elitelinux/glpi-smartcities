@@ -1,8 +1,8 @@
 /*
- * @version $Id: print.css 22723 2014-02-26 16:34:56Z moyo $
+ * @version $Id: print.css 20129 2013-02-04 16:53:59Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
- Copyright (C) 2003-2014 by the INDEPNET Development Team.
+ Copyright (C) 2003-2013 by the INDEPNET Development Team.
 
  http://indepnet.net/   http://glpi-project.org
  -------------------------------------------------------------------------
@@ -140,6 +140,20 @@ hr {
    border: 1px solid #cccccc;
 }
 
+
+/* Over link div */
+.over_link {
+   display: none;
+   position: absolute;
+   border: 1px solid  #CC9900;
+   background: url("../pics/fd_hoverlink.png") 0 0 repeat;
+   -moz-border-radius: 5px;
+   padding: 5px;
+   max-width: 350px;
+   font-size: 11px;
+   text-align: left;
+   z-index:1000;
+}
 
 
 .pointer {
@@ -314,7 +328,7 @@ td { }
    width:95%;
 }
 
-.tab_cadrehov {
+.tab_cadrehov, .tab_cadrehov_pointer {
    margin: 0 auto;
    -moz-border-radius: 4px;
    border: 1px solid #cccccc;
@@ -324,7 +338,19 @@ td { }
    background-color: #ffffff;
 }
 
-.tab_cadre th, .tab_cadre_fixe th, .tab_cadre_fixehov th, .tab_cadrehov th {
+.tab_cadre_report {
+   margin: 0 auto;
+   -moz-border-radius: 4px;
+   border: 1px solid #cccccc;
+   z-index:1;
+   text-align: left;
+   font-size: 11px;
+   text-align: center;
+   width:95%;
+}
+
+.tab_cadre th, .tab_cadre_fixe th, .tab_cadre_fixehov th, .tab_cadrehov th, .tab_cadrehov_pointer th , 
+.tab_cadre_report th {
    font-size: 11px;
    font-weight: bold;
    background-color: #fccc6f;
@@ -333,13 +359,26 @@ td { }
    border-bottom:1px solid #cccccc;
 }
 
-.tab_cadre td, .tab_cadre_fixe td, .tab_cadre_fixehov td, .tab_cadrehov td {
+.tab_cadre td, .tab_cadre_fixe td, .tab_cadre_fixehov td, .tab_cadrehov td, .tab_cadrehov_pointer td , 
+.tab_cadre_report td {
    padding-left: 5px;
 }
 
 .tab_cadrehov tr:hover, .tab_cadre_fixehov tr:hover {
    background-color: #FFF4DF;
 }
+
+.tab_cadrehov_pointer tr:hover {
+   cursor: pointer;
+   background-color: #FFF4DF;
+}
+
+
+/* Ajout pour IE */
+.tab_cadrehov_pointer tr {
+   cursor: pointer;
+}
+
 
 .tab_bg_1 {
    background-color: #f2f2f2;
@@ -451,12 +490,46 @@ li.auto_comp {
 
 /* ################--------------- Tracking  / Reminder ---------------#################### */
 
+.tracking {
+   width:100%;
+   height:100%;
+   cursor:pointer;
+}
+
+.tracking:hover {
+   background-color: #FFF4DF; 
+}
+
+.tracking_hour {
+   font-family: verdana;
+   font-size: 10px;
+}
+
+.tracking_bold {
+   font-weight: bold;
+}
+
+.ldap_right, .reminder_right {
+   position:absolute; 
+   right:0;
+   margin-right:5px;
+   font-size:10px;
+}
 
 .showplan {
    font-weight: bold;
    text-decoration: none; 
    color : #659900; 
    cursor:pointer;
+}
+
+.tracking_small {
+   font-size:10px;
+}
+
+.reminder_list {
+   text-align:left;
+   margin-left:8px;
 }
 
 
