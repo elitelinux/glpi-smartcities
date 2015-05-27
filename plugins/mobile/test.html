@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Demo jQuery Mobile Mail App</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.css" />
+	<script src="http://code.jquery.com/jquery-1.4.3.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.js"></script>
+</head> 
+
+<body> 
+
+<!-- Start of first page -->
+<div data-role="page" id="foo">
+
+	<div data-role="header" data-position="inline" data-nobackbtn="true">
+		<h1 style="text-align:left;margin-left:20px;">Demo jQuery Mobile Mail App</h1>
+		<div style="width:550px;position:absolute;right:20px;top:4px">
+		<a href="#" data-icon="new">Compose Mail</a>
+		<a href="index.html" data-icon="refresh">Refresh</a>
+		<a href="index.html" data-icon="gear">Settings</a>
+		<div style="width:220px;float:right;margin-right:10px;">
+			<input type="search" name="password" id="search" value="" />
+		</div>
+		</div>
+	</div><!-- /header -->
+
+		<div class="ui-grid-a" style="position:relative">
+			<div style="position:absolute;left:0;width:20%;" class="ui-block-a">
+				<div data-role="header" data-position="inline" data-theme="b">
+					<h1 style="margin-left:10px;margin-right:10px">Folders</h1>
+				</div>
+				<div data-role="content">
+					<ul data-role="listview" data-theme="c">
+						<li><a href="index.html">Inbox</a> <span class="ui-li-count">12</span></li>
+						<li><a href="index.html">Outbox</a> <span class="ui-li-count">0</span></li>
+						<li><a href="index.html">Drafts</a> <span class="ui-li-count">4</span></li>
+						<li><a href="index.html">Sent</a> <span class="ui-li-count">328</span></li>
+						<li><a href="index.html">Trash</a> <span class="ui-li-count">62</span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="ui-block-b" style="margin-left:20%;width:80%;border-left:1px solid #c6c6c6">
+				<div data-role="header" data-position="inline" data-theme="b">
+					<div data-role="controlgroup" data-type="horizontal" style="position:absolute;top:0px;left:10px;">
+						<a href="index.html" data-role="button" data-icon="back" data-iconpos="" title="Reply" data-theme="b">
+							Reply
+						</a>
+						<a href="index.html" data-role="button" data-icon="forward" data-iconpos="" title="Forward" data-theme="b">
+							Forward
+						</a>
+						<a href="index.html" data-role="button" data-icon="delete" data-iconpos="" title="Delete" data-theme="b">
+							Delete
+						</a>
+					</div>
+					<h1>&nbsp;</h1>
+					<span style="position:absolute;top:10px;right:70px;text-align:right;width:200px">Message 1 of 12</span>
+					<div data-role="controlgroup" data-type="horizontal" style="position:absolute;top:0px;right:10px;">
+						<a href="index.html" data-role="button" data-icon="arrow-l" data-iconpos="notext" title="Up" data-theme="b">
+							Previous
+						</a>
+						<a href="index.html" data-role="button" data-icon="arrow-r" data-iconpos="notext" title="Down" data-theme="b">
+							Next
+						</a>
+					</div>
+				</div>
+					<div data-role="header" data-theme="c">
+						<h2 style="text-align:left;margin-left:20px;font-size:1.3em;">Message title</h2>
+						<span style="font-weight:bold;margin-left:20px;font-size:0.9em;">October 18, 2010</span>
+						<span style="font-size:0.9em;">11:31 a.m.</span>
+					</div>
+					<div data-role="content">
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+
+					<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+					<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+					</div>
+			</div>
+		</div><!-- /grid-a -->
+
+	<div data-role="footer">
+		<h2>Sample web app, nothing works but looks pretty good <img src="http://reven.co.nz/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley"> </h2>
+	</div><!-- /header -->
+</div><!-- /page -->
+
+<!-- Start of second page -->
+<div data-role="page" id="bar">
+
+	<div data-role="header">
+		<h1>Bar</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<p>I'm first in the source order so I'm shown as the page.</p>
+		<p><a href="#foo" data-transition="slide">Back to foo</a></p>
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div><!-- /header -->
+</div><!-- /page -->
+</body>
+</html>
