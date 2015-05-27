@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: document.class.php 23417 2015-04-04 13:24:24Z yllen $
+ * @version $Id: document.class.php 23458 2015-04-19 09:47:17Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -865,7 +865,7 @@ class Document extends CommonDBTM {
    static function moveUploadedDocument(array &$input, $filename) {
       global $CFG_GLPI;
 
-      $fullpath = GLPI_UPLOAD_DIR.$filename;
+      $fullpath = GLPI_UPLOAD_DIR."/".$filename;
 
       if (!is_dir(GLPI_UPLOAD_DIR)) {
          Session::addMessageAfterRedirect(__("Upload directory doesn't exist"), false, ERROR);
@@ -954,7 +954,7 @@ class Document extends CommonDBTM {
    static function moveDocument(array &$input, $filename) {
       global $CFG_GLPI;
 
-      $fullpath = GLPI_TMP_DIR.$filename;
+      $fullpath = GLPI_TMP_DIR."/".$filename;
       if (!is_dir(GLPI_TMP_DIR)) {
          Session::addMessageAfterRedirect(__("Temporary directory doesn't exist"), false, ERROR);
          return false;

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: mailcollector.class.php 23417 2015-04-04 13:24:24Z yllen $
+ * @version $Id: mailcollector.class.php 23458 2015-04-19 09:47:17Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -665,11 +665,11 @@ class MailCollector  extends CommonDBTM {
       // max size = 0 : no import attachments
       if ($this->fields['filesize_max'] > 0) {
          if (is_writable(GLPI_TMP_DIR)) {
-            $tkt['_filename'] = $this->getAttached($i, GLPI_TMP_DIR, $this->fields['filesize_max']);
+            $tkt['_filename'] = $this->getAttached($i, GLPI_TMP_DIR."/", $this->fields['filesize_max']);
             $tkt['_tag']      = $this->tags;
          } else {
             //TRANS: %s is a directory
-            Toolbox::logInFile('mailgate', sprintf(__('%s is not writable'), GLPI_TMP_DIR));
+            Toolbox::logInFile('mailgate', sprintf(__('%s is not writable'), GLPI_TMP_DIR."/"));
          }
       }
       //  Who is the user ?

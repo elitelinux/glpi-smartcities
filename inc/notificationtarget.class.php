@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: notificationtarget.class.php 23446 2015-04-16 13:57:07Z tsmr $
+ * @version $Id: notificationtarget.class.php 23461 2015-04-21 07:56:28Z ddurieux $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -575,7 +575,7 @@ class NotificationTarget extends CommonDBChild {
       if (!empty($this->target_object)) {
          foreach($this->target_object as $val){
             if ($val->fields['groups_id'] > 0) {
-               $this->getAddressesByGroup(0, $val['groups_id']);
+               $this->getAddressesByGroup(0, $val->fields['groups_id']);
             }
          }
       }

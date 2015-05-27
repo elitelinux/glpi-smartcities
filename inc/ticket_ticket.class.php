@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: ticket_ticket.class.php 23295 2015-01-21 08:16:12Z moyo $
+ * @version $Id: ticket_ticket.class.php 23468 2015-04-30 12:29:26Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -256,20 +256,39 @@ class Ticket_Ticket extends CommonDBRelation {
 
 
    function post_deleteFromDB() {
-
+      global $CFG_GLPI;
+      
       $t = new Ticket();
       $t->updateDateMod($this->fields['tickets_id_1']);
       $t->updateDateMod($this->fields['tickets_id_2']);
       parent::post_deleteFromDB();
+
+      $donotif = $CFG_GLPI["use_mailing"];
+      if ($donotif) {
+         $t->getFromDB($this->fields['tickets_id_1']);
+         NotificationEvent::raiseEvent("update", $t);
+         $t->getFromDB($this->fields['tickets_id_2']);
+         NotificationEvent::raiseEvent("update", $t);
+      }
    }
 
 
    function post_addItem() {
-
+      global $CFG_GLPI;
+      
       $t = new Ticket();
       $t->updateDateMod($this->fields['tickets_id_1']);
       $t->updateDateMod($this->fields['tickets_id_2']);
       parent::post_addItem();
+      
+      $donotif = $CFG_GLPI["use_mailing"];
+      if ($donotif) {
+         $t->getFromDB($this->fields['tickets_id_1']);
+         NotificationEvent::raiseEvent("update", $t);
+         $t->getFromDB($this->fields['tickets_id_2']);
+         NotificationEvent::raiseEvent("update", $t);
+      }
+      
    }
 
 

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: ticketfollowup.class.php 23443 2015-04-10 11:26:35Z yllen $
+ * @version $Id: ticketfollowup.class.php 23466 2015-04-30 10:07:18Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -276,7 +276,9 @@ class TicketFollowup  extends CommonDBTM {
 
       $input["_job"] = new Ticket();
 
-      if (empty($input['content'])) {
+      if (empty($input['content'])
+          && !isset($input['add_close'])
+          && !isset($input['add_reopen'])) {
          return false;
       }
       if (!$input["_job"]->getFromDB($input["tickets_id"])) {
@@ -324,6 +326,7 @@ class TicketFollowup  extends CommonDBTM {
       if (isset($input["add_close"])) {
          $input['_close'] = 1;
       }
+
       unset($input["add_close"]);
 
       if (!isset($input["is_private"])) {

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: knowbaseitem.class.php 23305 2015-01-21 15:06:28Z moyo $
+ * @version $Id: knowbaseitem.class.php 23456 2015-04-19 09:36:30Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -790,7 +790,8 @@ class KnowbaseItem extends CommonDBTM {
 
       $linkusers_id = true;
       // show item : question and answer
-      if ($_SESSION["glpiactiveprofile"]["interface"] == "helpdesk"
+      if (((Session::getLoginUserID() === false) && $CFG_GLPI["use_public_faq"])
+          || ($_SESSION["glpiactiveprofile"]["interface"] == "helpdesk")
           || !User::canView()) {
          $linkusers_id = false;
       }

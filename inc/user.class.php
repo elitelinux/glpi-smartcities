@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: user.class.php 23436 2015-04-09 14:06:48Z moyo $
+ * @version $Id: user.class.php 23462 2015-04-22 08:59:36Z tsmr $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -2294,7 +2294,7 @@ class User extends CommonDBTM {
          } else {
             Html::autocompletionTextField($this, "registration_number");
          }
-         echo "</td></tr>";
+         echo "</td><td colspan='2'></td></tr>";
 
          echo "<tr class='tab_bg_1'><td>" . __('Location') . "</td><td>";
          $entities = Profile_User::getUserEntities($ID, true);

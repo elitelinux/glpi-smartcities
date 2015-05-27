@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: knowbaseitemcategory.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id: knowbaseitemcategory.class.php 23467 2015-04-30 12:14:43Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -65,7 +65,7 @@ class KnowbaseItemCategory extends CommonTreeDropdown {
 
       // Default values of parameters
       $params["knowbaseitemcategories_id"] = "0";
-      $params["target"]                    = $CFG_GLPI['root_doc'].'/front/knowbaseitem.php';
+      $params["target"]                    = KnowbaseItem::getSearchURL();
 
       if (is_array($options) && count($options)) {
          foreach ($options as $key => $val) {

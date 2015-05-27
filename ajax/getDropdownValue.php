@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: getDropdownValue.php 23423 2015-04-09 05:45:28Z moyo $
+ * @version $Id: getDropdownValue.php 23464 2015-04-25 15:54:47Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -579,6 +579,7 @@ if ($item instanceof CommonTreeDropdown) {
             } else {
                $outputval = $data[$field];
             }
+            $outputval = Toolbox::unclean_cross_side_scripting_deep($outputval);
 
             if ($displaywith) {
                foreach ($_GET['displaywith'] as $key) {
