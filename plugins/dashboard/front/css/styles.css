@@ -1,8 +1,4 @@
 #head {
-/*	width: 950px;
-	margin-left: -500px;
-	left: 53%;
-	position: relative;*/
 	background-color: #fff;
 	color: #fff;
 	padding-top: 15px;
@@ -48,9 +44,6 @@
 }
 
 .form1 {
-	/*width: 900px;
-	margin-left: -500px;
-	left: 52%; */
 	position: relative; 
 	text-align: center;
 	margin-bottom: 5px;
@@ -61,8 +54,6 @@
 }
 
 .form2 {
-	/*margin-left: -500px;
-	left: 52%; */
 	position: relative; 
 	text-align: center;
    margin-bottom: 5px;
@@ -71,7 +62,7 @@
 	margin-left: 18%;
 	margin-right: auto;
 }
-
+/*
 #graf1, #grafhour {
 	color: #fff;
 	padding-top: 15px;
@@ -117,7 +108,7 @@
 	position: relative;
 	text-align: center;
 }
-
+*/
 #foto_pp {
 	margin: 8px auto 20px auto;
 	width: 70px;
@@ -1914,4 +1905,61 @@ left: 90%;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 25px;
+}
+
+
+
+.blink_me {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    
+    animation-name: blinker;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+.table-config {
+	width: 450px; 
+	margin-left: auto; 
+	margin-right: auto; 
+	margin-bottom: 10px; 
+	margin-top:20px;	
+}
+
+.table-config td {
+	padding: 25px;	
+}	
+
+.iframe {
+	min-height:4100px;
+}
+
+img.avatar {
+	background-color: #fff;
 }

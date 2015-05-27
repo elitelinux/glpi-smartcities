@@ -6,12 +6,22 @@ $usedm = exec('/usr/bin/free -tmo | /usr/bin/awk \'{print $1","$2","$3-$6-$7","$
 
 
 if($totalm >= 1024) {
-
 	echo round($usedm / '1024',2) ." / ". round($totalm / '1024',2) . " GB"; 
+	$totalu = round($totalm / '1024',2) . " GB";
+	$titlem = "MEM - GB";
+	
+	$totalmem = round($totalm / '1024',2);
+	$usedmem = round($usedm / '1024',2);
 	}
 
 else {
-		echo $usedm." / ".$totalm. " MB";
+	echo $usedm." / ".$totalm. " MB";
+	$totalu = $totalm. " MB";
+	$titlem = "MEM - MB";
+
+	$total_mem = $totalm;
+	$usedmem = $usedm;
+
 		}
 	
 $perc = round(($usedm*100)/$totalm ,1);

@@ -1,11 +1,11 @@
 <?php
 
 if($data_ini == $data_fin) {
-$datas = "LIKE '".$data_ini."%'";	
+	$datas = "LIKE '".$data_ini."%'";	
 }	
 
 else {
-$datas = "BETWEEN '".$data_ini." 00:00:00' AND '".$data_fin." 23:59:59'";	
+	$datas = "BETWEEN '".$data_ini." 00:00:00' AND '".$data_fin." 23:59:59'";	
 }
 
 $query_grp = "
@@ -22,7 +22,6 @@ ORDER BY quant DESC
 LIMIT 0, 20 ";
 
 $result_grp = $DB->query($query_grp);
-
 
 $arr_grft2 = array();
 
@@ -43,8 +42,8 @@ while ($row = $DB->fetch_assoc($result_grp)) {
 	
 	$row_result = $DB->fetch_assoc($result2);		
 		 			
-			$v_row_result = $row_result['gname'];
-			$arr_grft2[$v_row_result] =  round($row_result['time'], 3);		
+		$v_row_result = $row_result['gname'];
+		$arr_grft2[$v_row_result] =  round($row_result['time'], 3);		
 		
 	$grft2 = array_keys($arr_grft2);	
 	$quantt2 = array_values($arr_grft2);

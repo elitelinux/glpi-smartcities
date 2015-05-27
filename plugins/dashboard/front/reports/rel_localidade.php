@@ -35,16 +35,32 @@ $sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' A
 $result_e = $DB->query($sql_e);
 $sel_ent = $DB->result($result_e,0,'value');
 
-if($sel_ent == '' || $sel_ent == -1) {
-	$sel_ent = 0;
-	$entidade = "";
-	$entidade_l = "";
-	$entidade_lw = "";
+//select entity
+if($sel_ent == '' || $sel_ent == -1) {	
+
+	$query_ent1 = "
+	SELECT entities_id
+	FROM glpi_users
+	WHERE id = ".$_SESSION['glpiID']." ";
+	
+	$res_ent1 = $DB->query($query_ent1);
+	$user_ent = $DB->result($res_ent1,0,'entities_id');
+
+	//get all user entities
+	$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+	$entities[] = $user_ent;
+	$ent = implode(",",$entities);
+
+	$entidade = "AND glpi_tickets.entities_id IN (".$ent.") ";
+	$entidade_l = "AND glpi_locations.entities_id IN (".$ent.") ";
+	$entidade_lw = "WHERE glpi_locations.entities_id IN (".$ent.") ";
+	$entidade1 = "";
+	
 }
 else {
-	$entidade = "AND glpi_tickets.entities_id = ".$sel_ent." ";
-	$entidade_l = "AND glpi_locations.entities_id = ".$sel_ent." ";
-	$entidade_lw = "WHERE glpi_locations.entities_id = ".$sel_ent." ";
+	$entidade = "AND glpi_tickets.entities_id IN (".$sel_ent.") ";
+	$entidade_l = "AND glpi_locations.entities_id IN (".$sel_ent.") ";
+	$entidade_lw = "WHERE glpi_locations.entities_id IN (".$sel_ent.") ";
 }
 
 ?>
@@ -154,11 +170,10 @@ a:hover {
 
 // lista de localidades
 $sql_loc = "
-SELECT id, completename AS name
+SELECT id, completename AS name, entities_id AS ent
 FROM glpi_locations
 ".$entidade_lw."
-ORDER BY `name` ASC
-";
+ORDER BY `name` ASC ";
 
 $result_loc = $DB->query($sql_loc);
 
@@ -167,14 +182,23 @@ $arr_loc[0] = "-- ". __('Select a location', 'dashboard') . " --" ;
 
 
 while ($row_result = $DB->fetch_assoc($result_loc))		
-	{ 
+{ 
+	
+	$sql_ent = "
+	SELECT name
+	FROM glpi_entities
+	WHERE id = ".$row_result['ent']." ";
+	
+	$result_ent = $DB->query($sql_ent);
+	$ent_loc = $DB->result($result_ent,0,'name');	
+	
 	$v_row_result = $row_result['id'];
-	$arr_loc[$v_row_result] = $row_result['name'] ;			
-	} 
+	$arr_loc[$v_row_result] = $ent_loc ." > ".$row_result['name'] ;			
+} 
 	
 $name = 'sel_loc';
 $options = $arr_loc;
-$selected = "0";
+$selected = $id_loc;
 
 echo dropdown( $name, $options, $selected );
 
@@ -215,7 +239,7 @@ else {
 }  
 
 if(!isset($_POST["sel_loc"])) {
-	$id_loc = $_GET["cat"];	
+	$id_loc = $_GET["loc"];	
 }
 
 else {
@@ -282,7 +306,6 @@ AND glpi_tickets.status IN ".$status."
 ".$entidade." ";
 
 $result_cons1 = $DB->query($consulta1);
-
 $conta_cons = $DB->numrows($result_cons1);
 
 $consulta = $conta_cons;
@@ -291,7 +314,6 @@ $consulta = $conta_cons;
 if($consulta > 0) {
 
 //montar barra
-
 $sql_ab = "SELECT glpi_tickets.id AS total
 FROM glpi_tickets
 WHERE glpi_tickets.locations_id = ".$id_loc."
@@ -333,8 +355,8 @@ else { $barra = 0;}
 // nome da localidade
 $sql_nm = "
 SELECT id , completename AS name
-FROM `glpi_locations`
-".$entidade_lw." ";
+FROM glpi_locations
+WHERE id=".$id_loc." ";
 
 $result_nm = $DB->query($sql_nm);
 $ent_name = $DB->fetch_assoc($result_nm);
@@ -459,7 +481,7 @@ echo "</tbody>
 
 $('#local')
 	.removeClass( 'display' )
-	.addClass('table table-striped table-bordered');		
+	.addClass('table table-striped table-bordered table-hover');		
 
 $(document).ready(function() {
     oTable = $('#local').dataTable({
@@ -484,7 +506,7 @@ $(document).ready(function() {
              },
              {
                  "sExtends":    "collection",
-                 "sButtonText": "<?php echo __('Export'); ?>",
+                 "sButtonText": "<?php echo _x('button', 'Export'); ?>",
                  "aButtons":    [ "csv", "xls",
                   {
                  "sExtends": "pdf",

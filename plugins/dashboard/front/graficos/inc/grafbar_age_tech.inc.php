@@ -1,6 +1,5 @@
 <?php
 
-
 $datai_s = date("Y-m-d");  //hoje
 $dataf_s = date('Y-m-d', strtotime('-6 days'));
 
@@ -14,7 +13,7 @@ $datai_m1 = date('Y-m-d', strtotime('-30 days'));
 $dataf_m1 = date('Y-m-d', strtotime('-59 days'));
 
 $datai_m2 = date('Y-m-d', strtotime('-60 days'));
-$dataf_m2 = date('Y-m-d', strtotime('-200 days'));
+$dataf_m2 = date('Y-m-d', strtotime('-365 days'));
 
 
 //semana
@@ -22,10 +21,11 @@ $sql_s = "
 SELECT DATE_FORMAT(date, '%b-%d') as data, COUNT(glpi_tickets.id) as conta
 FROM glpi_tickets, glpi_tickets_users
 WHERE glpi_tickets.is_deleted = 0
+AND glpi_tickets_users.type = 2
 AND glpi_tickets_users.tickets_id = glpi_tickets.id
 AND glpi_tickets_users.users_id = ".$_SESSION['glpiID']."
 AND glpi_tickets.date BETWEEN '" . $dataf_s ." 00:00:00' AND '".$datai_s." 23:59:59'
-". $entidade ."
+". $entidade_age ."
 AND status NOT IN ('5','6') ";
 
 $query_s = $DB->query($sql_s);
@@ -37,10 +37,11 @@ $sql_q = "
 SELECT DATE_FORMAT(date, '%b-%d') as data, COUNT(glpi_tickets.id) as conta
 FROM glpi_tickets, glpi_tickets_users
 WHERE glpi_tickets.is_deleted = 0
+AND glpi_tickets_users.type = 2
 AND glpi_tickets_users.tickets_id = glpi_tickets.id
 AND glpi_tickets_users.users_id = ".$_SESSION['glpiID']."
 AND glpi_tickets.date BETWEEN '" . $dataf_q ." 00:00:00' AND '".$datai_q." 23:59:59'
-". $entidade ."
+". $entidade_age ."
 AND status NOT IN ('5','6') ";
 
 $query_q = $DB->query($sql_q);
@@ -53,10 +54,11 @@ $sql_m = "
 SELECT DATE_FORMAT(date, '%b-%d') as data, COUNT(glpi_tickets.id) as conta
 FROM glpi_tickets, glpi_tickets_users
 WHERE glpi_tickets.is_deleted = 0
+AND glpi_tickets_users.type = 2
 AND glpi_tickets_users.tickets_id = glpi_tickets.id
 AND glpi_tickets_users.users_id = ".$_SESSION['glpiID']."
 AND glpi_tickets.date BETWEEN '" . $dataf_m ." 00:00:00' AND '".$datai_m." 23:59:59'
-". $entidade ."
+". $entidade_age ."
 AND status NOT IN ('5','6') ";
 
 $query_m = $DB->query($sql_m);
@@ -69,10 +71,11 @@ $sql_m1 = "
 SELECT DATE_FORMAT(date, '%b-%d') as data, COUNT(glpi_tickets.id) as conta
 FROM glpi_tickets, glpi_tickets_users
 WHERE glpi_tickets.is_deleted = 0
+AND glpi_tickets_users.type = 2
 AND glpi_tickets_users.tickets_id = glpi_tickets.id
 AND glpi_tickets_users.users_id = ".$_SESSION['glpiID']."
 AND glpi_tickets.date BETWEEN '" . $dataf_m1 ." 00:00:00' AND '".$datai_m1." 23:59:59'
-". $entidade ."
+". $entidade_age ."
 AND status NOT IN ('5','6') ";
 
 $query_m1 = $DB->query($sql_m1);
@@ -87,10 +90,11 @@ $sql_m2 = "
 SELECT DATE_FORMAT(date, '%b-%d') as data, COUNT(glpi_tickets.id) as conta
 FROM glpi_tickets, glpi_tickets_users
 WHERE glpi_tickets.is_deleted = 0
+AND glpi_tickets_users.type = 2
 AND glpi_tickets_users.tickets_id = glpi_tickets.id
 AND glpi_tickets_users.users_id = ".$_SESSION['glpiID']."
 AND glpi_tickets.date BETWEEN '" . $dataf_m2 ." 00:00:00' AND '".$datai_m2." 23:59:59'
-". $entidade ."
+". $entidade_age ."
 AND status NOT IN ('5','6') ";
 
 $query_m2 = $DB->query($sql_m2);
@@ -124,7 +128,7 @@ $(function () {
                     overflow: 'justify'                
                      },
                      title: {
-						  text: '" .__('days','dashboard')."',
+						  text: ' " .__('days','dashboard')."',
                     align: 'middle'
               		  		}
                     },
@@ -139,7 +143,7 @@ $(function () {
                 }
             },
          tooltip: {
-                valueSuffix: '" .__('Tickets')."'
+                valueSuffix: ' '
             },
             plotOptions: {
                 column: {
@@ -153,8 +157,8 @@ $(function () {
                 }
             },
             series: [{
-                name: '" .__('Tickets')."',
-                data: [ $week, $quinz, $month, $month1, $month2 ],
+                name: ' " .__('Tickets')."',
+                data: [ ".$week.", ".$quinz.", ".$month.", ".$month1.", ".$month2." ],
                 dataLabels: {
                     enabled: true,                                        
                     style: {

@@ -30,8 +30,7 @@ AND glpi_tickets.is_deleted = 0
 AND glpi_users.id = glpi_tickets_users.`users_id`
 GROUP BY `users_id`
 ORDER BY conta DESC
-LIMIT 10
-";
+LIMIT 10 ";
 
 $result3 = $DB->query($query3) or die('erro');
 

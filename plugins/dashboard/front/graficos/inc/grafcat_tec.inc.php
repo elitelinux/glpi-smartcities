@@ -20,7 +20,7 @@ AND glpi_tickets_users.tickets_id = glpi_tickets.id
 AND glpi_tickets_users.type = 2
 GROUP BY glpi_itilcategories.id
 ORDER BY `cat_tick` DESC
-LIMIT 5
+LIMIT 10
 ";
 
 $result4 = $DB->query($query4) or die('erro');
@@ -50,7 +50,7 @@ $(function () {
                 type: 'bar'
             },
             title: {
-                text: 'Top 5 - ".__('Tickets by Category','dashboard')."'
+                text: 'Top 10 - ".__('Tickets by Category','dashboard')."'
             },
            
             xAxis: {

@@ -2,19 +2,19 @@
 <?php
 
 if($data_ini == $data_fin) {
-$datas = "LIKE '".$data_ini."%'";	
+	$datas = "LIKE '".$data_ini."%'";	
 }	
 
 else {
-$datas = "BETWEEN '".$data_ini." 00:00:00' AND '".$data_fin." 23:59:59'";	
+	$datas = "BETWEEN '".$data_ini." 00:00:00' AND '".$data_fin." 23:59:59'";	
 }
-
 
 $sql_tec = "
 SELECT count(glpi_tickets.id) AS conta, glpi_entities.name AS name
 FROM `glpi_entities`, glpi_tickets
-WHERE glpi_tickets.`entities_id` = glpi_entities.id
+WHERE glpi_tickets.entities_id = glpi_entities.id
 AND glpi_tickets.is_deleted = 0
+".$entidade."
 AND glpi_tickets.date ".$datas."
 GROUP BY name
 ORDER BY conta DESC
@@ -82,7 +82,13 @@ echo "    ],
                 	borderColor: 'white',
                 	shadow:true,           
                 	showInLegend: false
-                }
+                },
+               series: {
+			    	  animation: {
+			        duration: 2000,
+			        easing: 'easeOutBounce'
+			    	  }
+					}
             },
             legend: {
                 layout: 'vertical',

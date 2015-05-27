@@ -33,12 +33,12 @@ Session::checkRight("profile", READ);
 
 <?php
 
-$status = "('2','1','3','4')"	;	
+$status = "('5','6')"	;	
 
 $sql = "SELECT COUNT( * ) AS total
 FROM glpi_tickets
 WHERE glpi_tickets.status
-IN ".$status."
+NOT IN ".$status."
 AND glpi_tickets.is_deleted = 0" ;
 
 $result = $DB->query($sql);

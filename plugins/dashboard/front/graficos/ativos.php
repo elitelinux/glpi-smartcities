@@ -41,6 +41,11 @@ $mydate = isset($_POST["date1"]) ? $_POST["date1"] : "";
 <?php echo '<link rel="stylesheet" type="text/css" href="../css/style-'.$_SESSION['style'].'">';  ?> 
 <?php echo '<script src="../js/themes/'.$_SESSION['charts_colors'].'"></script>'; ?>
 
+<style type="text/css">
+#select2-chosen-1 { color: #555; }
+.select2-chosen { color: #555; }
+</style>
+
 </head>
 
 <body style="background-color: #e5e5e5; margin-left:0%;">
@@ -110,32 +115,32 @@ $datahoje = date("Y-m-d");
 				</tr>
 				<tr height="12px" ><td></td></tr>
 				<tr>
-				<td style="margin-top:0px; width:100px;">
-				
-				<?php echo __('Type').":  
-				
-				<select id='sel_item' name='sel_item' style='width: 300px; height: 27px;' autofocus onChange='javascript: document.form1.submit.focus()' >
-					<option value='0'> -- ".__('Select a asset','dashboard')." -- </option>
-					<option value='1'>".__('Computer')."</option>
-					<option value='2'>".__('Monitor')."</option>
-					<option value='3'>".__('Software')."</option>
-					<option value='4'>".__('Network')."</option>
-					<option value='5'>".__('Device')."</option>
-					<option value='6'>".__('Printer')."</option>
-					<option value='7'>".__('Phone')."</option>
-				</select> ";	
-				
-				?>
-				</td>
+					<td style="margin-top:0px; width:100px;">
+					
+					<?php echo __('Type').":  
+					
+					<select id='sel_item' name='sel_item' style='color:#000; width: 300px; height: 27px;' autofocus onChange='javascript: document.form1.submit.focus()' >
+						<option value='0'> -- ".__('Select a asset','dashboard')." -- </option>
+						<option value='1'>".__('Computer')."</option>
+						<option value='2'>".__('Monitor')."</option>
+						<option value='3'>".__('Software')."</option>
+						<option value='4'>".__('Network')."</option>
+						<option value='5'>".__('Device')."</option>
+						<option value='6'>".__('Printer')."</option>
+						<option value='7'>".__('Phone')."</option>
+					</select> ";	
+					
+					?>
+					</td>
 				</tr>
 				<tr><td>&nbsp;</td></tr>
-					<tr height="12px" ><td></td></tr>
-					<tr align="center">
+				<tr height="12px" ><td></td></tr>
+				<tr align="center">
 					<td>
 						<button class="btn btn-primary btn-sm" type="submit" name="submit" value="Atualizar" ><i class="fa fa-search"></i>&nbsp; <?php echo __('Consult','dashboard'); ?> </button>
 						<button class="btn btn-primary btn-sm" type="button" name="Limpar" value="Limpar" onclick="location.href='ativos.php'" ><i class="fa fa-trash-o"></i>&nbsp; <?php echo __('Clean','dashboard'); ?> </button>
 					</td>
-					</tr>
+				</tr>
 				</table>
 				<p></p>
 			<?php Html::closeForm(); ?>
@@ -151,8 +156,7 @@ if(isset($_REQUEST['con']) && $_REQUEST['con'] == 1 ) {
 	
 	if(isset($_REQUEST['sel_item']) && $_REQUEST['sel_item'] == '0' ) {
 		//$type = $_REQUEST['itemtype'];
-		echo '<script language="javascript"> alert(" ' . __('Select a asset','dashboard') . ' "); </script>';
-		//echo '<script language="javascript"> location.href="graf_entidade.php"; </script>';		
+		echo '<script language="javascript"> alert(" ' . __('Select a asset','dashboard') . ' "); </script>';		
 		 
 		}
 	
@@ -180,7 +184,7 @@ include ("./inc/grafbar_ativo_mes.inc.php");
 </div>
 
 <script type="text/javascript" >
-$(document).ready(function() { $("#sel_item").select2(); });
+	$(document).ready(function() { $("#sel_item").select2(); });
 </script>
 
 

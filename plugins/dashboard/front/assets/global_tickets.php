@@ -2,16 +2,15 @@
 
 
 $query_os = "
-SELECT glpi_tickets.`itemtype` AS tipo, glpi_tickets.`items_id` AS id , COUNT(*) AS conta
-FROM glpi_tickets
-WHERE glpi_tickets.`itemtype` <> ''
-AND glpi_tickets.`items_id` >0
-AND glpi_tickets.`itemtype` <> 'PluginProjetProjet'
-".$ent."
-GROUP BY glpi_tickets.`itemtype` , glpi_tickets.`items_id`
+SELECT glpi_items_tickets.itemtype AS tipo, glpi_items_tickets.`items_id` AS id , COUNT(*) AS conta
+FROM glpi_items_tickets
+WHERE glpi_items_tickets.`itemtype` <> ''
+AND glpi_items_tickets.`items_id` > 0
+AND glpi_items_tickets.`itemtype` <> 'PluginProjetProjet'
+".$ent_global."
+GROUP BY glpi_items_tickets.`itemtype` , glpi_items_tickets.`items_id`
 ORDER BY conta DESC
-LIMIT 100 
-";
+LIMIT 100 ";
 
 $result_os = $DB->query($query_os) or die('erro');
 

@@ -301,7 +301,7 @@ $('.nav-input-search').typeahead({
       }
 
      function loadPage(url, container) {
-      urlExt = url + '.html';
+     /* urlExt = url + '.html';
         //console.log(container)
         $.ajax({
         	type: "GET",
@@ -328,9 +328,10 @@ $('.nav-input-search').typeahead({
                                 $('ul.nav-list li:has(a[href="dashboard"])').addClass('active').closest('.submenu').addClass('current').find('ul').css('display','block');
                           },
                     3000);
-              },
+              }, 
               async: false
             });
+            */
      }
 
 function randNum() {

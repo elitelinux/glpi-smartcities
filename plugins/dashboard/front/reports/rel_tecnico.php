@@ -12,7 +12,7 @@ Session::checkRight("profile", READ);
 
 if(!empty($_POST['submit']))
 {
-    $data_ini =  $_REQUEST['date1'];
+    $data_ini = $_REQUEST['date1'];
     $data_fin = $_REQUEST['date2'];
 }
 
@@ -35,18 +35,34 @@ $sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' A
 $result_e = $DB->query($sql_e);
 $sel_ent = $DB->result($result_e,0,'value');
 
-if($sel_ent == '' || $sel_ent == -1) {
-	$sel_ent = 0;
-	$entidade = "";
-	$entidade_t = "";
-	$entidade_tw = "";
-	$entidade_u = "";
+//select entity
+if($sel_ent == '' || $sel_ent == -1) {	
+
+	$query_ent1 = "
+	SELECT entities_id
+	FROM glpi_users
+	WHERE id = ".$_SESSION['glpiID']." ";
+	
+	$res_ent1 = $DB->query($query_ent1);
+	$user_ent = $DB->result($res_ent1,0,'entities_id');
+
+	//get all user entities
+	$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+	$entities[] = $user_ent;
+	$ent = implode(",",$entities);
+
+	$entidade = "AND glpi_tickets.entities_id IN (".$ent.") ";
+	$entidade_t = "AND entities_id IN (".$ent.") ";
+	$entidade_tw = "WHERE entities_id IN (".$ent.") ";
+	$entidade_u = "AND glpi_users.entities_id IN (".$ent.") ";
+	$entidade1 = "";
+	
 }
 else {
-	$entidade = "AND glpi_tickets.entities_id = ".$sel_ent." ";
-	$entidade_t = "AND entities_id = ".$sel_ent." ";
-	$entidade_tw = "WHERE entities_id = ".$sel_ent." ";
-	$entidade_u = "AND glpi_users.entities_id = ".$sel_ent." ";
+	$entidade = "AND glpi_tickets.entities_id IN (".$sel_ent.") ";
+	$entidade_t = "AND entities_id IN (".$sel_ent.") ";
+	$entidade_tw = "WHERE entities_id IN (".$sel_ent.") ";
+	$entidade_u = "AND glpi_users.entities_id IN (".$sel_ent.") ";
 }
 ?>
 
@@ -183,7 +199,7 @@ while ($row_result = $DB->fetch_assoc($result_tec))
 
 $name = 'sel_tec';
 $options = $arr_tec;
-$selected = 0;
+$selected = $id_tec;
 
 echo dropdown( $name, $options, $selected );
 
@@ -284,8 +300,8 @@ else {
 
 // Chamados
 $sql_cham =
-"SELECT glpi_tickets.id AS id, glpi_tickets.name AS name, glpi_tickets.date AS date, glpi_tickets.solvedate as solvedate,
-glpi_tickets.type, glpi_tickets.status, FROM_UNIXTIME( UNIX_TIMESTAMP( `glpi_tickets`.`solvedate` ) , '%Y-%m' ) AS date_unix, AVG( glpi_tickets.solve_delay_stat ) AS time,
+"SELECT glpi_tickets.id AS id, glpi_tickets.name AS name, glpi_tickets.date AS date, glpi_tickets.closedate as closedate,
+glpi_tickets.type, glpi_tickets.status, FROM_UNIXTIME( UNIX_TIMESTAMP( `glpi_tickets`.`closedate` ) , '%Y-%m' ) AS date_unix, AVG( glpi_tickets.solve_delay_stat ) AS time,
 glpi_tickets.solve_delay_stat AS time_sec
 FROM `glpi_tickets_users` , glpi_tickets
 WHERE glpi_tickets.id = glpi_tickets_users.`tickets_id`
@@ -302,8 +318,8 @@ $result_cham = $DB->query($sql_cham);
 
 
 $consulta1 =
-"SELECT glpi_tickets.id AS id, glpi_tickets.name, glpi_tickets.date AS adate, glpi_tickets.solvedate AS sdate,
-FROM_UNIXTIME( UNIX_TIMESTAMP( `glpi_tickets`.`solvedate` ) , '%Y-%m' ) AS date_unix, AVG( glpi_tickets.solve_delay_stat ) AS time
+"SELECT glpi_tickets.id AS id, glpi_tickets.name, glpi_tickets.date AS adate, glpi_tickets.closedate AS sdate,
+FROM_UNIXTIME( UNIX_TIMESTAMP( `glpi_tickets`.`closedate` ) , '%Y-%m' ) AS date_unix, AVG( glpi_tickets.solve_delay_stat ) AS time
 FROM `glpi_tickets_users` , glpi_tickets
 WHERE glpi_tickets.id = glpi_tickets_users.`tickets_id`
 AND glpi_tickets_users.type = 2
@@ -358,7 +374,9 @@ $result_sat = $DB->query($query_sat) or die('erro');
 $media = $DB->fetch_assoc($result_sat);
 
 $satisfacao = round(($media['media']/5)*100,1);
-$nota = $media['media'];
+$nota = round($media['media'],0);
+//$nota = $media['media'];
+
 
 //barra de porcentagem
 if($conta_cons > 0) {
@@ -385,13 +403,11 @@ else {
 }
 else { $barra = 0;}
 
-
 //nome e total
 $sql_nome = "
 SELECT `firstname` , `realname`, `name`
 FROM `glpi_users`
-WHERE `id` = ".$id_tec."
-";
+WHERE `id` = ".$id_tec." ";
 
 $result_nome = $DB->query($sql_nome) ;
 
@@ -414,8 +430,7 @@ while($row = $DB->fetch_assoc($result_nome)) {
 			 		</div>		
 				</div>		   
 			</td>
-		</tr>
-	
+		</tr>	
 	</table> ";	
     
     
@@ -449,37 +464,37 @@ while($row = $DB->fetch_assoc($result_nome)) {
 	
 	echo "
 	<table align='right' style='margin-bottom:10px;' width=100% border='0'>
-	<tr>
-		<td colspan=6 >
-		<div id='gauge' style='width:150px; height:100px; margin-left: 120px;'></div>
-	
-	<!-- gauge -->
-	    <script>
-	    var g = new JustGage({
-	    id: \"gauge\",
-	    value: ".$satisfacao.",
-	    min: 0,
-	    max: 100,
-	    title: \" ". __('Satisfaction','dashboard') ." - %\",
-	    label: \" \",
-	       levelColors: [
-	          \"#ff0000\",
-	          \"#FB8300\",
-	          \"#F9C800\",
-	          \"#9FCA0C\"
-	        ]
-	
-	    });
-	    </script>
+	<tr align='left'>
+		<td colspan=2 style='horizontal-align:left;'>
+			<div id='gauge' style='width:150px; height:100px; margin-left: 30px;'></div>
+		
+			 <!-- gauge -->
+		    <script>
+		    var g = new JustGage({
+		    id: \"gauge\",
+		    value: ".$satisfacao.",
+		    min: 0,
+		    max: 100,
+		    title: \" ". __('Satisfaction','dashboard') ." - %\",
+		    label: \" \",
+		       levelColors: [
+		          \"#ff0000\",
+		          \"#FB8300\",
+		          \"#F9C800\",
+		          \"#9FCA0C\"
+		        ]
+		
+		    });
+		    </script>
+        </td>
         
-        
-        <td><span style='color: #000;'>". _x('status','New').": </span>".$new." </td>	
-        <td><span style='color: #000;'>". __('Assigned'). ": </span>". ($assig + $plan) ."</td>		
-        <td><span style='color: #000;'>". __('Pending').": </span>".$pend." </td>		
-        <td><span style='color: #000;'>". __('Solved','dashboard').": </span>".$solve." </td>
-        <td><span style='color: #000;'>". __('Closed').": </span>".$close." </td>
+        <td><span style='color: #000;'>". _x('status','New').": </span><b>".$new." </b></td>	
+        <td><span style='color: #000;'>". __('Assigned'). ": </span><b>". ($assig + $plan) ."</b></td>		
+        <td><span style='color: #000;'>". __('Pending').": </span><b>".$pend." </b></td>		
+        <td><span style='color: #000;'>". __('Solved','dashboard').": </span><b>".$solve." </b></td>
+        <td><span style='color: #000;'>". __('Closed').": </span><b>".$close." </b></td>
 	
-		<td colspan=3 align='right' style='vertical-align:bottom;'>
+		<td colspan=3 align='right' style='vertical-align:middle;'>
 			<button class='btn btn-primary btn-sm' type='button' name='abertos' value='Abertos' onclick='location.href=\"rel_tecnico.php?con=1&stat=open&tec=".$id_tec."&date1=".$data_ini2."&date2=".$data_fin2."&npage=".$num_por_pagina."\"' <i class='icon-white icon-trash'></i> ".__('Opened','dashboard'). " </button> 
 			<button class='btn btn-primary btn-sm' type='button' name='fechados' value='Fechados' onclick='location.href=\"rel_tecnico.php?con=1&stat=close&tec=".$id_tec."&date1=".$data_ini2."&date2=".$data_fin2."&npage=".$num_por_pagina."\"' <i class='icon-white icon-trash'></i> ".__('Closed','dashboard')." </button> 
 			<button class='btn btn-primary btn-sm' type='button' name='todos' value='Todos' onclick='location.href=\"rel_tecnico.php?con=1&stat=all&tec=".$id_tec."&date1=".$data_ini2."&date2=".$data_fin2."&npage=".$num_por_pagina."\"' <i class='icon-white icon-trash'></i> ".__('All','dashboard')." </button> 
@@ -519,11 +534,11 @@ while($row = $DB->fetch_assoc($result_nome)) {
 	
 <table style='font-size: 16px; font-weight:bold; width: 50%;' border=0>
 	<tr>
-		<td><span style='color: #000;'>". _x('status','New').": </span>".$new." </td>	
-		<td><span style='color: #000;'>". __('Assigned'). ": </span>". ($assig + $plan) ."</td>		
-		<td><span style='color: #000;'>". __('Pending').": </span>".$pend." </td>		
-		<td><span style='color: #000;'>". __('Solved','dashboard').": </span>".$solve." </td>
-		<td><span style='color: #000;'>". __('Closed').": </span>".$close." </td>
+		  <td><span style='color: #000;'>". _x('status','New').": </span><b>".$new." </b></td>	
+        <td><span style='color: #000;'>". __('Assigned'). ": </span><b>". ($assig + $plan) ."</b></td>		
+        <td><span style='color: #000;'>". __('Pending').": </span><b>".$pend." </b></td>		
+        <td><span style='color: #000;'>". __('Solved','dashboard').": </span><b>".$solve." </b></td>
+        <td><span style='color: #000;'>". __('Closed').": </span><b>".$close." </b></td>
 	</tr>
 	<tr><td>&nbsp;</td></tr>
 	<tr><td>&nbsp;</td></tr>
@@ -533,12 +548,12 @@ while($row = $DB->fetch_assoc($result_nome)) {
 		<thead>
 			<tr>
 				<th style='text-align:center; cursor:pointer; vertical-align:middle;'> ". __('Tickets','dashboard') ." </th>
-				<th style='text-align:center; cursor:pointer; font-size: 12px; font-weight:bold;'> ".__('Status')." </th>
+				<th style='text-align:center; cursor:pointer; font-size: 12px; font-weight:bold; vertical-align:middle;'> ".__('Status')." </th>
 				<th style='text-align:center; cursor:pointer; vertical-align:middle;'> ". __('Type') ."</th>
 				<th style='text-align:center; cursor:pointer; vertical-align:middle;'> ". __('Title') ."</th>
 				<th style='text-align:center; cursor:pointer; vertical-align:middle;'> ". __('Opened' ,'dashboard') ."</th>
-				<th style='text-align:center; cursor:pointer; vertical-align:middle;'> ". __('Closed') ."</th>
-				<th style='text-align:center; cursor:pointer; vertical-align:middle;'> ". __('Time') ."</th>
+			   <th style='text-align:center; cursor:pointer; vertical-align:middle;'> ". __('Closed','dashboard') ."</th>
+				<th style='text-align:center; cursor:pointer;'> ". __('Resolution time') ."</th>
 			</tr>
 		</thead>
 	<tbody>
@@ -564,15 +579,15 @@ while($row = $DB->fetch_assoc($result_cham)){
 	
 	if($satisfacao != '' || $satisfacao > 0) {
 	
-		$query_satc = "SELECT `glpi_ticketsatisfactions`.satisfaction AS sat
+		$query_satc = "SELECT `glpi_ticketsatisfactions`.satisfaction AS sat,  avg( glpi_ticketsatisfactions.satisfaction ) AS sat1
 		FROM `glpi_ticketsatisfactions`
-		WHERE glpi_ticketsatisfactions.tickets_id = ". $row['id'] ."
-		";
+		WHERE glpi_ticketsatisfactions.tickets_id = ". $row['id'] ." ";
 		
 		$result_satc = $DB->query($query_satc);
 		$satc = $DB->fetch_assoc($result_satc);
 		
 		$satc1 = $satc['sat'];
+		$nota1 = round(($satc1['sat1']/5)*100,1);
 		
 		echo "
 		<tr>
@@ -581,9 +596,9 @@ while($row = $DB->fetch_assoc($result_cham)){
 		<td style='vertical-align:middle;'> ". $type ." </td>
 		<td style='vertical-align:middle;'> ". substr($row['name'],0,75) ." </td>
 		<td style='vertical-align:middle; text-align:center;'> ". conv_data_hora($row['date']) ." </td>
-		<td style='vertical-align:middle; text-align:center;'> ". conv_data_hora($row['solvedate']) ." </td>
+		<td style='vertical-align:middle; text-align:center;'> ". conv_data_hora($row['closedate']) ." </td>
 		<td style='vertical-align:middle; text-align:center;'> ". time_ext($row['time']) ."</td>
-		<td style='vertical-align:middle;'> <img src=../img/s". $satc1 .".png> </td>
+		<td style='vertical-align:middle;'> <img src='../img/s". $satc1 .".png' alt='".$nota1." %' title='".$nota1." %'> </td>
 		</tr>";
 	    }
 	//}
@@ -597,7 +612,7 @@ while($row = $DB->fetch_assoc($result_cham)){
 		<td style='vertical-align:middle;'> ". $type ." </td>
 		<td style='vertical-align:middle;'> ". substr($row['name'],0,75) ." </td>
 		<td style='vertical-align:middle; text-align:center;'> ". conv_data_hora($row['date']) ." </td>
-		<td style='vertical-align:middle; text-align:center;'> ". conv_data_hora($row['solvedate']) ." </td>
+		<td style='vertical-align:middle; text-align:center;'> ". conv_data_hora($row['closedate']) ." </td>
 		<td style='vertical-align:middle; text-align:center;'> ". time_ext($row['time']) ."</td>
 		</tr>";	
 	    }
@@ -636,7 +651,7 @@ $(document).ready(function() {
              },
              {
                  "sExtends":    "collection",
-                 "sButtonText": "<?php echo __('Export'); ?>",
+                 "sButtonText": "<?php echo _x('button', 'Export'); ?>",
                  "aButtons":    [ "csv", "xls",
                   {
                  "sExtends": "pdf",

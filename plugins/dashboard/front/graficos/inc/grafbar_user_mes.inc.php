@@ -58,10 +58,7 @@ while ($usuario = $DB->fetch_assoc($query_usu)) {
 	$chamado = $DB->fetch_assoc($queryC);
 		
 	$user_name = str_replace("'","`",$chamado['name']." ". $chamado['sname']);
-	echo "'". $user_name ."',";
-		
-	//$user_name = $chamado['name']." ". $chamado['sname'];	
-	//echo "'". $chamado['name']." ". $chamado['sname']."',";
+	echo "'". $user_name ."',";	
 	
 }   
 
@@ -101,8 +98,14 @@ echo "    ],
                 		borderColor: 'white',
                 		shadow:true,           
                 		showInLegend: false
-                }
-            },
+                },
+                 series: {
+			       	  animation: {
+			           duration: 2000,
+			           easing: 'easeOutBounce'
+			       	  }
+			  		 }
+			            },
             legend: {
                 layout: 'vertical',
                 align: 'right',

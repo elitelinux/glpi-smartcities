@@ -63,12 +63,10 @@ else {
 <?php echo '<link rel="stylesheet" type="text/css" href="../css/style-'.$_SESSION['style'].'">';  ?> 
 
 </head>
-
 <body style="background-color: #e5e5e5; margin-left:0%;">
 
 <div id='content' >
 <div id='container-fluid' style="margin: 0px 5% 0px 5%;">
-
 <div id="charts" class="row-fluid chart" >
 <div id="pad-wrapper" >
 
@@ -190,7 +188,6 @@ $arr_url = explode("?", $url);
 $url2 = $arr_url[0];
 
 // Chamados
-
 $typeuc = ucfirst($type);
 
 $sql_cham =
@@ -412,7 +409,7 @@ $(document).ready(function() {
              },
              {
                  "sExtends":    "collection",
-                 "sButtonText": "<?php echo __('Export'); ?>",
+                 "sButtonText": "<?php echo _x('button', 'Export'); ?>",
                  "aButtons":    [ "csv", "xls",
                   {
                  "sExtends": "pdf",

@@ -64,13 +64,17 @@ $result_e = $DB->query($sql_e);
 $sel_ent = $DB->result($result_e,0,'value');
 
 if($sel_ent == '' || $sel_ent == -1) {
-	$sel_ent = 0;
-	$entidade = "";
+	//get user entities
+	$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+	$ent = implode(",",$entities);
+
+	$entidade = "AND glpi_tickets.entities_id IN (".$ent.")";	
 	$problem = "";
 }
+
 else {
-	$entidade = "AND glpi_tickets.entities_id = ".$sel_ent." ";
-	$problem =  "AND glpi_problems.entities_id = ".$sel_ent." ";
+	$entidade = "AND glpi_tickets.entities_id IN (".$sel_ent.")";
+	$problem =  "AND glpi_problems.entities_id IN (".$sel_ent.")";
 }
 
 //total de chamados
@@ -91,7 +95,7 @@ $total_mes = $DB->fetch_assoc($result);
 		<div id="charts" class="row-fluid chart"> 
 			<div id="head" class="row-fluid" >			
 				<a href="../index.php"><i class="fa fa-home" style="font-size:14pt; margin-left:25px;"></i><span></span></a>				
-				<div id="titulo_graf">				
+				<div id="titulo_graf" >				
 					<?php echo __('Tickets Total','dashboard'); ?>: <?php //echo $ano .":" ; ?> 
 					<span class="quant"> <?php echo " ".$total_mes['total'] ; ?> </span> 
 				</div>
@@ -99,32 +103,36 @@ $total_mes = $DB->fetch_assoc($result);
 
 			<!-- DIV's -->
 			
-			<div id="graf_linhas" class="span12" style="margin-bottom: 15px; margin-top: -160px;">
-			<?php include ("./inc/graflinhas_sat_geral.inc.php"); ?>
+			<div id="graf_linhas" class="span12" style="margin-left: -5px;" >
+				<?php include ("./inc/graflinhas_sat_geral.inc.php"); ?>
 			</div>
 			
-			<div id="graf2" class="span6" >
-			<?php include ("./inc/grafpie_stat_geral.inc.php"); ?>
+			<div id="graf2" class="span6" style="margin-top:45px;" >
+			 <?php include ("./inc/grafpie_stat_geral.inc.php"); ?>
 			</div>
 			
-			<div id="graf4" class="span6" >
-			<?php include ("./inc/grafpie_origem.inc.php");  ?>
+			<div id="graf4" class="span6" style="margin-top:45px;">
+			 <?php include ("./inc/grafpie_origem.inc.php");  ?>
 			</div>
 			
 			<div id="graf_tipo" class="span12" style="margin-top: 35px;">
-			<?php include ("./inc/grafcol_tipo_geral.inc.php");  ?>
+			 <?php include ("./inc/grafcol_tipo_geral.inc.php");  ?>
 			</div>
 			
 			<div>
-			<?php include ("./inc/grafent_geral.inc.php");  ?>
+			 <?php include ("./inc/grafent_geral.inc.php");  ?>
 			</div>
 			
-			<div>
-			<?php include ("./inc/grafcat_geral.inc.php"); ?>
+			<div id="graftime" class="span6" style="height:450px; margin-top:35px; margin-left: -5px;">
+			 <?php include ("./inc/grafpie_time_geral.inc.php");?>
 			</div>
 			
-			<div>
-			<?php include ("./inc/grafbar_grupo_geral.inc.php");?>
+			<div id="grafgrp" class="span6 row-fluid" style="height: 450px; margin-top:35px; margin-left: 30px;">
+			 <?php include ("./inc/grafbar_grupo_geral.inc.php");?>
+			</div>			
+						
+			<div id="grafcat"  class="span12 row-fluid" style="margin-top:35px; margin-left: -5px;">
+			 <?php include ("./inc/grafcat_geral.inc.php"); ?>
 			</div>
 			
 			

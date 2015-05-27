@@ -7,7 +7,7 @@ $num_ent = $DB->fetch_assoc($result_ent);
 
 if($num_ent['ids'] > 2) {
 
-echo '<div id="grafent" class="span12" style="height: 450px; margin-top:40px;">';
+echo '<div id="grafent" class="span12" style="height: 450px; margin-top:40px; margin-left: -5px;">';
 
 $query3 = "
 SELECT glpi_entities.name AS name, COUNT( glpi_tickets.id ) AS tick

@@ -29,6 +29,7 @@ $mydate = isset($_POST["date1"]) ? $_POST["date1"] : "";
 <link href="../less/datepicker.less" rel="stylesheet" type="text/css">
 
 <script type="text/javascript" src="../js/jquery.min.js"></script> 
+<script src="../js/jquery-ui.min.js"></script>  
 <script src="../js/highcharts.js"></script>
 <script src="../js/modules/exporting.js"></script>
 <script src="../js/modules/no-data-to-display.js"></script>
@@ -66,7 +67,7 @@ if($sel_ent == '' || $sel_ent == -1) {
 	$sel_ent = 0;
 }
 else {
-	$entidade = "AND glpi_tickets.entities_id = ".$sel_ent." ";
+	$entidade = "AND glpi_tickets.entities_id IN (".$sel_ent.")";
 }
 	  
 ?>

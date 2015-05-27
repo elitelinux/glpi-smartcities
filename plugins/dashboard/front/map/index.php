@@ -32,7 +32,7 @@ Session::checkRight("profile", READ);
 <link href="css/google_api.css" rel="stylesheet" type="text/css" />   
   
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>  
-<script src="../js/bootstrap.js" type="text/javascript" ></script>  
+<script src="../js/bootstrap.min.js" type="text/javascript" ></script>  
 
 <?php echo '<link rel="stylesheet" type="text/css" href="../css/style-'.$_SESSION['style'].'">';  ?> 
 
@@ -112,9 +112,9 @@ while ($row = $DB->fetch_assoc($result_del))
 }
 
 $status = "";
-$status_open = "('1','2','3','4')";
+$status_open = "('1','2','3','4','13','14')";
 $status_close = "('5','6')";	
-$status_all = "('1','2','3','4','5','6')";
+$status_all = "('1','2','3','4','5','6','13','14')";
 
 if(isset($_GET['stat_option'])) {
 	
@@ -190,14 +190,10 @@ var markers=[];
 var locations = [
 <?php
 
-//$icon_red = './images/red-marker.png';
-//$icon_green = './images/green-marker.png';
-
 $icon_red = "http://chart.apis.google.com/chart?chst=d_map_spin&chld=1|0|FF0000|14|_|";
 $icon_green = "http://chart.apis.google.com/chart?chst=d_map_spin&chld=1|0|43B53C|14|_|";
 
 //select not closed tickets
-
 $query_loc = "
 SELECT gpdm.entities_id, gpdm.location, gpdm.lat, gpdm.lng, count( gt.id ) AS conta
 FROM glpi_plugin_dashboard_map gpdm
@@ -340,9 +336,7 @@ var iconCalculator = function(markers, numStyles) {
 
       var ratio_up = total_up / (total_up + total_down);
 
-
-      //The map clusterer really does seem to use index-1...
- 
+      //The map clusterer really does seem to use index-1... 
   		  index_ = 1;
   		
       if (ratio_up < 0.9999) {
@@ -356,10 +350,8 @@ var iconCalculator = function(markers, numStyles) {
     }
 
     markerClusterer.setCalculator(iconCalculator);	
-	
-		
-	// Listen for a cluster to be clicked
- 
+			
+	// Listen for a cluster to be clicked 
 	google.maps.event.addListener(markerClusterer, 'mouseover', function(cluster) {
     var content = '';
 
@@ -396,8 +388,7 @@ var iconCalculator = function(markers, numStyles) {
     google.maps.event.addListener(markerClusterer, 'mouseout', function() { infowindow.close() });
 
 // close infowindow when zoom change
-
-google.maps.event.addListener(map, 'zoom_changed', function() { infowindow.close() });
+	google.maps.event.addListener(map, 'zoom_changed', function() { infowindow.close() });
 
 });
 
@@ -406,43 +397,43 @@ google.maps.event.addListener(map, 'zoom_changed', function() { infowindow.close
 </script> 
 
 <script type="text/javascript" >
-$(document).ready(function(){
-var a = document.getElementById('stat_option').value;	
+	$(document).ready(function(){
+		var a = document.getElementById('stat_option').value;	
+			
+		if ( a === 'open')
+		  { $( ".btn0" ).addClass( "active" ); }
+		  
+		else if ( a === 'closed')
+		  {  $( ".btn1" ).addClass( "active" ); }
+		
+		else if ( a === 'all')
+		  {  $( ".btn2" ).addClass( "active" ); }
+		  
+		else 
+		  {  $( ".btn0" ).addClass( "active" ); }      
 	
-if ( a === 'open')
-  { $( ".btn0" ).addClass( "active" ); }
-  
-else if ( a === 'closed')
-  {  $( ".btn1" ).addClass( "active" ); }
-
-else if ( a === 'all')
-  {  $( ".btn2" ).addClass( "active" ); }
-  
-else 
-  {  $( ".btn0" ).addClass( "active" ); }      
-
-});
-
-
-$(document).ready(function(){
-var b = document.getElementById('period_option').value;
+	});
 	
-if ( b === 'today')
-  { $( ".btna" ).addClass( "active" ); }
-  
-else if ( b === 'week')
-  {  $( ".btnb" ).addClass( "active" ); }
-
-else if ( b === 'month')
-  {  $( ".btnc" ).addClass( "active" ); }
-  
-else if ( b === 'all')
-  {  $( ".btnd" ).addClass( "active" ); }
-  
-else 
-  {  $( ".btnd" ).addClass( "active" ); }      
-
-});
+	
+	$(document).ready(function(){
+		var b = document.getElementById('period_option').value;
+			
+		if ( b === 'today')
+		  { $( ".btna" ).addClass( "active" ); }
+		  
+		else if ( b === 'week')
+		  {  $( ".btnb" ).addClass( "active" ); }
+		
+		else if ( b === 'month')
+		  {  $( ".btnc" ).addClass( "active" ); }
+		  
+		else if ( b === 'all')
+		  {  $( ".btnd" ).addClass( "active" ); }
+		  
+		else 
+		  {  $( ".btnd" ).addClass( "active" ); }      
+		
+	});
 </script>
 
 <body onload="initialize();" style="background:#fff;">
@@ -455,35 +446,34 @@ else
 	<div id='container-fluid' style="margin: 0px 0px 0px 1%; min-height: 680px;" > 
 		<div id="pad-wrapper" >
 
-		<div id="head-map" class="row-fluid">
+		<div id="head-map" class="row-fluid" style="z-index:-999;">
 			<div id="titulo"><?php echo __('Tickets Map','dashboard'); ?></div>	
 		</div>	
 		
-			<div id="charts" class="row-fluid chart"> 		  
-    
-			<div class="btn-toolbar" role="toolbar" >
-			          
-			    <div class="btn-group" data-toggle-name="radius_options" data-toggle="buttons-radio">		            
-			        <button type="button" value="open" 	data-toggle="button" name="stat" class="btn btn-default btn0" onclick="document.getElementById('stat_option').value='open';"><?php echo __('Opened','dashboard'); ?></button>
-			        <button type="button" value="closed" data-toggle="button" name="stat" class="btn btn-default btn1" onclick="document.getElementById('stat_option').value='closed';" ><?php echo __('Closed'); ?></button>
-			        <button type="button" value="all" 	data-toggle="button" name="stat" class="btn btn-default btn2" onclick="document.getElementById('stat_option').value='all';" ><?php echo __('All','dashboard'); ?></button>        
-			    </div>
-			    
-			    <input type="hidden" id="stat_option" name="stat_option" value="<?php echo $stat; ?>">
-			    
-			    <div class="btn-group" data-toggle-name="sort_options" data-toggle="buttons-radio" style="margin-left: 25px;;">
-			        <button type="button" value="today" 	data-toggle="button" name="period" class="btn btn-default btna" onclick="document.getElementById('period_option').value='today';"><?php echo __('Today'); ?></button>
-			        <button type="button" value="week" 	data-toggle="button" name="period" class="btn btn-default btnb" onclick="document.getElementById('period_option').value='week';"><?php echo __('Last 7 days','dashboard'); ?></button>
-			        <button type="button" value="month"  data-toggle="button" name="period" class="btn btn-default btnc" onclick="document.getElementById('period_option').value='month';"><?php echo __('Last 30 days','dashboard'); ?></button>
-			        <button type="button" value="all" 	data-toggle="button" name="period" class="btn btn-default btnd" onclick="document.getElementById('period_option').value='all';"><?php echo __('All', 'dashboard'); ?></button>
-			    </div>
-			    
-			    <input type="hidden"  id="period_option" name="period_option" value="<?php echo $period; ?>">   
-				 
-				 <div class="btn-group" style="margin-left: 25px; ">
-			    	<?php echo "<button class='btn btn-primary' style='margin-top: 0px;' type='button' name='atualiza' value='Atualizar' onclick=\"mapa();\" ><i class='fa fa-refresh'></i> ".__('Update')." </button>"; ?>
-			    </div>	 
-			</div>	 	       
+			<div id="charts" class="row-fluid chart" > 		      
+				<div class="btn-toolbar" role="toolbar" class='center' style="margin-left:1%; margin-right:auto;" >
+				          
+				    <div class="btn-group" data-toggle-name="radius_options" data-toggle="buttons-radio">		            
+				        <button type="button" value="open" 	data-toggle="button" name="stat" class="btn btn-default btn0" onclick="document.getElementById('stat_option').value='open'; mapa();"><?php echo __('Opened','dashboard'); ?></button>
+				        <button type="button" value="closed" data-toggle="button" name="stat" class="btn btn-default btn1" onclick="document.getElementById('stat_option').value='closed'; mapa();" ><?php echo __('Closed'); ?></button>
+				        <button type="button" value="all" 	data-toggle="button" name="stat" class="btn btn-default btn2" onclick="document.getElementById('stat_option').value='all'; mapa();" ><?php echo __('All','dashboard'); ?></button>        
+				    </div>
+				    
+				    <input type="hidden" id="stat_option" name="stat_option" value="<?php echo $stat; ?>">
+				    
+				    <div class="btn-group" data-toggle-name="sort_options" data-toggle="buttons-radio" style="margin-left: 25px;;">
+				        <button type="button" value="today" 	data-toggle="button" name="period" class="btn btn-default btna" onclick="document.getElementById('period_option').value='today'; mapa();"><?php echo __('Today'); ?></button>
+				        <button type="button" value="week" 	data-toggle="button" name="period" class="btn btn-default btnb" onclick="document.getElementById('period_option').value='week'; mapa();"><?php echo __('Last 7 days','dashboard'); ?></button>
+				        <button type="button" value="month"  data-toggle="button" name="period" class="btn btn-default btnc" onclick="document.getElementById('period_option').value='month'; mapa();"><?php echo __('Last 30 days','dashboard'); ?></button>
+				        <button type="button" value="all" 	data-toggle="button" name="period" class="btn btn-default btnd" onclick="document.getElementById('period_option').value='all'; mapa();"><?php echo __('All', 'dashboard'); ?></button>
+				    </div>
+				    
+				    <input type="hidden"  id="period_option" name="period_option" value="<?php echo $period; ?>">   
+					 
+					 <!--<div class="btn-group" style="margin-left: 25px; ">-->
+				    	<?php //echo "<button class='btn btn-primary' style='margin-top: 0px;' type='button' name='atualiza' value='Atualizar' onclick=\"mapa();\" ><i class='fa fa-refresh'></i> ".__('Update')." </button>"; ?>
+				    <!-- </div> -->	 
+				</div>	 	       
 			
 			<?php //Html::closeForm(); ?>
 			
@@ -491,7 +481,7 @@ else
 			if($conta_teste == "0") {
 			
 			echo '
-			<div id="teste" class="alert alert-error" style="margin-top:25px;"><a href='.$CFG_GLPI['root_doc'].'/front/entity.php target=_blank> '.__('Fill in entities: address, city, state and country.','dashboard').' </a></div>	';
+			<div id="teste" class="alert alert-danger" role="alert"  style="margin-top:25px;"><a href='.$CFG_GLPI['root_doc'].'/front/entity.php target=_blank class="alert-link" > '.__('Fill in entities: address, city, state and country.','dashboard').' </a></div>	';
 				}
 			?>
 				<script type="text/javascript">

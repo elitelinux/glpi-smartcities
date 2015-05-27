@@ -29,25 +29,39 @@ else {
     $id_tec = $_POST["sel_tec"];
 }
 
-
-
 # entity
 $sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' AND users_id = ".$_SESSION['glpiID']."";
 $result_e = $DB->query($sql_e);
 $sel_ent = $DB->result($result_e,0,'value');
 
-if($sel_ent == '' || $sel_ent == -1) {
-	$sel_ent = 0;
-	$entidade = "";
-	$entidade_t = "";
-	$entidade_tw = "";
-	$entidade_u = "";
+//select entity
+if($sel_ent == '' || $sel_ent == -1) {	
+
+	$query_ent1 = "
+	SELECT entities_id
+	FROM glpi_users
+	WHERE id = ".$_SESSION['glpiID']." ";
+	
+	$res_ent1 = $DB->query($query_ent1);
+	$user_ent = $DB->result($res_ent1,0,'entities_id');
+
+	//get all user entities
+	$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+	$entities[] = $user_ent;
+	$ent = implode(",",$entities);
+
+	$entidade = "AND glpi_tickets.entities_id IN (".$ent.") ";
+	$entidade_t = "AND entities_id IN (".$ent.") ";
+	$entidade_tw = "WHERE entities_id IN (".$ent.") ";
+	$entidade_u = "AND glpi_users.entities_id IN (".$ent.") ";
+	$entidade1 = "";
+	
 }
 else {
-	$entidade = "AND glpi_tickets.entities_id = ".$sel_ent." ";
-	$entidade_t = "AND entities_id = ".$sel_ent." ";
-	$entidade_tw = "WHERE entities_id = ".$sel_ent." ";
-	$entidade_u = "AND glpi_users.entities_id = ".$sel_ent." ";
+	$entidade = "AND glpi_tickets.entities_id IN (".$sel_ent.") ";
+	$entidade_t = "AND entities_id IN (".$sel_ent.") ";
+	$entidade_tw = "WHERE entities_id IN (".$sel_ent.") ";
+	$entidade_u = "AND glpi_users.entities_id IN (".$sel_ent.") ";
 }
 
 ?>
@@ -184,7 +198,7 @@ while ($row_result = $DB->fetch_assoc($result_tec))
 
 $name = 'sel_tec';
 $options = $arr_tec;
-$selected = 0;
+$selected = $id_tec;
 
 echo dropdown( $name, $options, $selected );
 
@@ -277,9 +291,7 @@ AND glpi_tickettasks.users_id_tech = ". $id_tec ."
 AND glpi_tickets.is_deleted =0
 AND glpi_tickettasks.date ". $datas2 ."
 ".$entidade."
-
-ORDER BY id DESC
-";
+ORDER BY id DESC ";
 
 $result_cons1 = $DB->query($consulta1);
 $conta_cons = $DB->numrows($result_cons1);
@@ -385,7 +397,7 @@ $(document).ready(function() {
              },
              {
                  "sExtends":    "collection",
-                 "sButtonText": "<?php echo __('Export'); ?>",
+                 "sButtonText": "<?php echo _x('button', 'Export'); ?>",
                  "aButtons":    [ "csv", "xls",
                   {
                  "sExtends": "pdf",

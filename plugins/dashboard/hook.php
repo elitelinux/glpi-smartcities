@@ -49,6 +49,20 @@ if (! TableExists("glpi_plugin_dashboard_count")) {
 	 
 	}	
 
+
+	if (TableExists("glpi_plugin_dashboard_count")) {
+		
+		$query_alt = "ALTER TABLE `glpi_plugin_dashboard_count`
+		  DROP PRIMARY KEY,
+		   ADD PRIMARY KEY(
+		     `type`,
+		     `id`); ";
+		
+		$DB->query($query_alt) or die("error update table glpi_plugin_dashboard_count primary key " . $DB->error());
+	
+	}
+
+
 /*	
 	//notifications
 	if (! TableExists("glpi_plugin_dashboard_notify")) {

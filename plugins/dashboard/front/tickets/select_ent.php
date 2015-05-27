@@ -33,12 +33,11 @@ Session::checkRight("profile", READ);
 
 <?php
 
-$status = "('2','1','3','4')"	;	
+$status = "('5','6')"	;
 
 $sql = "SELECT COUNT( * ) AS total
 FROM glpi_tickets
-WHERE glpi_tickets.status
-IN ".$status."
+WHERE glpi_tickets.status NOT IN ".$status."
 AND glpi_tickets.is_deleted = 0" ;
 
 $result = $DB->query($sql);
@@ -69,12 +68,15 @@ function dropdown( $name, array $options, $selected=null )
     return $dropdown;
 }
 
+//select user entities
+$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+$ents = implode(",",$entities);
 
 $sql_ent = "
-SELECT id AS id , name AS name
+SELECT id, name
 FROM `glpi_entities`
-ORDER BY `name` ASC
-";
+WHERE id IN (".$ents.")
+ORDER BY `name` ASC ";
 
 $result_ent = $DB->query($sql_ent);
 $ent = $DB->fetch_assoc($result_ent);
@@ -88,8 +90,8 @@ $DB->data_seek($result_ent, 0) ;
 
 while ($row_result = $DB->fetch_assoc($result_ent))		
 	{ 
-	$v_row_result = $row_result['id'];
-	$arr_ent[$v_row_result] = $row_result['name'] ;			
+		$v_row_result = $row_result['id'];
+		$arr_ent[$v_row_result] = $row_result['name'] ;			
 	} 
 	
 $name = 'sel_ent';

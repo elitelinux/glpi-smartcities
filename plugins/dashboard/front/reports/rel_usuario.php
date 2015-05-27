@@ -35,14 +35,30 @@ $sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' A
 $result_e = $DB->query($sql_e);
 $sel_ent = $DB->result($result_e,0,'value');
 
-if($sel_ent == '' || $sel_ent == -1) {
-	$sel_ent = 0;
-	$entidade = "";
-	$entidade_u = "";
+//select entity
+if($sel_ent == '' || $sel_ent == -1) {	
+
+	$query_ent1 = "
+	SELECT entities_id
+	FROM glpi_users
+	WHERE id = ".$_SESSION['glpiID']." ";
+	
+	$res_ent1 = $DB->query($query_ent1);
+	$user_ent = $DB->result($res_ent1,0,'entities_id');
+
+	//get all user entities
+	$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+	$entities[] = $user_ent;
+	$ent = implode(",",$entities);
+
+	$entidade = "AND glpi_tickets.entities_id IN (".$ent.")"; 
+	$entidade_u = "AND glpi_users.entities_id IN (".$ent.")"; 
+	$entidade1 = "";
+	
 }
 else {
-	$entidade = "AND glpi_tickets.entities_id = ".$sel_ent." ";
-	$entidade_u = "AND glpi_users.entities_id = ".$sel_ent." ";
+	$entidade = "AND glpi_tickets.entities_id IN (".$sel_ent.")"; 
+	$entidade_u = "AND glpi_users.entities_id IN (".$sel_ent.")"; 
 }
 
 ?>
@@ -88,7 +104,6 @@ else {
 
 <body style="background-color: #e5e5e5; margin-left:0%;">
 <?php
-
 $sql_tec = "
 SELECT DISTINCT glpi_users.id AS id , glpi_users.firstname AS name, glpi_users.realname AS sname
 FROM glpi_users, glpi_tickets_users
@@ -101,8 +116,8 @@ ORDER BY name ASC ";
 
 $result_tec = $DB->query($sql_tec);
 $tec = $DB->fetch_assoc($result_tec);
-
 ?>
+
 <div id='content' >
 <div id='container-fluid' style="margin: 0px 5% 0px 5%;">
 <div id="charts" class="row-fluid chart" >
@@ -163,7 +178,7 @@ $tec = $DB->fetch_assoc($result_tec);
 				
 				$name = 'sel_tec';
 				$options = $arr_tec;
-				$selected = 0;
+				$selected = $id_tec;
 				
 				echo dropdown( $name, $options, $selected );									
 				?>
@@ -456,7 +471,6 @@ while($row = $DB->fetch_assoc($result_cham)){
     if($status1 == "5" ) { $status1 = "solved";}
     if($status1 == "6" ) { $status1 = "closed";}
 
-
     echo "
 <tr>
 	<td style='vertical-align:middle; text-align:center;'><a href=".$CFG_GLPI['root_doc']."/front/ticket.form.php?id=". $row['id'] ." target=_blank >" . $row['id'] . "</a> </td>
@@ -476,7 +490,7 @@ echo "</tbody>
 
 $('#users')
 	.removeClass( 'display' )
-	.addClass('table table-striped table-bordered');
+	.addClass('table table-striped table-bordered table-hover');
 
 $(document).ready(function() {
     oTable = $('#users').dataTable({
@@ -501,7 +515,7 @@ $(document).ready(function() {
              },
              {
                  "sExtends":    "collection",
-                 "sButtonText": "<?php echo __('Export'); ?>",
+                 "sButtonText": "<?php echo _x('button', 'Export'); ?>",
                  "aButtons":    [ "csv", "xls",
                   {
                  "sExtends": "pdf",
@@ -523,7 +537,6 @@ echo '</div><br>';
 
 }
 
-
 else {
 
 echo "
@@ -538,7 +551,7 @@ echo "
 ?>
 
 <script type="text/javascript" >
-$(document).ready(function() { $("#sel1").select2(); });
+	$(document).ready(function() { $("#sel1").select2(); });
 </script>
 
 </div>

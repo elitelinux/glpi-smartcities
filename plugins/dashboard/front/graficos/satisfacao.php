@@ -58,8 +58,7 @@ global $DB;
 
 if(!empty($_POST['submit']))
 {	
-	$data_ini =  $_POST['date1'];
-	
+	$data_ini =  $_POST['date1'];	
 	$data_fin = $_POST['date2'];
 }
 
@@ -78,11 +77,14 @@ $result_e = $DB->query($sql_e);
 $sel_ent = $DB->result($result_e,0,'value');
 
 if($sel_ent == '' || $sel_ent == -1) {
-	$sel_ent = 0;
-	$entidade = "";
+	//get user entities
+	$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+	$ent = implode(",",$entities);
+
+	$entidade = "AND glpi_tickets.entities_id IN (".$ent.")";
 }
 else {
-	$entidade = "AND glpi_tickets.entities_id = ".$sel_ent." ";
+	$entidade = "AND glpi_tickets.entities_id IN (".$sel_ent.")";
 }
 
 

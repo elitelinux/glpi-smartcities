@@ -43,7 +43,7 @@ echo "
 <script type='text/javascript'>
 
 $(function () {
-        $('#grafhour').highcharts({
+        $('#graf_hour').highcharts({
             chart: {
                 type: 'column',
                 height: 450
@@ -83,8 +83,14 @@ $(function () {
                 	borderColor: 'white',
                 	shadow:true,           
                 	showInLegend: false
-                }
-            },
+                },
+                series: {
+		       	  animation: {
+		           duration: 2000,
+		           easing: 'easeOutBounce'
+		       	  }
+		  			 }
+		            },
             series: [{
                 name: '".__('Tickets','dashboard')."',
                 data: [$quant_2],

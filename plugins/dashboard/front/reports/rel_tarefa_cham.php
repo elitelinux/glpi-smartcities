@@ -36,18 +36,34 @@ $sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' A
 $result_e = $DB->query($sql_e);
 $sel_ent = $DB->result($result_e,0,'value');
 
-if($sel_ent == '' || $sel_ent == -1) {
-	$sel_ent = 0;
-	$entidade = "";
-	$entidade_t = "";
-	$entidade_tw = "";
-	$entidade_u = "";
+//select entity
+if($sel_ent == '' || $sel_ent == -1) {	
+
+	$query_ent1 = "
+	SELECT entities_id
+	FROM glpi_users
+	WHERE id = ".$_SESSION['glpiID']." ";
+	
+	$res_ent1 = $DB->query($query_ent1);
+	$user_ent = $DB->result($res_ent1,0,'entities_id');
+
+	//get all user entities
+	$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+	$entities[] = $user_ent;
+	$ent = implode(",",$entities);
+
+	$entidade = "AND glpi_tickets.entities_id IN (".$ent.") ";
+	$entidade_t = "AND entities_id IN (".$ent.") ";
+	$entidade_tw = "WHERE entities_id IN (".$ent.") ";
+	$entidade_u = "AND glpi_users.entities_id IN (".$ent.") ";
+	$entidade1 = "";
+	
 }
 else {
-	$entidade = "AND glpi_tickets.entities_id = ".$sel_ent." ";
-	$entidade_t = "AND entities_id = ".$sel_ent." ";
-	$entidade_tw = "WHERE entities_id = ".$sel_ent." ";
-	$entidade_u = "AND glpi_users.entities_id = ".$sel_ent." ";
+	$entidade = "AND glpi_tickets.entities_id IN (".$sel_ent.") ";
+	$entidade_t = "AND entities_id IN (".$sel_ent.") ";
+	$entidade_tw = "WHERE entities_id IN (".$sel_ent.") ";
+	$entidade_u = "AND glpi_users.entities_id IN (".$sel_ent.") ";
 }
 
 ?>
@@ -168,29 +184,6 @@ a:hover {
 				</td>
 				
 				<td style="margin-top:2px;">
-	<?php
-	
-	/*
-	// lista de técnicos
-	$res_tec = $DB->query($sql_tec);
-	$arr_tec = array();
-	$arr_tec[0] = "-- ". __('Select a technician', 'dashboard') . " --" ;
-	
-	$DB->data_seek($result_tec, 0);
-	
-	while ($row_result = $DB->fetch_assoc($result_tec))
-	    {
-	    $v_row_result = $row_result['id'];
-	    $arr_tec[$v_row_result] = $row_result['name']." ".$row_result['sname'] ;
-	    }
-	
-	$name = 'sel_tec';
-	$options = $arr_tec;
-	$selected = 0;
-	
-	echo dropdown( $name, $options, $selected );
-	*/
-		?>
 		</td>
 		</tr>
 		<tr><td height="15px"></td></tr>
@@ -231,20 +224,7 @@ else {
     $data_ini2 = $_POST['date1'];
     $data_fin2 = $_POST['date2'];
 }
-/*
-if(!isset($_POST["sel_tec"])) {
-    $id_tec = $_GET["tec"];
-}
 
-else {
-    $id_tec = $_POST["sel_tec"];
-}
-
-if($id_tec == 0) {
-	echo '<script language="javascript"> alert(" ' . __('Select a technician', 'dashboard') . ' "); </script>';
-	echo '<script language="javascript"> location.href="rel_tarefa_cham.php"; </script>';
-}
-*/
 if($data_ini2 === $data_fin2) {
     $datas2 = "LIKE '".$data_ini2."%'";
 }
@@ -292,9 +272,6 @@ while($row = $DB->fetch_assoc($result_cons1)){
     $tempo_total += $row['actiontime'];
 }
 
-//table thread
-//$DB->data_seek($result_cham, 0);
-
 	//$tech = $row['firstname'] ." ". $row['realname'];
 	
 	echo "
@@ -307,8 +284,6 @@ while($row = $DB->fetch_assoc($result_cons1)){
 			<td colspan='4' style='font-weight:bold; vertical-align:middle; width:200px;'><span style='color:#000;'>".__('Period', 'dashboard') .": </span> " . conv_data($data_ini2) ." a ". conv_data($data_fin2)."</td>
 		</tr>
 	</table>";
-	
-//while($row = $DB->fetch_assoc($result_cham)){	
 
 	echo "
 	<table id='tarefa' class='display' style='font-size: 13px; font-weight:bold;' cellpadding = 2px>
@@ -329,7 +304,6 @@ while($row = $DB->fetch_assoc($result_cons1)){
 
 //listar chamados
 
-//$DB->data_seek($result_cham, 0);
 while($row = $DB->fetch_assoc($result_cham)){
 	
 	//nome e total
@@ -388,7 +362,7 @@ $(document).ready(function() {
              },
              {
                  "sExtends":    "collection",
-                 "sButtonText": "<?php echo __('Export'); ?>",
+                 "sButtonText": "<?php echo _x('button', 'Export'); ?>",
                  "aButtons":    [ "csv", "xls",
                   {
                  "sExtends": "pdf",

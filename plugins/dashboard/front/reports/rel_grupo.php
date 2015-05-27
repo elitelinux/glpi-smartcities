@@ -22,12 +22,11 @@ else {
     }
 
 if(!isset($_POST["sel_grp"])) {
-
-$id_grp = $_GET["grp"];
+	$id_grp = $_GET["grp"];
 }
 
 else {
-$id_grp = $_POST["sel_grp"];
+	$id_grp = $_POST["sel_grp"];
 }
 
 
@@ -36,16 +35,34 @@ $sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' A
 $result_e = $DB->query($sql_e);
 $sel_ent = $DB->result($result_e,0,'value');
 
-if($sel_ent == '' || $sel_ent == -1) {
-	$sel_ent = 0;
-	$entidade = "";
-	$entidade_u = "";
-	$entidade_g = "";
+//select entity
+if($sel_ent == '' || $sel_ent == -1) {	
+
+	$query_ent1 = "
+	SELECT entities_id
+	FROM glpi_users
+	WHERE id = ".$_SESSION['glpiID']." ";
+	
+	$res_ent1 = $DB->query($query_ent1);
+	$user_ent = $DB->result($res_ent1,0,'entities_id');
+
+	//get all user entities
+	$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+	$entities[] = $user_ent;
+	$ent = implode(",",$entities);
+
+	$entidade = "AND glpi_groups.entities_id IN (".$ent.") ";
+	$entidade_g = "WHERE entities_id IN (".$ent.") OR is_recursive = 1 ";
+	$entidade_u = "AND glpi_users.entities_id IN (".$ent.") ";
+	$entidade_t = "AND glpi_tickets.entities_id IN (".$ent.") ";
+	$entidade1 = "";
+	
 }
 else {
-	$entidade = "AND glpi_groups.entities_id = ".$sel_ent." ";
-	$entidade_g = "WHERE entities_id = ".$sel_ent." ";
-	$entidade_u = "AND glpi_users.entities_id = ".$sel_ent." ";
+	$entidade = "AND glpi_groups.entities_id IN (".$sel_ent.") ";
+	$entidade_g = "WHERE entities_id IN (".$sel_ent.") OR is_recursive = 1 ";
+	$entidade_u = "AND glpi_users.entities_id IN (".$sel_ent.") ";
+	$entidade_t = "AND glpi_tickets.entities_id IN (".$sel_ent.") ";
 }
 
 ?>
@@ -91,106 +108,101 @@ else {
 
 <body style="background-color: #e5e5e5; margin-left:0%;">
 
-<?php
-$sql_grp = "
-SELECT id AS id, name AS name
-FROM `glpi_groups`
-WHERE glpi_groups.entities_id = ".$sel_ent."
-ORDER BY `name` ASC";
-
-$result_grp = $DB->query($sql_grp);
-$grp = $DB->fetch_assoc($result_grp);
-
-?>
-
 <div id='content' >
-	<div id='container-fluid' style="margin: 0px 5% 0px 5%;">
+	<div id='container-fluid' style="margin: 0px 2% 0px 2%;">
 
 	<div id="charts" class="row-fluid chart">
 		<div id="pad-wrapper" >
-			<div id="head-rel" class="row-fluid">
+			<div id="head-lg" class="row-fluid">
 
-<a href="../index.php"><i class="fa fa-home" style="font-size:14pt; margin-left:25px;"></i><span></span></a>
-
-    <div id="titulo_graf"> <?php echo __('Tickets', 'dashboard').'  '. __('by Group', 'dashboard') ?>  </div>
-
-	 <div id="datas-tec" class="span12 row-fluid" >
-    <form id="form1" name="form1" class="form_rel" method="post" action="rel_grupo.php?con=1" onsubmit="datai();dataf();">
-    <table border="0" cellspacing="0" cellpadding="3" bgcolor="#efefef" >
-    <tr>
-	<td style="width: 310px;">
-	<?php
-	$url = $_SERVER['REQUEST_URI'];
-	$arr_url = explode("?", $url);
-	$url2 = $arr_url[0];
-	
-			echo'
-			<table>
-				<tr>
-					<td>
-					   <div class="input-group date" id="dp1" data-date="'.$data_ini.'" data-date-format="yyyy-mm-dd">
-					    	<input class="col-md-9 form-control" size="13" type="text" name="date1" value="'.$data_ini.'" >		    	
-					    	<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>	    	
-				    	</div>
+			<a href="../index.php"><i class="fa fa-home" style="font-size:14pt; margin-left:25px;"></i><span></span></a>
+   		 <div id="titulo_graf"> <?php echo __('Tickets', 'dashboard').'  '. __('by Group', 'dashboard') ?>  </div>
+			 <div id="datas-tec" class="span12 row-fluid" >
+			    <form id="form1" name="form1" class="form_rel" method="post" action="rel_grupo.php?con=1" onsubmit="datai();dataf();">
+				    <table border="0" cellspacing="0" cellpadding="3" bgcolor="#efefef" >
+				    <tr>
+					<td style="width: 310px;">
+					<?php
+					$url = $_SERVER['REQUEST_URI'];
+					$arr_url = explode("?", $url);
+					$url2 = $arr_url[0];
+					
+							echo'
+							<table>
+								<tr>
+									<td>
+									   <div class="input-group date" id="dp1" data-date="'.$data_ini.'" data-date-format="yyyy-mm-dd">
+									    	<input class="col-md-9 form-control" size="13" type="text" name="date1" value="'.$data_ini.'" >		    	
+									    	<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>	    	
+								    	</div>
+									</td>
+									<td>&nbsp;</td>
+									<td>
+								   	<div class="input-group date" id="dp2" data-date="'.$data_fin.'" data-date-format="yyyy-mm-dd">
+									    	<input class="col-md-9 form-control" size="13" type="text" name="date2" value="'.$data_fin.'" >		    	
+									    	<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>	    	
+								    	</div>
+									</td>
+									<td>&nbsp;</td>
+								</tr>
+							</table> ';
+					?>
+					
+					<script language="Javascript">	
+						$('#dp1').datepicker('update');
+						$('#dp2').datepicker('update');	
+					</script>
 					</td>
-					<td>&nbsp;</td>
-					<td>
-				   	<div class="input-group date" id="dp2" data-date="'.$data_fin.'" data-date-format="yyyy-mm-dd">
-					    	<input class="col-md-9 form-control" size="13" type="text" name="date2" value="'.$data_fin.'" >		    	
-					    	<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>	    	
-				    	</div>
+					
+					<td style="margin-top:2px;">					
+					<?php					
+					// lista de grupos	
+					$sql_grp = "
+					SELECT id , name 
+					FROM `glpi_groups`
+					".$entidade_g."
+					ORDER BY `name` ASC";
+					
+					$result_grp = $DB->query($sql_grp);
+					$grp = $DB->fetch_assoc($result_grp);
+					
+														
+					$res_grp = $DB->query($sql_grp);
+					$arr_grp = array();
+					$arr_grp[0] = "-- ". __('Select a group', 'dashboard') . " --" ;
+					
+					$DB->data_seek($result_grp, 0) ;
+					
+					while ($row_result = $DB->fetch_assoc($result_grp))
+					    {
+					   	$v_row_result = $row_result['id'];
+					    	$arr_grp[$v_row_result] = $row_result['name'] ." (". $row_result['id'] .")" ;
+					    }
+					
+					$name = 'sel_grp';
+					$options = $arr_grp;
+					$selected = $id_grp;
+					
+					echo dropdown( $name, $options, $selected );					
+					?>
 					</td>
-					<td>&nbsp;</td>
 				</tr>
-			</table> ';
-	?>
-	
-	<script language="Javascript">	
-		$('#dp1').datepicker('update');
-		$('#dp2').datepicker('update');	
-	</script>
-	</td>
-	
-	<td style="margin-top:2px;">
-	
-	<?php
-	
-	// lista de grupos
-	$res_grp = $DB->query($sql_grp);
-	$arr_grp = array();
-	$arr_grp[0] = "-- ". __('Select a group', 'dashboard') . " --" ;
-	
-	$DB->data_seek($result_grp, 0) ;
-	
-	while ($row_result = $DB->fetch_assoc($result_grp))
-	    {
-	   	$v_row_result = $row_result['id'];
-	    	$arr_grp[$v_row_result] = $row_result['name'] ;
-	    }
-	
-	$name = 'sel_grp';
-	$options = $arr_grp;
-	$selected = 0;
-	
-	echo dropdown( $name, $options, $selected );
-	
-	?>
-	</td>
-</tr>
-<tr><td height="15px"></td></tr>
-<tr>
-	<td colspan="2" align="center">
-		<button class="btn btn-primary btn-sm" type="submit" name="submit" value="Atualizar" ><i class="fa fa-search"></i>&nbsp; <?php echo __('Consult','dashboard'); ?> </button>
-		<button class="btn btn-primary btn-sm" type="button" name="Limpar" value="Limpar" onclick="location.href='<?php echo $url2 ?>'" ><i class="fa fa-trash-o"></i>&nbsp; <?php echo __('Clean','dashboard'); ?> </button>
-	</td>
-</tr>
-    </table>
-<?php Html::closeForm(); ?>
-<!-- </form> -->
-        </div>
+				<tr><td height="15px"></td></tr>
+				<tr>
+					<td colspan="2" align="center">
+						<button class="btn btn-primary btn-sm" type="submit" name="submit" value="Atualizar" ><i class="fa fa-search"></i>&nbsp; <?php echo __('Consult','dashboard'); ?> </button>
+						<button class="btn btn-primary btn-sm" type="button" name="Limpar" value="Limpar" onclick="location.href='<?php echo $url2 ?>'" ><i class="fa fa-trash-o"></i>&nbsp; <?php echo __('Clean','dashboard'); ?> </button>
+					</td>
+				</tr>
+			</table>
+			<?php Html::closeForm(); ?>
+			<!-- </form> -->
+		      </div>
     </div>
 
 <?php
+
+if(!isset($_POST['con'])) {
 
 //grupos
 $con = $_GET['con'];
@@ -208,14 +220,6 @@ else {
     $data_fin2 = $_POST['date2'];
 }
 
-if(!isset($_POST["sel_grp"])) {
-	$id_grp = $_GET["grp"];
-}
-
-else {
-	$id_grp = $_POST["sel_grp"];
-}
-
 if($id_grp == 0) {
 	echo '<script language="javascript"> alert(" ' . __('Select a group', 'dashboard') . ' "); </script>';
 	echo '<script language="javascript"> location.href="rel_grupo.php"; </script>';
@@ -231,9 +235,9 @@ else {
 
 //status
 $status = "";
-$status_open = "('2','1','3','4')";
+$status_open = "('1','2','3','4')";
 $status_close = "('5','6')";
-$status_all = "('2','1','3','4','5','6')";
+$status_all = "('1','2','3','4','5','6')";
 
 if(isset($_GET['stat'])) {
 
@@ -254,7 +258,9 @@ else {
 
 // Chamados
 $sql_cham =
-"SELECT glpi_tickets.id AS id, glpi_tickets.name AS descr, glpi_tickets.date AS date, glpi_tickets.solvedate as solvedate, glpi_tickets.status, glpi_tickets.type
+"SELECT glpi_tickets.id AS id, glpi_tickets.name AS name, glpi_tickets.date AS date, glpi_tickets.closedate as closedate,
+glpi_tickets.type, glpi_tickets.status, FROM_UNIXTIME( UNIX_TIMESTAMP( `glpi_tickets`.`closedate` ) , '%Y-%m' ) AS date_unix, AVG( glpi_tickets.solve_delay_stat ) AS time,
+glpi_tickets.solve_delay_stat AS time_sec
 FROM `glpi_groups_tickets` , glpi_tickets, glpi_groups
 WHERE glpi_groups_tickets.`groups_id` = ".$id_grp."
 AND glpi_groups_tickets.`groups_id` = glpi_groups.id
@@ -262,44 +268,44 @@ AND glpi_groups_tickets.`tickets_id` = glpi_tickets.id
 AND glpi_tickets.is_deleted = 0
 AND glpi_tickets.date ".$datas2."
 AND glpi_tickets.status IN ".$status."
-".$entidade."
+".$entidade_t."
+GROUP BY id
 ORDER BY id DESC ";
 
 $result_cham = $DB->query($sql_cham);
 
 
 $consulta1 =
-"SELECT glpi_groups_tickets.id AS total
-FROM `glpi_groups_tickets` , glpi_tickets, glpi_groups
-WHERE glpi_groups_tickets.`groups_id` = ".$id_grp."
-AND glpi_groups_tickets.`groups_id` = glpi_groups.id
-AND glpi_groups_tickets.`tickets_id` = glpi_tickets.id
+"SELECT glpi_tickets.id AS id, glpi_tickets.name AS name, glpi_tickets.date AS adate, glpi_tickets.closedate AS sdate,
+FROM_UNIXTIME( UNIX_TIMESTAMP( glpi_tickets.closedate ) , '%Y-%m' ) AS date_unix, AVG( glpi_tickets.solve_delay_stat ) AS time
+FROM glpi_groups_tickets , glpi_tickets, glpi_groups
+WHERE glpi_groups_tickets.groups_id = ".$id_grp."
+AND glpi_groups_tickets.groups_id = glpi_groups.id
+AND glpi_groups_tickets.tickets_id = glpi_tickets.id
 AND glpi_tickets.is_deleted = 0
 AND glpi_tickets.date ".$datas2."
 AND glpi_tickets.status IN ".$status."
-".$entidade."
-";
+".$entidade_t."
+GROUP BY id
+ORDER BY id DESC ";
 
 $result_cons1 = $DB->query($consulta1);
-
 $conta_cons = $DB->numrows($result_cons1);
-
 $consulta = $conta_cons;
-
 
 if($consulta > 0) {
 
 //montar barra
 $sql_ab = "
 SELECT glpi_groups_tickets.id AS total
-FROM `glpi_groups_tickets` , glpi_tickets, glpi_groups
-WHERE glpi_groups_tickets.`groups_id` = ".$id_grp."
-AND glpi_groups_tickets.`groups_id` = glpi_groups.id
-AND glpi_groups_tickets.`tickets_id` = glpi_tickets.id
+FROM glpi_groups_tickets , glpi_tickets, glpi_groups
+WHERE glpi_groups_tickets.groups_id = ".$id_grp."
+AND glpi_groups_tickets.groups_id = glpi_groups.id
+AND glpi_groups_tickets.tickets_id = glpi_tickets.id
 AND glpi_tickets.is_deleted = 0
 AND glpi_tickets.date ".$datas2."
 AND glpi_tickets.status IN ".$status_open."
-".$entidade." ";
+".$entidade_t." ";
 
 $result_ab = $DB->query($sql_ab) or die ("erro_ab");
 $data_ab = $DB->numrows($result_ab);
@@ -335,8 +341,7 @@ else { $barra = 0;}
 $sql_nm = "
 SELECT id, name
 FROM `glpi_groups`
-WHERE id = ".$id_grp."
-AND glpi_groups.entities_id = ".$sel_ent." ";
+WHERE id = ".$id_grp." ";
 
 $result_nm = $DB->query($sql_nm);
 $grp_name = $DB->fetch_assoc($result_nm);
@@ -359,10 +364,38 @@ echo "
     		</div>		
 		</div>		   
 		</td>
-</table>
+</table> ";
 
+
+    //count by status
+    $query_stat = "
+	SELECT 
+	SUM(case when glpi_tickets.status = 1 then 1 else 0 end) AS new,
+	SUM(case when glpi_tickets.status = 2 then 1 else 0 end) AS assig,
+	SUM(case when glpi_tickets.status = 3 then 1 else 0 end) AS plan,
+	SUM(case when glpi_tickets.status = 4 then 1 else 0 end) AS pend,
+	SUM(case when glpi_tickets.status = 5 then 1 else 0 end) AS solve,
+	SUM(case when glpi_tickets.status = 6 then 1 else 0 end) AS close
+	FROM glpi_groups_tickets, glpi_tickets
+	WHERE glpi_tickets.is_deleted = '0'
+	AND glpi_tickets.date ".$datas2."
+	AND glpi_groups_tickets.groups_id = ".$id_grp."	
+	AND glpi_groups_tickets.`tickets_id` = glpi_tickets.id
+	".$entidade_t." ";
+
+    $result_stat = $DB->query($query_stat);
+
+    $new = $DB->result($result_stat,0,'new');
+    $assig = $DB->result($result_stat,0,'assig');
+    $plan = $DB->result($result_stat,0,'plan');
+    $pend = $DB->result($result_stat,0,'pend');
+    $solve = $DB->result($result_stat,0,'solve');
+    $close = $DB->result($result_stat,0,'close'); 
+
+
+echo "
 <table align='right' style='margin-bottom:10px;'>
-		<tr>
+		<tr>	
 			<td>
 				<button class='btn btn-primary btn-sm' type='button' name='abertos' value='Abertos' onclick='location.href=\"rel_grupo.php?con=1&stat=open&grp=".$id_grp."&date1=".$data_ini2."&date2=".$data_fin2."&npage=".$num_por_pagina."\"' <i class='icon-white icon-trash'></i> ".__('Opened', 'dashboard') ." </button>
 				<button class='btn btn-primary btn-sm' type='button' name='fechados' value='Fechados' onclick='location.href=\"rel_grupo.php?con=1&stat=close&grp=".$id_grp."&date1=".$data_ini2."&date2=".$data_fin2."&npage=".$num_por_pagina."\"' <i class='icon-white icon-trash'></i> ".__('Closed', 'dashboard')." </button>	
@@ -371,22 +404,30 @@ echo "
 		</tr>
 </table>
 
-<table>
-	<tr><td>&nbsp;</td></tr>
+<table style='font-size: 16px; font-weight:bold; width: 50%;' border=0>
+	<tr>
+		  <td><span style='color: #000;'>". _x('status','New').": </span><b>".$new." </b></td>	
+        <td><span style='color: #000;'>". __('Assigned'). ": </span><b>". ($assig + $plan) ."</b></td>		
+        <td><span style='color: #000;'>". __('Pending').": </span><b>".$pend." </b></td>		
+        <td><span style='color: #000;'>". __('Solved','dashboard').": </span><b>".$solve." </b></td>
+        <td><span style='color: #000;'>". __('Closed').": </span><b>".$close." </b></td>
+	</tr>
 	<tr><td>&nbsp;</td></tr>
 	<tr><td>&nbsp;</td></tr>
 </table>
 
+
 <table id='grupo' class='display' style='font-size: 12px; font-weight:bold;' cellpadding = 2px>
 	<thead>
 		<tr>
-			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Tickets', 'dashboard')." </th>
-			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Status')." </th>
-			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Type')." </th>
-			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Title')." </th>
-			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Technician')." </th>
-			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Opened','dashboard')."</th>
-			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Closed')." </th>
+			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer; vertical-align:middle;'> ".__('Tickets', 'dashboard')." </th>
+			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer; vertical-align:middle;'> ".__('Status')." </th>
+			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer; vertical-align:middle;'> ".__('Type')." </th>
+			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer; vertical-align:middle;'> ".__('Title')." </th>
+			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer; vertical-align:middle;'> ".__('Technician')." </th>
+			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer; vertical-align:middle;'> ".__('Opened','dashboard')."</th>
+			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer; vertical-align:middle;'> ".__('Closed')." </th>
+			<th style='text-align:center; cursor:pointer;'> ". __('Resolution time') ."</th>
 		</tr>
 	</thead>
 <tbody>
@@ -407,7 +448,6 @@ while($row = $DB->fetch_assoc($result_cham)){
     else { $type = __('Request'); }
 
 //requerente
-
 $sql_user = "
 SELECT glpi_tickets_users.tickets_id AS id, glpi_users.firstname AS name, glpi_users.realname AS sname
 FROM `glpi_groups_tickets`, glpi_tickets_users, glpi_users
@@ -422,13 +462,12 @@ $result_user = $DB->query($sql_user);
     $row_user = $DB->fetch_assoc($result_user);
 
 //grupo
-
 $sql_tec = "SELECT name
 FROM `glpi_groups` , `glpi_groups_tickets`
 WHERE `glpi_groups_tickets`.tickets_id = ".$row['id']."
 AND glpi_groups.id = glpi_groups_tickets.groups_id
 AND glpi_groups_tickets.type = 2 
-AND glpi_groups.entities_id = ".$sel_ent." ";
+".$entidade." ";
 
 $result_tec = $DB->query($sql_tec);
 
@@ -437,12 +476,13 @@ $result_tec = $DB->query($sql_tec);
 echo "
 <tr>
 <td style='text-align:center; vertical-align:middle;'><a href=".$CFG_GLPI['root_doc']."/front/ticket.form.php?id=". $row['id'] ." target=_blank >" . $row['id'] . "</a></td>
-<td style='vertical-align:middle;' align='center'><img src=".$CFG_GLPI['root_doc']."/pics/".$status1.".png title='".Ticket::getStatus($row['status'])."' style=' cursor: pointer; cursor: hand;'/>&nbsp; ".Ticket::getStatus($row['status'])."  </td>
+<td style='vertical-align:middle; text-align: left;'><img src=".$CFG_GLPI['root_doc']."/pics/".$status1.".png title='".Ticket::getStatus($row['status'])."' style=' cursor: pointer; cursor: hand;'/>&nbsp; ".Ticket::getStatus($row['status'])."  </td>
 <td style='vertical-align:middle;'> ". $type ." </td>
-<td style='vertical-align:middle;'> ". substr($row['descr'],0,55) ." </td>
+<td style='vertical-align:middle;'> ". substr($row['name'],0,55) ." </td>
 <td style='vertical-align:middle;'> ". $row_user['name'] ." ".$row_user['sname'] ." </td>
 <td style='vertical-align:middle;'> ". conv_data_hora($row['date']) ." </td>
-<td style='vertical-align:middle;'> ". conv_data_hora($row['solvedate']) ." </td>
+<td style='vertical-align:middle;'> ". conv_data_hora($row['closedate']) ." </td>
+<td style='vertical-align:middle; text-align:center;'> ". time_ext($row['time']) ."</td>
 </tr>";
 }
 
@@ -481,7 +521,7 @@ $(document).ready(function() {
           },
 	       {
 	           "sExtends":    "collection",
-	           "sButtonText": "<?php echo __('Export'); ?>",
+	           "sButtonText": "<?php echo _x('button', 'Export'); ?>",
 	           "aButtons":    [ "csv", "xls",
 	            {
 	           "sExtends": "pdf",
@@ -511,6 +551,7 @@ else {
 	<tr><td style='vertical-align:middle; text-align:center;'> <span style='color: #000;'>" . __('No ticket found', 'dashboard') . "</td></tr>
 	<tr></tr>
 	</table></div>";
+}
 }
 }
 ?>

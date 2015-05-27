@@ -6,7 +6,6 @@ include (GLPI_ROOT . "/config/config.php");
 
 Session::checkLoginUser();
 
-
 $mydate = isset($_POST["date1"]) ? $_POST["date1"] : "";
 
 ?>
@@ -30,6 +29,7 @@ $mydate = isset($_POST["date1"]) ? $_POST["date1"] : "";
 <script src="../js/highcharts.js"></script>
 <script src="../js/modules/exporting.js"></script>
 
+<script src="../js/jquery-ui.min.js"></script>
 <script src="../js/bootstrap-datepicker.js"></script>
 <link href="../css/datepicker.css" rel="stylesheet" type="text/css">
 <link href="../less/datepicker.less" rel="stylesheet" type="text/css">
@@ -61,24 +61,19 @@ $datahoje = date("Y-m-d");
 ?>
 <div id='content' >
 <div id='container-fluid' style="margin: 0px 8% 0px 8%;"> 
-
- <div id="pad-wrapper" >
-
+<div id="pad-wrapper" >
 <div id="charts" class="row-fluid chart"> 
 <div id="head" class="row-fluid">
-
 	<a href="../index.php"><i class="fa fa-home" style="font-size:14pt; margin-left:25px;"></i><span></span></a>
 
-	<div id="titulo" style="margin-bottom:45px;"> <?php echo __('Tickets','dashboard') .'  '. __('by Technician','dashboard').'s'  ?>  
-
+<div id="titulo" style="margin-bottom:45px;"> <?php echo __('Tickets','dashboard') .'  '. __('by Technician','dashboard').'s'  ?>  
 <div id="datas" class="span12" > 
 <form id="form1" name="form1" class="form1" method="post" action="?date1=<?php echo $data_ini ?>&date2=<?php echo $data_fin ?>" onsubmit="datai();dataf();"> 
 
 <table border="0" cellspacing="0" cellpadding="2">
 	<tr>
 			<td style="width: 300px;">		
-			<?php
-			    
+			<?php			    
 			echo'
 						<table style="margin-top:6px;" border=0>
 							<tr>

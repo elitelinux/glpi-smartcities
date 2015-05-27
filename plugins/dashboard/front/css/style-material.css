@@ -1,7 +1,6 @@
 
 @import url(http://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic);
 
-
 body {
   font-family: 'RobotoDraft',sans-serif;
   min-height: 100%;
@@ -16,7 +15,7 @@ body {
 	height: 340px;
 	margin-left: -10%;
 	margin-right: -5%;		
-	margin-top: -2%;
+	margin-top: -3%;
 	position: relative;
  /* Rounded Corners  box-shadow: 0px 8px 17px 0px rgba(0, 0, 0, 0.2);  */
   -moz-border-radius: 10px;
@@ -27,13 +26,13 @@ body {
 
 #head-lg {
 	width: 104%;
-	background-color: #00A896; //#606CC4; //#3E4EB8;
+	background-color: #009688; //#606CC4; //#3E4EB8;
 	color: #fff;
 	padding-top: 15px;
 	padding-bottom: 20px;
 	height: 340px;
 	margin-left: -2%;		
-	margin-top: -2%;
+	margin-top: -3%;
 	position: relative;
  /* Rounded Corners  box-shadow: 0px 8px 17px 0px rgba(0, 0, 0, 0.2);  */
   -moz-border-radius: 10px;
@@ -44,13 +43,13 @@ body {
 
 #head-rel {
 	width: 112%;
-	background-color: #00A896; //#606CC4; //#3E4EB8;
+	background-color: #009688;
 	color: #fff;
 	padding-top: 15px;
 	padding-bottom: 20px;
 	height: 340px;
 	margin-left: -6%;		
-	margin-top: -2%;
+	margin-top: -3%;
 	position: relative;
  /* Rounded Corners  box-shadow: 0px 8px 17px 0px rgba(0, 0, 0, 0.2);  */
   -moz-border-radius: 10px;
@@ -78,13 +77,13 @@ body {
 
 #head-tic {
 	width: 100%;
-	background-color: #606CC4; //#3E4EB8;
+	background-color: #606CC4;
 	color: #fff;
 	padding-top: 15px;
 	padding-bottom: 20px;
 	height: 290px;
 	margin-left: -8%;	
-	margin-top: -2%;		
+	margin-top: -3%;
 	position: absolute;
 
  /* Rounded Corners  box-shadow: 0px 8px 17px 0px rgba(0, 0, 0, 0.2);  */
@@ -96,7 +95,7 @@ body {
 
 #head-cham {
 	width: 100%;
-	background-color: #03A9F4;
+	background-color: #4184F3;
 	color: #fff;
 	padding-top: 15px;
 	padding-bottom: 20px;
@@ -115,7 +114,7 @@ body {
 
 #head-map {
 	width: 102%;
-	background-color: #9c27b0; //#FF8611;  //#00A896; 
+	background-color: #9c27b0; //#FF8611;  //#009688; 
 	color: #fff;
 	padding-top: 15px;
 	padding-bottom: 20px;
@@ -133,6 +132,7 @@ body {
 
 .fa-home {
 	color: #fff;
+	margin-top: 10px;
 }
 
 #nada {
@@ -154,7 +154,7 @@ body {
 }
 
 #clock {
-	background-color: #03A9F4;
+	background-color: #4184F3; //#03A9F4;
 	color: #fff;
 }
 
@@ -201,7 +201,7 @@ body {
 	width: 950px;
 	margin-left: -500px;
 	left: 52%; 
-	/*margin-top: 40px; */
+	margin-top: 30px;
 	margin-bottom: 15px;
 	position: relative; 
 	text-align: center;
@@ -328,7 +328,7 @@ body {
 	left: 52%; */
 	position: relative; 
 	text-align: center;
-   margin-bottom: 5px;
+   	margin-bottom: 5px;
 	width: 600px;	
 	margin-top: 25px;
 	margin-left: 18%;
@@ -346,7 +346,11 @@ body {
 	position: relative;	
 }
 
-#graf_linhas, #graf_sat {
+#graf_linhas {
+	margin-top: -135px;
+}
+
+#graf_sat, #graf_hour {
 	margin-top: -75px;
 }
 
@@ -357,13 +361,13 @@ body {
 	margin-top: -130px;  
 }
 
-#graf_tipo {
+#graf_tipo, #graf_prio {
 	margin-left: 2%;
 	height: 450px; 
 	margin-top:30px; 
 }
 
-#graf2, #graf3, .graf2, #graf_tipo {
+#graf2, #graf3, .graf2, #graf_tipo, #graf_time {
 	height: 450px; 
 	margin-top:30px; 
 	margin-left: -5px;
@@ -376,6 +380,7 @@ body {
 }
 
 #grafent, #grafgrp, #grafcat, #grafsat {
+	
 }
 
 #pag {
@@ -2064,6 +2069,10 @@ table.sortable thead {
 	font-family: 'RobotoDraft',sans-serif;
 }
 
+.today a:focus, .today a:hover {
+	color: #cecece; 
+}
+
 .well {
 	background: #fff;
 }
@@ -2146,7 +2155,7 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .db-green {
-	background-color: #00A896;
+	background-color: #009688;
 	color: #fff;
 }
 
@@ -2178,6 +2187,7 @@ fieldset[disabled] .btn-primary.active {
     /*background-color: #f9f9f9;*/
     border-right: 1px solid #DDD;
 }
+
 * {
     outline: medium none !important;
 }
@@ -2186,3 +2196,206 @@ fieldset[disabled] .btn-primary.active {
 	background-color: #373b40;
 	color: #fff;
 }  
+
+#tickets th {
+	color: #fff;
+	background-color: #555;
+}
+
+#tickets th a, a:visited  {
+	color: #fff;	
+}
+
+/*  menu no topo */
+
+#menuHeader {
+	width: 100%;
+	height: 50px;
+	background-color: #3F51B5; //#2D3F50;
+}
+
+#menuHeader ul li a:hover {
+	background-color: #03a9f4; //4aa6e0;
+}
+
+#menuHeader ul {
+	list-style-type: none;
+}
+
+#top {
+	width: 100%;
+	height: 60px;
+	margin: 0 auto;
+	background-color: #03A9F4; 
+}
+
+#top img {
+	margin-top: 30px;
+}
+
+.estat{
+	color: #fff;
+	margin-left: 140px;	
+	margin-top: 5px;	
+	width: 250px;
+}
+		
+.glpi-brand {
+  float: left;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 30px;
+  line-height: 20px;
+  color: #fff;
+  width: 100px;
+}
+
+.glpi-brand:hover, .glpi-brand:focus {
+  		text-decoration: none;
+}
+
+.top-data1 {
+	margin-top: -25px;
+	width: 150px;	
+	display: inline-block;
+	clear: both;		
+}
+
+.menu-fixo  {
+    position:fixed !important;
+    top: 0;
+    z-index: 99;
+	 opacity: 0.95;
+}
+
+.text-white {
+	color: #fff;	
+}
+
+.black-bg {	
+	background-color:#000;	
+}
+
+.top-50 {
+	margin-top:50px;	
+}
+
+.nav-link {
+	margin-top:14px; 
+	height:0px; 		
+}
+	
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #333;
+    background-color: #fff;
+    text-decoration: none;
+}	
+
+.nav-icon {
+	padding:17px; 
+	color:#fff;
+}
+
+.nav-icon a, a:enabled, a:active, a:focus, a:hover, a:visited, {
+	color:#fff;
+	background-color: #f2f2f2;
+	text-decoration: none;
+}
+
+.text-nav {
+	color: #fff;	
+}
+	
+.text-nav a, a:hover {
+	color: #333;	
+}	
+	
+.text-nav a, a:active, a:focus {
+	color: #000;		
+	text-decoration: none;	
+}
+
+.text-nav1 a, a:hover {
+	color: #fff;	
+}	
+
+.corpo {
+	margin-top: 10px; 
+	margin-left:-60px;
+}	
+
+.tit-config {
+	margin-top: 30px;
+}
+
+#tickets tr a:hover  {
+	color: #555;	
+}
+
+#tickets > thead > tr > th > a {
+	color:#fff;
+}
+
+#srvinfo {
+	float: right;			
+	margin-left: 15px;	
+	width:18%;
+	margin-top: -12px;
+}
+
+.grfrow {
+	display: inline-block;
+	clear: both;
+}
+
+.data-name, .data-value {
+	font-size: 12px;
+}
+
+.right {
+	text-align: right;	
+}
+
+td > a:hover {
+	color: #555;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus
+{
+  color: #fff;
+  text-decoration: none;
+  background-color: #428bca; //#f5f5f5;
+} 
+
+.menu1 > li > a,
+.menu1 > li > a {
+  color: #000;
+  text-decoration: none;
+} 
+
+.menu1 > li > a:hover,
+.menu1 > li > a:focus {
+  color: #fff;
+  text-decoration: none;
+  background-color: #03A9F4; //#428bca; 
+} 
+
+.menu1 > li:hover,
+.menu1 > li:focus {
+  color: #fff;
+  text-decoration: none;	
+  background-color: #03A9F4; //#428bca; 
+}
+
+.menu1 > li:hover a,
+.menu1 > li:focus a {
+  color: #fff;
+  text-decoration: none;	
+}
+
+.up-down {
+	color: #555;
+}
+
+	

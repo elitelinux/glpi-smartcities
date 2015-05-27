@@ -30,7 +30,6 @@ else {
 }
 
 if(isset($_REQUEST['itemtype'])) {
-
 	$type = $_REQUEST['itemtype']; }
 	
 else {	
@@ -60,8 +59,8 @@ if($sel_ent == '' || $sel_ent == -1) {
 	$entidade_u = "";
 }
 else {
-	$entidade = "AND entities_id = ".$sel_ent." ";
-	$entidade_u = "AND glpi_users.entities_id = ".$sel_ent." ";
+	$entidade = "AND entities_id IN (".$sel_ent.") ";
+	$entidade_u = "AND glpi_users.entities_id IN (".$sel_ent.") ";
 }
 
 ?>
@@ -588,7 +587,7 @@ $(document).ready(function() {
              },
              {
                  "sExtends":    "collection",
-                 "sButtonText": "<?php echo __('Export'); ?>",
+                 "sButtonText": "<?php echo _x('button', 'Export'); ?>",
                  "aButtons":    [ "csv", "xls",
                   {
                  "sExtends": "pdf",

@@ -1,118 +1,112 @@
-
 <?php
 
-if($data_ini == $data_fin) {
-$datas = "LIKE '".$data_ini."%'";	
-}	
-
-else {
-$datas = "BETWEEN '".$data_ini." 00:00:00' AND '".$data_fin." 23:59:59'";	
-}
-
-$query_grp = "
-SELECT ggt.groups_id AS gid, count( ggt.tickets_id ) AS quant
-FROM glpi_groups_tickets ggt, glpi_tickets gt
-WHERE ggt.type = 1
-AND gt.is_deleted = 0
-AND gt.closedate IS NOT NULL
-AND ggt.tickets_id = gt.id
-AND gt.solvedate ".$datas."
-AND gt.entities_id = ".$id_ent."
-GROUP BY ggt.groups_id
-ORDER BY quant DESC
-LIMIT 0, 10 ";
-
-$result_grp = $DB->query($query_grp);
-
-
-$arr_grft2 = array();
-
-while ($row = $DB->fetch_assoc($result_grp)) {
-	
-	//tickets by type
-	$query2 = "
-	SELECT gg.completename AS gname, sum( gt.solve_delay_stat) AS time
-	FROM glpi_groups_tickets ggt, glpi_tickets gt, glpi_groups gg
-	WHERE ggt.groups_id = ".$row['gid']."
-	AND ggt.type = 1
-	AND ggt.groups_id = gg.id
-	AND gt.is_deleted = 0
-	AND closedate IS NOT NULL
-	AND gt.id = ggt.tickets_id ";
-	
-	$result2 = $DB->query($query2) or die('erro');
-	
-	$row_result = $DB->fetch_assoc($result2);		
-		 			
-			$v_row_result = $row_result['gname'];
-			$arr_grft2[$v_row_result] =  round($row_result['time'], 3);		
+//echo '<div id="graftime" class="span6" style="height:450px; margin-top:35px; margin-left: -5px;">';
+$query2 = "
+SELECT count(glpi_tickets.id) AS chamados , DATEDIFF( glpi_tickets.solvedate, glpi_tickets.date ) AS days
+FROM glpi_tickets, glpi_groups_tickets
+WHERE glpi_tickets.solvedate IS NOT NULL
+AND glpi_tickets.is_deleted = 0
+AND glpi_tickets.id = glpi_groups_tickets.tickets_id
+AND glpi_groups_tickets.groups_id = ".$id_grp."
+AND glpi_tickets.date ".$datas."
+".$entidade_age."
+GROUP BY days ";
 		
-	$grft2 = array_keys($arr_grft2);	
-	$quantt2 = array_values($arr_grft2);
-			 		
+$result2 = $DB->query($query2) or die('erro');
+
+
+$arr_grf2 = array();
+while ($row_result = $DB->fetch_assoc($result2))		
+	{ 
+		$v_row_result = $row_result['days'];
+		$arr_grf2[$v_row_result] = $row_result['chamados'];			
+	} 
+	
+$grf2 = array_keys($arr_grf2);
+$quant2 = array_values($arr_grf2);
+
+$conta = count($arr_grf2);
+
+
+for($i=0; $i < 8; $i++) {
+
+	if($quant2[$i] != 0) {
+		$till[$i] = $quant2[$i];
+	}
+	else {
+		$till[$i] = 0;
+	}	
+	
+	$arr_days[] += $till[$i];
+
 }
 
-	$conta = count($arr_grft2);
-	
 echo "
 <script type='text/javascript'>
 
 $(function () {		
     	   		
 		// Build the chart
-        $('#graf_time').highcharts({
+        $('#graf_time1').highcharts({
             chart: {
+            type: 'pie',
+            options3d: {
+				enabled: false,
+                alpha: 45,
+                beta: 0
+            },
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false
             },
             title: {
-                text: '".__('Time spent by requester group','dashboard')."'
+                text: '".__('Ticket Solving Period','dashboard')."'
+            },
+             legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom',
+                x: 0,
+                y: 0,
+                //floating: true,
+                borderWidth: 0,
+                backgroundColor: '#FFFFFF',
+                adjustChartSize: true,
+                format: '{series.name}: <b>{point.percentage:.1f}%</b>'
             },
             tooltip: {
-        	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        	    pointFormat: '{series.name}: <b>{point.y} - ( {point.percentage:.1f}% )</b>'
             },
             plotOptions: {
                 pie: {
                     allowPointSelect: true,
                     cursor: 'pointer',
                     size: '85%',
- 					dataLabels: {
-								format: '{point.y} h - ( {point.percentage:.1f}% )',
-                   		style: {
-                        	color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                        		}
-                        //connectorColor: 'black'
-                    			},
+                    innerSize: 90,
+                    depth: 40,
+                    dataLabels: {
+									format: '{point.y} - ( {point.percentage:.1f}% )',
+                   		   style: {
+                        			color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        				}
+                    },
                 showInLegend: true
                 }
             },
             series: [{
                 type: 'pie',
                 name: '".__('Tickets','dashboard')."',
-                data: [  ";     
-                                    
-	for($i = 0; $i < $conta; $i++) { 
-		$date1 = date('H.i',mktime(0,0,$quantt2[$i])) ;
-		if(date('H:i',mktime(0,0,$quantt2[$i])) != 0) {
-	     echo '[ "' . $grft2[$i] . '", '. date('H',mktime(0,0,$quantt2[$i])) .'],';   
-//	     echo '[ "' . $grft2[$i] . '", '. (int)$date1 .'],';
-//		  echo '[ "' . $grft2[$i] . '", '. $quantt2[$i] .'],';
-				}
-	     }                    
-                                                         
-echo "                ],
+                data: [  {
+                        name: '< 1 " .__('day','dashboard')."',
+                        y: ".$arr_days[0].",
+                        sliced: true,
+                        selected: true
+                    }, ['1 - 2 " .__('days','dashboard')."',  ".$arr_days[1]." ], ['2 - 3 " .__('days','dashboard')."',  ".$arr_days[2]." ],
+                			['3 - 4 " .__('days','dashboard')."', ".$arr_days[3]." ], ['4 - 5 " .__('days','dashboard')."',  ".$arr_days[4]." ], 
+                			['5 - 6 " .__('days','dashboard')."',  ".$arr_days[5]." ], ['6 - 7 " .__('days','dashboard')."',  ".$arr_days[6]." ]		]
             }]
         });
     });
 
-		</script>"; 	
-
-//echo $quantt2[0];
-/*		
-$segundos = 687955;
-//$converter = date('H:i:s',mktime(0,0,$segundos,15,03,2013));//Converter os segundos em no formato mm:ss
-$converter = date('H:i:s',mktime(0,0,$segundos));//Converter os segundos em no formato mm:ss
-echo $converter;//no exemplo ira retornar 02:15			
-*/					
+		</script>"; 
 		?>

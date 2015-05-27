@@ -76,6 +76,16 @@ else {
 	$data_fin = date("Y-m-d");
 } 
 
+
+if(!isset($_POST["sel_loc"])) {
+	$id_loc = $_GET["sel_loc"];	
+}
+
+else {
+	$id_loc = $_POST["sel_loc"];
+}
+
+
 $ano = date("Y");
 $month = date("Y-m");
 $datahoje = date("Y-m-d");
@@ -86,17 +96,33 @@ $sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' A
 $result_e = $DB->query($sql_e);
 $sel_ent = $DB->result($result_e,0,'value');
 
-if($sel_ent == '' || $sel_ent == -1) {
-	$sel_ent = 0;
-	$entidade = "";
+//select entity
+if($sel_ent == '' || $sel_ent == -1) {	
+
+	$query_ent1 = "
+	SELECT entities_id
+	FROM glpi_users
+	WHERE id = ".$_SESSION['glpiID']." ";
+	
+	$res_ent1 = $DB->query($query_ent1);
+	$user_ent = $DB->result($res_ent1,0,'entities_id');
+
+	//get all user entities
+	$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+	$entities[] = $user_ent;
+	$ent = implode(",",$entities);
+
+	$entidade = "WHERE entities_id IN (".$ent.")";
+	$entidade1 = "";
+	
 }
 else {
-	$entidade = "WHERE entities_id = ".$sel_ent." ";
+	$entidade = "WHERE entities_id IN (".$sel_ent.")";
 }
 
 //seleciona entidade
 $sql_loc = "
-SELECT id, completename AS name
+SELECT id, completename AS name, entities_id AS ent
 FROM glpi_locations
 ".$entidade."
 ORDER BY name ASC ";
@@ -129,7 +155,6 @@ function dropdown( $name, array $options, $selected=null )
     return $dropdown;
 }
 
-
 $res_loc = $DB->query($sql_loc);
 $arr_loc = array();
 $arr_loc[0] = "-- ". __('Select a location','dashboard') . " --" ;
@@ -137,14 +162,23 @@ $arr_loc[0] = "-- ". __('Select a location','dashboard') . " --" ;
 $DB->data_seek($result_loc, 0);
 
 while ($row_result = $DB->fetch_assoc($result_loc))		
-	{ 
-		$v_row_result = $row_result['id'];
-		$arr_loc[$v_row_result] = $row_result['name'] ;			
-	} 	 
+{ 
+	
+	$sql_ent = "
+	SELECT name
+	FROM glpi_entities
+	WHERE id = ".$row_result['ent']." ";
+	
+	$result_ent = $DB->query($sql_ent);
+	$ent_loc = $DB->result($result_ent,0,'name');	
+	
+	$v_row_result = $row_result['id'];
+	$arr_loc[$v_row_result] = $ent_loc ." > ".$row_result['name'] ;			
+} 	 
 
 $name = 'sel_loc';
 $options = $arr_loc;
-$selected = "0";
+$selected = $id_loc;
 
 ?>
 
@@ -239,13 +273,6 @@ else {
 	$data_fin2 = $_POST['date2'];	
 }  
 
-if(!isset($_POST["sel_loc"])) {
-	$id_loc = $_GET["sel_loc"];	
-}
-
-else {
-	$id_loc = $_POST["sel_loc"];
-}
 
 if($id_loc == " ") {
 	echo '<script language="javascript"> alert(" ' . __('Select a location','dashboard') . ' "); </script>';

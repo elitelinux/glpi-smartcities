@@ -1,6 +1,8 @@
 
 <?php
 
+//echo '<div id="grafcat" class="span12" style="height: 460px; margin-top:40px;">';
+
 $query4 = "
 SELECT glpi_itilcategories.completename as cat_name, COUNT(glpi_tickets.id) as cat_tick
 FROM glpi_tickets,  glpi_itilcategories
@@ -29,7 +31,6 @@ $grf_2a = implode("','",$grf4);
 $grf_3a = "'$grf_2a'";
 $quant_2a = implode(',',$quant4);
 
-echo '<div id="grafcat" class="span12" style="height: 460px; margin-top:40px;">';
 
 echo "
 <script type='text/javascript'>

@@ -29,6 +29,7 @@ $mydate = isset($_POST["date1"]) ? $_POST["date1"] : "";
 <link href="../less/datepicker.less" rel="stylesheet" type="text/css">
 
 <script type="text/javascript" src="../js/jquery.min.js"></script> 
+<script src="../js/jquery-ui.min.js"></script>
 <script src="../js/highcharts.js"></script>
 <script src="../js/modules/exporting.js"></script>
 <script src="../js/modules/no-data-to-display.js"></script>
@@ -56,6 +57,23 @@ else {
 
 $month = date("Y-m");
 $datahoje = date("Y-m-d");  
+
+
+#entity
+$sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' AND users_id = ".$_SESSION['glpiID']."";
+$result_e = $DB->query($sql_e);
+$sel_ent = $DB->result($result_e,0,'value');
+
+if($sel_ent == '' || $sel_ent == -1) {
+	//get user entities
+	$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+	$ent = implode(",",$entities);
+
+	$entidade = "AND glpi_entities.id IN (".$ent.")";
+}
+else {
+	$entidade = "AND glpi_entities.id IN (".$sel_ent.")";
+}
 	  
 ?>
 <div id='content' >
@@ -98,8 +116,8 @@ $datahoje = date("Y-m-d");
 			?>
 			
 			<script language="Javascript">			
-			$('#dp1').datepicker('update');
-			$('#dp2').datepicker('update');			
+				$('#dp1').datepicker('update');
+				$('#dp2').datepicker('update');			
 			</script>
 			</td>
 			

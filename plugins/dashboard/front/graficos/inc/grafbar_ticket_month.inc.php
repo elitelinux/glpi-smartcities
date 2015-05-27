@@ -100,7 +100,13 @@ $(function () {
                 	borderColor: 'white',
                 	shadow:true,           
                 	showInLegend: false
-                }
+                },
+		          series: {
+		       	  animation: {
+		           duration: 2000,
+		           easing: 'easeOutBounce'
+		       	  }
+		   		}
             },
             series: [{
                 name: '".__('Tickets','dashboard')."',

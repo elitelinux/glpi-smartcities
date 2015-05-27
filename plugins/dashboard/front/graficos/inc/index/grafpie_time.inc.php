@@ -24,7 +24,7 @@ $quant2 = array_values($arr_grf2);
 $conta = count($arr_grf2);
 
 
-for($i=0; $i < 8; $i++) {
+for($i=0; $i < 7; $i++) {
 
 	if($quant2[$i] != 0) {
 		$till[$i] = $quant2[$i];
@@ -56,7 +56,8 @@ $(function () {
                 plotShadow: false
             },
             title: {
-                text: '".__('Ticket Solving Period','dashboard')."'
+                //text: '".__('Ticket Solving Period','dashboard')."'
+                text: ''
             },
              legend: {
                 layout: 'vertical',

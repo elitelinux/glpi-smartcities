@@ -48,8 +48,8 @@ global $DB;
 <script src="../js/highcharts.js"></script>
 <script src="../js/modules/exporting.js"></script>
 <script src="../js/modules/no-data-to-display.js"></script>
-<script src="../js/bootstrap-datepicker.js"></script>
-    
+
+<script src="../js/bootstrap-datepicker.js"></script>    
 <link href="../css/datepicker.css" rel="stylesheet" type="text/css">
 <link href="../less/datepicker.less" rel="stylesheet" type="text/css">
 
@@ -75,6 +75,15 @@ else {
 	$data_fin = date("Y-m-d");
 } 
 
+//group
+if(!isset($_POST["sel_grp"])) {
+	$id_grp = $_GET["grp"];	
+}
+
+else {
+	$id_grp = $_POST["sel_grp"];
+}
+
 $ano = date("Y");
 $month = date("Y-m");
 $datahoje = date("Y-m-d");
@@ -84,12 +93,31 @@ $sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' A
 $result_e = $DB->query($sql_e);
 $sel_ent = $DB->result($result_e,0,'value');
 
-if($sel_ent == '' || $sel_ent == -1) {
-	$sel_ent = 0;
-	$entidade = "";
+//select entity
+if($sel_ent == '' || $sel_ent == -1) {	
+
+	$query_ent1 = "
+	SELECT entities_id
+	FROM glpi_users
+	WHERE id = ".$_SESSION['glpiID']." ";
+	
+	$res_ent1 = $DB->query($query_ent1);
+	$user_ent = $DB->result($res_ent1,0,'entities_id');
+
+	//get all user entities
+	$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+	$entities[] = $user_ent;
+	$ent = implode(",",$entities);
+
+	$entidade = "WHERE entities_id IN (".$ent.")";
+	$entidade_age = "AND glpi_tickets.entities_id IN (".$ent.")";
+	$entidade1 = "";
+	
 }
+
 else {
-	$entidade = "WHERE entities_id = ".$sel_ent." ";
+	$entidade = "WHERE entities_id IN (".$sel_ent.")";
+	$entidade_age = "AND glpi_tickets.entities_id IN (".$sel_ent.")";
 }
 
 //seleciona grupo
@@ -97,8 +125,7 @@ $sql_grp = "
 SELECT id, name
 FROM `glpi_groups`
 ".$entidade."
-ORDER BY `name` ASC
-";
+ORDER BY `name` ASC ";
 
 $result_grp = $DB->query($sql_grp);
 $grp = $DB->fetch_assoc($result_grp);
@@ -117,14 +144,11 @@ function dropdown( $name, array $options, $selected=null )
     {
         /*** assign a selected value ***/
         $select = $selected==$key ? ' selected' : null;
-
         /*** add each option to the dropdown ***/
         $dropdown .= '<option value="'.$key.'"'.$select.'>'.$option.'</option>'."\n";
     }
-
     /*** close the select ***/
     $dropdown .= '</select>'."\n";
-
     /*** and return the completed dropdown ***/
     return $dropdown;
 }
@@ -137,20 +161,18 @@ $arr_grp[0] = "-- ". __('Select a group','dashboard') . " --" ;
 $DB->data_seek($result_grp, 0);
 
 while ($row_result = $DB->fetch_assoc($result_grp))		
-	{ 
+{ 
 	$v_row_result = $row_result['id'];
 	$arr_grp[$v_row_result] = $row_result['name'] ;			
-	} 	 
+} 	 
 
 $name = 'sel_grp';
 $options = $arr_grp;
-$selected = "0";
+$selected = $id_grp;
 
 ?>
-
 <div id='content' >
 <div id='container-fluid' style="margin: 0px 8% 0px 8%;"> 
-
 <div id="pad-wrapper" >
 <div id="charts" class="row-fluid chart"> 
 <div id="head" class="row-fluid">
@@ -158,61 +180,58 @@ $selected = "0";
 <a href="../index.php"><i class="fa fa-home" style="font-size:14pt; margin-left:25px;"></i><span></span></a>
 	
 <div id="titulo_graf">
-
-	  <?php echo __('Tickets','dashboard') ." ". __('by Group','dashboard'); ?> 
-	<span style="color:#8b1a1a; font-size:35pt; font-weight:bold;"> </span> </div>
+   <?php echo __('Tickets','dashboard') ." ". __('by Group','dashboard'); ?> 
+	<span style="color:#8b1a1a; font-size:35pt; font-weight:bold;"> </span> 
+</div>
 
 <div id="datas-tec" class="span12 row-fluid" > 
-<form id="form1" name="form1" class="form2" method="post" action="?date1=<?php echo $data_ini ?>&date2=<?php echo $data_fin ?>&con=1" onsubmit="datai();dataf();"> 
-<table border="0" cellspacing="0" cellpadding="1" bgcolor="#efefef">
-<tr>
-<td>
-
-<?php 
-	echo'
-			<table>
-				<tr>
-					<td>
-					   <div class="input-group date" id="dp1" data-date="'.$data_ini.'" data-date-format="yyyy-mm-dd">
-					    	<input class="col-md-9 form-control" size="13" type="text" name="date1" value="'.$data_ini.'" >		    	
-					    	<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>	    	
-				    	</div>
-					</td>
-					<td>&nbsp;</td>
-					<td>
-				   	<div class="input-group date" id="dp2" data-date="'.$data_fin.'" data-date-format="yyyy-mm-dd">
-					    	<input class="col-md-9 form-control" size="13" type="text" name="date2" value="'.$data_fin.'" >		    	
-					    	<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>	    	
-				    	</div>
-					</td>
-					<td>&nbsp;</td>
-				</tr>
-			</table> ';
-	?>
-
-<script language="Javascript">
-$('#dp1').datepicker('update');
-$('#dp2').datepicker('update');
-</script>
-
-</td>
-<td style="margin-top:2px;">
-<?php
-echo dropdown( $name, $options, $selected );
-?>
-</td>
-</tr>
-<tr><td height="15px"></td></tr>
-<tr>
-<td colspan="2" align="center" style="">
-	<button class="btn btn-primary btn-sm" type="submit" name="submit" value="Atualizar" ><i class="fa fa-search"></i>&nbsp; <?php echo __('Consult','dashboard'); ?></button>
-	<button class="btn btn-primary btn-sm" type="button" name="Limpar" value="Limpar" onclick="location.href='graf_grupo.php'" > <i class="fa fa-trash-o"></i>&nbsp; <?php echo __('Clean','dashboard'); ?> </button></td>
-</td>
-</tr>	
-	</table>
+	<form id="form1" name="form1" class="form2" method="post" action="?date1=<?php echo $data_ini ?>&date2=<?php echo $data_fin ?>&con=1" onsubmit="datai();dataf();"> 
+		<table border="0" cellspacing="0" cellpadding="1" bgcolor="#efefef">
+		<tr>
+		<td>	
+		<?php 
+			echo'
+					<table>
+						<tr>
+							<td>
+							   <div class="input-group date" id="dp1" data-date="'.$data_ini.'" data-date-format="yyyy-mm-dd">
+							    	<input class="col-md-9 form-control" size="13" type="text" name="date1" value="'.$data_ini.'" >		    	
+							    	<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>	    	
+						    	</div>
+							</td>
+							<td>&nbsp;</td>
+							<td>
+						   	<div class="input-group date" id="dp2" data-date="'.$data_fin.'" data-date-format="yyyy-mm-dd">
+							    	<input class="col-md-9 form-control" size="13" type="text" name="date2" value="'.$data_fin.'" >		    	
+							    	<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>	    	
+						    	</div>
+							</td>
+							<td>&nbsp;</td>
+						</tr>
+					</table> ';
+			?>	
+			<script language="Javascript">
+				$('#dp1').datepicker('update');
+				$('#dp2').datepicker('update');
+			</script>
 	
-<?php Html::closeForm(); ?>
-<!-- </form> -->
+			</td>
+			<td style="margin-top:2px;">
+			<?php
+			echo dropdown( $name, $options, $selected );
+			?>
+			</td>
+		</tr>
+		<tr><td height="15px"></td></tr>
+		<tr>
+			<td colspan="2" align="center" style="">
+				<button class="btn btn-primary btn-sm" type="submit" name="submit" value="Atualizar" ><i class="fa fa-search"></i>&nbsp; <?php echo __('Consult','dashboard'); ?></button>
+				<button class="btn btn-primary btn-sm" type="button" name="Limpar" value="Limpar" onclick="location.href='graf_grupo.php'" > <i class="fa fa-trash-o"></i>&nbsp; <?php echo __('Clean','dashboard'); ?> </button></td>
+			</td>
+		</tr>	
+	</table>		
+	<?php Html::closeForm(); ?>
+	<!-- </form> -->
 
 </div>
 </div>
@@ -240,13 +259,6 @@ else {
 	$data_fin2 = $_POST['date2'];	
 }  
 
-if(!isset($_POST["sel_grp"])) {
-	$id_grp = $_GET["grp"];	
-}
-
-else {
-	$id_grp = $_POST["sel_grp"];
-}
 
 if($id_grp == "0") {
 	echo '<script language="javascript"> alert(" ' . __('Select a group','dashboard') . ' "); </script>';
@@ -310,8 +322,20 @@ echo "</div>";
 	<?php include ("./inc/grafcat_grupo.inc.php"); ?>
 </div>
 
-<div id="graf_user" class="span12" style="height: 450px; margin-top:30px; margin-bottom:30px; margin-left: -5px;">
+<div id="graf_time" class="span6">
+	<?php include ("./inc/grafbar_age_group.inc.php");  ?>
+</div>
+
+<div id="graf_prio" class="span6" style="margin-left: 2.5%;">
+	<?php include ("./inc/grafpie_prio_group.inc.php");  ?>
+</div>
+
+<div id="graf_user" class="span12" style="height: 450px; margin-top:30px; margin-bottom:100px; margin-left: -5px;">
 	<?php  include ("./inc/grafbar_user_grupo.inc.php"); ?>
+</div>
+
+<div id="graf_time1" class="span12" style="height: 450px; margin-top:30px; margin-bottom:100px; margin-left: -5px;">
+	<?php  include ("./inc/grafpie_time_grupo.inc.php"); ?>
 </div>
 
 <?php 

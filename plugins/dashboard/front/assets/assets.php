@@ -12,30 +12,45 @@ $sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' A
 $result_e = $DB->query($sql_e);
 $sel_ent = $DB->result($result_e,0,'value');
 
-if($sel_ent == '' || $sel_ent == -1) {
-	$sel_ent = 0;
-	$ent_comp = "";
-	$ent_mon="";
-	$ent_print="";
-	$ent_net = "";
-	$ent_peri="";
-	$ent_phone="";
-	$ent_soft = "";
-	$ent_global = "";
-	$ent = "";
-	//$ent_global="";	
+//select entity
+if($sel_ent == '' || $sel_ent == -1) {	
+
+	$query_ent1 = "
+	SELECT entities_id
+	FROM glpi_users
+	WHERE id = ".$_SESSION['glpiID']." ";
+	
+	$res_ent1 = $DB->query($query_ent1);
+	$user_ent = $DB->result($res_ent1,0,'entities_id');
+
+	//get all user entities
+	$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+	$entities[] = $user_ent;
+	$ent = implode(",",$entities);
+
+	$ent_comp = "AND glpi_computers.entities_id IN (".$ent.")"; 
+	$ent_mon = "AND glpi_monitors.entities_id IN (".$ent.")";
+	$ent_print = "AND glpi_printers.entities_id IN (".$ent.")";
+	$ent_net = "AND glpi_networkequipments.entities_id IN (".$ent.")";
+	$ent_peri = "AND glpi_peripherals.entities_id IN (".$ent.")";
+	$ent_phone = "AND glpi_phones.entities_id IN (".$ent.")";
+	$ent_soft = "AND glpi_softwares.entities_id IN (".$ent.")";
+	$ent_global = "AND glpi_". strtolower($asset)."s.entities_id IN (".$ent.")";
+	$ent = "AND entities_id IN (".$ent.")";
+	$entidade1 = "";
+	
 }	
 
 else {
-	$ent_comp = "AND glpi_computers.entities_id = ".$sel_ent.""; 
-	$ent_mon = "AND glpi_monitors.entities_id = ".$sel_ent."";
-	$ent_print = "AND glpi_printers.entities_id = ".$sel_ent."";
-	$ent_net = "AND glpi_networkequipments.entities_id = ".$sel_ent."";
-	$ent_peri = "AND glpi_peripherals.entities_id = ".$sel_ent."";
-	$ent_phone = "AND glpi_phones.entities_id = ".$sel_ent."";
-	$ent_soft = "AND glpi_softwares.entities_id = ".$sel_ent."";
-	$ent_global = "AND glpi_". strtolower($asset)."s.entities_id = ".$sel_ent."";
-	$ent = "AND entities_id = ".$sel_ent."";
+	$ent_comp = "AND glpi_computers.entities_id IN (".$sel_ent.")"; 
+	$ent_mon = "AND glpi_monitors.entities_id IN (".$sel_ent.")";
+	$ent_print = "AND glpi_printers.entities_id IN (".$sel_ent.")";
+	$ent_net = "AND glpi_networkequipments.entities_id IN (".$sel_ent.")";
+	$ent_peri = "AND glpi_peripherals.entities_id IN (".$sel_ent.")";
+	$ent_phone = "AND glpi_phones.entities_id IN (".$sel_ent.")";
+	$ent_soft = "AND glpi_softwares.entities_id IN (".$sel_ent.")";
+	$ent_global = "AND glpi_". strtolower($asset)."s.entities_id IN (".$sel_ent.")";
+	$ent = "AND entities_id IN (".$sel_ent.")";
 	}
 
 
@@ -47,7 +62,7 @@ if($sel_ent == '' || $sel_ent == -1) {
 	$ent_global="";	
 }
 else {
-	$ent_global = "AND entities_id = ".$sel_ent."";
+	$ent_global = "AND entities_id IN (".$sel_ent.")";
 }
 
 $query = "
@@ -78,7 +93,7 @@ if($sel_ent == '' || $sel_ent == -1) {
 	$ent_global="";	
 }
 else {
-	$ent_global = "WHERE entities_id = ".$sel_ent."";
+	$ent_global = "WHERE entities_id IN (".$sel_ent.")";
 }
 
 $query = "
@@ -109,7 +124,7 @@ if($sel_ent == '' || $sel_ent == -1) {
 	$ent_global="";	
 }
 else {
-	$ent_global = "AND entities_id = ".$sel_ent."";
+	$ent_global = "AND entities_id IN (".$sel_ent.")";
 }	
 
 $query = "

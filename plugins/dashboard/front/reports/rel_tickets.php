@@ -102,9 +102,8 @@ function dropdown( $name, array $options, $selected=null )
 	<link href="../js/extensions/TableTools/css/dataTables.tableTools.css" type="text/css" rel="stylesheet" />
 	<script src="../js/extensions/TableTools/js/dataTables.tableTools.js"></script>
 	
-	<script src="../js/extensions/ColVis/css/dataTables.colVis.min.cs"></script>
-	<script src="../js/extensions/ColVis/js/dataTables.colVis.min.js"></script>
-	<link href="//cdn.datatables.net/colvis/1.1.0/css/dataTables.colVis.min.css" rel="stylesheet">
+	<script src="../js/extensions/ColVis/css/dataTables.colVis.min.css"></script>
+	<script src="../js/extensions/ColVis/js/dataTables.colVis.min.js"></script>	
 	
 <style type="text/css">	
 	select { width: 60px; }
@@ -182,28 +181,80 @@ a:hover {
 			<td style="margin-top:2px;">
 			<?php
 			
-			// lista de entidades		
+			//select user entities
+			$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+			$ents = implode(",",$entities);
+			
+			// lista de entidades
 			$sql_ent = "
-			SELECT id , name
-			FROM `glpi_entities`
-			ORDER BY `name` ASC";
+			SELECT id, name
+			FROM glpi_entities
+			WHERE id IN (".$ents.")
+			ORDER BY name ASC ";
 			
 			$result_ent = $DB->query($sql_ent);
 			
 			$arr_ent = array();
-			$arr_ent[0] = "" ;
+			$arr_ent[-1] = "-----" ;
+			$arr_ent[0] = __('All') ;
 			
 			while ($row_ent = $DB->fetch_assoc($result_ent))		
-				{ 
-					$v_row_ent = $row_ent['id'];
-					$arr_ent[$v_row_ent] = $row_ent['name'] ;			
-				} 
+			{ 
+				$v_row_ent = $row_ent['id'];
+				$arr_ent[$v_row_ent] = $row_ent['name'] ;			
+			} 
 				
 			$name = 'sel_ent';
 			$options = $arr_ent;
-			$selected = "0";
+			$selected = $id_ent;
 			
-			echo dropdown( $name, $options, $selected );		
+			echo dropdown( $name, $options, $selected );	
+			
+
+if(isset($_REQUEST["sel_sta"]) && $_REQUEST["sel_sta"] != '0') { 
+
+$id_sta1 = $_REQUEST["sel_sta"];
+
+	if($_REQUEST["sel_sta"] == 'notclosed') {
+		$id_sta = "AND glpi_tickets.status <> 6"; 
+	}
+	elseif($_REQUEST["sel_sta"] == 'notold') {
+		$id_sta = "AND glpi_tickets.status NOT IN ('5','6')"; 
+	}
+	else {
+		$id_sta = "AND glpi_tickets.status = ".$_REQUEST["sel_sta"] ;
+	}
+}
+else { $id_sta = ''; }
+
+//AND glpi_tickets.status LIKE '%".$id_sta."'
+
+if(isset($_REQUEST["sel_req"]) && $_REQUEST["sel_req"] != '0') { $id_req = $_REQUEST["sel_req"]; }
+else { $id_req = ''; }
+
+if(isset($_REQUEST["sel_pri"]) && $_REQUEST["sel_pri"] != '0') { $id_pri = $_REQUEST["sel_pri"]; }
+else { $id_pri = ''; }
+
+if(isset($_REQUEST["sel_cat"]) && $_REQUEST["sel_cat"] != '0') { $id_cat = $_REQUEST["sel_cat"]; }
+else { $id_cat = ''; }
+
+if(isset($_REQUEST["sel_tip"]) && $_REQUEST["sel_tip"] != '0') { $id_tip = $_REQUEST["sel_tip"]; }
+else { $id_tip = ''; }
+
+if(isset($_REQUEST["sel_due"]) && $_REQUEST["sel_due"] != '0') {
+	 
+	$id_due1 = $_REQUEST["sel_due"];
+	 
+	if($_REQUEST["sel_due"] == 1) {
+		$id_due = "AND due_date <= NOW()";		
+		}
+	if($_REQUEST["sel_due"] == 2) {		
+		$id_due = "AND due_date > NOW()"; 
+		}
+}
+else { $id_due = ''; }			
+			
+				
 			?>
 			</td>
 		</tr>	
@@ -235,7 +286,7 @@ a:hover {
 				
 			$name = 'sel_sta';
 			$options = $arr_sta;
-			$selected = "0";
+			$selected = $id_sta1;
 						
 			echo dropdown( $name, $options, $selected );
 			?>
@@ -265,7 +316,7 @@ a:hover {
 				
 			$name = 'sel_req';
 			$options = $arr_req;
-			$selected = "0";
+			$selected = $id_req;
 			
 			echo dropdown( $name, $options, $selected );
 			?>
@@ -288,7 +339,7 @@ a:hover {
 						
 			$name = 'sel_pri';
 			$options = $arr_pri;
-			$selected = "0";
+			$selected = $id_pri;
 			
 			echo dropdown( $name, $options, $selected );
 			?>
@@ -319,7 +370,7 @@ a:hover {
 				
 			$name = 'sel_cat';
 			$options = $arr_cat;
-			$selected = "0";
+			$selected = $id_cat;
 			
 			echo dropdown( $name, $options, $selected );
 			?>
@@ -337,7 +388,7 @@ a:hover {
 			$arr_tip[2] = __('Request');			
 			$name = 'sel_tip';
 			$options = $arr_tip;
-			$selected = "0";
+			$selected = $id_tip;
 			
 			echo dropdown( $name, $options, $selected );
 			?>
@@ -345,20 +396,21 @@ a:hover {
 		</tr>
 		<tr><td height="12px"></td></tr>			
 		<tr>
-			<td style="margin-top:2px; width:100px;"><?php echo __('Solution'); ?>:  </td>		
+			<td style="margin-top:2px; width:100px;"><?php echo __('Due Date','dashboard'); ?>:  </td>		
 			<td style="margin-top:2px;">
 			<?php
-			// solution		
-			$arr_sol = array();
-			$arr_sol[0] = "-----" ;
-			$arr_sol[1] = __('Yes');
-			$arr_sol[2] = __('No');			
-			$name = 'sel_sol';
-			$options = $arr_sol;
-			$selected = "0";
+			// lista de tipos		
+			$arr_due = array();
+			$arr_due[0] = "-----" ;
+			$arr_due[1] = __('Overdue', 'dashboard') ;
+			$arr_due[2] = __('Within','dashboard');			
+			$name = 'sel_due';
+			$options = $arr_due;
+			$selected = $id_due1;
 			
 			echo dropdown( $name, $options, $selected );
 			?>
+
 			</td>
 		</tr>	
 		<tr><td height="20px"></td></tr>
@@ -378,7 +430,7 @@ a:hover {
 <?php 
 
 //entidades
-$con = $_GET['con'];
+$con = $_REQUEST['con'];
 
 if($con == "1") {
 
@@ -393,55 +445,21 @@ else {
 	$data_fin2 = $_POST['date2'];	
 }  
 
-if(!isset($_REQUEST["sel_ent"])) { $id_ent = 0; }
-else { $id_ent = $_REQUEST["sel_ent"]; }
-
-if(isset($_REQUEST["sel_sta"]) && $_REQUEST["sel_sta"] != '0') { 
-
-	if($_REQUEST["sel_sta"] == 'notclosed') {
-	$id_sta = "AND glpi_tickets.status <> 6"; 
-	}
-	elseif($_REQUEST["sel_sta"] == 'notold') {
-	$id_sta = "AND glpi_tickets.status NOT IN ('5','6')"; 
-	}
-	else {
-	$id_sta = "AND glpi_tickets.status = ".$_REQUEST["sel_sta"] ;
-	}
+//entity
+if(!isset($_REQUEST["sel_ent"]) || $_REQUEST["sel_ent"] == 0 || $_REQUEST["sel_ent"] == "" ) 
+{ 
+	$id_ent = 0; 
+   $entidade = "";
 }
-else { $id_sta = ''; }
 
-//AND glpi_tickets.status LIKE '%".$id_sta."'
+else { 
+	$id_ent = $_REQUEST["sel_ent"]; 
+	$entidade = "AND glpi_tickets.entities_id = ".$id_ent." ";
+}
 
-if(isset($_REQUEST["sel_req"]) && $_REQUEST["sel_req"] != '0') { $id_req = $_REQUEST["sel_req"]; }
-else { $id_req = ''; }
+$arr_param = array($id_ent, $id_sta, $id_req, $id_pri, $id_cat, $id_tip);
 
-if(isset($_REQUEST["sel_pri"]) && $_REQUEST["sel_pri"] != '0') { $id_pri = $_REQUEST["sel_pri"]; }
-else { $id_pri = ''; }
-
-if(isset($_REQUEST["sel_cat"]) && $_REQUEST["sel_cat"] != '0') { $id_cat = $_REQUEST["sel_cat"]; }
-else { $id_cat = ''; }
-
-if(isset($_REQUEST["sel_tip"]) && $_REQUEST["sel_tip"] != '0') { $id_tip = $_REQUEST["sel_tip"]; }
-else { $id_tip = ''; }
-
-if(isset($_REQUEST["sel_sol"]) && $_REQUEST["sel_sol"] != '0') { $id_sol1 = $_REQUEST["sel_sol"]; }
-else { $id_sol1 = ''; }
-
-if($id_sol1 == '1') { 
-	$id_sol = ", solution"; 
-	$th_sol = "<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Solution')." </th>";	
-	$targ = '9' ;	
-	}
-else {
-	$id_sol = ''; 
-	$th_sol = '';
-	$td_sol = '';
-	$targ = '';
-	}
-
-
-$arr_param = array($id_ent, $id_sta, $id_req, $id_pri, $id_cat, $id_tip, $id_sol);
-
+//dates
 if($data_ini2 == $data_fin2) {
 	$datas2 = "LIKE '%".$data_ini2."%'";	
 }	
@@ -449,9 +467,6 @@ if($data_ini2 == $data_fin2) {
 else {
 	$datas2 = "BETWEEN '".$data_ini2." 00:00:00' AND '".$data_fin2." 23:59:59'";	
 }	
-
-//print_r($arr_param);
-//echo "data:".$datas2;
 
 if($id_sta == 5) {
 	$period = "AND glpi_tickets.solvedate ".$datas2." ";	
@@ -468,12 +483,13 @@ else {
 
 // Chamados
 $sql_cham = 
-"SELECT id, entities_id, name, date, closedate, solvedate, status, users_id_recipient, requesttypes_id, itemtype, priority, itilcategories_id, type " .$id_sol. "   
+"SELECT id, entities_id, name, date, closedate, solvedate, status, users_id_recipient, requesttypes_id, priority, itilcategories_id, type, due_date 
 FROM glpi_tickets
-WHERE glpi_tickets.entities_id = ".$id_ent."
-AND glpi_tickets.is_deleted = 0
-" .$period. "
+WHERE glpi_tickets.is_deleted = 0
+".$entidade."
+".$period."
 ".$id_sta."
+".$id_due."
 AND glpi_tickets.requesttypes_id LIKE '%".$id_req."'
 AND glpi_tickets.priority LIKE '%".$id_pri."'
 AND glpi_tickets.itilcategories_id LIKE '%".$id_cat."'
@@ -486,18 +502,17 @@ $result_cham = $DB->query($sql_cham);
 $consulta1 = 
 "SELECT glpi_tickets.id AS total
 FROM glpi_tickets
-WHERE glpi_tickets.entities_id = ".$id_ent."
-AND glpi_tickets.is_deleted = 0
-" .$period. "
+WHERE glpi_tickets.is_deleted = 0
+".$entidade."
+".$period."
 ".$id_sta."
+".$id_due."
 AND glpi_tickets.requesttypes_id LIKE '%".$id_req."'
 AND glpi_tickets.priority LIKE '%".$id_pri."'
 AND glpi_tickets.itilcategories_id LIKE '%".$id_cat."'
-AND glpi_tickets.type LIKE '%".$id_tip."'
-";
+AND glpi_tickets.type LIKE '%".$id_tip."' ";
 
 $result_cons1 = $DB->query($consulta1);
-
 $conta_cons = $DB->numrows($result_cons1);
 
 $consulta = $conta_cons;
@@ -539,10 +554,10 @@ echo "
 			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Category')." </th>
 			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Title')." </th>
 			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Requester')." </th>
-			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Technician')." </th>
-			".$th_sol."
+			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Technician')." </th>			
 			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Opened','dashboard')."</th>
 			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Closed')." </th>
+			<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Due Date','dashboard')." </th>
 		</tr>
 	</thead>
 <tbody>";
@@ -618,8 +633,18 @@ while($row = $DB->fetch_assoc($result_cham)){
 	$result_cat = $DB->query($sql_cat);	
 	
 	$row_cat = $DB->fetch_assoc($result_cat);
+	
+	//vencimento	
+	//check due_date	
+	$sql_due = "SELECT due_date, closedate, solvedate 
+	FROM glpi_tickets
+	WHERE glpi_tickets.is_deleted = 0
+	AND glpi_tickets.id = ". $row['id'] ." ";
+			
+	$result_due = $DB->query($sql_due);
+	
+	$row_due = $DB->fetch_assoc($result_due);
 
-if($id_sol1 == '1') { 
 		
 echo "	
 	<tr>
@@ -632,35 +657,31 @@ echo "
 		<td style='vertical-align:middle;'> ". substr($row_user['descr'],0,55) ." </td>
 		<td style='vertical-align:middle;'> ". $row_user['name'] ." ".$row_user['sname'] ." </td>
 		<td style='vertical-align:middle;'> ". $row_tec['name'] ." ".$row_tec['sname'] ." </td>
-		<td style='vertical-align:middle;'> ". strip_tags(htmlspecialchars_decode($row['solution'])) ."</td>
-		<td style='vertical-align:middle;'> ". conv_data_hora($row['date']) ." </td>
-		<td style='vertical-align:middle;'> ". conv_data_hora($row['solvedate']) ." </td>		
-	</tr>";
-	}
-
-else{ 
+		<td style='vertical-align:middle;'> ". conv_data_hora($row['date']) ." </td>		
+		<td style='vertical-align:middle;'> ". conv_data_hora($row['solvedate']) ." </td>";
 		
-echo "	
-	<tr>
-		<td style='vertical-align:middle; text-align:center;'><a href=".$CFG_GLPI['root_doc']."/front/ticket.form.php?id=". $row['id'] ." target=_blank >" . $row['id'] . "</a></td>
-		<td style='vertical-align:middle;'><img src=".$CFG_GLPI['root_doc']."/pics/".$status1.".png title='".Ticket::getStatus($row['status'])."' style=' cursor: pointer; cursor: hand;'/>&nbsp; ".Ticket::getStatus($row['status'])." </td>
-		<td style='vertical-align:middle;'> ". $type ." </td>
-		<td style='vertical-align:middle;'> ". $row_req['name'] ." </td>
-		<td style='vertical-align:middle;text-align:center;'> ". $pri ." </td>
-		<td style='vertical-align:middle;'> ". $row_cat['name'] ." </td>		
-		<td style='vertical-align:middle;'> ". substr($row_user['descr'],0,55) ." </td>
-		<td style='vertical-align:middle;'> ". $row_user['name'] ." ".$row_user['sname'] ." </td>
-		<td style='vertical-align:middle;'> ". $row_tec['name'] ." ".$row_tec['sname'] ." </td>
-		<td style='vertical-align:middle;'> ". conv_data_hora($row['date']) ." </td>
-		<td style='vertical-align:middle;'> ". conv_data_hora($row['solvedate']) ." </td>		
-	</tr>";
-	}
+		
+			//due date
+			//$now = date("Y-m-d H:i");
+			
+			if(conv_data_hora($row_due['due_date']) > conv_data_hora($row['solvedate']) ) {
+			//if($row_due['closedate'] > $row_due['due_date'] || $row_due['due_date'] > conv_data_hora($now) ) {
 
-}	
+				echo "<td style='vertical-align:middle; color:green;'><span>". conv_data_hora($row['due_date']) ."</span> </td>";
+				}
+			else {
+				echo "<td style='vertical-align:middle; color:red;'><span>". conv_data_hora($row['due_date']) ."</span> </td>";
+				}		
+		
+echo "		
+	</tr>";
+
+}
 
 echo "</tbody>
 		</table>
-		</div>"; 	
+		</div>";
+		 	
 ?>
 
 <script type="text/javascript" charset="utf-8">
@@ -678,7 +699,7 @@ $(document).ready(function() {
         "iDisplayLength": 25,
     	  "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]], 
 
-        "sDom": 'CT<"clear">lfrtip',
+        "sDom": 'T<"clear">lfrtip',   //"sDom": 'CT<"clear">lfrtip',
                 
 			"aoColumnDefs": [
          	{ "bVisible": false, "aTargets": [ <?php echo $targ; ?> ] }
@@ -697,7 +718,7 @@ $(document).ready(function() {
              },
              {
                  "sExtends":    "collection",
-                 "sButtonText": "<?php echo __('Export'); ?>",
+                 "sButtonText": "<?php echo _x('button', 'Export'); ?>",
                  "aButtons":    [ "csv", "xls",
                   {
                  "sExtends": "pdf",
@@ -749,7 +770,7 @@ else {
 	$(document).ready(function() { $("#sel_pri").select2(); });
 	$(document).ready(function() { $("#sel_cat").select2(); });
 	$(document).ready(function() { $("#sel_tip").select2(); });
-	$(document).ready(function() { $("#sel_sol").select2(); });
+	$(document).ready(function() { $("#sel_due").select2(); });
 </script>	
 
 </div>

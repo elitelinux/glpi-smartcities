@@ -23,7 +23,6 @@ GROUP BY name
 ORDER BY media DESC";          		 
 
 $result = $DB->query($query_sat) or die('erro');
-
 $contador = $DB->numrows($result);
 
 

@@ -22,12 +22,11 @@ else {
     }
 
 if(!isset($_POST["sel_ent"])) {
-
-$id_ent = $_GET["ent"];
+	$id_ent = $_GET["ent"];
 }
 
 else {
-$id_ent = $_POST["sel_ent"];
+	$id_ent = $_POST["sel_ent"];
 }
 
 ?>
@@ -63,9 +62,8 @@ $id_ent = $_POST["sel_ent"];
 <link href="../js/extensions/TableTools/css/dataTables.tableTools.css" type="text/css" rel="stylesheet" />
 <script src="../js/extensions/TableTools/js/dataTables.tableTools.js"></script>
 
-<script src="../js/extensions/ColVis/css/dataTables.colVis.min.cs"></script>
+<script src="../js/extensions/ColVis/css/dataTables.colVis.min.css"></script>
 <script src="../js/extensions/ColVis/js/dataTables.colVis.min.js"></script>
-<link href="//cdn.datatables.net/colvis/1.1.0/css/dataTables.colVis.min.css" rel="stylesheet">
   
 <style type="text/css">	
 	select { width: 60px; }
@@ -128,11 +126,23 @@ $id_ent = $_POST["sel_ent"];
 										<?php
 										
 										// lista de entidades
+										$query_ent1 = "
+										SELECT entities_id
+										FROM glpi_users
+										WHERE id = ".$_SESSION['glpiID']." ";
+										
+										$res_ent1 = $DB->query($query_ent1);
+										$user_ent = $DB->result($res_ent1,0,'entities_id');										
+										
+										$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+										$entities[] = $user_ent;
+										$ents = implode(",",$entities);
+								
 										$sql_ent = "
 										SELECT id, name
 										FROM `glpi_entities`
-										ORDER BY `name` ASC
-										";
+										WHERE id IN (".$ents.")
+										ORDER BY `name` ASC ";
 										
 										$result_ent = $DB->query($sql_ent);
 										
@@ -148,7 +158,7 @@ $id_ent = $_POST["sel_ent"];
 										
 										$name = 'sel_ent';
 										$options = $arr_ent;
-										$selected = "0";
+										$selected = $id_ent;
 										
 										echo dropdown( $name, $options, $selected );
 										
@@ -230,13 +240,10 @@ $id_ent = $_POST["sel_ent"];
 		else {
 		    	$status = $status_all;
 		    }
-		
-		
-		// Chamados
-		
+				
+		// Chamados		
 		$sql_cham =
-		"SELECT id, name AS descr, date, solvedate, status , actiontime AS act, itilcategories_id AS cat,TYPE , itemtype, 
-		items_id, FROM_UNIXTIME( UNIX_TIMESTAMP( `glpi_tickets`.`solvedate` ) , '%Y-%m' ) AS date_unix, glpi_tickets.solve_delay_stat AS time_sec
+		"SELECT id, name AS descr, date, closedate, solvedate, status , actiontime AS act, itilcategories_id AS cat, TYPE, FROM_UNIXTIME( UNIX_TIMESTAMP( `glpi_tickets`.`solvedate` ) , '%Y-%m' ) AS date_unix, glpi_tickets.solve_delay_stat AS time_sec
 		FROM glpi_tickets
 		WHERE entities_id = ".$id_ent."
 		AND is_deleted = 0
@@ -409,7 +416,7 @@ $id_ent = $_POST["sel_ent"];
 					<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Assets')." </th>		
 					<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Opened', 'dashboard')."</th>
 					<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Closed', 'dashboard')." </th>
-					<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Time')." </th>
+					<th style='font-size: 12px; font-weight:bold; text-align: center; cursor:pointer;'> ".__('Resolution')." </th>
 				</tr>
 			</thead>
 		<tbody>
@@ -453,16 +460,33 @@ $id_ent = $_POST["sel_ent"];
 		    
 		    
 		//category
-		    $sql_cat = "SELECT name
+		    	$sql_cat = "SELECT name
 				FROM glpi_itilcategories
 				WHERE id = ".$row['cat']." ";
 				
 				$result_cat = $DB->query($sql_cat);
-				    $row_cat = $DB->fetch_assoc($result_cat);  
+				$row_cat = $DB->fetch_assoc($result_cat);  
 		
 		 
 		// associated element
-		if($row['itemtype'] != "" && $row['items_id'] != "") {
+			   $sql_item = "SELECT itemtype, items_id
+				FROM glpi_items_tickets 
+				WHERE glpi_items_tickets.tickets_id = ". $row['id'] ."";
+				
+				$result_item = $DB->query($sql_item);
+				$row_item = $DB->fetch_assoc($result_item);
+				
+				$type = strtolower($row_item['itemtype']);
+				$url_type = $CFG_GLPI['root_doc']."/front/".$type.".form.php?id=";
+		
+		    	$sql_ass = "SELECT id, name
+				FROM glpi_".$type."s
+				WHERE id = ".$row_item['items_id']." ";
+				
+				$result_ass = $DB->query($sql_ass);
+			
+
+	/*	if($row['itemtype'] != "" && $row['items_id'] != "") {
 			
 		if($row['itemtype'] != "PluginProjetProjet" ) {
 		
@@ -492,7 +516,7 @@ $id_ent = $_POST["sel_ent"];
 				$result_ass = "";
 				}					    
 		}			
-		
+		*/
 		if($result_ass != '') {
 			$row_item = $DB->fetch_assoc($result_ass);
 				}
@@ -501,14 +525,14 @@ $id_ent = $_POST["sel_ent"];
 		<tr>
 			<td style='vertical-align:middle; text-align:center;'><a href=".$CFG_GLPI['root_doc']."/front/ticket.form.php?id=". $row['id'] ." target=_blank >" . $row['id'] . "</a></td>
 			<td style='vertical-align:middle; font-size:10px;'><img src=".$CFG_GLPI['root_doc']."/pics/".$status1.".png title='".Ticket::getStatus($row['status'])."' style=' cursor: pointer; cursor: hand;'/>&nbsp; ".Ticket::getStatus($row['status'])." </td>
-			<td style='vertical-align:middle;'> ". Ticket::getTicketTypeName($row['type']) ." </td>
+			<td style='vertical-align:middle;'> ". Ticket::getTicketTypeName($row['TYPE']) ." </td>
 			<td style='vertical-align:middle;'> ". substr($row['descr'],0,55) ." </td>
 			<td style='vertical-align:middle;'> ". $row_user['name'] ." ". $row_user['sname'] ." </td>
 			<td style='vertical-align:middle;'> ". $row_tec['name'] ." ". $row_tec['sname'] ." </td>
 			<td style='vertical-align:middle;'> ". $row_cat['name'] ." </td>
 			<td style='vertical-align:middle;'> <a href=". $url_type.$row_item['id'] ." target=_blank >". $row_item['name'] ." </a></td>			
 			<td style='vertical-align:middle;'> ". conv_data_hora($row['date']) ." </td>
-			<td style='vertical-align:middle;'> ". conv_data_hora($row['solvedate']) ." </td>
+			<td style='vertical-align:middle;'> ". conv_data_hora($row['closedate']) ." </td>
 			<td style='vertical-align:middle;'> ". time_ext($row['time_sec']) ." </td>
 		</tr>";
 		}
@@ -531,7 +555,7 @@ $id_ent = $_POST["sel_ent"];
 		        "aaSorting": [[0,'desc']],
 		        "iDisplayLength": 25,
 		    	  "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],        		         
-		        "sDom": 'CT<"clear">lfrtip',
+		        "sDom": 'T<"clear">lfrtip',   //"sDom": 'CT<"clear">lfrtip',
 		        
 					"aoColumnDefs": [
 		         	{ "bVisible": false, "aTargets": [  ] }
@@ -550,7 +574,7 @@ $id_ent = $_POST["sel_ent"];
 		             },
 		             {
 		                 "sExtends":    "collection",
-		                 "sButtonText": "<?php echo __('Export'); ?>",
+		                 "sButtonText": "<?php echo _x('button', 'Export'); ?>",
 		                 "aButtons":    [ "csv", "xls",
 		                  {
 		                 "sExtends": "pdf",
@@ -563,12 +587,12 @@ $id_ent = $_POST["sel_ent"];
 		                    "oLanguage": {
 		                        "sSearch": "<?php echo __('Search all columns:'); ?>"
 		                    	},
-		                      colVis: {
+		                     colVis: {
 		                      	"buttonText": "<?php echo __('Show/hide columns', 'dashboard'); ?>",
 		           				 	"restore": "<?php echo __('Restore'); ?>",
 		            				"showAll": "<?php echo __('Show all'); ?>",
 		            				"exclude": [0]              				      
-		        					},
+		        					}, 
 		                    "bSortCellsTop": true,
 		                    "sAlign": "right"           		  
 		    });    

@@ -1,19 +1,5 @@
-@import "../css/jquery-ui-1.10.3.custom.min.css";
+@import "../css/jquery-ui-1.10.4.custom.min.css";
 @import "../css/font-awesome.css";
-/*@import "../css/animate.css";
-@import "../css/ionicons.css";
-@import "../css/metro.css";
-@import "../css/bootstrap-progressbar-3.0.0.min.css";
-@import "../css/jquery.easy-pie-chart.css";
-@import "../css/jquery.mCustomScrollbar.css";
-@import "../css/widgets.css";
-@import "../css/timeline.css";
-@import "../css/component.css";
-@import "../css/icheck/skins/flat/all.css";
-@import "../css/icheck/skins/square/all.css";
-@import "../css/icheck/skins/polaris/polaris.css";
-@import "../css/bootstrap-switch.css";
-@import "../css/bootstrap-dialog.min.css";*/
 
 /*@import url(../fonts/fonts.css);*/
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
@@ -301,10 +287,7 @@ a {
 .navbar.nav-delighted.navbar-default .navbar-brand i {
   font-size: 24px;
 }
-.navbar.nav-delighted.navbar-default .navbar-brand img {
-  height: 30px !important;
-  margin-left: -17px;
-}
+
 .navbar.nav-delighted.navbar-default a.toggle-left-sidebar {
   color: #555;
   float: left;
@@ -2545,4 +2528,17 @@ color: #fff;
 color: #fff;
 background-color: $000;  
 opacity: 1;
+}
+
+.navbar.nav-delighted.navbar-default .navbar-brand img {
+  height: 40px !important;
+  margin-left: -17px;
+}
+
+img.avatar {
+    border: 2px solid #fff; //#03A9F4;
+    border-radius: 50%;
+	 margin-left: 10px;
+    width: 43px;
+    height: 60px;
 }

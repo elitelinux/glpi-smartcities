@@ -1,29 +1,42 @@
-Versão 0.5.6:
+Versão 0.6.4:
 
-- Correção na Lista de localizações;
+- Gráficos e tabelas do index convertidas em widgets que podem ser ocultados e reorganizados;
 
-- Relatório SLA;
+- Correção do refresh no Index com top menu;
 
-- Vencimento do chamado exibido na página de Chamados;
+- Correção dos gráficos de ativos;
 
-- Totais de chamados por status nos relatórios e gráficos.
+- Relatório de Categorias;
+
+- Reletório de SLAs;
+
+- Relatório de Grupos;
+
+- Correções e melhorias no CSS e temas;
+
+- Correção - Gráficos por técnico e por grupo;
 
 - Você agora pode me comprar uma cerveja pelo paypal; :)
 
-- Correção de bugs.
+- Correção de bugs diversos.
 
 
+Version 0.6.4:
 
-Version 0.5.6:
+- Index charts and tables are now widgets. You can hide or reorganize them;
 
-- Correction in the locations list;
+- Assets charts fixed;
 
-- SLA Report;
+- Categories Report;
 
-- Due date of the ticket appears in the Tickets page;
+- SLA's Report;
 
-- Number of tickets by status in reports and graphs.
+- Groups Report;
 
-- Buy me a beer in Paypal;
+- Fix and improvements in themes and CSS styles;
+
+- Charts by technician and by group fixes;
+
+- Now you can buy me a beer in Paypal;
 
 - Fixed various bugs.

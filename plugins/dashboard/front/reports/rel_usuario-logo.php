@@ -41,8 +41,8 @@ if($sel_ent == '' || $sel_ent == -1) {
 	$entidade_u = "";
 }
 else {
-	$entidade = "AND glpi_tickets.entities_id = ".$sel_ent." ";
-	$entidade_u = "AND glpi_users.entities_id = ".$sel_ent." ";
+	$entidade = "AND glpi_tickets.entities_id IN (".$sel_ent.")";
+	$entidade_u = "AND glpi_users.entities_id IN (".$sel_ent.")";
 }
 
 ?>
@@ -466,7 +466,7 @@ $(document).ready(function() {
              },
              {
                  "sExtends":    "collection",
-                 "sButtonText": "<?php echo __('Export'); ?>",
+                 "sButtonText": "<?php echo _x('button', 'Export'); ?>",
                  "aButtons":    [ "csv", "xls",
                   {
                  "sExtends": "pdf",
@@ -505,7 +505,7 @@ echo "
 ?>
 
 <script type="text/javascript" >
-$(document).ready(function() { $("#sel1").select2(); });
+	$(document).ready(function() { $("#sel1").select2(); });
 </script>
 
 </div>

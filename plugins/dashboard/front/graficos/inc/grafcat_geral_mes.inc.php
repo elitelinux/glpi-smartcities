@@ -1,6 +1,7 @@
 
 <?php
 
+//echo '<div id="grafcat"  class="span12" style="height: 450px; margin-top:35px; margin-left: -5px;">';
 
 if($data_ini == $data_fin) {
 $datas = "LIKE '".$data_ini."%'";	
@@ -42,7 +43,7 @@ $quant_2a = implode(',',$quant4);
 
 if($soma4 > 1) {
 
-//echo '<div id="grafcat"  class="span12" style="height: 450px; margin-top:35px; margin-left: -5px;">';
+
 
 echo "
 <script type='text/javascript'>

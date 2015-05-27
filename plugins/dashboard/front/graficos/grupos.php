@@ -31,6 +31,7 @@ $mydate = isset($_POST["date1"]) ? $_POST["date1"] : "";
 <script src="../js/highcharts.js"></script>
 <script src="../js/modules/exporting.js"></script>
 
+<script src="../js/jquery-ui.min.js"></script>
 <script src="../js/bootstrap-datepicker.js"></script>
 <link href="../css/datepicker.css" rel="stylesheet" type="text/css">
 <link href="../less/datepicker.less" rel="stylesheet" type="text/css">

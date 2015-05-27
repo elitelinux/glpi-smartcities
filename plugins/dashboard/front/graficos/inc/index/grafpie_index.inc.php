@@ -1,12 +1,13 @@
 <?php
 
-$status = "('2','1','3','4')"	;	
+//$status = "('2','1','3','4')"	;	
+$status = "(5,6)"	;	
 
 $query2 = "
 SELECT COUNT(glpi_tickets.id) as tick, glpi_tickets.status as stat
 FROM glpi_tickets
 WHERE glpi_tickets.is_deleted = 0 
-AND glpi_tickets.status IN ".$status."  
+AND glpi_tickets.status NOT IN ".$status."  
 ".$entidade."
 AND DATE_FORMAT( date, '%Y' ) IN (".$years.")      
 GROUP BY glpi_tickets.status
@@ -48,7 +49,8 @@ $(function () {
                 plotShadow: false
             },
             title: {
-                text: '" . __('Opened Tickets by Status','dashboard') . "'                
+                //text: '" . __('Opened Tickets by Status','dashboard') . "'
+                text: ''                
             },
              legend: {
                 layout: 'vertical',

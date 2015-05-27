@@ -79,20 +79,44 @@ $ano = date("Y");
 $month = date("Y-m");
 $datahoje = date("Y-m-d");
 
+//cat
+if(!isset($_POST["sel_cat"])) {
+	$id_cat = $_GET["sel_cat"];	
+}
+
+else {
+	$id_cat = $_POST["sel_cat"];
+}
 
 # entity
 $sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' AND users_id = ".$_SESSION['glpiID']."";
 $result_e = $DB->query($sql_e);
 $sel_cat = $DB->result($result_e,0,'value');
 
-if($sel_cat == '' || $sel_cat == -1) {
-	$sel_cat = 0;
-	$entidade = "";
-	$entidade_cw = "";
+//select entity
+if($sel_ent == '' || $sel_ent == -1) {	
+
+	$query_ent1 = "
+	SELECT entities_id
+	FROM glpi_users
+	WHERE id = ".$_SESSION['glpiID']." ";
+	
+	$res_ent1 = $DB->query($query_ent1);
+	$user_ent = $DB->result($res_ent1,0,'entities_id');
+
+	//get all user entities
+	$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+	$entities[] = $user_ent;
+	$ent = implode(",",$entities);
+
+	$entidade = "AND glpi_tickets.entities_id IN (".$ent.")";
+	$entidade_cw = "WHERE entities_id IN (".$ent.")";
+	$entidade1 = "";
+	
 }
 else {
-	$entidade = "AND glpi_tickets.entities_id = ".$sel_cat." ";
-	$entidade_cw = "WHERE entities_id = ".$sel_cat." ";
+	$entidade = "AND glpi_tickets.entities_id IN (".$sel_ent.")";
+	$entidade_cw = "WHERE entities_id IN (".$sel_ent.")";
 }
 
 // lista 
@@ -140,80 +164,76 @@ while ($row_result = $DB->fetch_assoc($result_cat))
 	
 $name = 'sel_cat';
 $options = $arr_cat;
-$selected = "0";
-
-//echo dropdown( $name, $options, $selected );
+$selected = $id_cat;
 
 ?>
-
 <div id='content' >
 <div id='container-fluid' style="margin: 0px 8% 0px 8%;"> 
-
 <div id="pad-wrapper" >
 
 <div id="charts" class="row-fluid chart"> 
-<div id="head" class="row-fluid">
-
-	<a href="../index.php"><i class="fa fa-home" style="font-size:14pt; margin-left:25px;"></i><span></span></a>
-	<div id="titulo_graf" >	
-	   <?php echo __('Tickets','dashboard') ." ". __('by Category','dashboard'); ?> 
-		<span style="color:#8b1a1a; font-size:35pt; font-weight:bold;"> </span> 
-	</div>
-
-	<div id="datas-tec" class="span12 row-fluid" > 
-		<form id="form1" name="form1" class="form2" method="post" action="?date1=<?php echo $data_ini ?>&date2=<?php echo $data_fin ?>&con=1" onsubmit="datai();dataf();"> 
-			<table border="0" cellspacing="0" cellpadding="1" bgcolor="#efefef">		
-				<tr>
-				<td>
-				<?php 
-					echo'
-							<table>
-								<tr>
-									<td>
-									   <div class="input-group date" id="dp1" data-date="'.$data_ini.'" data-date-format="yyyy-mm-dd">
-									    	<input class="col-md-9 form-control" size="13" type="text" name="date1" value="'.$data_ini.'" >		    	
-									    	<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>	    	
-								    	</div>
-									</td>
-									<td>&nbsp;</td>
-									<td>
-								   	<div class="input-group date" id="dp2" data-date="'.$data_fin.'" data-date-format="yyyy-mm-dd">
-									    	<input class="col-md-9 form-control" size="13" type="text" name="date2" value="'.$data_fin.'" >		    	
-									    	<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>	    	
-								    	</div>
-									</td>
-									<td>&nbsp;</td>
-								</tr>
-							</table> ';
-					?>
-				
-				<script language="Javascript">
-				
-				$('#dp1').datepicker('update');
-				$('#dp2').datepicker('update');
-				
-				</script>
-				</td>
-				
-				<td style="margin-top:2px;">
-				<?php
-				echo dropdown( $name, $options, $selected );
-				?>
-				</td>
-				</tr>
-				<tr><td height="15px"></td></tr>
-				<tr>
-					<td colspan="2" align="center" style="">
-						<button class="btn btn-primary btn-sm" type="submit" name="submit" value="Atualizar" ><i class="fa fa-search"></i>&nbsp; <?php echo __('Consult','dashboard'); ?></button>
-						<button class="btn btn-primary btn-sm" type="button" name="Limpar" value="Limpar" onclick="location.href='graf_categoria.php'" > <i class="fa fa-trash-o"></i>&nbsp; <?php echo __('Clean','dashboard'); ?> </button></td>
+	<div id="head" class="row-fluid">
+	
+		<a href="../index.php"><i class="fa fa-home" style="font-size:14pt; margin-left:25px;"></i><span></span></a>
+		<div id="titulo_graf" >	
+		   <?php echo __('Tickets','dashboard') ." ". __('by Category','dashboard'); ?> 
+			<span style="color:#8b1a1a; font-size:35pt; font-weight:bold;"> </span> 
+		</div>
+	
+		<div id="datas-tec" class="span12 row-fluid" > 
+			<form id="form1" name="form1" class="form2" method="post" action="?date1=<?php echo $data_ini ?>&date2=<?php echo $data_fin ?>&con=1" onsubmit="datai();dataf();"> 
+				<table border="0" cellspacing="0" cellpadding="1" bgcolor="#efefef">		
+					<tr>
+					<td>
+					<?php 
+						echo'
+								<table>
+									<tr>
+										<td>
+										   <div class="input-group date" id="dp1" data-date="'.$data_ini.'" data-date-format="yyyy-mm-dd">
+										    	<input class="col-md-9 form-control" size="13" type="text" name="date1" value="'.$data_ini.'" >		    	
+										    	<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>	    	
+									    	</div>
+										</td>
+										<td>&nbsp;</td>
+										<td>
+									   	<div class="input-group date" id="dp2" data-date="'.$data_fin.'" data-date-format="yyyy-mm-dd">
+										    	<input class="col-md-9 form-control" size="13" type="text" name="date2" value="'.$data_fin.'" >		    	
+										    	<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>	    	
+									    	</div>
+										</td>
+										<td>&nbsp;</td>
+									</tr>
+								</table> ';
+						?>
+					
+					<script language="Javascript">
+					
+						$('#dp1').datepicker('update');
+						$('#dp2').datepicker('update');
+					
+					</script>
 					</td>
-				</tr>
-				
-			</table>
-		<?php Html::closeForm(); ?>
-		<!-- </form> -->
+					
+					<td style="margin-top:2px;">
+					<?php
+					echo dropdown( $name, $options, $selected );
+					?>
+					</td>
+					</tr>
+					<tr><td height="15px"></td></tr>
+					<tr>
+						<td colspan="2" align="center" style="">
+							<button class="btn btn-primary btn-sm" type="submit" name="submit" value="Atualizar" ><i class="fa fa-search"></i>&nbsp; <?php echo __('Consult','dashboard'); ?></button>
+							<button class="btn btn-primary btn-sm" type="button" name="Limpar" value="Limpar" onclick="location.href='graf_categoria.php'" > <i class="fa fa-trash-o"></i>&nbsp; <?php echo __('Clean','dashboard'); ?> </button></td>
+						</td>
+					</tr>
+					
+				</table>
+			<?php Html::closeForm(); ?>
+			<!-- </form> -->
+		</div>
 	</div>
-</div>
 <!-- DIV's -->
 
 <script type="text/javascript" >
@@ -237,14 +257,6 @@ else {
 	$data_ini2 = $_POST['date1'];	
 	$data_fin2 = $_POST['date2'];	
 }  
-
-if(!isset($_POST["sel_cat"])) {
-	$id_cat = $_GET["sel_cat"];	
-}
-
-else {
-	$id_cat = $_POST["sel_cat"];
-}
 
 if($id_cat == " ") {
 	echo '<script language="javascript"> alert(" ' . __('Select a category','dashboard') . ' "); </script>';
@@ -302,19 +314,22 @@ echo $ent_name['name']." - <span style = 'color:#000;'> ".$total['total']." ".__
 	<?php include ("./inc/grafpie_tipo_cat.inc.php");  ?>
 </div>
 
+<div id="graf3" class="span12" >
+	<?php  include ("./inc/grafbar_cat_user.inc.php");  ?>
+</div>
 
-<?php 
-include ("./inc/grafbar_cat.inc.php");
-
-}
-?>
-
+<div id="grafcat_tec" class="span12" style="height: 450px; margin-top: 240px; margin-left: -5px;">
+	<?php  include ("./inc/grafbar_cat_tec.inc.php");
+		}
+	?>
 </div>
 
 </div>
 
 </div>
+
 </div>
 </div>
+
 </body>
 </html>

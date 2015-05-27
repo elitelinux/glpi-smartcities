@@ -4,7 +4,7 @@ define('GLPI_ROOT', '../../../..');
 include (GLPI_ROOT . "/inc/includes.php");
 include (GLPI_ROOT . "/config/config.php");
 
-include "/inc/functions.php";
+//include "../inc/functions.php";
 
 Session::checkLoginUser();
 Session::checkRight("profile", READ);
@@ -83,15 +83,28 @@ else {
 	$data_fin = date("Y-m-d");
 } 
 
+			
+if(!isset($_POST["sel_ent"])) {
+	$id_ent = $_GET["sel_ent"];	
+}
+
+else {
+	$id_ent = $_POST["sel_ent"];
+}
+
 $ano = date("Y");
 $month = date("Y-m");
 $datahoje = date("Y-m-d");
 
 //seleciona entidade
+$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+$ents = implode(",",$entities);
+
 $sql_ent = "
 SELECT id, name
-FROM glpi_entities
-ORDER BY name ASC ";
+FROM `glpi_entities`
+WHERE id IN (".$ents.")
+ORDER BY `name` ASC ";
 
 $result_ent = $DB->query($sql_ent);
 $ent = $DB->fetch_assoc($result_ent);
@@ -136,7 +149,7 @@ while ($row_result = $DB->fetch_assoc($result_ent))
 
 $name = 'sel_ent';
 $options = $arr_ent;
-$selected = "0";
+$selected = $id_ent;
 
 ?>
 
@@ -181,8 +194,8 @@ $selected = "0";
 						
 						<script language="Javascript">
 						
-						$('#dp1').datepicker('update');
-						$('#dp2').datepicker('update');
+							$('#dp1').datepicker('update');
+							$('#dp2').datepicker('update');
 						
 						</script>
 						</td>
@@ -209,7 +222,7 @@ $selected = "0";
 			<!-- DIV's -->
 			
 			<script type="text/javascript" >
-			$(document).ready(function() { $("#sel_ent").select2(); });
+				$(document).ready(function() { $("#sel_ent").select2(); });
 			</script>
 			
 			<?php
@@ -229,14 +242,7 @@ $selected = "0";
 				$data_ini2 = $_POST['date1'];	
 				$data_fin2 = $_POST['date2'];	
 			}  
-			
-			if(!isset($_POST["sel_ent"])) {
-				$id_ent = $_GET["sel_ent"];	
-			}
-			
-			else {
-				$id_ent = $_POST["sel_ent"];
-			}
+
 			
 			if($id_ent == " ") {
 				echo '<script language="javascript"> alert(" ' . __('Select a entity','dashboard') . ' "); </script>';
@@ -397,7 +403,6 @@ echo '<div id="name"  style="margin-top: 15px;"><span>'.$ent_name['name'].'</spa
 			
 			<?php 
 				include ("./inc/grafbar_ent.inc.php");			
-			}
 			?>
 			
 			<!--<div id="graf_time" class="span12" style="height: 450px; margin-top: 25px; margin-left: -5px;">
@@ -405,7 +410,9 @@ echo '<div id="name"  style="margin-top: 15px;"><span>'.$ent_name['name'].'</spa
 			</div> -->
 			
 			<div id="graf_time1" class="span12" style="height: 450px; margin-top: 25px; margin-left: -5px;">
-				<?php include ("./inc/grafcol_time_grupo.inc.php"); ?>
+				<?php include ("./inc/grafcol_time_grupo.inc.php");
+					} 
+				?>
 			</div>
 			
 			</div>

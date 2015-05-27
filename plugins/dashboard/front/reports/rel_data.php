@@ -42,9 +42,9 @@ if($sel_ent == '' || $sel_ent == -1) {
 	$entidade_dw = "";
 }
 else {
-	$entidade = "AND glpi_tickets.entities_id = ".$sel_ent." ";
-	$entidade_d = "AND entities_id = ".$sel_ent." ";
-	$entidade_dw = "WHERE entities_id = ".$sel_ent." ";
+	$entidade = "AND glpi_tickets.entities_id IN (".$sel_ent.") ";
+	$entidade_d = "AND entities_id IN (".$sel_ent.") ";
+	$entidade_dw = "WHERE entities_id IN (".$sel_ent.") ";
 }
 
 ?>
@@ -468,7 +468,7 @@ else {
 		             },
 		             {
 		                 "sExtends":    "collection",
-		                 "sButtonText": "<?php echo __('Export'); ?>",
+		                 "sButtonText": "<?php echo _x('button', 'Export'); ?>",
 		                 "aButtons":    [ "csv", "xls",
 		                  {
 		                 "sExtends": "pdf",

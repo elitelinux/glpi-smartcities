@@ -60,13 +60,12 @@ global $DB;
 
 if(!empty($_POST['submit']))
 {	
-	$data_ini =  $_POST['date1'];
-	
+	$data_ini =  $_POST['date1'];	
 	$data_fin = $_POST['date2'];
 }
 
 else {
-	$data_ini = date("Y-m-01");
+	$data_ini = date("Y-01-01");
 	$data_fin = date("Y-m-d");
 } 
 
@@ -80,15 +79,17 @@ $result_e = $DB->query($sql_e);
 $sel_ent = $DB->result($result_e,0,'value');
 
 if($sel_ent == '' || $sel_ent == -1) {
-	$sel_ent = 0;
-	$entidade = "";
+	//get user entities
+	$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+	$ent = implode(",",$entities);
+
+	$entidade = "AND glpi_tickets.entities_id IN (".$ent.")";	
 	$problem = "";
 }
 else {
-	$entidade = "AND glpi_tickets.entities_id = ".$sel_ent." ";
-	$problem =  "AND glpi_problems.entities_id = ".$sel_ent." ";
+	$entidade = "AND glpi_tickets.entities_id IN (".$sel_ent.")";
+	$problem =  "AND glpi_problems.entities_id IN (".$sel_ent.")";
 }
-
 ?>
 
 <div id='content' >
@@ -157,16 +158,40 @@ else {
 <!-- DIV's -->
 
  </div>
+ 
+<?php
 
-<div id="graf_linhas" class="span12" style="height: 450px; margin-left: -5px; margin-top: -120px;">
+if($data_ini == $data_fin) {
+$datas = "LIKE '".$data_ini."%'";	
+}	
+
+$datas = "BETWEEN '".$data_ini." 00:00:00' AND '".$data_fin." 23:59:59'";
+
+	$query_total = "
+	SELECT COUNT(id) AS total
+	FROM glpi_tickets
+	WHERE glpi_tickets.is_deleted = '0'
+	AND date ".$datas."
+	".$entidade." ";
+	
+	$result_total = $DB->query($query_total) or die('erro');
+	$total = $DB->fetch_assoc($result_total);
+	
+ 
+echo '<div id="entidade" class="span12 row-fluid" style="margin-left:-5px;">';
+echo  "<span style = 'color:#000;'> ".$total['total']." ".__('Tickets','dashboard')."</span>";
+echo "</div>";
+?>
+
+<div id="graf_linhas" class="span12" style="height: 450px; margin-top: 25px; margin-left: -5px;">
 	<?php  include ("./inc/graflinhas_sat_geral_mes.inc.php"); ?>
 </div>
 
-<div id="graf2" class="span6" >
+<div id="graf2" class="span6" style="margin-top:45px;">
 	<?php include ("./inc/grafpie_stat_geral_mes.inc.php"); ?>
 </div>
 
-<div id="graf4" class="span6" >
+<div id="graf4" class="span6" style="margin-top:45px;" >
 	<?php  include ("./inc/grafpie_origem_mes.inc.php");  ?>
 </div>
 
@@ -177,21 +202,17 @@ else {
 <div>
 	<?php include ("./inc/grafent_geral_mes.inc.php"); ?>
 </div>
-<!--
-<div id="grafhour" class="row-fluid span12" style="margin-top: 35px; margin-left:-0.8%;">
-	<?php include ("./inc/grafbar_ticket_hour.inc.php"); ?>	
+
+<div id="graftime" class="span6" style="height:450px; margin-top:35px; margin-left: -5px;">
+<?php include ("./inc/grafpie_time_geral_mes.inc.php");?>
 </div>
 
-<div id="grafday" class="row-fluid span12" style="margin-top: 35px; margin-left:-0.8%;">
-	<?php include ("./inc/grafbar_ticket_day.inc.php"); ?>	
+<div id="grafgrp" class="span6 row-fluid" style="height:450px; margin-top:35px; margin-left: 30px;">
+	<?php  include ("./inc/grafbar_grupo_geral_mes.inc.php"); ?>
 </div>
--->
+
 <div id="grafcat"  class="span12 row-fluid" style="margin-top:35px; margin-left: -10px;">
 	<?php include ("./inc/grafcat_geral_mes.inc.php"); ?>
-</div>
-
-<div id="grafgrp" class="span12 row-fluid" style="height: 450px; margin-top:35px; margin-left: -10px;">
-	<?php  include ("./inc/grafbar_grupo_geral_mes.inc.php"); ?>
 </div>
 
 

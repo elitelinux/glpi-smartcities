@@ -2,6 +2,7 @@
 <?php
 
 //global $DB;
+//echo '<div id="grafgrp" class="span6 row-fluid" style="height: 450px; margin-top:35px; margin-left: 30px;">';
 
 if($data_ini == $data_fin) {
 $datas = "LIKE '".$data_ini."%'";	
@@ -21,7 +22,7 @@ AND glpi_tickets.date ".$datas."
 ".$entidade."
 GROUP BY name
 ORDER BY conta DESC
-LIMIT 30
+LIMIT 10
  ";
 
 $result3 = $DB->query($query3) or die('erro');
@@ -43,24 +44,22 @@ $quant_2 = implode(',',$quant3);
 
 if($soma3 > 1) {
 
-//echo '<div id="grafgrp" class="span12" style="height: 450px; margin-top:40px;">';
-
 echo "
 <script type='text/javascript'>
 
 $(function () {
         $('#grafgrp').highcharts({
             chart: {
-                type: 'column'
+                type: 'bar'
             },
             title: {
-                text: '". __('Tickets','dashboard') ." ".__('by Group','dashboard')."'
+                text: 'TOP 10 - ". __('Tickets','dashboard') ." ".__('by Group','dashboard')."'
             },
            
             xAxis: {
                 categories: [$grf_3],
                 labels: {
-                	  rotation: -55,
+                	  //rotation: -55,
                     align: 'right',
                     style: {
                         fontSize: '11px',
@@ -84,7 +83,7 @@ $(function () {
                 useHTML: true
             },
             plotOptions: {
-                column: {
+                bar: {
                     	pointPadding: 0.2,
                     	borderWidth: 2,
                 		borderColor: 'white',
@@ -99,8 +98,8 @@ $(function () {
                     enabled: true,                    
                    // color: '#000099',
                     align: 'center',
-                    x: 1,
-                    y: 1,                    
+                    x: 20,
+                    y: 0,                    
                     style: {
                        // fontSize: '11px',
                        // fontFamily: 'Verdana, sans-serif'

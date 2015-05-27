@@ -90,12 +90,30 @@ $sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' A
 $result_e = $DB->query($sql_e);
 $sel_ent = $DB->result($result_e,0,'value');
 
-if($sel_ent == '' || $sel_ent == -1) {
-	$sel_ent = 0;
-	$entidade = "";
+//select entity
+if($sel_ent == '' || $sel_ent == -1) {	
+
+	$query_ent1 = "
+	SELECT entities_id
+	FROM glpi_users
+	WHERE id = ".$_SESSION['glpiID']." ";
+	
+	$res_ent1 = $DB->query($query_ent1);
+	$user_ent = $DB->result($res_ent1,0,'entities_id');
+
+	//get all user entities
+	$entities = Profile_User::getUserEntities($_SESSION['glpiID'], true);
+	$entities[] = $user_ent;
+	$ent = implode(",",$entities);
+
+	$entidade = "AND glpi_users.entities_id IN (".$ent.")";
+	$entidade_age = "AND glpi_tickets.entities_id IN (".$ent.")";		
+	$entidade1 = "";
+	
 }
 else {
-	$entidade = "AND glpi_users.entities_id = ".$sel_ent." ";
+	$entidade = "AND glpi_users.entities_id IN (".$sel_ent.")";
+	$entidade_age = "AND glpi_tickets.entities_id IN (".$sel_ent.")";	
 }
 
 //seleciona técnico
@@ -440,6 +458,10 @@ echo '<div id="name"  style="margin-top: 15px;"><span>'.$tec_name['name'].' '.$t
 	
 	<div id="graf_prio" class="span6" style="margin-left: 2.5%;">
 		<?php include ("./inc/grafpie_prio_tech.inc.php");  ?>
+	</div>
+	
+	<div id="graf_time1" class="span12" style="height: 450px; margin-top:30px; margin-bottom:100px; margin-left: -5px;">
+		<?php  include ("./inc/grafpie_time_tech.inc.php"); ?>
 	</div>
 
 	<div id="graf_sat" class="span12" style="height: 450px; margin-top:30px; margin-bottom:30px; margin-left: -5px;">

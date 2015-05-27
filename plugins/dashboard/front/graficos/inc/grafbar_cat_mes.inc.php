@@ -86,7 +86,13 @@ echo "    ],
                 	borderColor: 'white',
                 	shadow:true,           
                 	showInLegend: false
-                }
+                },
+              series: {
+		       	  animation: {
+		           duration: 2000,
+		           easing: 'easeOutBounce'
+		       	  }
+		   		}
             },
             legend: {
                 layout: 'vertical',
