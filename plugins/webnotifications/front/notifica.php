@@ -1,12 +1,15 @@
 <?php
 
 
-echo "<script type='text/javascript' src='".$CFG_GLPI['url_base']."/glpi/lib/jquery/js/jquery-1.10.2.min.js'></script>";
-//echo "<script type='text/javascript' src='".$CFG_GLPI['url_base']."/plugins/webnotifications/front/js/jquery-1.10.2.min.js'></script>";
+$version = substr($CFG_GLPI["version"],0,5);
+
+if($version == "0.84") {
+	echo "<script type='text/javascript' src='".$CFG_GLPI['url_base']."/plugins/webnotifications/front/js/jquery.min.js'></script>";
+}
+
 echo "<script type='text/javascript' src='".$CFG_GLPI['url_base']."/plugins/webnotifications/front/js/notify.js'></script>";
 
-//echo "<script type='text/javascript' src='".$CFG_GLPI['url_base']."/plugins/webnotifications/front/js/jquery.gritter.js'></script>";
-//echo "<link rel=\"stylesheet\" href='".$CFG_GLPI['url_base']."/plugins/webnotifications/front/css/jquery.gritter.css' />";
+echo "<audio id='audiotag1' src='".$CFG_GLPI['url_base']."/plugins/webnotifications/front/audio/audio.wav' preload='auto'></audio>";
 
 global $DB;
 
@@ -38,12 +41,10 @@ AND type = 0 " ;
 
 $result = $DB->query($query);
 
-//$user = $DB->result($result,0,'users_id');
 $atual = $DB->result($result,0,'quant');
 $type = $DB->result($result,0,'type');
 
 $dif = $abertos - $atual;
-
 
 //update tickets count	
 $query_up = "UPDATE glpi_plugin_webnotifications_count
@@ -52,8 +53,19 @@ WHERE users_id = ". $_SESSION['glpiID'] ."
 AND type = 0 ";
 
 $result_up = $DB->query($query_up);
+
+
+//enable / disable sound
+$query_som = 
+"SELECT value
+FROM glpi_plugin_webnotifications_config
+WHERE name = 'sound' ";
+
+$result_som = $DB->query($query_som);
+$sound = $DB->result($result_som,0,'value');
 	
 
+//create notification
 if($abertos > $atual) {
 				
 	if($dif >= 5) { $dif = 5; }
@@ -71,9 +83,7 @@ if($abertos > $atual) {
 	$res = $DB->query($queryc);		
 }	
 
-
 //followups
-
 $queryn = "SELECT COUNT(gtf.id) AS total
 FROM glpi_ticketfollowups gtf, glpi_tickets_users gtu
 WHERE gtf.tickets_id =  gtu.tickets_id 
@@ -100,7 +110,6 @@ AND type = 1 " ;
 
 $resultn1 = $DB->query($queryn1);
 
-//$usern = $DB->result($resultn1,0,'users_id');
 $atualn = $DB->result($resultn1,0,'quant');
 $typen = $DB->result($resultn1,0,'type');
 
@@ -155,15 +164,12 @@ while($row = $DB->fetch_assoc($resulta1)) {
 	$resultag = $DB->query($sqlg);
 	$up_total = $DB->result($resultag,0,'total');
 	
-	//$DB->data_seek($resg, 0);
-	//while($row1 = $DB->fetch_assoc($resultag)) {
 	// grupos e numero de chamados
 	$query_g = "
 	INSERT IGNORE INTO glpi_plugin_webnotifications_count_grp(groups_id, quant, users_id) 
 	VALUES ('". $row['grupo'] ."', '" . $up_total ."','" . $_SESSION['glpiID']  ."')  ";
 	
 	$result_g = $DB->query($query_g);
-	//}
 	
 	$abertosg = $DB->result($resultag,0,'total');
 	
@@ -178,17 +184,14 @@ while($row = $DB->fetch_assoc($resulta1)) {
 	$resultg = $DB->query($queryg);
 	
 	$atualg = $DB->result($resultg,0,'quant');
-	
-	
+		
 	$difg = $abertosg - $atualg;
 	
-//}
 	
 	if($abertosg > $atualg) {
 					
 		if($difg >= 5) { $difg = 5; }
-		
-		
+				
 		$queryc = 
 		"SELECT gt.id AS id, gt.name AS name
 		FROM glpi_groups_tickets ggt, glpi_tickets gt
@@ -208,8 +211,7 @@ while($row = $DB->fetch_assoc($resulta1)) {
 		AND users_id = ". $_SESSION['glpiID']  ." ";
 	
 	   $result_upg = $DB->query($query_upg);
-	
-	  //	if($abertosg > $atualg) {
+
 		
 		$DB->data_seek($resg, 0);
 		
@@ -220,23 +222,28 @@ while($row = $DB->fetch_assoc($resulta1)) {
 			$text = __('Ticket').": ".$row1['id']." - ".$row1['name'];
 			$id = $row1['id'];
 			
-			$text2 = __('Ticket').": <a href=".$CFG_GLPI['url_base']."/front/ticket.form.php?id=".$id." style=color:#ffffff;>".$id."</a> - ".$row1['name'];
-			
+			$text2 = __('Ticket').": <a href=".$CFG_GLPI['url_base']."/front/ticket.form.php?id=".$id." style=color:#ffffff;>".$id."</a> - ".$row1['name'];			
 			$id = $row['id'];
 			
 			$user_agent = $_SERVER['HTTP_USER_AGENT']; 
 			
 			if (!preg_match('/Chrome/i', $user_agent)) { 
 				echo"<script>notify('".$titulo."','".$text."','".$icon."','".$id."');</script>"; 
-				echo"<script>notify2('".$titulo."','".$text2."');</script>"; 
+				
+				if($sound == '1') {
+					echo"<script>audio();</script>";
+				}  
 			} 
 			
 			else { 
-				echo"<script>notify('".$titulo."','".$text."','".$icon."','".$id."');</script>"; 		
+				echo"<script>notify('".$titulo."','".$text."','".$icon."','".$id."');</script>"; 
+								
+				if($sound == '1') {
+					echo"<script>audio();</script>";
+				} 
 			}	
 		}
-		}
-	//}
+	}
 
 }	
 
@@ -246,7 +253,7 @@ while($row = $DB->fetch_assoc($resulta1)) {
 			
 		while($row = $DB->fetch_assoc($res)) {
 		
-			$icon = "../plugins/webnotifications/front/images/icon.png";
+			$icon = "../plugins/webnotifications/front/img/icon.png";
 			$titulo = __('New ticket');
 			$text = __('New ticket').": ".$row['id']." - ".$row['name'];
 			
@@ -258,14 +265,20 @@ while($row = $DB->fetch_assoc($resulta1)) {
 			
 			if (!preg_match('/Chrome/i', $user_agent)) { 
 				echo"<script>notify('".$titulo."','".$text."','".$icon."','".$id."');</script>"; 
-				echo"<script>notify2('".$titulo."','".$text2."');</script>"; 
+								
+				if($sound == '1') {
+					echo"<script>audio();</script>";
+				} 
 			} 
 			
 			else { 
 				echo"<script>notify('".$titulo."','".$text."','".$icon."','".$id."');</script>"; 
-			
+								
+				if($sound == '1') {
+					echo"<script>audio();</script>";
+				} 	
 			}
-			}			
+		}			
 	}	
 
 
@@ -288,14 +301,19 @@ while($row = $DB->fetch_assoc($resn)) {
 	
 	if (!preg_match('/Chrome/i', $user_agent)) { 
 		echo"<script>notify('".$titulo."','".$text."','".$icon."','".$id."');</script>"; 
-		echo"<script>notify2('".$titulo."','".$text2."');</script>"; 
+						
+			if($sound == '1') {
+				echo"<script>audio();</script>";
+			} 
 	} 
 	
 	else { 
 		echo"<script>notify('".$titulo."','".$text."','".$icon."','".$id."');</script>"; 
-	
-	}
-
+						
+			if($sound == '1') {
+				echo"<script>audio();</script>";
+			} 	
+		}
 	}
 }
 
