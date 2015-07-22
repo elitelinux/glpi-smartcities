@@ -397,6 +397,7 @@ Bootstrap
 Android Client
 =========
 * http://sourceforge.net/projects/glpiandroid/files/
+* https://github.com/elitelinux/GOATS
 
 Internet of things
 ==================
