@@ -1,6 +1,7 @@
-/* .ui-widget-content a { color: #659900; } */
-.ui-widget-content a { color: #000; } 
-.ui-widget-content span.vsubmit, a.vsubmit {color: #fff;}
+.ui-dialog { z-index: 1000 !important ;}
+
+.ui-widget-content a { color: #659900; }
+.ui-widget-content span.vsubmit, a.vsubmit {color: #8f5a0a;}
 /* css for timepicker */
 .ui-datepicker {z-index:10000 !important; }
 .ui-timepicker-div .ui-widget-header {margin-bottom: 8px; }
@@ -14,10 +15,7 @@
 .ui-timepicker-rtl dl { text-align: right; }
 .ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
 
-
-.hasDatepicker {
-width: 130px;
-}
+.hasDatepicker {margin-right:3px;}
 
 /* css styles for tabs */
 
@@ -46,13 +44,16 @@ width: 130px;
 }
 .ui-tabs-vertical .ui-tabs-nav li a {
    display: block;
-   width: 128px;
+   width: 145px;
    text-align: left;
+   text-overflow: ellipsis;     /** IE6+, Firefox 7+, Opera 11+, Chrome, Safari **/
+   -o-text-overflow: ellipsis;
+   overflow: hidden;
 }
 
 .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
    padding-bottom: 0;
-   padding-right: .1em;
+/*    padding-right: .1em; */
    border-right-width: 1px;
 }
 .ui-tabs-vertical .ui-tabs-panel {
@@ -104,13 +105,12 @@ html .ui-autocomplete {
    margin : auto;
 }
 
-/* SELECT2   Stevenes Donato */
+/* SELECT2 */
 
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button
 {
   font-family: 'Bitstream Vera Sans', arial, Tahoma, 'Sans serif';
   font-size: 11px;
-  border-radius: 4px;
 }
 .select2-results li {
    font-family: 'Bitstream Vera Sans', arial, Tahoma, 'Sans serif';
@@ -155,8 +155,7 @@ html .ui-autocomplete {
 #BackToTop {
    float: left;
    display:none;
-  /* color: #8f5a0a; */
-   color: white;
+   color: #8f5a0a;
    margin: 0 5px;
    padding: 3px;
    text-decoration: none;
@@ -166,21 +165,9 @@ html .ui-autocomplete {
    bottom:10px;
    right:10px;
    z-index:9000;
-   
-    background-color: #247495 //rgb(255, 185, 75);
-	 background-image: -webkit-gradient(linear, left top, left bottom, from(#247495), to(#58a7eb));    
-    background-image: -moz-linear-gradient(center top , #247495, #58a7eb);
-    background-image: -webkit-linear-gradient(center top , #247495, #58a7eb);
-    border-radius: 3px 3px 3px 3px;
-    text-shadow: 0px 1px 0px #000000;
-    box-shadow: 0px 0px 1px #000000, 0px 1px 0px #000000 inset;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #D2E3F4 #D2E3F4 #D2E3F4;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#247495', endColorstr='#58a7eb');
 
    /** Background gradient **/
-   /* background-color: #8f5a0a;
+   background-color: #8f5a0a;
    background-image: -moz-linear-gradient(#fddb6f, #ffb94b);
    background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
    background-image: -webkit-linear-gradient(#fddb6f, #ffb94b);
@@ -197,14 +184,7 @@ html .ui-autocomplete {
    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
    border-width: 1px;
    border-style: solid;
-   border-color: #d69e31 #e3a037 #d5982d #e3a037 */  
-}
-
-input.submit:hover {
-   padding: 2px;
-   border: 1px inset #888888;
-   background-color:#ffffff;
-   background:  url("../pics/fond_form_on.png") repeat-x; 
+   border-color: #d69e31 #e3a037 #d5982d #e3a037
 }
 
 #BackToTop span
@@ -213,25 +193,13 @@ input.submit:hover {
    cursor: pointer;
 
    /** Background gradient **/
-  /* background-color: #8f5a0a;
+   background-color: #8f5a0a;
    background-image: -moz-linear-gradient(#fddb6f, #ffb94b);
    background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
    background-image: -webkit-linear-gradient(#fddb6f, #ffb94b);
    background-image: -o-linear-gradient(#fddb6f, #ffb94b);
    background-image: -ms-linear-gradient(#fddb6f, #ffb94b);
-   background-image: linear-gradient(#fddb6f, #ffb94b); */
-   
-    background-color: #247495 //rgb(255, 185, 75);
-	 background-image: -webkit-gradient(linear, left top, left bottom, from(#247495), to(#58a7eb));    
-    background-image: -moz-linear-gradient(center top , #247495, #58a7eb);
-    background-image: -webkit-linear-gradient(center top , #247495, #58a7eb);
-    border-radius: 3px 3px 3px 3px;
-    text-shadow: 0px 1px 0px #000000;
-   /* box-shadow: 0px 0px 1px #000000, 0px 1px 0px #000000 inset; */
-    border-width: 0px;
-    border-style: none;
-    /* border-color: #D2E3F4 #D2E3F4 #D2E3F4; */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#247495', endColorstr='#58a7eb');
+   background-image: linear-gradient(#fddb6f, #ffb94b);
 }
 
 input.submit {
@@ -250,4 +218,8 @@ input.submit {
 .fn-gantt {
    text-align: left;
    font-size: 11px;
+}
+
+.fn-gantt .ganttMilestone {
+    background-color: #000000;
 }
