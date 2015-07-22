@@ -389,6 +389,10 @@ Templates
 =========
 * http://sourceforge.net/projects/glpithemes/files/0.85/
 
+Android Client
+=========
+* http://sourceforge.net/projects/glpiandroid/files/
+
 Internet of things
 ==================
 Capabilities to become a IOT Monitoring and Inventory system
