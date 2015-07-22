@@ -355,7 +355,7 @@ while($row = $DB->fetch_assoc($result_cham)){
 	
 	echo "
 	<tr>
-	<td style='text-align:center;'><a href=".$CFG_GLPI['root_doc']."/front/ticket.form.php?id=". $row['id'] ." target=_blank >" . $row['id'] . "</a></td>
+	<td style='text-align:center;'><a href=".$CFG_GLPI['url_base']."/front/ticket.form.php?id=". $row['id'] ." target=_blank >" . $row['id'] . "</a></td>
 	<td style='text-align:center;'> ". conv_data_hora($row['date']) ." </td>
 	<td style='max-width:450px;'> ". $row['content'] ." </td>
 	<td> ". time_ext($row['actiontime']) ."</td>

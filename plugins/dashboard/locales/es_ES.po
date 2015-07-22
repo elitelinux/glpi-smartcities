@@ -450,3 +450,6 @@ msgstr "Atrasado"
 
 msgid "Within"
 msgstr "Dentro"
+
+msgid "Metrics"
+msgstr "Métrica"

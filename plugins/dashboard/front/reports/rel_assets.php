@@ -21,33 +21,6 @@ else {
 	$data_fin = date("Y-m-d");	
 	}  
 
-if(!isset($_REQUEST["sel_item"])) {
-	$id_item = $_GET["sel_item"];		
-}
-
-else {
-	$id_item = $_POST["sel_item"];
-}
-
-if(isset($_REQUEST['itemtype'])) {
-	$type = $_REQUEST['itemtype']; }
-	
-else {	
-
-$itemtype = $_REQUEST['sel_item'];
-
-	switch ($itemtype) {
-	    case "1": $type = 'computer'; break;
-	    case "2": $type = 'monitor'; break;
-	    case "3": $type = 'software'; break;
-	    case "4": $type = 'networkequipment'; break;
-	    case "5": $type = 'peripheral'; break;
-	    case "6": $type = 'printer'; break;
-	    case "7": $type = 'phone'; break;
-	} 
-}
-
-
 # entity
 $sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' AND users_id = ".$_SESSION['glpiID']."";
 $result_e = $DB->query($sql_e);
@@ -57,10 +30,12 @@ if($sel_ent == '' || $sel_ent == -1) {
 	$sel_ent = 0;
 	$entidade = "";
 	$entidade_u = "";
+	$entidade_cham = "";
 }
 else {
 	$entidade = "AND entities_id IN (".$sel_ent.") ";
 	$entidade_u = "AND glpi_users.entities_id IN (".$sel_ent.") ";
+	$entidade_cham = "AND gi.entities_id IN (".$sel_ent.") ";	
 }
 
 ?>
@@ -256,8 +231,10 @@ else {
 	$data_fin2 = $_POST['date2'];	
 }  
 
+if(!isset($_POST["sel_item"])) { $id_item = 0; }
+else { $id_item = $_REQUEST["sel_item"]; }
 
-if(isset($_REQUEST['itemtype'])) {
+if(isset($_POST['itemtype'])) {
 	$type = $_REQUEST['itemtype']; 
 	}
 	
@@ -276,11 +253,22 @@ $itemtype = $id_item;
 	} 
 }
 
-if(!isset($_REQUEST["sel_item"])) { $id_item = 0; }
-else { $id_item = $_REQUEST["sel_item"]; }
 
-if(isset($_REQUEST["sel_fab"]) && $_REQUEST["sel_fab"] != '0') { $id_fab = $_REQUEST["sel_fab"]; }
-else { $id_fab = ''; }
+if(isset($_POST["sel_fab"]) && $_POST["sel_fab"] != '0') { 
+
+	$id_fab1 = $_REQUEST["sel_fab"];
+	$id_fab = "AND manufacturers_id = ".$id_fab1."";
+	$id_fabgt = "AND gt.manufacturers_id = ".$id_fab1."";	
+	$id_fabw = "WHERE id = ".$id_fab1."";		
+}
+
+else { 
+	$id_fab1 = '';
+	$id_fab = '';	
+	$id_fabgt = '';
+	$id_fabw = 'WHERE 1';
+
+ }
 
 if(isset($_REQUEST["sel_mod"]) && $_REQUEST["sel_mod"] != '0')
 	{ 
@@ -300,114 +288,121 @@ else {
 }
 
 // Chamados
-if($id_mod == '') {
 
-	if($type != 'software') {
+if($id_fab == '' && $id_mod == '') {
+
+	if($type != 'software1') {
 			$sql_cham = 
-			"SELECT id, name
-			FROM glpi_".$type."s
-			WHERE manufacturers_id = ".$id_fab."
-			AND is_deleted = 0
-			".$entidade."
-			ORDER BY name";
+			"SELECT DISTINCT gi.id, gi.name
+			FROM glpi_".$type."s gi, glpi_items_tickets git, glpi_tickets gt
+			WHERE gi.is_deleted = 0
+			AND gi.id = git.items_id			
+			AND git.itemtype = '". ucfirst($type) ."'
+			".$entidade_cham."
+			AND gt.id = git.tickets_id
+			AND gt.date ".$datas2."
+			ORDER BY gi.name
+			";
 			
-			$result_cham = $DB->query($sql_cham);			
+			$result_cham = $DB->query($sql_cham);
 			
-			$consulta1 = 
-			"SELECT id, name
-			FROM glpi_".$type."s
-			WHERE manufacturers_id = ".$id_fab."
-			AND is_deleted = 0
-			".$entidade."
-			ORDER BY name";
-			
-			$result_cons1 = $DB->query($consulta1);	
-			
-			$conta_cons = $DB->numrows($result_cons1);	
-			$consulta = $conta_cons;	
+			$conta_cons = $DB->numrows($result_cham);	
+			$consulta = $conta_cons;				
+
 		}	
 		
 		else {
 			$sql_cham = 
-			"SELECT id, name
+			"SELECT DISTINCT id, name
 			FROM glpi_softwares
-			WHERE manufacturers_id = ".$id_fab."
-			AND is_deleted = 0
+			WHERE is_deleted = 0
 			".$entidade."
 			ORDER BY name ";
 			 			
-			$result_cham = $DB->query($sql_cham);
-			
+			$result_cham = $DB->query($sql_cham);	
 					
-			$consulta1 = 
-			"SELECT id, name
-			FROM glpi_softwares
-			WHERE manufacturers_id = ".$id_fab."
-			AND is_deleted = 0
-			".$entidade."
-			ORDER BY name";
-			
-			$result_cons1 = $DB->query($consulta1);	
-			
-			$conta_cons = $DB->numrows($result_cons1);	
+			$conta_cons = $DB->numrows($result_cham);	
 			$consulta = $conta_cons;
+
 			}
 	
 	}
 
-else {
 
-	if($type != 'software') {
+if($id_fab != '' && $id_mod == '') {
+
+	if($type != 'software1') {
 			$sql_cham = 
-			"SELECT id, name
-			FROM glpi_".$type."s
-			WHERE manufacturers_id = ".$id_fab."
-			AND ".$type."models_id = ".$id_mod."
-			AND is_deleted = 0
-			".$entidade."
-			ORDER BY name ";			
+			"SELECT DISTINCT gi.id, gi.name
+			FROM glpi_".$type."s gi, glpi_items_tickets git, glpi_tickets gt
+			WHERE gi.is_deleted = 0
+			AND gi.id = git.items_id
+			AND git.itemtype = '". ucfirst($type) ."'
+			".$entidade_cham."
+			".$id_fab."
+			AND gt.id = git.tickets_id
+			AND gt.date ".$datas2."
+			ORDER BY gi.name";
 			
-			$result_cham = $DB->query($sql_cham);
-			
-			//fim paginacao 1	
-			$consulta1 = 
-			"SELECT id, name
-			FROM glpi_".$type."s
-			WHERE manufacturers_id = ".$id_fab."
-			AND ".$type."models_id = ".$id_mod."
-			AND is_deleted = 0
+			$result_cham = $DB->query($sql_cham);	
+						
+			$conta_cons = $DB->numrows($result_cham);	
+			$consulta = $conta_cons;		
+
+		}	
+		
+		else {
+			$sql_cham = 
+			"SELECT DISTINCT  id, name
+			FROM glpi_softwares
+			WHERE is_deleted = 0
+			".$id_fab."
 			".$entidade."
 			ORDER BY name ";
-		
-			$result_cons1 = $DB->query($consulta1);	
+			 			
+			$result_cham = $DB->query($sql_cham);			
+										
+			$conta_cons = $DB->numrows($result_cham);	
+			$consulta = $conta_cons;					
+			}
+	
+	}
+
+//else {
+if($id_fab != '' && $id_mod != '') {	
+
+	if($type != 'software1') {
+			$sql_cham = 
+			"SELECT DISTINCT  gi.id, gi.name
+			FROM glpi_".$type."s gi, glpi_items_tickets git, glpi_tickets gt
+			WHERE gi.is_deleted = 0
+			AND gi.id = git.items_id
+			AND git.itemtype = '". ucfirst($type) ."'
+			".$entidade_cham."
+			AND manufacturers_id = ".$id_fab1."
+			AND ".$type."models_id = ".$id_mod."
+			AND gt.id = git.tickets_id
+			AND gt.date ".$datas2."
+			ORDER BY gi.name";			
 			
-			$conta_cons = $DB->numrows($result_cons1);	
-			$consulta = $conta_cons;
+			$result_cham = $DB->query($sql_cham);
+				
+			$conta_cons = $DB->numrows($result_cham);	
+			$consulta = $conta_cons;					
 		}
 		
 		else {
 			$sql_cham = 
-			"SELECT id, name
+			"SELECT DISTINCT id, name
 			FROM glpi_softwares
 			WHERE id = ".$id_mod."	
 			".$entidade."		
 			ORDER BY name ";
-		
-			
+				
 			$result_cham = $DB->query($sql_cham);
 			
-			//fim paginacao 1	
-			$consulta1 = 
-			"SELECT id, name
-			FROM glpi_softwares
-			WHERE id = ".$id_mod."
-			".$entidade."			
-			ORDER BY name ";
-		
-			$result_cons1 = $DB->query($consulta1);	
-			
-			$conta_cons = $DB->numrows($result_cons1);	
-			$consulta = $conta_cons;
+			$conta_cons = $DB->numrows($result_cham);	
+			$consulta = $conta_cons;						
 		}		
 		
 	}
@@ -416,12 +411,16 @@ else {
 if($consulta > 0) {
 
 //fabricante
+/*
 	$sql_fab = "SELECT name
 			 		FROM glpi_manufacturers
-			 		WHERE id = ".$id_fab." ";
+			 		WHERE id = ".$id_fab1." ";
 	
 	$result_fab = $DB->query($sql_fab);
 	$fab = $DB->fetch_assoc($result_fab);	
+
+<td  style='font-size: 16px; font-weight:bold; vertical-align:middle;'><span style='color:#000;'> ".__('Manufacturer').": </span>". $fab['name'] ." </td>
+*/
 
 //listar chamados
 
@@ -431,7 +430,7 @@ echo "
 
 <table class='row-fluid'  style='margin-bottom: 25px; font-size: 18px; font-weight:bold;' cellpadding = 1px >
 	<td  style='font-size: 16px; font-weight:bold; vertical-align:middle;'><span style='color:#000;'> ".__('Type').": </span>". __(ucfirst($type)) ." </td>
-	<td  style='font-size: 16px; font-weight:bold; vertical-align:middle;'><span style='color:#000;'> ".__('Manufacturer').": </span>". $fab['name'] ." </td>
+	
 	<td  style='font-size: 16px; font-weight:bold; vertical-align:middle;'><span style='color:#000;'> ".__('Quantity','dashboard').": </span>".$consulta." </td>
 	<td colspan='3' style='font-size: 16px; font-weight:bold; vertical-align:middle; width:200px;'><span style='color:#000;'>
 	".__('Period', 'dashboard') .": </span> " . conv_data($data_ini2) ." a ". conv_data($data_fin2)." 
@@ -473,11 +472,12 @@ else	{
 	$row_item = $DB->fetch_assoc($result_item);
 	
 	//contar chamados
-	$sql_count = "SELECT count(id) AS conta
-			 		FROM glpi_tickets
-			 		WHERE itemtype = '" . ucfirst($type) . "'
-			 		AND items_id = " . $row['id'] . " 
-					AND is_deleted = 0 
+	$sql_count = "SELECT count(glpi_tickets.id) AS conta
+			 		FROM glpi_tickets, glpi_items_tickets
+			 		WHERE glpi_items_tickets.itemtype = '" . ucfirst($type) . "'
+			 		AND glpi_items_tickets.items_id = " . $row['id'] . " 
+					AND glpi_tickets.is_deleted = 0
+					AND glpi_tickets.id = glpi_items_tickets.tickets_id 
 					AND date ".$datas2." ";
 	
 	$result_count = $DB->query($sql_count);
@@ -489,7 +489,7 @@ else	{
 	 
 		$sql_fab = "SELECT name
 				 		FROM glpi_manufacturers
-				 		WHERE id = ".$id_fab." ";
+				 		".$id_fabw." ";
 		
 		$result_fab = $DB->query($sql_fab);
 		$row_fab = $DB->fetch_assoc($result_fab);	
@@ -526,7 +526,7 @@ else	{
 			$sql_mod = "SELECT gtm.id AS id, gtm.name AS name
 							FROM glpi_".$type."models gtm, glpi_".$type."s gt						
 							WHERE gt.".$type."models_id = gtm.id
-							AND gt.manufacturers_id = ".$id_fab."
+							".$id_fabgt."
 							AND gt.id = ".$row['id']."
 							AND gt.is_deleted = 0 ";		
 			
@@ -547,10 +547,10 @@ else	{
 		 				
 echo "	
 	<tr>
-		<td style='vertical-align:middle;'><a href=".$CFG_GLPI['root_doc']."/front/".$type.".form.php?id=". $row_item['id'] ." target=_blank >".$row_item['name']." (".$row_item['id'].")</a></td>
+		<td style='vertical-align:middle;'><a href=".$CFG_GLPI['url_base']."/front/".$type.".form.php?id=". $row_item['id'] ." target=_blank >".$row_item['name']." (".$row_item['id'].")</a></td>
 		<td style='vertical-align:middle;'> ". $row_mod['name'] ." </td>
 		<td style='vertical-align:middle;'> ". $row_item['serial'] ." </td>				
-		<td style='vertical-align:middle; text-align:center;'> <a href='rel_assets_tickets.php?con=1&itemtype=". $type."&sel_item=".$row['id']."&sel_fab=".$id_fab."&date1=".$data_ini2."&date2=".$data_fin2."' target=_blank>". $row_count['conta'] ." </a></td>
+		<td style='vertical-align:middle; text-align:center;'> <a href='rel_assets_tickets.php?con=1&itemtype=".$type."&sel_item=".$row['id']."&sel_fab=".$id_fab1."&date1=".$data_ini2."&date2=".$data_fin2."' target=_blank>". $row_count['conta'] ." </a></td>
 	</tr>";
 }
 
@@ -569,7 +569,7 @@ $(document).ready(function() {
         "bJQueryUI": true,
         "sPaginationType": "full_numbers",
         "bFilter": false,
-        "aaSorting": [[0,'desc']], 
+        "aaSorting": [[0,'asc']], 
         "iDisplayLength": 25,
     	  "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]], 
 

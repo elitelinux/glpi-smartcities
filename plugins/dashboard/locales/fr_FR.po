@@ -449,3 +449,6 @@ msgstr "En retard"
 
 msgid "Within"
 msgstr "Dans"
+
+msgid "Metrics"
+msgstr "Métriques"

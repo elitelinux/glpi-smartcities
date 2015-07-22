@@ -58,7 +58,7 @@ $(function () {
                 verticalAlign: 'middle',
                 x: 0,
                 y: 0,
-                //floating: true,
+                floating: false,
                 borderWidth: 0,
                 backgroundColor: '#FFFFFF',
                 adjustChartSize: true

@@ -242,7 +242,6 @@ if(isset($_GET['con'])) {
 		{
 		  $data_ini2 = $_REQUEST['date1'];
 		  $data_fin2 = $_REQUEST['date2'];
-
 		  $grupo = "";
 		  $grupo1 = "";
 		}
@@ -252,6 +251,7 @@ if(isset($_GET['con'])) {
 	    $data_fin2 = $_REQUEST['date2'];
 	    $sel_grp = $_REQUEST['sel_grp'];
 	    $id_grp = $_POST["sel_grp"];
+	    
 	    if($id_grp > 0) {
 	    	$glpi_grp = " , glpi_groups_users";
 		 	$grupo = "AND glpi_groups_users.users_id = glpi_tickets_users.users_id" ;	
@@ -274,7 +274,8 @@ if(isset($_GET['con'])) {
 		}
 
 $sql_tec = "
-SELECT DISTINCT glpi_users.id AS id , glpi_users.firstname AS fname, glpi_users.realname AS rname, COUNT(glpi_tickets.id) AS chamados
+SELECT DISTINCT glpi_users.id AS id , glpi_users.firstname AS fname, glpi_users.realname AS rname, 
+COUNT(glpi_tickets.id) AS chamados, glpi_users.picture 
 FROM glpi_users , glpi_tickets_users, glpi_tickets". $glpi_grp ."
 WHERE glpi_tickets_users.users_id = glpi_users.id
 AND glpi_tickets.id = glpi_tickets_users.tickets_id
@@ -398,7 +399,7 @@ $fechados = $data_clo['total'];
 
 //satisfação por tecnico   , glpi_users.firstname AS fname , glpi_users.realname AS rname, glpi_users.name
 $query_sat = "
-SELECT glpi_users.id, avg( glpi_ticketsatisfactions.satisfaction ) AS media 
+SELECT glpi_users.id, avg( glpi_ticketsatisfactions.satisfaction ) AS media
 FROM glpi_tickets, glpi_ticketsatisfactions, glpi_tickets_users, glpi_users". $glpi_grp ."
 WHERE glpi_tickets.is_deleted = '0'
 AND glpi_ticketsatisfactions.tickets_id = glpi_tickets.id
@@ -446,7 +447,10 @@ else { $barra = 0;}
 
 		echo "
 		<tr>
-			<td style='vertical-align:middle; text-align:left;'><i class='del fa fa-times' style='cursor:pointer;' title='". __('Hide') ."'>&nbsp;&nbsp;&nbsp; </i><a href='rel_tecnico.php?con=1&tec=". $id_tec['id'] ."&date1=".$data_ini."&date2=".$data_fin."' target='_blank' >" . $id_tec['fname'].' '.$id_tec['rname']. ' ('.$id_tec['id'].")</a></td>
+			<td style='vertical-align:middle; text-align:left;'><i class='del fa fa-times' style='cursor:pointer;' title='". __('Hide') ."'>&nbsp;&nbsp;&nbsp; </i>
+			<img class='avatar2' width='40px' height='43px' src='".User::getURLForPicture($id_tec['picture'])."'></img>&nbsp;&nbsp;	
+			<a href='rel_tecnico.php?con=1&tec=". $id_tec['id'] ."&date1=".$data_ini."&date2=".$data_fin."' target='_blank' >" . $id_tec['fname'].' '.$id_tec['rname']. ' ('.$id_tec['id'].")</a>
+			</td>
 			<td style='vertical-align:middle; text-align:center;'> ".$id_tec['chamados']." </td>
 			<td style='vertical-align:middle; text-align:center;'> ". $abertos ." </td>
 			<td style='vertical-align:middle; text-align:center;'> ". $solucionados ." </td>

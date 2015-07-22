@@ -46,7 +46,7 @@ else {
 
 <html>
 <head>
-<title> GLPI - <?php echo _n('Project','Projects',2). " - ". _n('Task','Tasks',2); ?> </title>
+<title> GLPI - <?php echo _n('Project task', 'Project tasks',2); ?> </title>
 <!-- <base href= "<?php $_SERVER['SERVER_NAME'] ?>" > -->
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
@@ -104,60 +104,28 @@ a:hover {
 
 <a href="../index.php"><i class="fa fa-home" style="font-size:14pt; margin-left:25px;"></i><span></span></a>
 
-    <div id="titulo"> <?php echo _n('Project','Projects',2). " - ". _n('Task','Tasks',2); ?>  </div>
+    <div id="titulo"> <?php echo _n('Project task', 'Project tasks',2); ?>  </div>
 
     <div id="datas-tec3" class="span12 row-fluid" >
     <form id="form1" name="form1" class="form_rel" method="post" action="./rel_projects.php?con=1" style="margin-left: 37%;">
 	    <table border="0" cellspacing="0" cellpadding="3" bgcolor="#efefef">
-	    <tr>
+		    <tr>
 				<td style="width: 310px;">
 				<?php
 				$url = $_SERVER['REQUEST_URI'];
 				$arr_url = explode("?", $url);
 				$url2 = $arr_url[0];
-				/*
-				echo '
-							<table>
-								<tr>
-									<td>
-									   <div class="input-group date" id="dp1" data-date="'.$data_ini.'" data-date-format="yyyy-mm-dd">
-									    	<input class="col-md-9 form-control" size="13" type="text" name="date1" value="'.$data_ini.'" >		    	
-									    	<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>	    	
-								    	</div>
-									</td>
-									<td>&nbsp;</td>
-									<td>
-								   	<div class="input-group date" id="dp2" data-date="'.$data_fin.'" data-date-format="yyyy-mm-dd">
-									    	<input class="col-md-9 form-control" size="13" type="text" name="date2" value="'.$data_fin.'" >		    	
-									    	<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>	    	
-								    	</div>
-									</td>
-									<td>&nbsp;</td>
-								</tr>
-							</table> ';
-							*/
-				?>
-				
+				?>				
 				<script language="Javascript">
 					$('#dp1').datepicker('update');
 					$('#dp2').datepicker('update');
-				</script>
-				
-				</td>
-				
-				<td style="margin-top:2px;">
-
-		</td>
-		</tr>
-		<tr><td height="15px"></td></tr>
-		<tr>
-			<!-- <td colspan="2" align="center">
-				<button class="btn btn-primary btn-sm" type="submit" name="submit" value="Atualizar" ><i class="fa fa-search"></i>&nbsp; <?php //echo __('Consult', 'dashboard'); ?></button>
-				<button class="btn btn-primary btn-sm" type="button" name="Limpar" value="Limpar" onclick="location.href='<?php echo $url2 ?>'" > <i class="fa fa-trash-o"></i>&nbsp; <?php //echo __('Clean', 'dashboard'); ?> </button></td>
-			</td> -->
-		</tr>
-	
-	    </table>
+				</script>				
+				</td>				
+				<td style="margin-top:2px;"></td>
+			</tr>
+			<tr><td height="15px"></td></tr>
+			<tr></tr>	
+	 </table>
 <?php Html::closeForm(); ?>
 <!-- </form> -->
 
@@ -244,13 +212,14 @@ while($row = $DB->fetch_assoc($result_cham)){
 	<table id='tarefa' class='display' style='font-size: 13px; font-weight:bold;' cellpadding = 2px>
 		<thead>
 			<tr>
-				<th style='text-align:center; cursor:pointer;'> ". __('ID') ."  </th>
-				<th style='text-align:center; cursor:pointer;'> ". __('Creation date') ." </th>
+				<th style='text-align:center; cursor:pointer;'> ". __('ID') ."  </th>				
 				<th style='text-align:center; cursor:pointer;'> ". __('Name') ."  </th>
-				<th style='text-align:center; cursor:pointer;'> ". __('Technician') ."  </th>				
+				<th style='text-align:center; cursor:pointer;'> ". __('Technician') ."  </th>
+				<th style='text-align:center; cursor:pointer;'> ". __('Creation date') ." </th>				
 				<th style='text-align:center; cursor:pointer;'> ". __('Begin') ."</th>
 				<th style='text-align:center; cursor:pointer;'> ". __('End') ." </th>
-				<th style='text-align:center; cursor:pointer;'> ". __('Duration') ." </th>								
+				<th style='text-align:center; cursor:pointer;'> ". __('Duration') ." </th>		
+				<th style='text-align:center; cursor:pointer;'> ". __('Progress') ."</th>						
 			</tr>
 		</thead>
 	<tbody>
@@ -260,16 +229,34 @@ while($row = $DB->fetch_assoc($result_cham)){
 
 $DB->data_seek($result_cham, 0);
 while($row = $DB->fetch_assoc($result_cham)){
+	
+	//percent done		
+	$barra = $row['percent_done'];
+	
+	// cor barra
+	if($barra == 100) { $cor = "progress-bar-success"; }
+	if($barra >= 80 and $barra < 100) { $cor = " "; }
+	if($barra > 51 and $barra < 80) { $cor = "progress-bar-warning"; }
+	if($barra > 0 and $barra <= 50) { $cor = "progress-bar-danger"; }
+	if($barra < 0) { $cor = "progress-bar-danger"; $barra = 0; }
+	
 
 	echo "
 	<tr>
-	<td style='text-align:center;'><a href=".$CFG_GLPI['root_doc']."/front/projecttask.form.php?id=". $row['id'] ." target=_blank >" . $row['id'] . "</a></td>
-	<td style='text-align:center;'> ". conv_data_hora($row['date']) ."</td>	
-	<td> ". $row['name'] ." </td>
-	<td> ". getUserName($row['users_id']) ." </td>				
-	<td style='text-align:center;'> ". conv_data_hora($row['real_start_date']) ."</td>
-	<td style='text-align:center;'> ". conv_data_hora($row['real_end_date']) ."</td>
-	<td style='text-align:center;'> ". time_ext($row['effective_duration']) ."</td>
+	<td style='text-align:center; vertical-align:middle;'><a href=".$CFG_GLPI['url_base']."/front/projecttask.form.php?id=". $row['id'] ." target=_blank >" . $row['id'] . "</a></td>		
+	<td style='text-align:center; vertical-align:middle;'> ". $row['name'] ." </td>
+	<td style='text-align:center; vertical-align:middle;'> ". getUserName($row['users_id']) ." </td>				
+	<td style='text-align:center; vertical-align:middle;'> ". conv_data_hora($row['date']) ."</td>
+	<td style='text-align:center; vertical-align:middle;'> ". conv_data_hora($row['real_start_date']) ."</td>
+	<td style='text-align:center; vertical-align:middle;'> ". conv_data_hora($row['real_end_date']) ."</td>
+	<td style='text-align:center; vertical-align:middle;'> ". time_ext($row['effective_duration']) ."</td>
+	<td style='text-align:center; vertical-align:middle;'> 
+		<div class='progress' style='margin-top: 5px; margin-bottom: 5px;'>
+			<div class='progress-bar ". $cor ." progress-bar-striped active' role='progressbar' aria-valuenow='".$barra."' aria-valuemin='0' aria-valuemax='100' style='width: ".$barra."%;'>
+			 			".$barra." % 	
+			 </div>		
+		</div>			
+	</td>
 	</tr>";
 }
 

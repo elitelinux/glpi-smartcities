@@ -34,10 +34,11 @@ else {
 
 $sql_grp = "
 SELECT gi.id AS id, gi.name AS name, count(gt.id) AS conta
-FROM glpi_tickets gt, glpi_". strtolower($type)."s gi
-WHERE gt.itemtype = '".$type."'
-AND gt.items_id = gi.id
+FROM glpi_tickets gt, glpi_". strtolower($type)."s gi, glpi_items_tickets git
+WHERE git.itemtype = '".$type."'
+AND git.items_id = gi.id
 AND gt.is_deleted = 0
+AND git.tickets_id = gt.id
 AND gt.date ".$datas."
 ".$entidade."
 GROUP BY gi.name

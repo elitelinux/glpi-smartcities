@@ -42,7 +42,7 @@ Session::checkRight("profile", READ);
 		var options = {
 		timeNotation: '24h',
 		am_pm: true,
-		fontSize: '30px'
+		fontSize: '38px'
 	}
 		$('#clock').jclock(options);
 	});
@@ -196,7 +196,7 @@ $ent_name = $DB->result($result_n, 0, 'name');
 				</table>
 			<p></p>
 			</div>	
-		<div id="lista_chamados" class="well info_box row-fluid report" style="width: 95%;">
+		<div id="lista_chamados" class="well info_box row-fluid report" style="width: 95%; margin-top: 160px !important;">
 		
 		<?php 
 		
@@ -223,11 +223,10 @@ $ent_name = $DB->result($result_n, 0, 'name');
 		else {
 				$order = "ORDER BY glpi_tickets.date_mod DESC";
 		}
-			
-		
+					
 				//select tickets				
 				$sql_cham = "SELECT DISTINCT glpi_tickets.id, glpi_tickets.name AS descri, glpi_tickets.status AS status, 
-				glpi_tickets.date_mod, glpi_tickets.priority, glpi_tickets.due_date AS duedate
+				glpi_tickets.date_mod, glpi_tickets.priority, glpi_tickets.due_date AS duedate, glpi_tickets.locations_id AS lid
 				FROM glpi_tickets_users, glpi_tickets, glpi_users
 				WHERE glpi_tickets.status NOT IN  ".$status." 
 				AND glpi_tickets.is_deleted = 0
@@ -247,14 +246,26 @@ $ent_name = $DB->result($result_n, 0, 'name');
 				AND glpi_tickets.due_date IS NOT NULL
 				AND glpi_tickets.entities_id IN (".$ent.")" ;
 						
-				$result_due = $DB->query($sql_due);
-				
+				$result_due = $DB->query($sql_due);				
 				$count_due = $DB->result($result_due,0,'count_due');
-				//$count_due = 1;		
+					
+				//Show due date or location	
+				$query_due = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'duedate' AND users_id = ".$_SESSION['glpiID']." ";																
+				$result_due = $DB->query($query_due);
 				
-				if($count_due > 0) {
-					$th_due = "<th style='text-align:center;'><a href='chamados.php?order=da'>&nbsp<font size=2.5pt; font-family='webdings'>&#x25BE;&nbsp;</font></a>". __('Due Date','dashboard')."<a href='chamados.php?order=dd'><font size=2.5pt; font-family='webdings'>&nbsp;&#x25B4;</font></a></th>";
-				}			
+				$show_due = $DB->result($result_due,0,'value');	
+				
+				$query_loc = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'location' AND users_id = ".$_SESSION['glpiID']." ";																
+				$result_loc = $DB->query($query_loc);
+				
+				$show_loc = $DB->result($result_loc,0,'value');
+				
+				if($show_due != 0) {
+					if($count_due > 0) {
+						$th_due = "<th style='text-align:center;'><a href='chamados.php?order=da'>&nbsp<font size=2.5pt; font-family='webdings'>&#x25BE;&nbsp;</font></a>". __('Due Date','dashboard')."<a href='chamados.php?order=dd'><font size=2.5pt; font-family='webdings'>&nbsp;&#x25B4;</font></a></th>";
+					}			
+				}
+					
 					
 				echo "<table id='tickets' class='display' style='font-size: 20px; font-weight:bold;' cellpadding = 2px >				
 				<thead>
@@ -263,13 +274,18 @@ $ent_name = $DB->result($result_n, 0, 'name');
 						<th style='text-align:center;'><a href='chamados.php?&order=sa'><font size=2.5pt; font-family='webdings'>&#x25BE;&nbsp;</font></a>". __('Status')."<a href='chamados.php?&order=sd'><font size=2.5pt; font-family='webdings'>&nbsp;&#x25B4;</font></a></th>
 						<th style='text-align:center;'>". __('Title')."</th>
 						<th style='text-align:center;'>". __('Technician')."</th>
-						<th style='text-align:center;'>". __('Requester')."</th>
-						".$th_due."			
+						<th style='text-align:center;'>". __('Requester')."</th>";
+					
+				if($show_loc == 1) {	
+					echo	"<th style='text-align:center;'>". __('Location')."</th>";
+					}	
+					
+				echo $th_due."									
 						<th style='text-align:center;'><a href='chamados.php?&order=pa'>&nbsp<font size=2.5pt; font-family='webdings'>&#x25BE;&nbsp;</font></a>". __('Priority')."<a href='chamados.php?&order=pd'><font size=2.5pt; font-family='webdings'>&nbsp;&#x25B4;</font></a></th>
 					</tr>
 				</thead>
 				<tbody>";
-				
+			
 		
 				while($row = $DB->fetch_assoc($result_cham)){ 
 				
@@ -337,6 +353,14 @@ $ent_name = $DB->result($result_n, 0, 'name');
 				if($priority == 6) {
 					$prio_name = _x('priority', 'Major'); } 			 				 					 	
 		
+				//get Location
+				$sql_loc = "SELECT id, name
+				FROM glpi_locations
+				WHERE glpi_locations.id = ". $row['lid'] ." ";
+				    
+				$result_loc = $DB->query($sql_loc);	
+				$row_loc = $DB->fetch_assoc($result_loc);					
+		
 				echo "
 				<tr class='title'>
 					<td style='text-align:center; vertical-align:middle;'> <a href=../../../../front/ticket.form.php?id=". $row['id'] ." target=_blank > <span >" . $row['id'] . "</span> </a></td>
@@ -344,19 +368,25 @@ $ent_name = $DB->result($result_n, 0, 'name');
 					<td style='vertical-align:middle;'><a href=../../../../front/ticket.form.php?id=". $row['id'] ." target=_blank > <span >" . $row['descri'] . "</span> </a></td>
 					<td style='vertical-align:middle;'><span >". $row_tec['name'] ." ".$row_tec['sname'] ."</span> </td>
 					<td style='vertical-align:middle;'><span >". $row_req['name'] ." ".$row_req['sname'] ."</span> </td>";
-		
-				if($count_due > 0) {
-					$now = date("Y-m-d H:i");
 					
-					if($row['duedate'] < $now ) {
-						echo "<td style='vertical-align:middle; color:red;'><span>". conv_data_hora($row['duedate']) ."</span> </td>";
-						}
-					else {
-						echo "<td style='vertical-align:middle; color:green;'><span>". conv_data_hora($row['duedate']) ."</span> </td>";
-						}	
+				if($show_loc == 1) {
+					echo "<td style='vertical-align:middle; text-align:center; font-size:14pt;'>" . $row_loc['name'] . "</td>";
+				}
+				
+				if($show_due != 0) {
+					if($count_due > 0) {
+						$now = date("Y-m-d H:i");
+						
+						if($row['duedate'] < $now ) {
+							echo "<td style='vertical-align:middle; font-size:14pt; color:red;'><span>". conv_data_hora($row['duedate']) ."</span> </td>";
+							}
+						else {
+							echo "<td style='vertical-align:middle; font-size:14pt; color:green;'><span>". conv_data_hora($row['duedate']) ."</span> </td>";
+							}	
+					}
 				}
 					
-				echo "			
+				echo "								
 					<td style='vertical-align:middle; text-align:center; background-color:". $row_prio['value'] .";'>" . $prio_name . "</td>
 				</tr>"; 		 
 				 } 

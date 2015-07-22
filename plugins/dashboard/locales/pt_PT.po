@@ -456,3 +456,6 @@ msgstr "Analíticos"
 
 msgid "Comparatives"
 msgstr "Comparativos"
+
+msgid "Metrics"
+msgstr "Métricas"

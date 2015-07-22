@@ -34,17 +34,14 @@ Session::checkRight("profile", READ);
 
 function reload(id) {	
 	document.getElementById(id).submit();
-	//location.href = './config.php';
 }
 
 function changeTheme(theme) {		
 	location.href='config.php?theme=' + theme + '.css';
-	//location.href = './config.php';	
 }
 
 function chart(theme) {		
 	location.href='config.php?colors=' + theme ;
-	//location.href = './config.php';	
 }
 
 </script>
@@ -162,6 +159,11 @@ function chart(theme) {
 					
 					//reload page	
 					if(isset($_REQUEST['info'])) {						
+						echo "<meta HTTP-EQUIV='refresh' CONTENT='0.1;URL=config.php'>";						
+						}		
+						
+					//reload page	
+					if(isset($_REQUEST['due']) || isset($_REQUEST['loc']) ) {						
 						echo "<meta HTTP-EQUIV='refresh' CONTENT='0.1;URL=config.php'>";						
 						}		
 										
@@ -362,8 +364,8 @@ function chart(theme) {
 									}
 								else 	{							
 									echo "					
-										<option value='0' selected>".__('Left side menu')."</option>
-										<option value='1' >".__('Top menu')."</option>
+										<option value='0' selected>".__('Left side menu','dashboard')."</option>
+										<option value='1' >".__('Top menu','dashboard')."</option>
 									</select>";						   			
 									}
 							Html::closeForm();	
@@ -415,10 +417,84 @@ function chart(theme) {
 											  VALUES ('info', '".$update."', '".$_SESSION['glpiID']."') ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), value = '".$update."' ";																
 								$result = $DB->query($query);																																					
 					}	
+					
+					
+			// Tickets page settings
+			$query_due = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'duedate' AND users_id = ".$_SESSION['glpiID']." ";																
+			$result_due = $DB->query($query_due);
+			
+			$due = $DB->result($result_due,0,'value');	
+			
+			$query_loc = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'location' AND users_id = ".$_SESSION['glpiID']." ";																
+			$result_loc = $DB->query($query_loc);
+			
+			$loc = $DB->result($result_loc,0,'value');			
+			
+			echo "<tr>";
+			echo "<td>";								
+					echo '<form id="form6" name="form6" class="form6" method="post" action="config.php?due=1&loc=1">';
+					
+					echo "-- ".__('Tickets Page settings').":&nbsp; <br><p>";
+					
+					echo "<table><tr><td>";   						
+					echo _sx('button', 'Show')." ".__('Due date').":&nbsp; 
+							<select id='due' name='due' style='width: 130px;' onChange='reload(\"form6\")'> ";
+								if($due == 1) {							
+									echo "					
+										<option value='0'>".__('No')."</option>
+										<option value='1' selected>".__('Yes')."</option>
+									</select><br><p>";						   			
+									}
+								else 	{							
+									echo "					
+										<option value='0' selected>".__('No')."</option>
+										<option value='1'>".__('Yes')."</option>
+									</select><br></p>";						   			
+									}
+					
+					echo "</td><td>";				
+					echo _sx('button', 'Show')." ".__('Location').":&nbsp;&nbsp; 
+							<select id='loc' name='loc' style='width: 130px;' onChange='reload(\"form6\")'> ";
+								if($loc == 1) {							
+									echo "					
+										<option value='0'>".__('No')."</option>
+										<option value='1' selected>".__('Yes')."</option>
+									</select>";						   			
+									}
+								else 	{							
+									echo "					
+										<option value='0' selected>".__('No')."</option>
+										<option value='1'>".__('Yes')."</option>
+									</select>";						   			
+									}																											
+					Html::closeForm();
+					echo "</td></tr></table>";	
+			echo "</td>";			
+			echo "</tr>";				
+			
+			if(isset($_POST['due']))  {	      	
+							
+								//Update duedate value
+								$up_due = $_POST['due'];												
+								
+								$query_due = "INSERT INTO glpi_plugin_dashboard_config (name, value, users_id)
+											  VALUES ('duedate', '".$up_due."', '".$_SESSION['glpiID']."') ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), value = '".$up_due."' ";																
+								$result_due = $DB->query($query_due);																																																			
+					}	
+					
+			if(isset($_POST['loc']))  {	      	
+														
+								//Update location value
+								$up_loc = $_POST['loc'];												
+								
+								$query_loc = "INSERT INTO glpi_plugin_dashboard_config (name, value, users_id)
+											  VALUES ('location', '".$up_loc."', '".$_SESSION['glpiID']."') ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), value = '".$up_loc."' ";																
+								$result_loc = $DB->query($query_loc);																																																				
+					}				
 			
 			echo "<tr>";
 			echo "<td>";		
-			echo "-- Widgets settings:  &nbsp; &nbsp;  <button class='btn btn-sm btn-primary' onclick='window.localStorage.clear();'>Clear all settings</button>";
+			echo "-- ". __('Widgets settings','dashboard').":  &nbsp; &nbsp;  <button class='btn btn-sm btn-primary' onclick='window.localStorage.clear();'>". __('Clear')." ". __('Settings')."</button>";
 			echo "</td>";
 			echo "</tr>";		
 					
@@ -605,6 +681,10 @@ $(document).ready(function() { $("#up").select2(); });
 $(document).ready(function() { $("#layout").select2(); });
 
 $(document).ready(function() { $("#info").select2(); });
+
+$(document).ready(function() { $("#due").select2(); });
+
+$(document).ready(function() { $("#loc").select2(); });
 
 $(document).ready(function () {
 	

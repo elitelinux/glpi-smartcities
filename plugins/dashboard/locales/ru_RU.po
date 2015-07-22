@@ -448,3 +448,6 @@ msgstr "просроченный"
 
 msgid "Within"
 msgstr "внутри"
+
+msgid "Metrics"
+msgstr "метрика"

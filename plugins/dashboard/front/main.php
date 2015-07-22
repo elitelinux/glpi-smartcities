@@ -95,11 +95,6 @@ $_SESSION['charts_colors'] = $colors;
     case "6": $dia = __('Saturday','dashboard'); break;  
     }
 
-//GLPI version
-$version = substr($CFG_GLPI["version"],0,4);
-
-//user image and name
-if($version == "0.85") {
 	$sql_photo = "SELECT picture 
 					FROM glpi_users
 					WHERE id = ".$_SESSION["glpiID"]." ";
@@ -108,7 +103,6 @@ if($version == "0.85") {
 	$pic = $DB->result($res_photo,0,'picture');
 	
 	$photo_url = User::getURLForPicture($pic);  
-}
 ?>
 
 <!DOCTYPE html>
@@ -173,7 +167,7 @@ if($version == "0.85") {
    	echo "<body style=\"background: url('./img/".$back."') no-repeat top center fixed; \">";
    	}
    else {
-   	echo "<body style='background-color: #FFF;' >";
+   	echo "<body>";
    	}	 
    ?>
 
@@ -320,9 +314,9 @@ $total_users = $DB->fetch_assoc($result_users);
 						<div class="row" style="margin-left: 3%;">
 							<!-- COLUMN 1 -->															
 								  <div class="col-sm-3 col-md-3 stat">
-									 <div class="dashbox shad panel panel-default db-blue">
+									 <div class="dashbox shad panel panel-default db-red">
 										<div class="panel-body">
-										   <div class="panel-left red">
+										   <div class="panel-left red redbg">
 												<i class="fa fa-calendar-o fa-3x"></i>
 										   </div>
 										   <div class="panel-right right">
@@ -335,9 +329,9 @@ $total_users = $DB->fetch_assoc($result_users);
 								  </div>
 								  
 								  <div class="col-sm-3 col-md-3">
-									 <div class="dashbox shad panel panel-default db-green">
+									 <div class="dashbox shad panel panel-default db-blue">
 										<div class="panel-body">
-										   <div class="panel-left blue">
+										   <div class="panel-left blue bluebg">
 												<i class="fa fa-calendar fa-3x fa-calendar-index"></i>
 										   </div>
 										   <div class="panel-right right">										 
@@ -350,9 +344,9 @@ $total_users = $DB->fetch_assoc($result_users);
 								  </div>																		
                      								
 								  <div class="col-sm-3 col-md-3">
-									 <div class="dashbox shad panel panel-default db-red">
+									 <div class="dashbox shad panel panel-default db-yellow">
 										<div class="panel-body">
-										   <div class="panel-left yellow">
+										   <div class="panel-left yellow yellowbg">
 												<i class="fa fa-plus-square fa-3x"></i>
 										   </div>
 										   <div class="panel-right right">
@@ -366,7 +360,7 @@ $total_users = $DB->fetch_assoc($result_users);
 								  <div class="col-sm-3 col-md-3">
 									 <div class="dashbox shad panel panel-default db-orange">
 										<div class="panel-body">
-										   <div class="panel-left green">
+										   <div class="panel-left green orangebg">
 												<i class="fa fa-users fa-3x"></i>
 										   </div>
 								   		<div class="panel-right right">
@@ -443,11 +437,16 @@ setTimeout(function(){
 		}			
 	?>
 
-	<div id="grfrow" class="row-fluid col-sm-12 col-md-12" style="margin-top: 30px; ">
-      <h4> <?php echo __('Tickets Evolution','dashboard'); ?> </h4>
+   <div id="tickets_total" class="widget2 widget-table action-table striped" style="margin-top: 30px; ">
+      <div class="widget-header2" style="width:98.5%;">                
+      	<h3><i class="fa fa-area-chart" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><?php echo __('Tickets Evolution','dashboard'); ?></h3>
+      	 <!-- <span  class="fa fa-times hide-widget"></span> -->               
+      </div> 
+      <!-- /widget-header -->
+	<div id="grfrow" class="row-fluid col-sm-12 col-md-12 card" style="width:98.5%;">	
+      <h4> <?php //echo __('Tickets Evolution','dashboard'); ?> </h4>
       <p id="choices" style=" margin-right: 20px; margin-top: 5px; text-align:right; width:<?php echo $width_os; ?>;"></p>	  	
-		<div class="demo-container" style="margin-bottom:40px;">				
-		
+		<div class="demo-container" style="margin-bottom:10px;">						
 			<div id="graflinhas1" class="demo-placeholder" style="float:left; width: <?php echo $width_os; ?> ;"></div>
 				<div id="srvinfo">					
 					<?php	
@@ -543,13 +542,13 @@ setTimeout(function(){
 <div id="widgets" class="row" style="margin-top: 50px;">	
 	
 <div class="col-sm-6 col-md-6" > 	 				              
-   <div id="tikets_status" class="widget widget-table action-table striped" >
-      <div class="widget-header"> <i class="fa fa-pie-chart" style="margin-left:7px;"></i>                
-      	<h3><?php echo __('Opened Tickets by Status','dashboard'); ?></h3>
-      	<!-- <span  class="glyphicon glyphicon-remove-circle hide-widget"></span> -->               
+   <div id="tickets_status" class="widget widget-table action-table striped" >
+      <div class="widget-header wred">                 
+      	<h3><i class="fa fa-pie-chart" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><?php echo __('Opened Tickets by Status','dashboard'); ?></h3>
+      	 <span  class="fa fa-times hide-widget"></span>               
       </div> 
-      <!-- /widget-header -->
-      <div id="pie1" style="height:320px;">	 			
+      <!-- /widget-header -->      
+      <div id="pie1">	 			
 				<?php
 					include ("graficos/inc/index/grafpie_index.inc.php");
 				?> 	 						            
@@ -560,12 +559,12 @@ setTimeout(function(){
 
 <div class="col-sm-6 col-md-6" > 	 				              
    <div id="last_week" class="widget widget-table action-table striped" >
-      <div class="widget-header"> <i class="fa fa-bar-chart-o" style="margin-left:7px;"></i>                
-      	<h3><?php echo __('Tickets')." - ". __('Last 7 days','dashboard') ; ?></h3>
-      	<!-- <span  class="glyphicon glyphicon-remove-circle hide-widget"></span> -->             
+      <div class="widget-header wred">                
+      	<h3><i class="fa fa-bar-chart-o" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><?php echo __('Tickets')." - ". __('Last 7 days','dashboard') ; ?></h3>
+      	 <span  class="fa fa-times hide-widget"></span>             
       </div> 
-      <!-- /widget-header -->
-			<div id="graf7" style="height:320px;"> 
+      <!-- /widget-header -->      
+			<div id="graf7"> 
 				<?php
 					include ("graficos/inc/index/grafcol_setedias.inc.php");
 				?> 	 				              
@@ -575,12 +574,12 @@ setTimeout(function(){
   	
 <div class="col-sm-6 col-md-6" > 	 				              
    <div id="tickets_age" class="widget widget-table action-table striped" >
-      <div class="widget-header"> <i class="fa fa-pie-chart" style="margin-left:7px;"></i>                
-      	<h3><?php echo __('Ticket Solving Period','dashboard'); ?></h3>
-      	<!-- <span  class="glyphicon glyphicon-remove-circle hide-widget"></span> -->             
+      <div class="widget-header wpurple">                
+      	<h3><i class="fa fa-pie-chart" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><?php echo __('Ticket Solving Period','dashboard'); ?></h3>
+      	 <span  class="fa fa-times hide-widget"></span>             
       </div> 
       <!-- /widget-header -->
-			<div id="graf9" style="height:320px;"> 			
+			<div id="graf9"> 			
 				<?php
 					include ("graficos/inc/index/grafbar_age.inc.php");
 				?> 	 						            
@@ -591,12 +590,12 @@ setTimeout(function(){
 
 <div class="col-sm-6 col-md-6" > 	 				              
    <div id="tickets_time" class="widget widget-table action-table striped" >
-      <div class="widget-header"> <i class="fa fa-bar-chart-o" style="margin-left:7px;"></i>                
-      	<h3><?php echo __('Open Tickets Age','dashboard'); ?></h3>
-      	<!-- <span  class="glyphicon glyphicon-remove-circle hide-widget"></span> -->             
+      <div class="widget-header wpurple">                
+      	<h3><i class="fa fa-bar-chart-o" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><?php echo __('Open Tickets Age','dashboard'); ?></h3>
+      	 <span  class="fa fa-times hide-widget"></span>             
       </div> 
       <!-- /widget-header -->
-			<div id="graf8" style="height:320px;"> 
+			<div id="graf8"> 
 				<?php
 					include ("graficos/inc/index/grafpie_time.inc.php");
 				?> 	 				              
@@ -606,9 +605,9 @@ setTimeout(function(){
 	
 <div class="col-sm-6 col-md-6" > 	 				              
       <div id="last_tickets" class="widget widget-table action-table striped">
-      <div class="widget-header"> <i class="fa fa-list-alt" style="margin-left:7px;"></i>                
-      	<h3><a href="../../../front/ticket.php" target="_blank" style="color: #525252;"><?php echo __('Last Tickets','dashboard'); ?></a></h3>
-      	<!-- <span  class="glyphicon glyphicon-remove-circle hide-widget"></span> -->             
+      <div class="widget-header wyellow">                
+      	<h3><i class="fa fa-list-alt" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><a href="../../../front/ticket.php" target="_blank" style="color: #525252;"><?php echo __('Last Tickets','dashboard'); ?></a></h3>
+      	 <span  class="fa fa-times hide-widget"></span>             
       </div> 
       <!-- /widget-header -->
       <div class="widget-content" style="height:322px;">
@@ -645,9 +644,9 @@ setTimeout(function(){
 <!--  open tickets by tech-->
 	<div class="col-sm-6 col-md-6" > 	
 		<div id="open_tickets" class="widget widget-table action-table striped">
-            <div class="widget-header"> <i class="fa fa-list-alt" style="margin-left:7px;"></i>
-           		<h3><a href="../../../front/ticket.php" target="_blank" style="color: #525252;"><?php echo __('Open Tickets','dashboard'). " " .__('by Technician','dashboard') ?></a></h3>
-           		<!-- <span  class="glyphicon glyphicon-remove-circle hide-widget"></span> -->           
+            <div class="widget-header wyellow">
+           		<h3><i class="fa fa-list-alt" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><a href="../../../front/ticket.php" target="_blank" style="color: #525252;"><?php echo __('Open Tickets','dashboard'). " " .__('by Technician','dashboard') ?></a></h3>
+           		 <span  class="fa fa-times hide-widget"></span>           
             </div>
             <!-- /widget-header -->
             
@@ -692,9 +691,9 @@ setTimeout(function(){
 -->
 <div class="col-sm-6 col-md-6" >  	 				              
 		 <div id="events" class="widget widget-table action-table striped">
-            <div class="widget-header"> <i class="fa fa-list-alt" style="margin-left:7px;"></i>
-              <h3><a href="../../../front/event.php" target="_blank" style="color: #525252;"><?php echo __('Last Events','dashboard'); ?></a></h3>
-              <!-- <span  class="glyphicon glyphicon-remove-circle hide-widget"></span> -->
+            <div class="widget-header wblue">
+              <h3><i class="fa fa-list-alt" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><a href="../../../front/event.php" target="_blank" style="color: #525252;"><?php echo __('Last Events','dashboard'); ?></a></h3>
+               <span  class="fa fa-times hide-widget"></span>
             </div>
             <!-- /widget-header -->
             <div class="widget-content">   
@@ -783,7 +782,7 @@ setTimeout(function(){
 
 	<div class="col-sm-6 col-md-6" >  	 				              
 		 <div id="logged_users" class="widget widget-table action-table">
-            <div class="widget-header"> <i class="fa fa-group" style="margin-left:7px;"></i>
+            <div class="widget-header wblue">
 				<?php
 				//logged users				
 				//$path = "../../../files/_sessions/";
@@ -841,8 +840,8 @@ setTimeout(function(){
 				$num_users = $DB->numrows($result_name);          
 				            
 				?>    
-           <h3><?php echo __('Logged Users','dashboard')."  :  " .$num_users; ?></h3>
-			  <!-- <span  class="glyphicon glyphicon-remove-circle hide-widget"></span> -->
+           <h3><i class="fa fa-group" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><?php echo __('Logged Users','dashboard')."  :  " .$num_users; ?></h3>
+			   <span  class="fa fa-times hide-widget"></span>
 
             </div>
             <!-- /widget-header -->

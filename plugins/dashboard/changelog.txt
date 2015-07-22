@@ -1,41 +1,37 @@
-Versão 0.6.4:
+Versão 0.6.5:
 
-- Gráficos e tabelas do index convertidas em widgets que podem ser ocultados e reorganizados;
+- Página com Métricas do GLPI, ideal para TV's;
 
-- Correção do refresh no Index com top menu;
+- Alterações no temas;
 
-- Correção dos gráficos de ativos;
+- Correções em Ativos;
 
-- Relatório de Categorias;
+- Modificações no relatório de Projetos;
 
-- Reletório de SLAs;
+- Modificações em Tarefas de projetos;
 
-- Relatório de Grupos;
+- Correções nos relatórios de Ativos;
 
-- Correções e melhorias no CSS e temas;
-
-- Correção - Gráficos por técnico e por grupo;
+- Correção de bugs diversos;
 
 - Você agora pode me comprar uma cerveja pelo paypal; :)
 
-- Correção de bugs diversos.
 
+Version 0.6.5:
 
-Version 0.6.4:
+- Page with GPI Metrics, ideal for TV's;
 
-- Index charts and tables are now widgets. You can hide or reorganize them;
+- Changes in themes;
 
-- Assets charts fixed;
+- Fixes in Assets;
 
-- Categories Report;
+- Changes in Project report;
 
-- SLA's Report;
+- Changes in project tasks;
 
-- Groups Report;
+- Fixes in Asset reports;
 
-- Fix and improvements in themes and CSS styles;
-
-- Charts by technician and by group fixes;
+- Fixed various bugs.
 
 - Now you can buy me a beer in Paypal;
 

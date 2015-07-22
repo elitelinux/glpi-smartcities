@@ -6,7 +6,6 @@ include (GLPI_ROOT . "/config/config.php");
 global $DB;
 
 Session::checkLoginUser();
-//Session::checkRight("profile", READ);
 
 # entity in index
 $sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' AND users_id = ".$_SESSION['glpiID']."";
@@ -69,7 +68,6 @@ if($colors == '') {
 }
 $_SESSION['charts_colors'] = $colors;
 
-//$refresh = $_SESSION['glpirefresh_ticket_list'] * 120;
      switch (date("m")) {
     case "01": $mes = __('January','dashboard'); break;
     case "02": $mes = __('February','dashboard'); break;
@@ -93,8 +91,7 @@ $_SESSION['charts_colors'] = $colors;
     case "4": $dia = __('Thursday','dashboard'); break;
     case "5": $dia = __('Friday','dashboard'); break;
     case "6": $dia = __('Saturday','dashboard'); break;  
-    }
-    
+    }    
 
 //user image and name
 $sql_photo = "SELECT picture 
@@ -174,7 +171,7 @@ else {
    	echo "<body style=\"background: url('./img/".$back."') no-repeat top center fixed; \">";
    	}
    else {
-   	echo "<body style='background-color: #FFF;' >";
+   	echo "<body>";
    	}	 
    ?>
 
@@ -250,7 +247,7 @@ else {
                                     <img src="<?php echo $photo_url;?>" alt="" title="Upload photo in user profile" class="avatar" style="margin-left: -8px;" />
                                     <div class="user-info">
                                         <div class="welcome"><?php echo __('Welcome','dashboard'); ?> , </div>
-                                        <div class="username"><a href="<?php echo $CFG_GLPI['root_doc']; ?>/front/user.form.php?id=<?php echo $_SESSION['glpiID']; ?>" target="_blank"><?php echo $_SESSION["glpifirstname"]; ?></a></div>
+                                        <div class="username"><a href="<?php echo $CFG_GLPI['url_base']; ?>/front/user.form.php?id=<?php echo $_SESSION['glpiID']; ?>" target="_blank"><?php echo $_SESSION["glpifirstname"]; ?></a></div>
                                     </div>                                  
                                 </div>
                                 <!-- /.User   -->
@@ -543,6 +540,14 @@ else {
                                         </span>
                                     </a>  
                                 </li>
+                                
+                                <li class=' '>
+                                    <a href='metrics/index.php' target="_blank" data-original-title='Metrics'>
+                                        <i class='fa fa-line-chart'></i>
+                                        <span class='hidden-minibar'><?php echo __('Metrics','dashboard'); ?>
+                                        </span>
+                                    </a>  
+                                </li>
                                                                
                                 <li class=' '>
                                     <a href='config.php' target="_blank" data-original-title='Config'>
@@ -795,12 +800,12 @@ $total_users = $DB->fetch_assoc($result_users);
 						<div class="row" style="margin-left: 3%;">
 							<!-- COLUMN 1 -->															
 								  <div class="col-sm-3 col-md-3 stat">
-									 <div class="dashbox shad panel panel-default db-blue">
+									 <div class="dashbox shad panel panel-default db-red">
 										<div class="panel-body">
-										   <div class="panel-left red">
+										   <div class="panel-left red redbg">
 												<i class="fa fa-calendar-o fa-3x"></i>
 										   </div>
-										   <div class="panel-right">
+										   <div class="panel-right right">
 										     <div id="odometer1" class="odometer" style="font-size: 25px;">   </div><p></p>
                         				<span class="chamado"><?php echo __('Tickets','dashboard'); ?></span><br>
                         				<span class="date"><b><?php echo __('Today','dashboard'); ?></b></span>												
@@ -810,12 +815,12 @@ $total_users = $DB->fetch_assoc($result_users);
 								  </div>
 								  
 								  <div class="col-sm-3 col-md-3">
-									 <div class="dashbox shad panel panel-default db-green">
+									 <div class="dashbox shad panel panel-default db-blue">
 										<div class="panel-body">
-										   <div class="panel-left blue">
+										   <div class="panel-left blue bluebg">
 												<i class="fa fa-calendar fa-3x fa-calendar-index"></i>
 										   </div>
-										   <div class="panel-right">										 
+										   <div class="panel-right right">										 
 											<div id="odometer2" class="odometer" style="font-size: 25px;">   </div><p></p>
                         				<span class="chamado"><?php echo __('Tickets','dashboard'); ?></span><br>
                         				<span class="date"><b><?php echo $mes ?></b></span>
@@ -825,12 +830,12 @@ $total_users = $DB->fetch_assoc($result_users);
 								  </div>																		
                      								
 								  <div class="col-sm-3 col-md-3">
-									 <div class="dashbox shad panel panel-default db-red">
+									 <div class="dashbox shad panel panel-default db-yellow">
 										<div class="panel-body">
-										   <div class="panel-left yellow">
+										   <div class="panel-left yellow yellowbg">
 												<i class="fa fa-plus-square fa-3x"></i>
 										   </div>
-										   <div class="panel-right">
+										   <div class="panel-right right">
 												<div id="odometer3" class="odometer" style="font-size: 25px;">   </div><p></p>
                         				<span class="chamado"><?php echo __('Tickets','dashboard'); ?></span><br>
                         				<span class="date"><b><?php echo __('Total','dashboard'); ?></b></span>
@@ -841,13 +846,12 @@ $total_users = $DB->fetch_assoc($result_users);
 								  <div class="col-sm-3 col-md-3">
 									 <div class="dashbox shad panel panel-default db-orange">
 										<div class="panel-body">
-										   <div class="panel-left green">
+										   <div class="panel-left green orangebg">
 												<i class="fa fa-users fa-3x"></i>
 										   </div>
-								   		<div class="panel-right">
+								   		<div class="panel-right right">
 												<div id="odometer4" class="odometer" style="font-size: 25px;">   </div><p></p>
-                        				<span class="chamado"><?php echo __('users','dashboard'); ?></span><br>
-                        				
+                        				<span class="chamado"><?php echo __('users','dashboard'); ?></span><br>                        				
 										   </div>
 										</div>
 									 </div>
@@ -874,110 +878,131 @@ setTimeout(function(){
  
 <!-- <div id="pad-wrapper"> -->
 
-	<div class="row-fluid" style="margin-top: 30px;" >
-      <h4> <?php echo __('Tickets Evolution','dashboard'); ?> </h4>
-      <p id="choices" style="float:right; width:600px; margin-right: 0px; margin-top: 5px; text-align:right;"></p>	  	
-
-		<div class="demo-container">
-			<div id="graflinhas1" class="demo-placeholder col-sm-12 col-md-12" style="float:left;"></div>		
+  <div id="tickets_total" class="widget2 widget-table action-table striped" style="margin-top: 30px; ">
+      <div class="widget-header2" style="width:98.5%;">                
+      	<h3><i class="fa fa-area-chart" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><?php echo __('Tickets Evolution','dashboard'); ?></h3>      	               
+      </div> 
+      <!-- /widget-header -->
+	<div id="grfrow" class="row-fluid col-sm-12 col-md-12" style="width:98.5%;">	
+      <h4> <?php //echo __('Tickets Evolution','dashboard'); ?> </h4>
+      <p id="choices" style=" margin-right: 20px; margin-top: 5px; text-align:right; width:<?php echo $width_os; ?>;"></p>	  	
+		<div class="demo-container" style="margin-bottom:10px;">						
+			<div id="graflinhas1" class="demo-placeholder" style="float:left; width: <?php echo $width_os; ?> ;"></div>
+						
 		</div>
 	</div>
-
 	   <?php 
 			include ("graficos/inc/index/graflinhas_index_sel.inc.php");
 		?>					
+
+<div id="widgets" class="row" style="margin-top: 50px;">	
 	
-	<div class="row-fluid" style="margin-top: 75px;">	
-		<div class="col-sm-6 col-md-6 knob-wrapper">
-			<div id="pie1" style="height:320px;"> 			
+<div class="col-sm-6 col-md-6" > 	 				              
+   <div id="tickets_status" class="widget widget-table action-table striped" >
+      <div class="widget-header wred">                
+      	<h3><i class="fa fa-pie-chart" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><?php echo __('Opened Tickets by Status','dashboard'); ?></h3>
+      	 <!-- <span  class="glyphicon glyphicon-remove-circle hide-widget"></span>   -->               
+      </div> 
+      <!-- /widget-header -->
+      <div id="pie1">	 			
 				<?php
 					include ("graficos/inc/index/grafpie_index.inc.php");
 				?> 	 						            
-			</div> 
-		</div>
+		</div> 
+	</div>
+</div>
 
-		<div class="col-sm-6 col-md-6 knob-wrapper" style="margin-bottom: 35px;">
-			<div id="graf7" style="height:320px;"> 
+
+<div class="col-sm-6 col-md-6" > 	 				              
+   <div id="last_week" class="widget widget-table action-table striped" >
+      <div class="widget-header wred">                
+      	<h3><i class="fa fa-bar-chart-o" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><?php echo __('Tickets')." - ". __('Last 7 days','dashboard') ; ?></h3>
+      	 <!-- <span  class="glyphicon glyphicon-remove-circle hide-widget"></span>   -->             
+      </div> 
+      <!-- /widget-header -->      
+			<div id="graf7"> 
 				<?php
 					include ("graficos/inc/index/grafcol_setedias.inc.php");
 				?> 	 				              
 			</div> 
   		</div>      
-   </div>   
+  </div>   
   	
-	<div class="row-fluid" style="margin-top: 110px;">	
-		<div class="col-sm-6 col-md-6 knob-wrapper">
-			<div id="graf9" style="height:320px;"> 			
+<div class="col-sm-6 col-md-6" > 	 				              
+   <div id="tickets_age" class="widget widget-table action-table striped" >
+      <div class="widget-header wpurple">                
+      	<h3><i class="fa fa-pie-chart" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><?php echo __('Ticket Solving Period','dashboard'); ?></h3>
+      	 <!-- <span  class="glyphicon glyphicon-remove-circle hide-widget"></span>   -->             
+      </div> 
+      <!-- /widget-header -->
+			<div id="graf9"> 			
 				<?php
 					include ("graficos/inc/index/grafbar_age.inc.php");
 				?> 	 						            
 			</div> 
-		</div>
+	</div>
+</div>		
 
-		<div class="col-sm-6 col-md-6 knob-wrapper">
-			<div id="graf8" style="height:320px;"> 
+
+<div class="col-sm-6 col-md-6" > 	 				              
+   <div id="tickets_time" class="widget widget-table action-table striped" >
+      <div class="widget-header wpurple">                
+      	<h3><i class="fa fa-bar-chart-o" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><?php echo __('Open Tickets Age','dashboard'); ?></h3>
+      	 <!-- <span  class="glyphicon glyphicon-remove-circle hide-widget"></span>   -->             
+      </div> 
+      <!-- /widget-header -->
+			<div id="graf8"> 
 				<?php
 					include ("graficos/inc/index/grafpie_time.inc.php");
 				?> 	 				              
 			</div> 
   		</div>      
-   </div> 
-
-<div class="row" style="margin-top: 40px;">
+</div> 
 	
-	<div id="last_tickets" class="col-sm-6 col-md-6" style="margin-top:50px;"> 
- 	 				              
-		      <div class="widget widget-table action-table striped">
-            <div class="widget-header"> <i class="fa fa-list-alt" style="margin-left:7px;"></i>
-
-              <h3><a href="../../../front/ticket.php" target="_blank" style="color: #525252;"><?php echo __('Last Tickets','dashboard'); ?></a></h3>
-             
-            </div>
-            <!-- /widget-header -->
-            <div class="widget-content" style="height:322px;">
-            <?php
-
-		// last tickets
-			$status = "('5','6')"	;	         
-                        
-            $query_wid = "
-            SELECT glpi_tickets.id AS id, glpi_tickets.name AS name
-				FROM glpi_tickets
-				WHERE glpi_tickets.is_deleted = 0
-				AND glpi_tickets.status NOT IN $status
-				".$entidade."
-				ORDER BY id DESC
-				LIMIT 10 ";
-            
-            $result_wid = $DB->query($query_wid);			            
-            
-            ?>    
-              <table id="last_tickets" class="table table-hover table-bordered table-condensed" >
-              <th style="text-align: center;"><?php echo __('Tickets','dashboard'); ?></th><th style="text-align: center;" ><?php echo __('Title','dashboard'); ?></th>
-              
-				<?php
-					while($row = $DB->fetch_assoc($result_wid)) 
-					{					
-						echo "<tr><td style='text-align: center;'><a href=../../../front/ticket.form.php?id=".$row['id']." target=_blank style='color: #526273;'>".$row['id']."</a>
-						</td><td>". substr($row['name'],0,60)."</td></tr>";											
-					}				
-				?>                                       
-              </table>
-              
-            </div>
-            <!-- /widget-content --> 
-          </div>
+<div class="col-sm-6 col-md-6" > 	 				              
+      <div id="last_tickets" class="widget widget-table action-table striped">
+      <div class="widget-header wyellow">                
+      	<h3><i class="fa fa-list-alt" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><a href="../../../front/ticket.php" target="_blank" style="color: #525252;"><?php echo __('Last Tickets','dashboard'); ?></a></h3>
+      	 <!-- <span  class="glyphicon glyphicon-remove-circle hide-widget"></span>   -->             
+      </div> 
+      <!-- /widget-header -->
+      <div class="widget-content" style="height:322px;">
+      <?php
+			// last tickets
+			$status = "('5','6')";	         
+	                  
+	      $query_wid = "
+	      SELECT glpi_tickets.id AS id, glpi_tickets.name AS name
+			FROM glpi_tickets
+			WHERE glpi_tickets.is_deleted = 0
+			AND glpi_tickets.status NOT IN $status
+			".$entidade."
+			ORDER BY id DESC
+			LIMIT 10 ";
+	      
+	      $result_wid = $DB->query($query_wid);			            	      
+	      ?>    
+	        <table id="last_tickets" class="table table-hover table-bordered table-condensed" >
+		        <th style="text-align: center;"><?php echo __('Tickets','dashboard'); ?></th><th style="text-align: center;" ><?php echo __('Title','dashboard'); ?></th>	        
+					<?php
+						while($row = $DB->fetch_assoc($result_wid)) 
+						{					
+							echo "<tr><td style='text-align: center;'><a href=../../../front/ticket.form.php?id=".$row['id']." target=_blank style='color: #526273;'>".$row['id']."</a>
+							</td><td>". substr($row['name'],0,60)."</td></tr>";											
+						}				
+					?>                                       
+	        </table>        
+      </div>
+         <!-- /widget-content --> 
+       </div>
 	</div> 
 
 <!--  open tickets by tech-->
-
-	<div id="open_tickets" class="col-sm-6 col-md-6 " style="margin-top:50px;"> 
-	
-		<div class="widget widget-table action-table striped">
-            <div class="widget-header"> <i class="fa fa-list-alt" style="margin-left:7px;"></i>
-
-           		<h3><a href="../../../front/ticket.php" target="_blank" style="color: #525252;"><?php echo __('Open Tickets','dashboard'). " " .__('by Technician','dashboard') ?></a></h3>
-           
+	<div class="col-sm-6 col-md-6" > 	
+		<div id="open_tickets" class="widget widget-table action-table striped">
+            <div class="widget-header wyellow">
+           		<h3><i class="fa fa-list-alt" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><a href="../../../front/ticket.php" target="_blank" style="color: #525252;"><?php echo __('Open Tickets','dashboard'). " " .__('by Technician','dashboard') ?></a></h3>
+           		 <!-- <span  class="glyphicon glyphicon-remove-circle hide-widget"></span>   -->           
             </div>
             <!-- /widget-header -->
             
@@ -997,12 +1022,12 @@ setTimeout(function(){
 				ORDER BY tick DESC
 				LIMIT 10 ";
             
-            $result_tec = $DB->query($query_tec);			            
-            
+            $result_tec = $DB->query($query_tec);			                        
             ?>    
-              <table id="open_tickets" class="table table-hover table-bordered table-condensed" >
-              <th style="text-align: center;"><?php echo __('Technician','dashboard'); ?></th><th style="text-align: center;">
-              <?php echo __('Open Tickets','dashboard'); ?></th>
+           <table id="open_tickets" class="table table-hover table-bordered table-condensed" >
+           <th style="text-align: center;"><?php echo __('Technician','dashboard'); ?></th><th style="text-align: center;">
+          	<?php echo __('Open Tickets','dashboard'); ?>
+           </th>
               
 				<?php
 					while($row = $DB->fetch_assoc($result_tec)) 
@@ -1011,30 +1036,24 @@ setTimeout(function(){
 						".$row['name']." ".$row['sname']."</a></td><td style='text-align: center;' >".$row['tick']."</td></tr>";											
 					}				
 				?>                                       
-              </table>
-              
+              </table>              
             </div>
             <!-- /widget-content --> 
           </div>
-       </div>   
-</div>
+       </div>
+<!-- </div>
 
 <div class="row ">
-
-
-<div id="events" class="col-sm-6 col-md-6 " style="margin-top:35px;"> 
- 	 				              
-		      <div class="widget widget-table action-table striped">
-            <div class="widget-header"> <i class="fa fa-list-alt" style="margin-left:7px;"></i>
-
-              <h3><a href="../../../front/event.php" target="_blank" style="color: #525252;"><?php echo __('Last Events','dashboard'); ?></a></h3>
-
+-->
+<div class="col-sm-6 col-md-6" >  	 				              
+		 <div id="events" class="widget widget-table action-table striped">
+            <div class="widget-header wblue">
+              <h3><i class="fa fa-list-alt" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><a href="../../../front/event.php" target="_blank" style="color: #525252;"><?php echo __('Last Events','dashboard'); ?></a></h3>
+               <!-- <span  class="glyphicon glyphicon-remove-circle hide-widget"></span>   -->
             </div>
             <!-- /widget-header -->
-            <div class="widget-content">
-   
-				<?php
-				
+            <div class="widget-content">   
+				<?php				
 				$query_evt = "
 				SELECT *
 				FROM `glpi_events`
@@ -1081,7 +1100,7 @@ setTimeout(function(){
 					return $service;
 					}
 					     ?>    
-				          <table id="events" class="table table-hover table-bordered table-condensed" >
+				          <table id="lastevents" class="table table-hover table-bordered table-condensed" >
 				            <th style="text-align: center;"><?php echo __('Type'); ?></th>
 								<th style="text-align: center;"><?php echo __('Date'); ?></th>
 								<!-- <th style="text-align: center;"><?php echo __('Service'); ?></th>  -->
@@ -1113,17 +1132,15 @@ setTimeout(function(){
               
             </div>
             <!-- /widget-content --> 
-          </div>
+       </div>
 	</div>
 
 
-	<div id="logged_users" class="col-sm-6 col-md-6 " style="margin-top:35px;"> 
- 	 				              
-		 <div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="fa fa-group" style="margin-left:7px;"></i>
+	<div class="col-sm-6 col-md-6" >  	 				              
+		 <div id="logged_users" class="widget widget-table action-table">
+            <div class="widget-header wblue">
 				<?php
-				//logged users
-				
+				//logged users				
 				//$path = "../../../files/_sessions/";
 				$path = GLPI_SESSION_DIR . '/' ;
 				$diretorio = opendir($path);        
@@ -1171,7 +1188,7 @@ setTimeout(function(){
 				$ids2 = implode("','",$ids);
 				
 				$query_name = 
-				"SELECT firstname AS name, realname AS sname, id AS uid, name AS glpiname 
+				"SELECT firstname AS name, realname AS sname, id AS uid, name AS glpiname, picture 
 				FROM glpi_users				
 				WHERE id IN ('".$ids2."')
 				ORDER BY name"; 
@@ -1180,7 +1197,7 @@ setTimeout(function(){
 				$num_users = $DB->numrows($result_name);          
 				            
 				?>    
-           <h3><?php echo __('Logged Users','dashboard')."  :  " .$num_users; ?></h3>
+           <h3><i class="fa fa-group" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><?php echo __('Logged Users','dashboard')."  :  " .$num_users; ?></h3>			  
 
             </div>
             <!-- /widget-header -->
@@ -1189,7 +1206,8 @@ setTimeout(function(){
 	          if($num_users <= 10) {
 	          	echo '<div class="widget-content striped" style="min-height:318px;">'; }
 	          else {
-	          	echo '   <div class="widget-content striped ">'; }	          	
+	          	echo '<div class="widget-content striped" style="min-height:318px;">'; }
+	          	//echo '   <div class="widget-content striped ">'; }	          	
 				?>        
               <table id="logged_users" class="table table-hover table-bordered table-condensed" >                         
 				<?php
@@ -1251,14 +1269,11 @@ function scrollWin()
 	
 </div>
 <!-- /.site-holder -->
-
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-
  <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
    
 <script src="js/jquery.accordion.js"></script>            
-<script src="js/bootstrap-progressbar.js"></script> 
 <script src="js/bootstrap-dropdown.js"></script>
 <script src="js/jquery.easy-pie-chart.js"></script> 
 <script src="js/jquery.address-1.6.min.js"></script>

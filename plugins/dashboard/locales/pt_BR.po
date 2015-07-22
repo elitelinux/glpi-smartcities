@@ -450,3 +450,6 @@ msgstr "Vencido"
 
 msgid "Within"
 msgstr "No prazo"
+
+msgid "Metrics"
+msgstr "Métricas"

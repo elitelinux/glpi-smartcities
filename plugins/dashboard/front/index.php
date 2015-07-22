@@ -14,7 +14,6 @@ $query_lay = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'layou
 					$layout = $DB->result($result_lay,0,'value');
 					
 //redirect to index
-//redirect to index
 if($layout == '0')
 	{
 		$redir = '<meta http-equiv="refresh" content="0; url=index2.php" />';

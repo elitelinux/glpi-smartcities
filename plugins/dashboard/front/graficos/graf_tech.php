@@ -374,9 +374,9 @@ echo '<div id="name"  style="margin-top: 15px;"><span>'.$tec_name['name'].' '.$t
 								  </div>
 								  
 								  <div class="col-sm-3 col-md-3">
-									 <div class="dashbox shad panel panel-default db-green">
+									 <div class="dashbox shad panel panel-default db-yellow">
 										<div class="panel-body_2">
-										   <div class="panel-left blue" style = "margin-top: -5px; margin-left: -5px;">
+										   <div class="panel-left yellow" style = "margin-top: -5px; margin-left: -5px;">
 												<i class="fa fa-clock-o fa-3x fa2"></i>
 										   </div>
 										   <div class="panel-right">										 

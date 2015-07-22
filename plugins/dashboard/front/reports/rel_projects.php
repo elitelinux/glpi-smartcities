@@ -22,7 +22,7 @@ else {
     }
 
 if(!isset($_POST["sel_pro"])) {
-    $id_pro = $_GET["pro"];
+    $id_pro = $_REQUEST["pro"];
 }
 
 else {
@@ -217,7 +217,7 @@ ORDER BY id ASC ";
 $result_cham = $DB->query($sql_cham);
 
 $conta_cons = $DB->numrows($result_cham);
-$consulta = $conta_cons;
+//$consulta = $conta_cons;
 	
 	echo "
 	<div class='well info_box row-fluid col-md-12 report' style='margin-left: -1px;'>
@@ -235,11 +235,13 @@ $consulta = $conta_cons;
 			<tr>
 				<th style='text-align:center; cursor:pointer;'> ". __('ID') ."  </th>
 				<th style='text-align:center; cursor:pointer;'> ". __('Name') ."  </th>
-				<th style='text-align:center; cursor:pointer;'> ". __('Status') ." </th>
-				<th style='text-align:center; cursor:pointer;'> ". __('% finalizado') ."</th>
-				<th style='text-align:center; cursor:pointer;'> ". _n('Task', 'Tasks',2) ." </th>
-				<th style='text-align:center; cursor:pointer;'> ". __('Creation date') ." </th>
+				<th style='text-align:center; cursor:pointer;'> ". __('Status') ." </th>								
+				<th style='text-align:center; cursor:pointer;'> ". __('Planned start date') ." </th>
+				<th style='text-align:center; cursor:pointer;'> ". __('Planned end date') ." </th>
 				<th style='text-align:center; cursor:pointer;'> ". __('Manager') ."  </th>
+				<th style='text-align:center; cursor:pointer;'> ". _n('Task', 'Tasks',2) ." </th>
+				<th style='text-align:center; cursor:pointer;'> ". __('Progress') ."</th>
+				<th style='text-align:center; cursor:pointer;'> ". __('Due Date','dashboard') ."</th>				
 			</tr>
 		</thead>
 	<tbody>
@@ -267,26 +269,75 @@ while($row = $DB->fetch_assoc($result_cham)){
 	
 	$result_task = $DB->query($sql_task) ;
 	$row_task = $DB->fetch_assoc($result_task);
+	
+	//planned time
+	$sql_time = "SELECT TIMESTAMPDIFF(SECOND,plan_start_date,plan_end_date) AS time FROM glpi_projects WHERE id = ".$row['id']."";
+	$res_time = $DB->query($sql_time);
+	$plan_time = $DB->result($res_time,0,'time');
+	
+	//real time
+	$sql_timen = "SELECT TIMESTAMPDIFF(SECOND,plan_start_date,NOW()) AS timen FROM glpi_projects WHERE id = ".$row['id']."";
+	$res_timen = $DB->query($sql_timen);
+	$plan_timen = $DB->result($res_timen,0,'timen');
+
 		
-	// bar color
+	//time percent	
+	$now = date("Y-m-d H:i:s");
+	
+	if($row['plan_end_date'] <= $now) {
+		//$time_plan = "<span style='color:red;'>" . strtoupper(__('Late')) ."</span>";		
+    $barra = 100;
+    $cor_due = "progress-bar-danger";
+    $message = __('Late');
+	}	
+	
+	//if($row['plan_end_date'] >= $now) {
+	else {	
+		
+		$time_plan = round(($plan_timen * 100)/$plan_time,2);		
+		$message = '';
+		
+		//porcentagem
+		//$perc = round(($abertos*100)/$conta_cons,1);
+		$barra = $time_plan;
+		
+		// cor barra
+		if($barra == 100) { $cor_due = "progress-bar-danger"; }
+		if($barra >= 80 and $barra < 100) { $cor_due = "progress-bar-warning "; }
+		if($barra > 51 and $barra < 80) { $cor_due = "progress-bar-warning"; }
+		if($barra > 0 and $barra <= 50) { $cor_due = " "; }
+		if($barra < 0) { $cor_due = "progress-bar-success"; $barra = 0; }
+
+	}
+
+
+	// progress bar color
 	if($row['percent_done'] == 100) { $cor = "progress-bar-success"; }
 	else { $cor = ""; }
-	
-	
+		
 	echo "
 	<tr>
-	<td style='text-align:center;'><a href=".$CFG_GLPI['root_doc']."/front/project.form.php?id=". $row['id'] ." target=_blank >" . $row['id'] . "</a></td>
-	<td style='text-align:center;'> ". $row['name'] ." </td>
-	<td style='text-align:center; color:".$row_stat['color'].";'> ". $row_stat['name'] ." </td>
-	<td style='text-align:center;'>
+	<td style='text-align:center; vertical-align:middle'><a href=".$CFG_GLPI['url_base']."/front/project.form.php?id=". $row['id'] ." target=_blank >" . $row['id'] . "</a></td>
+	<td style='vertical-align:middle'> ". $row['name'] ." </td>
+	<td style='text-align:center; vertical-align:middle; color:".$row_stat['color'].";'> ". $row_stat['name'] ." </td>	
+	<td style='text-align:center; vertical-align:middle'> ". conv_data_hora($row['plan_start_date']) ."</td>
+	<td style='text-align:center; vertical-align:middle'> ". conv_data_hora($row['plan_end_date']) ."</td>
+	<td style='text-align:center; vertical-align:middle;'> ". getUserName($row['users_id']) ." </td>	
+	<td style='text-align:center; vertical-align:middle'><a href='./rel_projecttasks.php?sel_pro=". $row['id'] ."' target=_self >" . $row_task['tasks'] . "</a></td>
+	<td style='text-align:center; vertical-align:middle;'>	
 		<div class='progress' style='margin-top: 5px; margin-bottom: 5px;'>
 			<div class='progress-bar " . $cor . " progress-bar-striped active' role='progressbar' aria-valuenow='".$row['percent_done']."' aria-valuemin='0' aria-valuemax='100' style='width: ".$row['percent_done']."%;'>
 			 			".$row['percent_done']." % 	
 			</div>		
-		</div> </td>
-	<td style='text-align:center;'><a href='./rel_projecttasks.php?sel_pro=". $row['id'] ."' target=_self >" . $row_task['tasks'] . "</a></td>
-	<td style='text-align:center;'> ". conv_data_hora($row['date']) ."</td>
-	<td> ". getUserName($row['users_id']) ." </td>	
+		</div> 
+	</td>
+	<td style='text-align:center; vertical-align:middle;'> 
+	<div class='progress' style='margin-top: 19px;'>
+		<div class='progress-bar ". $cor_due ." progress-bar-striped active' role='progressbar' aria-valuenow='".$barra."' aria-valuemin='0' aria-valuemax='100' style='width: ".$barra."%;'>
+ 				 		" . $message . "
+ 			</div>
+ 		</div>	
+	</td>
 	</tr>";
 }
 

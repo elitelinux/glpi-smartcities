@@ -475,8 +475,8 @@ $result_tec = $DB->query($sql_tec);
 
 echo "
 <tr>
-<td style='text-align:center; vertical-align:middle;'><a href=".$CFG_GLPI['root_doc']."/front/ticket.form.php?id=". $row['id'] ." target=_blank >" . $row['id'] . "</a></td>
-<td style='vertical-align:middle; text-align: left;'><img src=".$CFG_GLPI['root_doc']."/pics/".$status1.".png title='".Ticket::getStatus($row['status'])."' style=' cursor: pointer; cursor: hand;'/>&nbsp; ".Ticket::getStatus($row['status'])."  </td>
+<td style='text-align:center; vertical-align:middle;'><a href=".$CFG_GLPI['url_base']."/front/ticket.form.php?id=". $row['id'] ." target=_blank >" . $row['id'] . "</a></td>
+<td style='vertical-align:middle; text-align: left;'><img src=".$CFG_GLPI['url_base']."/pics/".$status1.".png title='".Ticket::getStatus($row['status'])."' style=' cursor: pointer; cursor: hand;'/>&nbsp; ".Ticket::getStatus($row['status'])."  </td>
 <td style='vertical-align:middle;'> ". $type ." </td>
 <td style='vertical-align:middle;'> ". substr($row['name'],0,55) ." </td>
 <td style='vertical-align:middle;'> ". $row_user['name'] ." ".$row_user['sname'] ." </td>

@@ -50,10 +50,10 @@ $(function () {
                 verticalAlign: 'middle',
                 x: 0,
                 y: 0,
-                //floating: true,
+                floating: true,
                 borderWidth: 0,
                 backgroundColor: '#FFFFFF',
-                adjustChartSize: true,
+                adjustChartSize: false,
                 format: '{series.name}: <b>{point.percentage:.1f}%</b>'
             },
             tooltip: {

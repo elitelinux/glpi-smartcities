@@ -156,14 +156,14 @@ a {
   padding: 0px;
 }
 .bg-primary {
-  background: #03A9F4 !important;
+  background: #4184f3 !important;
 }
 
 /*	 Left Sidebar
 ---------------------------------------------------------------------------------------------- */
 .navbar.nav-delighted.navbar-default {
   height: 60px;
-  background-color: #03A9F4;  //#5E87B0;
+  background-color: #4184f3;  //#4184f3;  //#5E87B0;
   border-width: 0px;
   border-radius: 0px;
   margin-bottom: 0px;
@@ -192,7 +192,7 @@ a {
 }
 .navbar.nav-delighted.navbar-default a.logout {
   font-size: 34px;
-  color: #03A9F4;
+  color: #4184f3;
   background-color: #ECECEC;  //#232b2d;
   float: right;
   height: 60px;
@@ -215,7 +215,7 @@ a {
   height: 32px;
   width: 155px;
   border-radius: 16px;
-  color: #03A9F4;
+  color: #4184f3;
   padding-left: 30px;
   background-color: white;
   border: 1px solid white;
@@ -274,7 +274,7 @@ a {
 }
 .left-sidebar .user-menu img.avatar {
   float: left;
-  border: 2px solid #03A9F4;
+  border: 2px solid #4184f3;
   border-radius: 50%;
   margin-right: 10px;
   width: 50px;
@@ -323,7 +323,7 @@ a {
 }
 .left-sidebar .sidebar-holder .nav li a:hover {
   text-decoration: none;
-  background-color: #03A9F4;
+  background-color: #4184f3;
   color: #ffffff;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
@@ -354,7 +354,7 @@ a {
 .left-sidebar .sidebar-holder .nav li.active > a {
   text-decoration: none;
   background-color: #1A2022;
-  border-left: 3px solid #03A9F4;
+  border-left: 3px solid #4184f3;
   color: #ffffff;
   -webkit-transition: all 0.1s ease;
   -moz-transition: all 0.1s ease;
@@ -401,7 +401,7 @@ a {
   margin-left: 80px !important;
   z-index: 300000;
   margin-top: -65px;
-  border: 1px solid #03A9F4;
+  border: 1px solid #4184f3;
 }
 .site-holder.mini-sidebar .left-sidebar .user-menu .avatar {
   margin-left: -10px;
@@ -576,7 +576,7 @@ a {
 ---------------------------------------------------------------------------------------------- */
 .panel {
   padding: 0px;
-  border-top: 1px solid #03A9F4;
+  border-top: 1px solid #4184f3;
   box-shadow: 0px 0px 2px 0px #cec8c8;
   -moz-box-shadow: 0px 0px 2px 0px #cec8c8;
   box-shadow: 0px 0px 2px 0px #cec8c8;
@@ -584,7 +584,7 @@ a {
 }
 .panel.bg-none {
   background-color: none !important;
-  border-top: 0px solid #03A9F4;
+  border-top: 0px solid #4184f3;
   box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -627,9 +627,9 @@ a {
   border-color: none;
 }
 .panel.panel-primary > .panel-heading {
-  color: #03A9F4 !important;
+  color: #4184f3 !important;
   background-color: #ffffff;
-  border-top: 1px solid #03A9F4;
+  border-top: 1px solid #4184f3;
 }
 .panel.panel-primary > .panel-heading h3 {
   font-size: 14px;
@@ -677,7 +677,7 @@ a {
 .nav-stacked-left > li.active > a,
 .nav-stacked-left > li.active > a:hover,
 .nav-stacked-left > li.active > a:focus {
-  color: ##03A9F4;
+  color: ##4184f3;
   cursor: default;
   background-color: #ffffff;
   border: 1px solid #dddddd;
@@ -702,7 +702,7 @@ a {
   line-height: 20px;
   color: #ffffff;
   text-align: center;
-  background-color: #03A9F4;
+  background-color: #4184f3;
   border-radius: 3px;
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
@@ -713,7 +713,7 @@ a {
   background-color: #a0d269;
 }
 .progress-bar-primary {
-  background-color: #03A9F4 !important;
+  background-color: #4184f3 !important;
 }
 .progress-bar-info {
   background-color: #6cadd1;
@@ -778,7 +778,7 @@ a {
 }
 .btn-primary {
   color: #ffffff;
-  background-color: #03A9F4;
+  background-color: #4184f3;
   border-color: #21b1ad;
 }
 .btn-primary:hover,
@@ -1116,7 +1116,7 @@ ANIMATIONS
 
 /*buttons customization*/
 .btn-primary {
-  background-color: #03A9F4 !important;
+  background-color: #4184f3 !important;
 }
 .btn-danger {
   background-color: #DF4F4E !important;
@@ -1349,7 +1349,7 @@ ANIMATIONS
     padding: 0.5em 0.6em;
 	 margin: 30px 15px 15px 15px; 
 	 width:190px;
-	 background-color: #03A9F4;
+	 background-color: #4184f3;
 	 color: #fff;
 	 
 }
@@ -1384,7 +1384,7 @@ height: 30px;
 }
 
 img.avatar {
-    border: 2px solid #fff; //#03A9F4;
+    border: 2px solid #fff; //#4184f3;
     border-radius: 50%;
 	 margin-left: 10px;
     width: 43px;

@@ -1,6 +1,6 @@
 body {
 	font-family: 'Open Sans', sans-serif;
-	background-color: #f7f7f7;
+	/*background-color: #f9f9f9;*/
 	position: relative;
 	margin: 0px;
 	font-size: 12px;
@@ -455,7 +455,7 @@ h4 {
 	padding-bottom: 30px;
 	overflow: hidden;
 	position: relative;
-	background: #fff;
+
 	margin-left: 177px;
 	border-left: 1px solid #dae3e9;
 	border-bottom: 1px solid #dae3e9;
@@ -629,3 +629,21 @@ h4 {
 	margin-bottom: 11px;
 }
 */
+
+.flot-overlay1 {
+background-color: #fff;
+}
+
+#pie1, #graf7, #graf8, #graf9 {
+	height: 320px;
+	background-color: #fff;
+	box-shadow: -3px 3px 3px -2px #D2D6DE;
+	border-radius: 4px;
+}
+
+#graflinhas {
+	background-color: #fff;
+	box-shadow: -3px 3px 3px -2px #D2D6DE;
+	border-radius: 0px 0px 0px 5px;
+
+}

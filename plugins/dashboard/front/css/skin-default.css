@@ -1347,7 +1347,8 @@ ANIMATIONS
     padding: 0.5em 0.6em;
 	 margin: 30px 15px 15px 15px; 
 	 width:190px;
-	 background-color: #c1c1c1;	 
+	 background-color: #5E87B0;	
+	 color:#fff; 
 }
 
 .data-row .data-name, .data-row .data-value {
@@ -1358,14 +1359,14 @@ ANIMATIONS
 }
 
 .data-row .data-name {    
-    color: #cecece;
+    
     font-size: 0.93em;
     vertical-align: top;
     width: 12px;
 }
 
 .data-value { 
-	 color: #cecece;      
+	      
     font-size: 0.89em;
     vertical-align: top;    
 }

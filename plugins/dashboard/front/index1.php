@@ -97,10 +97,10 @@ $_SESSION['charts_colors'] = $colors;
     
 
 //GLPI version
-$version = substr($CFG_GLPI["version"],0,4);
+//$version = substr($CFG_GLPI["version"],0,4);
 
 //user image and name
-if($version == "0.85") {
+//if($version == "0.85") {
 	$sql_photo = "SELECT picture 
 					FROM glpi_users
 					WHERE id = ".$_SESSION["glpiID"]." ";
@@ -109,7 +109,7 @@ if($version == "0.85") {
 	$pic = $DB->result($res_photo,0,'picture');
 	
 	$photo_url = User::getURLForPicture($pic);  
-}   
+//}   
 
 //redirect tech profile
 if(Session::haveRight("profile", READ))
@@ -222,15 +222,15 @@ $(window).load(function () {
                      <a class="navbar-brand hidden-xs" href="<?php echo $CFG_GLPI['url_base'].'/front/ticket.php';?>" target="_blank" style="width: 290px; margin-left: -45px;">
 
 								<?php 
-								if($version == "0.85") {	
+								//if($version == "0.85") {	
 									echo '<img src='. $photo_url .' alt="" title="Upload photo in user profile" class="avatar" style="height: 40px; margin-left: -8px;" />';
-								}
-								else {									                     
-	                     	echo "<span class='welcome' style='font-size:13px; margin-top:-15px; margin-left:50px;'>". __('Welcome','dashboard'). " , </span>";
-	                     }
+								//}
+								//else {									                     
+	                     //	echo "<span class='welcome' style='font-size:13px; margin-top:-15px; margin-left:50px;'>". __('Welcome','dashboard'). " , </span>";
+	                     // }
 	                     ?> 
 	                     <span style="font-size:18px;"><?php echo $_SESSION["glpifirstname"];?></span>
-	                   	<a href="<?php echo $CFG_GLPI['root_doc']; ?>/front/user.form.php?id=<?php echo $_SESSION['glpiID']; ?>" target="_blank" 
+	                   	<a href="<?php echo $CFG_GLPI['url_base']; ?>/front/user.form.php?id=<?php echo $_SESSION['glpiID']; ?>" target="_blank" 
 	                   	style="margin-left:0px; margin-top: 18px; margin-bottom:0px; color:#fff; font-size: 18px;"></a>
                    	</a>
                     </div>
@@ -300,7 +300,7 @@ $(window).load(function () {
             </li>            
  
             <!-- Classic list -->
-				<li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" style="color:#fff;"><span class="text-nav1"><i class='fa fa-list-alt'></i>&nbsp;<?php echo __('Reports','dashboard');?>&nbsp;<b class="caret"></b></span></a>
+				<li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" style="color:#fff;"><span class="text-nav1"><i class='fa fa-file-text'></i>&nbsp;<?php echo __('Reports','dashboard');?>&nbsp;<b class="caret"></b></span></a>
               <ul class="dropdown-menu" role="menu">
                 
                   <!-- Content container to add padding -->
@@ -381,10 +381,9 @@ $(window).load(function () {
             </li>           
             
             <!-- Classic dropdown -->	            
-            <li class="nav-link"><span onclick="window.open('./assets/assets.php','iframe1');"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-icon"><i class='fa fa-desktop'></i>&nbsp;<?php echo __('Assets');?></a></span></li>	 
-                   
-          </ul>
-         
+            <li class="nav-link"><span onclick="window.open('./assets/assets.php','iframe1');"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-icon"><i class='fa fa-desktop'></i>&nbsp;<?php echo __('Assets');?></a></span></li>
+            <li class="nav-link"><span onclick="window.open('./metrics/index.php','self');"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-icon"><i class='fa fa-line-chart'></i>&nbsp;<?php echo __('Metrics','dashboard');?></a></span></li>	                    
+          </ul>         
 	         <ul class="dropdown pull-right">
 					<li class="nav-link"><span onclick="window.open('./config.php','iframe1');"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-icon"><i class='fa fa-gears' title="<?php echo __('Setup');?>" ></i></a></span></li>
 				</ul>         

@@ -109,25 +109,46 @@ echo "    ],
             yAxis: {
                 min: 0,
                 title: {
-                    text: '',
-                    align: 'high'
+						  text: '',
+                    align: 'middle'
                 },
                 labels: {
                     overflow: 'justify'
+                },
+                stackLabels: {
+                enabled: true,
+                y:-15,
+                style: {
+                    fontWeight: 'bold',
+                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                 }
+              }
             },
-	        tooltip: {
-	            headerFormat: '<span style=\"font-size:10px\">{point.key}</span><table>',
-	            pointFormat: '<tr><td style=\"color:{series.color};padding:0\">{series.name}: </td>' +
-	                '<td style=\"padding:0\"><b>{point.y:.0f} </b></td></tr>',
-	            footerFormat: '</table>',
-	            shared: true,
-	            useHTML: true
-	        },
+  /*      tooltip: {
+            headerFormat: '<span style=\"font-size:10px\">{point.key}</span><table>',
+            pointFormat: '<tr><td style=\"color:{series.color};padding:0\">{series.name}: </td>' +
+                '<td style=\"padding:0\"><b>{point.y:.0f} </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        }, */
+        
+          tooltip: {
+            formatter: function () {
+                return '<b>' + this.x + '</b><br/>' +
+                    this.series.name + ': ' + this.y + '<br/>' +
+                    'Total: ' + this.point.stackTotal;
+            }
+        },
             plotOptions: {
                 column: {
+                	stacking: 'normal',
                     dataLabels: {
-                        enabled: true,                                                
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                        style: {
+                        textShadow: '0 0 3px black'
+                    }                                                
                     },
                   borderWidth: 2,
                 	borderColor: 'white',

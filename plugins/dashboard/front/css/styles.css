@@ -1963,3 +1963,11 @@ left: 90%;
 img.avatar {
 	background-color: #fff;
 }
+
+img.avatar2 {
+    border: 2px solid #FFF;
+    border-radius: 50%;
+    margin-left: 2px;
+    width: 40px;
+    height: 43px;
+}

@@ -477,7 +477,7 @@ else {
 				$row_item = $DB->fetch_assoc($result_item);
 				
 				$type = strtolower($row_item['itemtype']);
-				$url_type = $CFG_GLPI['root_doc']."/front/".$type.".form.php?id=";
+				$url_type = $CFG_GLPI['url_base']."/front/".$type.".form.php?id=";
 		
 		    	$sql_ass = "SELECT id, name
 				FROM glpi_".$type."s
@@ -486,45 +486,14 @@ else {
 				$result_ass = $DB->query($sql_ass);
 			
 
-	/*	if($row['itemtype'] != "" && $row['items_id'] != "") {
-			
-		if($row['itemtype'] != "PluginProjetProjet" ) {
-		
-				$type = strtolower($row['itemtype']);
-				$url_type = $CFG_GLPI['root_doc']."/front/".$type.".form.php?id=";
-		
-		    	$sql_ass = "SELECT id, name
-				FROM glpi_".$type."s
-				WHERE id = ".$row['items_id']." ";
-				
-				$result_ass = $DB->query($sql_ass);		   
-				}
-				
-		elseif($row['itemtype'] == "PluginProjetProjet" ) {
-				
-				$type = "plugin_projet_projets";	
-				$url_type = $CFG_GLPI['root_doc']."/plugins/projet/front/projet.form.php?id=";	
-				
-			   $sql_ass = "SELECT id, name
-				FROM glpi_".$type."
-				WHERE id = ".$row['items_id']." ";
-				
-				$result_ass = $DB->query($sql_ass);		    
-				}
-				
-		else {
-				$result_ass = "";
-				}					    
-		}			
-		*/
 		if($result_ass != '') {
 			$row_item = $DB->fetch_assoc($result_ass);
 				}
 				         
 		echo "
 		<tr>
-			<td style='vertical-align:middle; text-align:center;'><a href=".$CFG_GLPI['root_doc']."/front/ticket.form.php?id=". $row['id'] ." target=_blank >" . $row['id'] . "</a></td>
-			<td style='vertical-align:middle; font-size:10px;'><img src=".$CFG_GLPI['root_doc']."/pics/".$status1.".png title='".Ticket::getStatus($row['status'])."' style=' cursor: pointer; cursor: hand;'/>&nbsp; ".Ticket::getStatus($row['status'])." </td>
+			<td style='vertical-align:middle; text-align:center;'><a href=".$CFG_GLPI['url_base']."/front/ticket.form.php?id=". $row['id'] ." target=_blank >" . $row['id'] . "</a></td>
+			<td style='vertical-align:middle; font-size:10px;'><img src=".$CFG_GLPI['url_base']."/pics/".$status1.".png title='".Ticket::getStatus($row['status'])."' style=' cursor: pointer; cursor: hand;'/>&nbsp; ".Ticket::getStatus($row['status'])." </td>
 			<td style='vertical-align:middle;'> ". Ticket::getTicketTypeName($row['TYPE']) ." </td>
 			<td style='vertical-align:middle;'> ". substr($row['descr'],0,55) ." </td>
 			<td style='vertical-align:middle;'> ". $row_user['name'] ." ". $row_user['sname'] ." </td>

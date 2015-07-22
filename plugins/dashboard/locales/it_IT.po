@@ -450,3 +450,6 @@ msgstr "In Ritardo"
 
 msgid "Within"
 msgstr "Entro"
+
+msgid "Metrics"
+msgstr "Metricas"

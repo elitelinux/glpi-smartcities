@@ -264,10 +264,7 @@ $global+=$total;
 	            </tr>                                 
 	          </tbody>
 	        </table>
-	        
-<!--	        </div> -->
-	      
-	
+	        	      	
 	<script type="text/javascript">
 	function showDiv(computers){
 		
@@ -283,14 +280,10 @@ $global+=$total;
 		}
 	
 	}
-	</script>
-	
-	<!-- <button type="button" onclick="showDiv('computers')" id="btn_comp" value="show" style="margin-top: 20px;">Click Me!</button> --> 
-	
-				<div id="computers" style="display:none; margin-left: 0%;" class="row-fluid span12"> 
-	
-					<!--<a href="assets.php#"><img src="../img/close.png" alt="close" onclick="showDiv('computers')" style="position:absolute; float:right;"></a>-->
-				
+	</script>	
+	<!-- <button type="button" onclick="showDiv('computers')" id="btn_comp" value="show" style="margin-top: 20px;">Click Me!</button> --> 	
+				<div id="computers" style="display:none; margin-left: 0%;" class="row-fluid span12"> 	
+					<!--<a href="assets.php#"><img src="../img/close.png" alt="close" onclick="showDiv('computers')" style="position:absolute; float:right;"></a>-->				
 					<div id="graf2" class="span6 row-fluid" style="max-width: 470px;">
 						<?php  include('./comp_os.php'); ?>		
 					</div>
@@ -305,12 +298,10 @@ $global+=$total;
 									
 					<div id="graf_ticket" class="span6 row-fluid" style="max-width: 470px; margin-top:30px; margin-left: 25px; margin-bottom: 30px;">
 						<?php  include('./comp_ticket.php'); ?>		
-					</div>
-					
+					</div>					
 					<div id="graf_cpu" class="row-fluid" style="margin-left: -1px;">
 						<?php  //include('./comp_cpu.php'); ?>		
-					</div>
-							
+					</div>							
 				</div>
 				
 				
@@ -326,20 +317,16 @@ $global+=$total;
 		}
 	
 	}
-	</script>
-	
-				<div id="monitors" style="display:none; margin-left: 1%;" class="row-fluid span12"> 
-				<!--<a href="assets.php#"><img src="../img/close.png" alt="close" onclick="showDivM('monitors')" style="position:absolute; float:right;"></a>-->			
+	</script>	
+				<div id="monitors" style="display:none; margin-left: 1%;" class="row-fluid span12"> 							
 					<div id="graf_mon1" class="span6 row-fluid graf2" style="max-width: 470px; margin-left: -1%;">
 						<?php  include('./mon_manuf.php'); ?>		
 					</div>
 					<div id="graf_mon2" class="span6 row-fluid graf4" style="max-width: 470px;">
 						<?php  include('./mon_model.php'); ?>		
-					</div>
-							
+					</div>						
 				</div>
-	
-	
+		
 	<script type="text/javascript">
 	function showDivP(printers){
 		
@@ -352,8 +339,7 @@ $global+=$total;
 		}
 	
 	}
-	</script>
-	
+	</script>	
 				<div id="printers" style="display:none; margin-left: 1%;" class="row-fluid span12"> 
 				<!--<a href="assets.php#"><img src="../img/close.png" alt="close" onclick="showDivP('printers')" style="position:absolute; float:right;"></a>-->
 					<div id="graf_printer1" class="span6 row-fluid graf2" style="max-width: 470px; margin-left: -1%;">
@@ -361,10 +347,8 @@ $global+=$total;
 					</div>
 					<div id="graf_printer2" class="span6 row-fluid graf4" style="max-width: 470px;">
 						<?php  include('./printer_model.php'); ?>		
-					</div>
-							
-				</div>
-	
+					</div>							
+				</div>	
 	
 	<script type="text/javascript">
 	function showDivN(net){
@@ -387,10 +371,8 @@ $global+=$total;
 					</div>
 					<div id="graf_net2" class="span6 row-fluid graf4" style="max-width: 470px;">
 						<?php  include('./net_model.php'); ?>		
-					</div>
-							
-				</div>
-				
+					</div>							
+				</div>				
 				
 	<script type="text/javascript">
 	function showDivT(phone){
@@ -404,8 +386,7 @@ $global+=$total;
 		}
 	
 	}
-	</script>
-	
+	</script>	
 				<div id="phone" style="display:none; margin-left: 1%;" class="row-fluid span12"> 
 				<!--<a href="assets.php#"><img src="../img/close.png" alt="close" onclick="showDivT('phone')" style="position:absolute; float:right;"></a>-->			
 					<div id="graf_phone1" class="span6 row-fluid graf2" style="max-width: 470px; margin-left: -1%;">
@@ -414,9 +395,10 @@ $global+=$total;
 					<div id="graf_phone2" class="span6 row-fluid graf4" style="max-width: 470px;">
 						<?php  include('./phone_model.php'); ?>		
 					</div>
-							
-				</div>
-				
+					<div id="phones_report" class="span12 row-fluid" style="max-width: 950px; margin-top:30px; margin-left: -10px;">
+						<?php  include('./phone_report.php'); ?>		
+					</div>							
+				</div>				
 				
 	<script type="text/javascript">
 	function showDivD(peripheral){
@@ -430,8 +412,7 @@ $global+=$total;
 		}
 	
 	}
-	</script>
-	
+	</script>	
 				<div id="peripheral" style="display:none; margin-left: 1%;" class="row-fluid span12"> 
 				<!--<a href="assets.php#"><img src="../img/close.png" alt="close" onclick="showDivD('peripheral')" style="position:absolute; float:right;"></a>-->
 					<div id="graf_perip1" class="span6 row-fluid graf2" style="max-width: 470px; margin-left: -1%;">
@@ -439,10 +420,8 @@ $global+=$total;
 					</div>
 					<div id="graf_perip2" class="span6 row-fluid graf4" style="max-width: 470px;">
 						<?php  include('./perip_model.php'); ?>		
-					</div>
-							
-				</div>
-				
+					</div>							
+				</div>			
 				
 	<script type="text/javascript">
 	function showDivS(soft){
@@ -456,8 +435,7 @@ $global+=$total;
 		}
 	
 	}
-	</script>
-	
+	</script>	
 				<div id="soft" style="display:none; margin-left: 1%;" class="row-fluid span12"> 
 				<!--<a href="assets.php#"><img src="../img/close.png" alt="close" onclick="showDivS('soft')" style="position:absolute; float:right;"></a>-->
 					<div id="graf_soft1" class="span6 row-fluid graf2" style="max-width: 470px; margin-left: -1%;">
@@ -465,12 +443,9 @@ $global+=$total;
 					</div>
 					<div id="graf_soft2" class="span6 row-fluid graf4" style="max-width: 470px;">
 						<?php  include('./soft_install.php'); ?>		
-					</div>
-							
-				</div>			
-				
-	
-	
+					</div>							
+				</div>							
+		
 	<script type="text/javascript">
 	function showDivC(cart){
 		
@@ -483,8 +458,7 @@ $global+=$total;
 		}
 	
 	}
-	</script>
-	
+	</script>	
 				<div id="cart" style="display:none; margin-left: 1%;" class="row-fluid span12"> 
 				<!-- <a href="assets.php#"><img src="../img/close.png" alt="close" onclick="showDivC('cart')" style="position:absolute; float:right;"></a> -->
 					<div id="graf_cart1" class="span12 row-fluid graf2" style="max-width: 950px; margin-left: -1%;">
@@ -492,12 +466,9 @@ $global+=$total;
 					</div>
 					<div id="graf_cart2" class="span12 row-fluid graf4" style="max-width: 950px; margin-top 6px; margin-left: -1%;">
 						<?php  include('./cart_quant.php'); ?>		
-					</div>
-							
+					</div>							
 				</div>
-	
-	
-	
+			
 	<script type="text/javascript">
 	function showDivG(global){
 		
@@ -511,24 +482,18 @@ $global+=$total;
 	
 	}
 	</script>
-	
 				<div id="global" style="display:none; margin-left: 1%;" class="row-fluid span12"> 
 				<!--<a href="assets.php#"><img src="../img/close.png" alt="close" onclick="showDivG('global')" style="position:absolute; float:right;"></a>-->			
 					<div id="graf_global1" class="span12 row-fluid graf2" style="max-width: 950px; margin-left: -1%;">
-						<?php  include('./global_assets.php'); ?>	
-	
+						<?php  include('./global_assets.php'); ?>		
 					</div>
 					<div id="asset_tickets" class="span12 row-fluid graf4" style="margin-top 6px; margin-left: -1%;">
 						<?php  include('./global_tickets.php'); ?>		
-					</div>
-							
-				</div>
-		 
+					</div>							
+				</div>		 
 	</div>
-	</div>
-	
+	</div>	
 	</div>
 </div>
-
 </body>
 </html>

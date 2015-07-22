@@ -11,9 +11,9 @@ AND glpi_computers.is_deleted =0
 ".$ent_comp."
 GROUP BY items_id
 ORDER BY `conta` DESC ";
-
 		
 $result2 = $DB->query($query2) or die('erro');
+
 	
 echo ' 
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="ticket">
