@@ -249,7 +249,7 @@ function plugin_accounts_install() {
       1901=>'PluginAccountsHelpdesk',
       1902=>'PluginAccountsGroup'),
       array("glpi_bookmarks", "glpi_bookmarks_users", "glpi_displaypreferences",
-      "glpi_documents_items", "glpi_infocoms", "glpi_logs", "glpi_tickets"),
+      "glpi_documents_items", "glpi_infocoms", "glpi_logs", "glpi_items_tickets"),
       array("glpi_plugin_accounts_accounts_items"));
 
       Plugin::migrateItemType(
@@ -455,7 +455,7 @@ function plugin_accounts_uninstall() {
             "glpi_documents_items",
             "glpi_bookmarks",
             "glpi_logs",
-            "glpi_tickets");
+            "glpi_items_tickets");
 
    foreach($tables_glpi as $table_glpi)
       $DB->query("DELETE FROM `$table_glpi`

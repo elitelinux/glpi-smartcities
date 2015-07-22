@@ -690,7 +690,7 @@ class PluginAccountsAccount extends CommonDBTM {
     *
     * @return nothing (print out an HTML select box)
    **/
-   static function dropdown($options=array()) {
+   static function dropdownAccount($options=array()) {
       global $DB, $CFG_GLPI;
 
 
@@ -786,7 +786,7 @@ class PluginAccountsAccount extends CommonDBTM {
 
       switch ($ma->getAction()) {
          case 'add_item':
-            self::dropdown(array());
+            self::dropdownAccount(array());
             echo Html::submit(_x('button','Post'), array('name' => 'massiveaction'));
             return true;
          case "install" :
