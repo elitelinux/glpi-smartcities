@@ -663,7 +663,7 @@ class Bookmark extends CommonDBTM {
 
       // No massive action on bottom
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       echo "<tr>";
       echo "<th>".Html::getCheckAllAsCheckbox('mass'.__CLASS__.$rand)."</th>";
       echo "<th class='center' colspan='2'>"._n('Bookmark', 'Bookmarks', Session::getPluralNumber())."</th>";

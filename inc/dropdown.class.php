@@ -906,7 +906,7 @@ class Dropdown {
    **/
    static function showItemTypeMenu($title, $optgroup, $value='') {
 
-      echo "<table class='tab_cadre' width='50%'>";
+      echo "<table class='tab_cadre table-striped table-hover' width='30%'>";
       echo "<tr class='tab_bg_1'><td class='b'>&nbsp;".$title."&nbsp; ";
       $values   = array('' => self::EMPTY_VALUE);
       $selected = '';
@@ -943,8 +943,8 @@ class Dropdown {
          $nb += count($dp);
       }
       $step = ($nb > 15 ? ($nb/3) : $nb);
-      echo "<table class='tab_glpi'><tr class='top'><td width='33%' class='center'>";
-      echo "<table class='tab_cadre'>";
+      echo "<table class='tab_glpi' border='0' style='width:900px;'><tr class='top'><td style='vertical-align:top;' class='center'>";
+      echo "<table class='tab_cadre table-striped table-hover table' width='33%'>";
       $i = 1;
 
       foreach ($optgroup as $label => $dp) {
@@ -954,7 +954,7 @@ class Dropdown {
             $class="class='tab_bg_4'";
             if (($itemtype = getItemForItemtype($key))
                 && $itemtype->isEntityAssign()) {
-               $class="class='tab_bg_2'";
+               $class="class='tab_bg_2' width='30%'";
             }
             echo "<tr $class><td><a href='".$key::getSearchURL()."'>";
             echo "$val</a></td></tr>\n";
@@ -962,7 +962,7 @@ class Dropdown {
          }
 
          if (($i >= $step) && ($i < $nb)) {
-            echo "</table></td><td width='25'>&nbsp;</td><td><table class='tab_cadre'>";
+            echo "</table></td><td width='25'>&nbsp;</td><td style='vertical-align:top !important;'><table class='tab_cadre table-hover table-striped table' width='33%'>";
             $step += $step;
          }
       }
@@ -1983,7 +1983,7 @@ class Dropdown {
       $values['-'.Search::CSV_OUTPUT]           = __('All pages in CSV');
 
       Dropdown::showFromArray('display_type', $values);
-      echo "<input type='image' name='export' src='".$CFG_GLPI["root_doc"]."/pics/greenbutton.png'
+      echo "<input type='image' style='margin-left:5px;' name='export' src='".$CFG_GLPI["root_doc"]."/pics/greenbutton.png'
              title=\""._sx('button', 'Export')."\" value=\""._sx('button', 'Export')."\">";
    }
 

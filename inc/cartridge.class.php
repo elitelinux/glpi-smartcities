@@ -666,7 +666,7 @@ class Cartridge extends CommonDBChild {
                                          'rand'             => $rand);
             Html::showMassiveActions($massiveactionparams);
          }
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
          if (!$show_old) {
             echo "<tr class='noHover'><th colspan='".($canedit?'7':'6')."'>".
                   self::getCount($tID,-1)."</th>";
@@ -933,7 +933,7 @@ class Cartridge extends CommonDBChild {
                                                        => $printer->fields['last_pages_counter']));
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       echo "<tr class='noHover'>";
       if ($old == 0) {
          echo "<th colspan='".($canedit?'5':'4')."'>".__('Used cartridges')."</th>";

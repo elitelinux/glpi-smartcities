@@ -426,7 +426,7 @@ class Computer_Item extends CommonDBRelation{
                            => 'mass'.__CLASS__.$rand);
             Html::showMassiveActions($massiveactionparams);
          }
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='tab_cadre_fixehov table-striped table-hover table-striped table-hover'>";
          $header_begin  = "<tr>";
          $header_top    = '';
          $header_bottom = '';
@@ -570,7 +570,7 @@ class Computer_Item extends CommonDBRelation{
                         => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
 
       if ($number > 0) {
          $header_begin  = "<tr>";

@@ -247,7 +247,7 @@ class Notepad extends CommonDBChild {
 
          echo "<div class='boxnotecontent'>";
          echo "<div class='floatleft'>";
-         echo "<textarea name='content' rows=5 cols=100></textarea>";
+         echo "<textarea name='content' rows=5 cols=100 class='form-control'></textarea>";
          echo "</div>";
          echo "</div>"; // box notecontent
 
@@ -325,7 +325,7 @@ class Notepad extends CommonDBChild {
                 echo "<div class='boxnoteleft'></div>";
                 echo "<div class='boxnotecontent'>";
                 echo Html::hidden('id', array('value' => $note['id']));
-                echo "<textarea name='content' rows=5 cols=100>".$note['content']."</textarea>";
+                echo "<textarea name='content' rows=5 cols=100 class='form-control'>".$note['content']."</textarea>";
                 echo "</div>"; // boxnotecontent
 
                 echo "<div class='boxnoteright'><br>";

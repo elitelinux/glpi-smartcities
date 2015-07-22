@@ -96,7 +96,7 @@ if ((isset($_POST['field']) && ($_POST["value"] > 0))
                                               array('value'   => '',
                                                     'display' => false));
    } else {
-      $email_string = "<input type='text' size='25' name='".$_POST['field']."[alternative_email]'
+      $email_string = "<input type='text' class='form-control' size='25' style='width:80%;' name='".$_POST['field']."[alternative_email]'
                         value='$default_email'>";
    }
 

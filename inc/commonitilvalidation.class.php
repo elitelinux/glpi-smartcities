@@ -938,7 +938,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
 
          echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Comments')."</td>";
-         echo "<td><textarea cols='60' rows='3' name='comment_submission'>".
+         echo "<td><textarea cols='60' rows='3' name='comment_submission' class='form-control'>".
                $this->fields["comment_submission"]."</textarea></td></tr>";
 
       } else {
@@ -975,7 +975,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
 
             echo "<tr class='tab_bg_1'>";
             echo "<td>".__('Approval comments')."<br>(".__('Optional when approved').")</td>";
-            echo "<td><textarea cols='60' rows='3' name='comment_validation'>".
+            echo "<td><textarea cols='60' rows='3' name='comment_validation' class='form-control'>".
                        $this->fields["comment_validation"]."</textarea>";
             echo "</td></tr>";
 

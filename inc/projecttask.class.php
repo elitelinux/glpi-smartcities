@@ -484,14 +484,14 @@ class ProjectTask extends CommonDBChild {
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Description')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea id='content' name='content' cols='90' rows='6'>".$this->fields["content"].
+      echo "<textarea id='content' name='content' cols='90' rows='6' class='form-control'>".$this->fields["content"].
            "</textarea>";
       echo "</td></tr>\n";
 
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Comments')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea id='comment' name='comment' cols='90' rows='6'>".$this->fields["comment"].
+      echo "<textarea id='comment' name='comment' cols='90' rows='6' class='form-control'>".$this->fields["comment"].
            "</textarea>";
       echo "</td></tr>\n";
 
@@ -809,7 +809,7 @@ class ProjectTask extends CommonDBChild {
 
       if ($result = $DB->query($query)) {
          if ($DB->numrows($result)) {
-            echo "<table class='tab_cadre_fixehov'>";
+            echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
 
             $sort_img = "<img src=\"" . $CFG_GLPI["root_doc"] . "/pics/" .
                           (($order == "DESC") ? "puce-down.png" : "puce-up.png") ."\" alt='' title=''>";
@@ -974,7 +974,7 @@ class ProjectTask extends CommonDBChild {
 //          }
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';

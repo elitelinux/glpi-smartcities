@@ -1136,7 +1136,7 @@ abstract class CommonITILTask  extends CommonDBTM {
       echo "<tr class='tab_bg_1'>";
       echo "<td rowspan='$rowspan' class='middle'>".__('Description')."</td>";
       echo "<td class='center middle' rowspan='$rowspan'>".
-           "<textarea name='content' cols='50' rows='$rowspan'>".$this->fields["content"].
+           "<textarea name='content' cols='50' rows='$rowspan' class='form-control'>".$this->fields["content"].
            "</textarea></td>";
       if ($ID > 0) {
          echo "<td>".__('Date')."</td>";
@@ -1363,7 +1363,7 @@ abstract class CommonITILTask  extends CommonDBTM {
          echo "<table class='tab_cadre_fixe'><tr class='tab_bg_2'><th>" . __('No task found.');
          echo "</th></tr></table>";
       } else {
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
 
          $header = "<tr><th>&nbsp;</th><th>".__('Type')."</th><th>" . __('Date') . "</th>";
          $header .= "<th>" . __('Description') . "</th><th>" .  __('Duration') . "</th>";
@@ -1394,7 +1394,7 @@ abstract class CommonITILTask  extends CommonDBTM {
       TaskCategory::dropdown();
 
       echo "<br>".__('Description')." ";
-      echo "<textarea name='content' cols='50' rows='6'></textarea>&nbsp;";
+      echo "<textarea name='content' cols='50' rows='6' class='form-control'></textarea>&nbsp;";
 
       if ($this->maybePrivate()) {
          echo "<input type='hidden' name='is_private' value='".$_SESSION['glpitask_private']."'>";

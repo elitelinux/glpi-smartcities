@@ -491,7 +491,7 @@ class TicketFollowup  extends CommonDBTM {
       RequestType::dropdown(array('value' => RequestType::getDefault('helpdesk')));
 
       echo "<br>".__('Description')." ";
-      echo "<textarea name='content' cols='50' rows='6'></textarea>&nbsp;";
+      echo "<textarea name='content' cols='50' rows='6' class='form-control'></textarea>&nbsp;";
 
       echo "<input type='hidden' name='is_private' value='".$_SESSION['glpifollowup_private']."'>";
       echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
@@ -593,7 +593,7 @@ class TicketFollowup  extends CommonDBTM {
          echo "<tr class='tab_bg_1'>";
          echo "<td rowspan='3' class='middle right'>".__('Description')."</td>";
          echo "<td class='center middle' rowspan='3'>";
-         echo "<textarea name='content' cols='70' rows='6'>".$this->fields["content"]."</textarea>";
+         echo "<textarea name='content' cols='70' rows='6' class='form-control'>".$this->fields["content"]."</textarea>";
          if ($this->fields["date"]) {
             echo "</td><td>".__('Date')."</td>";
             echo "<td>".Html::convDateTime($this->fields["date"]);
@@ -629,7 +629,7 @@ class TicketFollowup  extends CommonDBTM {
          echo "<tr class='tab_bg_1'>";
          echo "<td class='middle right'>".__('Description')."</td>";
          echo "<td class='center middle'>";
-         echo "<textarea name='content' cols='80' rows='6'>".$this->fields["content"]."</textarea>";
+         echo "<textarea name='content' cols='80' rows='6' class='form-control'>".$this->fields["content"]."</textarea>";
          echo "<input type='hidden' name='tickets_id' value='".$this->fields["tickets_id"]."'>";
          echo "<input type='hidden' name='requesttypes_id' value='".
                 RequestType::getDefault('helpdesk')."'>";
@@ -804,7 +804,7 @@ class TicketFollowup  extends CommonDBTM {
             echo "<div class='boxnotecontent'";
             echo ">";
 
-            echo "<div class='boxnotefloatright'>";
+            echo "<div class='boxnotefloatleft'>";
             $username = NOT_AVAILABLE;
             if ($data['users_id']) {
                $username = getUserName($data['users_id'], $showuserlink);
@@ -931,7 +931,7 @@ class TicketFollowup  extends CommonDBTM {
          echo "<tr class='tab_bg_1'>";
          echo "<td colspan='2'>".__('Comments')."<br>(".__('Optional when approved').")</td>";
          echo "<td class='center middle' colspan='2'>";
-         echo "<textarea name='content' cols='70' rows='6'></textarea>";
+         echo "<textarea name='content' cols='70' rows='6' class='form-control'></textarea>";
          echo "<input type='hidden' name='tickets_id' value='".$ticket->getField('id')."'>";
          echo "<input type='hidden' name='requesttypes_id' value='".
                 RequestType::getDefault('helpdesk')."'>";

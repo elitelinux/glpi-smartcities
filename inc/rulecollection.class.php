@@ -458,7 +458,7 @@ class RuleCollection extends CommonDBTM {
          Html::showMassiveActions($massiveactionparams);
       }
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       $colspan = 6;
 
       if ($display_entities) {

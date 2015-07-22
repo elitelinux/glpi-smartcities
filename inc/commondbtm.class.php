@@ -4007,7 +4007,7 @@ class CommonDBTM extends CommonGLPI {
                if (isset($searchoptions['htmltext']) && $searchoptions['htmltext']) {
                   $out = Html::initEditorSystem($name, '', false);
                }
-               return $out."<textarea cols='45' rows='5' name='$name'>$value</textarea>";
+               return $out."<textarea cols='45' rows='5' name='$name' class='form-control' >$value</textarea>";
 
             case "bool" :
                return Dropdown::showYesNo($name, $value, -1, $options);

@@ -162,7 +162,7 @@ class SlaLevel extends RuleTicket {
          Html::showMassiveActions($massiveactionparams);
       }
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       echo "<tr>";
       if ($canedit && $numrows) {
          echo "<th width='10'>".Html::getCheckAllAsCheckbox('mass'.__CLASS__.$rand)."</th>";

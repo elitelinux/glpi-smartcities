@@ -2413,7 +2413,7 @@ class Ticket extends CommonITILObject {
       $options['display'] = false;
       switch ($field) {
          case 'content' :
-            return "<textarea cols='90' rows='6' name='$name'>".$values['content']."</textarea>";
+            return "<textarea class='form-control'  cols='90' rows='6' name='$name'>".$values['content']."</textarea>";
 
          case 'type':
             $options['value'] = $values[$field];
@@ -2733,7 +2733,7 @@ class Ticket extends CommonITILObject {
          }
 
          echo "</th></tr>";
-         echo "<tr class='tab_bg_1'><td colspan='2' class='".$class."'>";
+         echo "<tr class='tab_bg_1'><td colspan='2' class='center'>";
          echo "<div id='show_result$rand'>";
 
          $self = new self();
@@ -2836,7 +2836,7 @@ class Ticket extends CommonITILObject {
          echo "<input type='hidden' name='locations_id' value='".$values['locations_id']."'>";
       }
       echo "<input type='hidden' name='entities_id' value='".$_SESSION["glpiactive_entity"]."'>";
-      echo "<div class='center'><table class='tab_cadre_fixe'>";
+      echo "<div class='center' style='margin-bottom:80px;'><table class='tab_cadre_fixe'>";
 
       echo "<tr><th>".__('Describe the incident or request')."</th><th>";
       if (Session::isMultiEntitiesMode()) {
@@ -2876,7 +2876,6 @@ class Ticket extends CommonITILObject {
       ITILCategory::dropdown($opt);
       echo "</td></tr>";
 
-
       if ($CFG_GLPI['urgency_mask'] != (1<<3)) {
          if (!$tt->isHiddenField('urgency')) {
             echo "<tr class='tab_bg_1'>";
@@ -2903,6 +2902,7 @@ class Ticket extends CommonITILObject {
 
          echo "</td></tr>";
       }
+
       if (($_SESSION["glpiactiveprofile"]["helpdesk_hardware"] != 0)
           && (count($_SESSION["glpiactiveprofile"]["helpdesk_item_type"]))) {
          if (!$tt->isHiddenField('itemtype')) {
@@ -2956,7 +2956,7 @@ class Ticket extends CommonITILObject {
          echo "<tr class='tab_bg_1'>";
          echo "<td>".sprintf(__('%1$s%2$s'), __('Title'), $tt->getMandatoryMark('name'))."<td>";
          if (!$tt->isHiddenField('name')) {
-            echo "<input type='text' maxlength='250' size='80' name='name'
+            echo "<input type='text' maxlength='250' size='80' name='name' class='form-control'
                        value=\"".$values['name']."\">";
          } else {
             echo $values['name'];
@@ -2986,7 +2986,7 @@ class Ticket extends CommonITILObject {
          }
 
          echo "<div id='content$rand_text'>";
-         echo "<textarea id='$content_id' name='content' cols='$cols' rows='$rows'>".
+         echo "<textarea class='form-control'  id='$content_id' name='content' cols='$cols' rows='$rows'>".
                 $values['content']."</textarea></div>";
          echo "</td></tr>";
       }
@@ -3040,7 +3040,7 @@ class Ticket extends CommonITILObject {
             echo "<input type='hidden' name='_predefined_fields'
                    value=\"".Toolbox::prepareArrayForInput($predefined_fields)."\">";
          }
-         echo "<input type='submit' name='add' value=\"".__s('Submit message')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\"".__s('Create ticket')."\" class='submit'>";
          echo "</td></tr>";
       }
 
@@ -4024,7 +4024,7 @@ class Ticket extends CommonITILObject {
       if (!$ID
           || $canupdate_descr) {
          echo $tt->getBeginHiddenFieldValue('name');
-         echo "<input type='text' size='90' maxlength=250 name='name' ".
+         echo "<input type='text' size='90' maxlength=250 name='name' class='form-control' ".
                 " value=\"".Html::cleanInputText($this->fields["name"])."\">";
          echo $tt->getEndHiddenFieldValue('name', $this);
       } else {
@@ -4066,7 +4066,7 @@ class Ticket extends CommonITILObject {
          }
 
          echo "<div id='content$rand_text'>";
-         echo "<textarea id='$content_id' name='content' cols='$cols' rows='$rows'>".
+         echo "<textarea class='form-control'  id='$content_id' name='content' cols='$cols' rows='$rows'>".
                 $this->fields["content"]."</textarea></div>";
          echo $tt->getEndHiddenFieldValue('content', $this);
 
@@ -4410,7 +4410,7 @@ class Ticket extends CommonITILObject {
       }
 
       if ($numrows > 0) {
-         echo "<table class='tab_cadrehov'>";
+         echo "<table class='tab_cadrehov table-bordered table-striped table-hover table-striped'>";
          echo "<tr class='noHover'><th colspan='4'>";
 
          $options['reset'] = 'reset';
@@ -4758,7 +4758,7 @@ class Ticket extends CommonITILObject {
       $options['criteria'][0]['link']       = 'AND';
       $options['reset']         ='reset';
 
-      echo "<table class='tab_cadrehov' >";
+      echo "<table class='tab_cadrehov table-bordered table-striped table-hover table-striped' >";
       echo "<tr class='noHover'><th colspan='2'>";
 
       if ($_SESSION["glpiactiveprofile"]["interface"] != "central") {
@@ -4817,7 +4817,7 @@ class Ticket extends CommonITILObject {
          $options['criteria'][0]['link']       = 'AND';
          $options['reset']         ='reset';
 
-         echo "<div class='center'><table class='tab_cadre_fixe'>";
+         echo "<div class='center'><table class='tab_cadre_fixe table'>";
          //TRANS: %d is the number of new tickets
          echo "<tr><th colspan='12'>".sprintf(_n('%d new ticket','%d new tickets', $number), $number);
          echo "<a href='".$CFG_GLPI["root_doc"]."/front/ticket.php?".
@@ -4987,7 +4987,7 @@ class Ticket extends CommonITILObject {
                                     'items_id' => $item->getID()));
       }
       echo "</div><div>";
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
 
       if ($number > 0) {
          if (Session::haveRight(self::$rightname, self::READALL)) {

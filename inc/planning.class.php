@@ -740,7 +740,7 @@ class Planning extends CommonGLPI {
       $end   = date("Y-m-d H:i:s", $end);
 
       // Print Headers
-      echo "<div class='center'><table class='tab_cadre_fixe'>";
+      echo "<div class='center'><table class='tab_cadre_fixe table-bordered table-striped table-hover' border='0'>";
       // Print Headers
       echo "<tr class='tab_bg_1'>";
       switch ($type) {
@@ -790,8 +790,8 @@ class Planning extends CommonGLPI {
             for ($hour=$hour_begin ; $hour<=$hour_end ; $hour++) {
                echo "<tr>";
                for ($i=1 ; $i<=7 ; $i++) {
-                  echo "<td class='tab_bg_3 top' width='12%'>";
-                  echo "<span class='b'>".self::displayUsingTwoDigits($hour).":00</span><br>";
+                  echo "<td class='tab_bg_3x top center' width='12%'>";
+                  echo "<span class='bx'>".self::displayUsingTwoDigits($hour).":00</span><br>";
 
                   // From midnight
                   if ($hour == $hour_begin) {
@@ -849,8 +849,8 @@ class Planning extends CommonGLPI {
                echo "<tr>";
                $begin_time = date("Y-m-d H:i:s", strtotime($when)+($hour)*HOUR_TIMESTAMP);
                $end_time   = date("Y-m-d H:i:s", strtotime($when)+($hour+1)*HOUR_TIMESTAMP);
-               echo "<td class='tab_bg_3 top' width='12%'>";
-               echo "<span class='b'>".self::displayUsingTwoDigits($hour).":00</span><br>";
+               echo "<td class='tab_bg_3x top center3' width='12%' >";
+               echo "<span class='bx'>".self::displayUsingTwoDigits($hour).":00</span><br>";
                reset($interv);
                while ($data=current($interv)) {
                   $type = "";
@@ -884,7 +884,7 @@ class Planning extends CommonGLPI {
             break;
 
          case "month" :
-            echo "<tr class='tab_bg_3'>";
+            echo "<tr class='tab_bg_3x'>";
             // Display first day out of the month
             for ($i=1 ; $i<$begin_month_day ; $i++) {
                echo "<td style='background-color:#ffffff'>&nbsp;</td>";
@@ -899,13 +899,13 @@ class Planning extends CommonGLPI {
                // Add 6 hours for midnight problem
                $day = date("d", $time+6*HOUR_TIMESTAMP);
 
-               echo "<td height='100' class='tab_bg_3 top'>";
+               echo "<td height='100' class='tab_bg_3x top'>";
                echo "<table class='center'><tr><td class='center'>";
                echo "<span style='font-family: arial,helvetica,sans-serif; font-size: 14px; color: black'>".
                       $day."</span></td></tr>";
 
-               echo "<tr class='tab_bg_3'>";
-               echo "<td class='tab_bg_3 top' width='12%'>";
+               echo "<tr class='tab_bg_3x'>";
+               echo "<td class='tab_bg_3x top' width='12%'>";
                $begin_day = date("Y-m-d H:i:s", $time);
                $end_day   = date("Y-m-d H:i:s", $time+DAY_TIMESTAMP);
                reset($interv);
@@ -981,7 +981,7 @@ class Planning extends CommonGLPI {
                break;
 
             case 1 :
-               $color = "#fbfbfb"; // To be done
+               $color = "#fff"; // To be done
                break;
 
             case 2 :
@@ -989,8 +989,7 @@ class Planning extends CommonGLPI {
                break;
          }
       }
-      echo "<div style=' margin:auto; text-align:left; border:1px dashed #cccccc;
-             background-color: $color; font-size:9px; width:98%;'>";
+      echo "<div style=' margin:auto; text-align:left; border:1px dashed #cccccc; background-color: $color; font-size:9px; width:98%;'>";
 
       // Plugins case
       if (isset($val['itemtype']) && !empty($val['itemtype'])) {
@@ -1056,7 +1055,7 @@ class Planning extends CommonGLPI {
 
       ksort($interv);
 
-      echo "<table class='tab_cadrehov'><tr class='noHover'><th>";
+      echo "<table class='tab_cadrehov table-bordered table-striped table-hover'><tr class='noHover'><th>";
       echo "<a href='".$CFG_GLPI["root_doc"]."/front/planning.php?uID=$who'>".__('Your planning').
            "</a>";
       echo "</th></tr>";

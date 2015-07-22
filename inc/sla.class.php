@@ -151,7 +151,7 @@ class SLA extends CommonDBTM {
       Html::autocompletionTextField($this, "name", array('value' => $this->fields["name"]));
       echo "<td rowspan='".$rowspan."'>".__('Comments')."</td>";
       echo "<td rowspan='".$rowspan."'>
-            <textarea cols='45' rows='8' name='comment' >".$this->fields["comment"]."</textarea>";
+            <textarea cols='45' rows='8' name='comment' class='form-control' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
       if ($ID > 0) {

@@ -648,7 +648,7 @@ class Problem extends CommonITILObject {
       }
 
       if ($numrows > 0) {
-         echo "<table class='tab_cadrehov'>";
+         echo "<table class='tab_cadrehov table-bordered table-striped'>";
          echo "<tr class='noHover'><th colspan='3'>";
 
          $options['reset'] = 'reset';
@@ -851,7 +851,7 @@ class Problem extends CommonITILObject {
       $options['criteria'][0]['link']       = 'AND';
       $options['reset']                     ='reset';
 
-      echo "<table class='tab_cadrehov' >";
+      echo "<table class='tab_cadrehov table-bordered table-striped' >";
       echo "<tr class='noHover'><th colspan='2'>";
 
       echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/problem.php?".
@@ -1147,7 +1147,7 @@ class Problem extends CommonITILObject {
       echo "<tr class='tab_bg_1'>";
       echo "<th width='$colsize1%'>".__('Title')."</th>";
       echo "<td colspan='3'>";
-      echo "<input type='text' size='90' maxlength=250 name='name' ".
+      echo "<input type='text' size='90' maxlength=250 name='name' class='form-control' ".
              " value=\"".Html::cleanInputText($this->fields["name"])."\">";
       echo "</td></tr>";
 
@@ -1155,7 +1155,7 @@ class Problem extends CommonITILObject {
       echo "<th>".__('Description')."</th>";
       echo "<td colspan='3'>";
       $rand = mt_rand();
-      echo "<textarea id='content$rand' name='content' cols='90' rows='6'>".
+      echo "<textarea id='content$rand' name='content' cols='90' rows='6' class='form-control'>".
              Html::clean(Html::entity_decode_deep($this->fields["content"]))."</textarea>";
       echo "</td></tr>";
 
@@ -1194,7 +1194,7 @@ class Problem extends CommonITILObject {
       echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Impacts')."</td><td colspan='3'>";
       if ($canedit) {
-         echo "<textarea id='impactcontent' name='impactcontent' rows='6' cols='80'>";
+         echo "<textarea id='impactcontent' name='impactcontent' rows='6' cols='80' class='form-control'>";
          echo $this->getField('impactcontent');
          echo "</textarea>";
       } else {
@@ -1205,7 +1205,7 @@ class Problem extends CommonITILObject {
       echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Causes')."</td><td colspan='3'>";
       if ($canedit) {
-         echo "<textarea id='causecontent' name='causecontent' rows='6' cols='80'>";
+         echo "<textarea id='causecontent' name='causecontent' rows='6' cols='80' class='form-control'>";
          echo $this->getField('causecontent');
          echo "</textarea>";
       } else {
@@ -1216,7 +1216,7 @@ class Problem extends CommonITILObject {
       echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Symptoms')."</td><td colspan='3'>";
       if ($canedit) {
-         echo "<textarea id='symptomcontent' name='symptomcontent' rows='6' cols='80'>";
+         echo "<textarea id='symptomcontent' name='symptomcontent' rows='6' cols='80' class='form-control'>";
          echo $this->getField('symptomcontent');
          echo "</textarea>";
       } else {

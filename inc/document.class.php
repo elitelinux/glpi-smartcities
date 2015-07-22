@@ -397,7 +397,7 @@ class Document extends CommonDBTM {
       echo "</td>";
       echo "<td rowspan='3' class='middle'>".__('Comments')."</td>";
       echo "<td class='middle' rowspan='3'>";
-      echo "<textarea cols='45' rows='6' name='comment' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea cols='45' rows='6' name='comment' class='form-control' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";

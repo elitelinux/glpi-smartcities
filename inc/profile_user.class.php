@@ -178,7 +178,7 @@ class Profile_User extends CommonDBRelation {
       }
 
       if ($num > 0) {
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
          $header_begin  = "<tr>";
          $header_top    = '';
          $header_bottom = '';
@@ -329,7 +329,7 @@ class Profile_User extends CommonDBRelation {
                         => array('purge' => _x('button', 'Delete permanently')));
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       echo "<thead><tr>";
 
       echo "<th class='noHover' colspan='$headerspan'>";

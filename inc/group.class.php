@@ -241,7 +241,7 @@ class Group extends CommonTreeDropdown {
       echo "</td>";
       echo "<td rowspan='9' class='middle'>".__('Comments')."</td>";
       echo "<td class='middle' rowspan='9'>";
-      echo "<textarea cols='45' rows='8' name='comment' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea cols='45' rows='8' name='comment' class='form-control' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
@@ -733,7 +733,7 @@ class Group extends CommonTreeDropdown {
                                                        'changegroup' => __('Move')) );
          Html::showMassiveActions($massiveactionparams);
 
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
          $header_begin  = "<tr><th width='10'>";
          $header_top    = Html::getCheckAllAsCheckbox('mass'.__CLASS__.$rand);
          $header_bottom = Html::getCheckAllAsCheckbox('mass'.__CLASS__.$rand);

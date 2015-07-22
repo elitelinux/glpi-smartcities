@@ -278,7 +278,7 @@ class Log extends CommonDBTM {
       Html::printAjaxPager(self::getTypeName(1), $start, $number);
 
       // Output events
-      echo "<div class='center'><table class='tab_cadre_fixehov'>";
+      echo "<div class='center'><table class='tab_cadre_fixehov table-striped table-hover'>";
       
       $header = "<tr><th>".__('ID')."</th><th>".__('Date')."</th>";
       $header .= "<th>".__('User')."</th><th>".__('Field')."</th>";

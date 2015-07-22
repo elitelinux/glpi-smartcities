@@ -278,7 +278,7 @@ class Contract extends CommonDBTM {
       }
       echo "<tr class='tab_bg_1'><td class='top'>".__('Comments')."</td>";
       echo "<td class='center' colspan='3'>";
-      echo "<textarea cols='50' rows='4' name='comment' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea cols='50' rows='4' name='comment' class='form-control' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_2'><td>".__('Support hours')."</td>";

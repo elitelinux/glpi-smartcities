@@ -283,7 +283,7 @@ class Peripheral extends CommonDBTM {
       echo "</td>\n";
       echo "<td rowspan='$rowspan'>".__('Comments')."</td>\n";
       echo "<td rowspan='$rowspan'>
-            <textarea cols='45' rows='".($rowspan+3)."' name='comment' >".$this->fields["comment"];
+            <textarea cols='45' rows='".($rowspan+3)."' name='comment' class='form-control'>".$this->fields["comment"];
       echo "</textarea></td></tr>\n";
 
       echo "<tr class='tab_bg_1'>";

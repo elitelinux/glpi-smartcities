@@ -44,8 +44,10 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
 
    public $html_tags = array('##ticket.solution.description##');
 
-   const HEADERTAG = '=-=-=-=';
-   const FOOTERTAG = '=_=_=_=';
+//   const HEADERTAG = '=-=-=-=';
+//   const FOOTERTAG = '=_=_=_=';
+   const HEADERTAG = '';
+   const FOOTERTAG = '';
 
 
 
@@ -125,7 +127,8 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
    function getContentHeader() {
 
       if (MailCollector::getNumberOfActiveMailCollectors()) {
-         return self::HEADERTAG.' '.__('To answer by email, write above this line').' '.
+         //return self::HEADERTAG.' '.__('To answer by email, write above this line').' '.
+         return self::HEADERTAG.''.
                 self::HEADERTAG;
       }
 
@@ -139,7 +142,8 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
    function getContentFooter() {
 
       if (MailCollector::getNumberOfActiveMailCollectors()) {
-         return self::FOOTERTAG.' '.__('To answer by email, write under this line').' '.
+         //return self::FOOTERTAG.' '.__('To answer by email, write under this line').' '.
+         return self::FOOTERTAG.''.
                 self::FOOTERTAG;
       }
 

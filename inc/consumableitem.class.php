@@ -171,7 +171,7 @@ class ConsumableItem extends CommonDBTM {
       echo "</td>";
       echo "<td rowspan='4' class='middle'>".__('Comments')."</td>";
       echo "<td class='middle' rowspan='4'>
-             <textarea cols='45' rows='9' name='comment' >".$this->fields["comment"]."</textarea>";
+             <textarea cols='45' rows='9' name='comment' class='form-control'>".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";

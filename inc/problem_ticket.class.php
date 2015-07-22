@@ -303,7 +303,7 @@ class Problem_Ticket extends CommonDBRelation{
                                       'height'           => 500);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       echo "<tr class='noHover'><th colspan='12'>".Ticket::getTypeName($numrows)."</th>";
       echo "</tr>";
       if ($numrows) {
@@ -406,7 +406,7 @@ class Problem_Ticket extends CommonDBRelation{
                                       'container'      => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       echo "<tr class='noHover'><th colspan='12'>".Problem::getTypeName($numrows)."</th>";
       echo "</tr>";
       if ($numrows) {

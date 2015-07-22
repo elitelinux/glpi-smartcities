@@ -253,7 +253,7 @@ class ComputerDisk extends CommonDBChild {
                       AND `is_deleted` = '0'";
 
       if ($result = $DB->query($query)) {
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
          $colspan = 7;
          if (Plugin::haveImport()) {
             $colspan++;

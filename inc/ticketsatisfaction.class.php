@@ -145,7 +145,7 @@ class TicketSatisfaction extends CommonDBTM {
          echo "<tr class='tab_bg_2'>";
          echo "<td rowspan='1'>".__('Comments')."</td>";
          echo "<td rowspan='1' class='middle'>";
-         echo "<textarea cols='45' rows='7' name='comment' >".$this->fields["comment"]."</textarea>";
+         echo "<textarea cols='45' rows='7' name='comment' class='form-control'>".$this->fields["comment"]."</textarea>";
          echo "</td></tr>\n";
 
          if ($this->fields["date_answered"] > 0) {

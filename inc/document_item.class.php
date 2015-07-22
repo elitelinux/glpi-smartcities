@@ -337,7 +337,7 @@ class Document_Item extends CommonDBRelation{
          $massiveactionparams = array('container' => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
 
       $header_begin  = "<tr>";
       $header_top    = '';
@@ -739,7 +739,7 @@ class Document_Item extends CommonDBRelation{
       $sort_img = "<img src=\"" . $CFG_GLPI["root_doc"] . "/pics/" .
                     (($order == "DESC") ? "puce-down.png" : "puce-up.png") ."\" alt='' title=''>";
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
 
       $header_begin  = "<tr>";
       $header_top    = '';

@@ -371,7 +371,7 @@ class DisplayPreference extends CommonDBTM {
                      echo "<input type='hidden' name='id' value='".$data["id"]."'>";
                      echo "<input type='hidden' name='users_id' value='$IDuser'>";
                      echo "<input type='hidden' name='itemtype' value='$itemtype'>";
-                     echo "<input type='image' name='up' value=\"".__s('Bring up')."\" src='".
+                     echo "<input type='image' style='width:12px; height:12px !important;' name='up' value=\"".__s('Bring up')."\" src='".
                             $CFG_GLPI["root_doc"]."/pics/puce-up2.png' alt=\"".
                             __s('Bring up')."\" title=\"".__s('Bring up')."\">";
                      Html::closeForm();
@@ -387,7 +387,7 @@ class DisplayPreference extends CommonDBTM {
                      echo "<input type='hidden' name='id' value='".$data["id"]."'>";
                      echo "<input type='hidden' name='users_id' value='$IDuser'>";
                      echo "<input type='hidden' name='itemtype' value='$itemtype'>";
-                     echo "<input type='image' name='down' value=\"".__s('Bring down')."\" src='".
+                     echo "<input type='image' style='width:12px; height:12px !important;' name='down' value=\"".__s('Bring down')."\" src='".
                             $CFG_GLPI["root_doc"]."/pics/puce-down2.png' alt=\"".
                             __s('Bring down')."\" title=\"".__s('Bring down')."\">";
                      Html::closeForm();
@@ -402,7 +402,7 @@ class DisplayPreference extends CommonDBTM {
                   echo "<input type='hidden' name='id' value='".$data["id"]."'>";
                   echo "<input type='hidden' name='users_id' value='$IDuser'>";
                   echo "<input type='hidden' name='itemtype' value='$itemtype'>";
-                  echo "<input type='image' name='purge' value=\"".
+                  echo "<input type='image' style='width:12px; height:12px !important;' name='purge' value=\"".
                          _sx('button', 'Delete permanently')."\" src='".
                          $CFG_GLPI["root_doc"]."/pics/puce-delete2.png' alt=\"".
                          _sx('button', 'Delete permanently')."\" title=\"".
@@ -527,7 +527,7 @@ class DisplayPreference extends CommonDBTM {
                      echo "<input type='hidden' name='id' value='".$data["id"]."'>";
                      echo "<input type='hidden' name='users_id' value='$IDuser'>";
                      echo "<input type='hidden' name='itemtype' value='$itemtype'>";
-                     echo "<input type='image' name='up' value=\"".__s('Bring up')."\" src='".
+                     echo "<input type='image' style='width:12px; height:12px !important;' name='up' value=\"".__s('Bring up')."\" src='".
                             $CFG_GLPI["root_doc"]."/pics/puce-up2.png' alt=\"".
                             __s('Bring up')."\"  title=\"".__s('Bring up')."\">";
                      Html::closeForm();
@@ -543,7 +543,7 @@ class DisplayPreference extends CommonDBTM {
                      echo "<input type='hidden' name='id' value='".$data["id"]."'>";
                      echo "<input type='hidden' name='users_id' value='$IDuser'>";
                      echo "<input type='hidden' name='itemtype' value='$itemtype'>";
-                     echo "<input type='image' name='down' value=\"".__s('Bring down')."\" src='".
+                     echo "<input type='image' style='width:12px; height:12px !important;' name='down' value=\"".__s('Bring down')."\" src='".
                             $CFG_GLPI["root_doc"]."/pics/puce-down2.png' alt=\"".
                             __s('Bring down')."\" title=\"".__s('Bring down')."\">";
                      Html::closeForm();
@@ -558,7 +558,7 @@ class DisplayPreference extends CommonDBTM {
                   echo "<input type='hidden' name='id' value='".$data["id"]."'>";
                   echo "<input type='hidden' name='users_id' value='$IDuser'>";
                   echo "<input type='hidden' name='itemtype' value='$itemtype'>";
-                  echo "<input type='image' name='purge' value=\"".
+                  echo "<input type='image' style='width:12px; height:12px !important;' name='purge' value=\"".
                          _sx('button', 'Delete permanently')."\" src='".
                          $CFG_GLPI["root_doc"]."/pics/puce-delete2.png' alt=\"".
                          __s('Delete permanently')."\" title=\"". __s('Delete permanently')."\">";

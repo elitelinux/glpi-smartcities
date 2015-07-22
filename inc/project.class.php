@@ -758,7 +758,7 @@ class Project extends CommonDBTM {
       }
 
       echo "<div class='spaced'>";
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       echo "<tr class='noHover'><th colspan='12'>".Project::getTypeName($numrows)."</th></tr>";
       if ($numrows) {
          Project::commonListHeader();
@@ -927,7 +927,7 @@ class Project extends CommonDBTM {
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Description')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea id='content' name='content' cols='90' rows='6'>".$this->fields["content"].
+      echo "<textarea id='content' name='content' cols='90' rows='6' class='form-control'>".$this->fields["content"].
            "</textarea>";
       echo "</td>";
       echo "</tr>\n";
@@ -935,7 +935,7 @@ class Project extends CommonDBTM {
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Comments')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea id='comment' name='comment' cols='90' rows='6'>".$this->fields["comment"].
+      echo "<textarea id='comment' name='comment' cols='90' rows='6' class='form-control'>".$this->fields["comment"].
            "</textarea>";
       echo "</td>";
       echo "</tr>\n";
@@ -1041,7 +1041,7 @@ class Project extends CommonDBTM {
 //          }
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';

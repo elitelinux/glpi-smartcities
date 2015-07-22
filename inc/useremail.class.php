@@ -165,7 +165,7 @@ class UserEmail  extends CommonDBChild {
          echo "<input type='hidden' name='$field_name' value='$value'>";
          printf(__('%1$s %2$s'), $value, "<span class='b'>(". __('D').")</span>");
       } else {
-         echo "<input type='text' size=30 name='$field_name' value='$value' >";
+         echo "<input type='text' size=30 name='$field_name' value='$value' class='form-control'>";
       }
    }
 

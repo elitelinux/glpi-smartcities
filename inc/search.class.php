@@ -1720,7 +1720,7 @@ class Search {
       echo Html::scriptBlock($js);
 
       echo "<table class='tab_cadre_fixe' >";
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_1 well'>";
 
       if ((count($p['criteria']) + count($p['metacriteria'])) > 1) {
          echo "<td width='10' class='center'>";
@@ -1767,8 +1767,8 @@ class Search {
       echo "<tr>";
 
       // Display submit button
-      echo "<td width='80' class='center'>";
-      echo "<input type='submit' name='".$p['actionname']."' value=\"".$p['actionvalue']."\" class='submit' >";
+      echo "<td width='90' class='center'>";
+      echo "<input type='submit' name='".$p['actionname']."' value=\"".$p['actionvalue']."\" class='submit btn btn-primary' >";
       echo "</td>";
       if ($p['showbookmark'] || $p['showreset']) {
          echo "<td>";
@@ -5588,9 +5588,9 @@ class Search {
 
          default :
             if ($fixed) {
-               $out = "<div class='center'><table border='0' class='tab_cadre_fixehov'>\n";
+               $out = "<div class='center'><table border='0' class='tab_cadre_fixehov table table-hover table-striped table-bordered'>\n";
             } else {
-               $out = "<div class='center'><table border='0' class='tab_cadrehov'>\n";
+               $out = "<div class='center'><table border='0' class='tab_cadrehov table table-hover table-striped table-bordered' style='margin-top:20px;'>\n";
             }
       }
       return $out;

@@ -499,7 +499,7 @@ class Consumable extends CommonDBChild {
          echo "<input type='hidden' name='consumableitems_id' value='$tID'>\n";
       }
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       if (!$show_old) {
          echo "<tr><th colspan=".($canedit?'5':'4').">";
          echo self::getCount($tID, -1);

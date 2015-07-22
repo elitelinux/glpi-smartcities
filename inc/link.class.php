@@ -136,7 +136,7 @@ class Link extends CommonDBTM {
 
       echo "<tr class='tab_bg_1'><td>".__('File content')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea name='data' rows='10' cols='96'>".$this->fields["data"]."</textarea>";
+      echo "<textarea name='data' rows='10' cols='96' class='form-control'>".$this->fields["data"]."</textarea>";
       echo "</td></tr>";
 
       $this->showFormButtons($options);

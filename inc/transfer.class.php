@@ -3260,7 +3260,7 @@ class Transfer extends CommonDBTM {
          echo "</td>";
          echo "<td rowspan='3' class='middle right'>".__('Comments')."</td>";
          echo "<td class='center middle' rowspan='3'>
-               <textarea cols='45' rows='3' name='comment' >".$this->fields["comment"]."</textarea>";
+               <textarea cols='45' rows='3' name='comment' class='form-control' >".$this->fields["comment"]."</textarea>";
          echo "</td></tr>";
 
          echo "<tr class='tab_bg_1'>";

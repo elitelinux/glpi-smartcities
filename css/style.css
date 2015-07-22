@@ -10,7 +10,8 @@ html, body {
 	/*background: #efefef;*/
 	color: #424a4d;
 	/*background:  url("../pics/fundoHrz.png") repeat-x fixed;*/
-	background:  url("../pics/back.jpg") repeat-x fixed;    
+	background:  url("../pics/back.jpg") repeat-x fixed;  
+	background-size:1658px 1024px;	
 }
 
 #body2 {

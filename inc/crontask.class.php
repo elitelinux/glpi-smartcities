@@ -415,7 +415,7 @@ class CronTask extends CommonDBTM{
       echo $name."</td>";
       echo "<td rowspan='6' class='middle right'>".__('Comments')."</td>";
       echo "<td class='center middle' rowspan='6'>";
-      echo "<textarea cols='45' rows='8' name='comment' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea cols='45' rows='8' name='comment' class='form-control'>".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'><td>".__('Description')."</td><td>";
@@ -914,7 +914,7 @@ class CronTask extends CommonDBTM{
       global $DB, $CFG_GLPI;
 
       echo "<br><div class='center'>";
-      echo "<table class='tab_cadre'>";
+      echo "<table class='tab_cadre table-striped table' style='width:40%;' >";
       echo "<tr><th colspan='2'>&nbsp;".__('Statistics')."</th></tr>\n";
 
       $nbstart = countElementsInTable('glpi_crontasklogs',
@@ -1050,7 +1050,7 @@ class CronTask extends CommonDBTM{
 
       if ($result = $DB->query($query)) {
          if ($data = $DB->fetch_assoc($result)) {
-            echo "<table class='tab_cadrehov'>";
+            echo "<table class='tab_cadrehov table-striped'>";
             $header = "<tr>";
             $header .= "<th>".__('Date')."</th>";
             $header .= "<th>".__('Total duration')."</th>";

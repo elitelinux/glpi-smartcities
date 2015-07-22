@@ -192,7 +192,7 @@ class Group_User extends CommonDBRelation{
                            'container'     => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';
@@ -472,7 +472,7 @@ class Group_User extends CommonDBRelation{
             Html::showMassiveActions($massiveactionparams);
          }
 
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
 
          $header_begin  = "<tr>";
          $header_top    = '';

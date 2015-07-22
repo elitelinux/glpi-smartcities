@@ -341,7 +341,7 @@ class Plugin extends CommonDBTM {
       global $CFG_GLPI, $PLUGIN_HOOKS;
 
       $this->checkStates();
-      echo "<div class='center'><table class='tab_cadrehov'>";
+      echo "<div class='center'><table class='tab_cadrehov table-striped table-hover table-condensed'>";
 
       $pluglist          = $this->find("", "name, directory");
       $i                 = 0;

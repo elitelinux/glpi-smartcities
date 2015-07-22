@@ -3017,7 +3017,7 @@ abstract class CommonITILObject extends CommonDBTM {
                   $icontitle = __s('Technician');
                   break;
             }
-            return "<img width=20 src='".$CFG_GLPI['root_doc']."/pics/users.png'
+            return "<img width=16 src='".$CFG_GLPI['root_doc']."/pics/user.png'
                      alt=\"$icontitle\" title=\"$icontitle\">";
 
          case 'group' :
@@ -3035,12 +3035,12 @@ abstract class CommonITILObject extends CommonDBTM {
                   $icontitle = __('Group in charge of the ticket');
                   break;
             }
-            return  "<img width=20 src='".$CFG_GLPI['root_doc']."/pics/groupes.png'
+            return  "<img width=16 src='".$CFG_GLPI['root_doc']."/pics/group.png'
                       alt=\"$icontitle\" title=\"$icontitle\">";
 
          case 'supplier' :
             $icontitle = __('Supplier');
-            return  "<img width=20 src='".$CFG_GLPI['root_doc']."/pics/supplier.png'
+            return  "<img width=16 src='".$CFG_GLPI['root_doc']."/pics/supplier.png'
                       alt=\"$icontitle\" title=\"$icontitle\">";
 
       }
@@ -3988,7 +3988,7 @@ abstract class CommonITILObject extends CommonDBTM {
          Html::initEditorSystem("solution$rand");
 
          echo "<div id='solution$rand_text'>";
-         echo "<textarea id='solution$rand' name='solution' rows='12' cols='80'>".
+         echo "<textarea id='solution$rand' name='solution' rows='12' cols='80' class='form-control'>".
                 $this->getField('solution')."</textarea></div>";
 
       } else {
@@ -4048,7 +4048,7 @@ abstract class CommonITILObject extends CommonDBTM {
       $rand = mt_rand();
       Html::initEditorSystem("solution$rand");
       echo "<div id='solution$rand_text'>";
-      echo "<textarea id='solution$rand' name='solution' rows='12' cols='80'></textarea></div>";
+      echo "<textarea id='solution$rand' name='solution' rows='12' cols='80' class='form-control'></textarea></div>";
       echo "</td></tr>";
 
       echo '</table>';

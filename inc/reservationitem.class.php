@@ -326,7 +326,7 @@ class ReservationItem extends CommonDBChild {
          echo "<td class='b'>".sprintf(__('%1$s - %2$s'), $type, $name)."</td></tr>\n";
 
          echo "<tr class='tab_bg_1'><td>".__('Comments')."</td>";
-         echo "<td><textarea name='comment' cols='30' rows='10' >".$r->fields["comment"];
+         echo "<td><textarea name='comment' cols='30' rows='10' class='form-control'>".$r->fields["comment"];
          echo "</textarea></td></tr>\n";
 
          echo "<tr class='tab_bg_2'><td colspan='2' class='top center'>";
@@ -452,7 +452,7 @@ class ReservationItem extends CommonDBChild {
       // GET method passed to form creation
       echo "<div id='nosearch' class='center'>";
       echo "<form name='form' method='GET' action='reservation.form.php'>";
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       echo "<tr><th colspan='".($showentity?"5":"4")."'>".self::getTypeName(1)."</th></tr>\n";
 
       foreach ($CFG_GLPI["reservation_types"] as $itemtype) {
@@ -542,10 +542,12 @@ class ReservationItem extends CommonDBChild {
             echo Html::hidden('begin', array('value' => $_POST['reserve']["begin"]));
             echo Html::hidden('end', array('value'   => $_POST['reserve']["end"]));
          }
-         echo "<input type='submit' value=\""._sx('button','Add')."\" class='submit'></td></tr>\n";
+         echo "</td></tr>\n";
+
 
       }
       echo "</table>\n";
+      echo "<input type='submit' value=\""._sx('button','Add')."\" class='submit'>";
       echo "<input type='hidden' name='id' value=''>";
       echo "</form>";// No CSRF token needed
       echo "</div>\n";
