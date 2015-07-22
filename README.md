@@ -387,7 +387,12 @@ Rules:
  
 Templates
 =========
-* http://sourceforge.net/projects/glpithemes/files/0.85/
+Normal
+* http://sourceforge.net/projects/glpithemes/files/
+
+Bootstrap
+* http://sourceforge.net/projects/glpibootstrap/files/
+
 
 Android Client
 =========
