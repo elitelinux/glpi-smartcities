@@ -1,0 +1,88 @@
+.custom_center {
+   max-width: 950px;
+   width:95%;
+   margin: 0 auto;
+   padding: 4px;
+   border: 1px solid silver;
+   -moz-border-radius: 5px;
+   -webkit-border-radius:5px;
+   border-radius: 5px;
+}
+ul.custom_config li {
+   cursor:pointer;
+   float:left;
+   width:20%;
+   -moz-border-radius: 5px;
+   -webkit-border-radius:5px;
+   border-radius: 5px;
+   margin:0 1% 10px 1%;
+   padding:5px 1px;
+}
+ul.custom_config li:hover {
+   background-color:#E8E8E8;
+}
+ul.custom_config li p {
+   padding-top: 8px;
+}
+ul.custom_config li img {
+   float: left;
+   margin-right: 2px;
+}
+div.custom_clear {
+   clear: both;
+   width:100%;
+}
+
+
+.preview-tabs .tabs-forms {
+   float:left; width:30%
+}
+input[name=color] {
+   float:left;
+}
+.preview-tabs .ui-tabs {
+   float:left;
+   width: 50%;
+}
+
+.red.ui-state-default, .red.ui-state-default a {
+   color: #8C3B30;
+   border-color: #8C3B30;
+   background: #D38D83;
+}
+
+.blue.ui-state-default, .blue.ui-state-default a {
+   color: #3F5B81;
+   border-color: #3F5B81;
+   background: #A7BAD3;
+}
+
+.green.ui-state-default, .green.ui-state-default a {
+   color: #427E46;
+   border-color: #427E46;
+   background: #97C79A;
+}
+
+.white.ui-state-default, .white.ui-state-default a {
+   color: #5F5F5F;
+   border-color: #B9B9B9;
+   background: #E8E8E8;
+}
+
+.black.ui-state-default, .black.ui-state-default a {
+   color: #B1B1B1;
+   border-color: #000000;
+   background: #000000;
+}
+
+.ui-state-default a {
+font-weight: normal;
+}
+.ui-state-active a {
+font-weight: bold;
+}
+
+li.ui-state-active {
+   border-width: 2px !important;
+   border-bottom-width: 0  !important;
+}
