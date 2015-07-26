@@ -74,11 +74,11 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
 <title><?php echo __('GLPI - Authentication'); ?></title>
 
 <!-- Bootstrap -->
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="css/css.css" rel="stylesheet" type="text/css">
-<link href="css/font-awesome.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<link href="css/style-responsive.css" rel="stylesheet">
+<link href="<?php echo GLPI_THEME_PATH?>css/bootstrap.css" rel="stylesheet">
+<link href="<?php echo GLPI_THEME_PATH?>css/css.css" rel="stylesheet" type="text/css">
+<link href="<?php echo GLPI_THEME_PATH?>css/font-awesome.css" rel="stylesheet">
+<link href="<?php echo GLPI_THEME_PATH?>css/style.css" rel="stylesheet">
+<link href="<?php echo GLPI_THEME_PATH?>css/style-responsive.css" rel="stylesheet">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -86,10 +86,10 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<script type='text/javascript'>      
+<script type='text/javascript'>
 window.onload = function() {
-  			var input = document.getElementById("login_name").focus();
-	}      
+         var input = document.getElementById("login_name").focus();
+   }
 </script>
 
 </head>
@@ -98,34 +98,34 @@ window.onload = function() {
 <div id="body2"></div>
 <div class="login-container">
   <div class="middle-login">
-  	<div id='text-login'>
-  		<?php echo nl2br(Toolbox::unclean_html_cross_side_scripting_deep($CFG_GLPI['text_login'])); ?>  
-  	</div>
-    <div class="block-web row-fluid">        
+   <div id='text-login'>
+      <?php echo nl2br(Toolbox::unclean_html_cross_side_scripting_deep($CFG_GLPI['text_login'])); ?>
+   </div>
+    <div class="block-web row-fluid">
       <div class="head">
-        <h3 class="text-center"><img class="logo-img" src="pics/logo.png" alt="" style="left:50%;"></h3>
+        <h3 class="text-center"><img class="logo-img" src="<?php echo GLPI_THEME_PATH?>pics/logo.png" alt="" style="left:50%;"></h3>
       </div>
 
-		<div id="logo_big" style="border-right: 1px solid #ccc; width:220px;" >
-			<img src="pics/logo_big.png" alt="GLPI" class="logo2" />
-		</div>      
-      
+      <div id="logo_big" style="border-right: 1px solid #ccc; width:220px;" >
+         <img src="<?php echo GLPI_THEME_PATH?>pics/logo_big.png" alt="GLPI" class="logo2" />
+      </div>
+
       <div id="auth" style="background:#fff;">
-      
+
         <form class="form-horizontal" style="margin-bottom: 0px !important;" action='front/login.php' method='post'>
-			<?php
-			   // Other CAS
-			   if (isset($_GET["noAUTO"])) {
-			      echo "<input type='hidden' name='noAUTO' value='1'/>";
-			   }
-			
-			   // redirect to ticket
-			   if (isset($_GET["redirect"])) {
-			      Toolbox::manageRedirect($_GET["redirect"]);
-			      echo '<input type="hidden" name="redirect" value="'.$_GET['redirect'].'">';
-			   }
-			?>        
-                
+         <?php
+            // Other CAS
+            if (isset($_GET["noAUTO"])) {
+               echo "<input type='hidden' name='noAUTO' value='1'/>";
+            }
+
+            // redirect to ticket
+            if (isset($_GET["redirect"])) {
+               Toolbox::manageRedirect($_GET["redirect"]);
+               echo '<input type="hidden" name="redirect" value="'.$_GET['redirect'].'">';
+            }
+         ?>
+
           <div class="content">
             <h4 class="title"><?php echo __('Authentication'); ?></h4>
             <div class="form-group">
@@ -144,22 +144,22 @@ window.onload = function() {
             </div>
             <!-- <div id="forget"><a href="front/lostpassword.php?lostpassword=1">Forgotten password</a></div> -->
             <?php
-			    if ($CFG_GLPI["use_mailing"]
-			&& countElementsInTable('glpi_notifications',
-			                               "`itemtype`='User' AND `event`='passwordforget' AND `is_active`=1")) {
-			      echo '<div id="forget"><a href="front/lostpassword.php?lostpassword=1">'.
-			             __('Forgotten password?').'</a></div>';
-			   }
-			   //Html::closeForm();          			          				
-			?>        
-			
+             if ($CFG_GLPI["use_mailing"]
+         && countElementsInTable('glpi_notifications',
+                                        "`itemtype`='User' AND `event`='passwordforget' AND `is_active`=1")) {
+               echo '<div id="forget"><a href="front/lostpassword.php?lostpassword=1">'.
+                      __('Forgotten password?').'</a></div>';
+            }
+            //Html::closeForm();
+         ?>
+
           </div>
-          <div class="foot">	
+          <div class="foot">
             <a href="#"><button type="submit" name="submit" data-dismiss="modal" style="right: 35%;" class="btn btn-primary submit"><?php echo _sx('button','Post'); ?></button></a>
           </div>
-			<?php
-			Html::closeForm();
-			?>			
+         <?php
+         Html::closeForm();
+         ?>
       </div>
     </div>
     <div class="text-center out-links"><a href="#">
@@ -172,30 +172,30 @@ window.onload = function() {
    }
    ?>
     </a></div>
-	<?php
-	  echo "</div>"; // end contenu login
-	
-	   if (GLPI_DEMO_MODE) {
-	      echo "<div class='center'>";
-	      Event::getCountLogin();
-	      echo "</div>";
-	   }
-	
-	   echo "<div id='footer-login' class='out-links'>";
-	   echo "<a href='http://glpi-project.org/' target='_blank' title='Powered By Indepnet'>";
-	   echo 'GLPI version '.(isset($CFG_GLPI["version"])?$CFG_GLPI["version"]:"").
-	        ' Copyright (C) 2003-'.date("Y").' INDEPNET Development Team.';
-	   echo "</a></div>";    
-	?>    
+   <?php
+     echo "</div>"; // end contenu login
+
+      if (GLPI_DEMO_MODE) {
+         echo "<div class='center'>";
+         Event::getCountLogin();
+         echo "</div>";
+      }
+
+      echo "<div id='footer-login' class='out-links'>";
+      echo "<a href='http://glpi-project.org/' target='_blank' title='Powered By Indepnet'>";
+      echo 'GLPI version '.(isset($CFG_GLPI["version"])?$CFG_GLPI["version"]:"").
+           ' Copyright (C) 2003-'.date("Y").' INDEPNET Development Team.';
+      echo "</a></div>";
+   ?>
   </div>
 </div>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins)  
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins)
 <script src="css/js/jquery-21.js"></script> -->
-<!-- Include all compiled plugins (below), or include individual files as needed --> 
-<script src="css/js/bootstrap.js"></script> 
-<!--<script src="css/js/accordion.js"></script>--> 
-<script src="css/js/common-script.js"></script> 
+<!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="lib/jquery/js/jquery-1.10.2.min.js"></script>
+<script src="<?php echo GLPI_THEME_PATH?>css/js/bootstrap.js"></script>
+<!--<script src="css/js/accordion.js"></script>-->
+<script src="<?php echo GLPI_THEME_PATH?>css/js/common-script.js"></script>
 
 </body></html>
