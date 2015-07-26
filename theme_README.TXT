@@ -11,3 +11,7 @@
 
 4 - To change the logo create your own image with size 200px x 200px, named to logo_big.png
  and copy to glpi/pics folder.
+
+
+ OR:
+ change the GLPI_THEME_PATH parameter in config/define.php to use the desired theme
