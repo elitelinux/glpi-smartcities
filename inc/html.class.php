@@ -1016,7 +1016,7 @@ class Html {
       echo "<![endif]-->";
       echo Html::css($CFG_GLPI["root_doc"].GLPI_THEME_PATH."css/print.css", array('media' => 'print'));
       echo "<link rel='shortcut icon' type='images/x-icon' href='".
-             $CFG_GLPI["root_doc"].GLPI_THEME_PATH."picsfavicon.ico' >\n";
+             $CFG_GLPI["root_doc"].GLPI_THEME_PATH."pics/favicon.ico' >\n";
 
       echo Html::css($CFG_GLPI["root_doc"].GLPI_THEME_PATH."lib/jquery/css/smoothness/jquery-ui-1.10.4.custom.min.css");
       echo Html::css($CFG_GLPI["root_doc"].GLPI_THEME_PATH."css/jstree/style.css");
