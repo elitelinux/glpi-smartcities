@@ -1006,8 +1006,8 @@ class Html {
       //  CSS link
 
 
-      echo Html::css($CFG_GLPI["root_doc"].GLPI_THEME_PATH."css/styles.css");
       echo Html::css($CFG_GLPI["root_doc"].GLPI_THEME_PATH."css/bootstrap.css");
+      echo Html::css($CFG_GLPI["root_doc"].GLPI_THEME_PATH."css/styles.css");
       echo Html::css($CFG_GLPI["root_doc"].GLPI_THEME_PATH."css/font-awesome.css");
 
       // surcharge CSS hack for IE

@@ -2283,3 +2283,9 @@ div#show_all_menu .tab_bg_1 a:hover {
 	margin: 57px 0 auto 860px;
 	z-index: 2;		 		 	 		
 }
+
+/* ------------------------------------ adjustments ----------------------------*/
+
+.nav>li>a>img{
+  max-height:100px;
+}

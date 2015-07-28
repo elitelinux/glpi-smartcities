@@ -1970,3 +1970,9 @@ div#show_all_menu .tab_bg_1 a:hover {
 .nostyle:focus {
   outline-width: 5px;
 }
+
+/* ------------------------------------ adjustments ----------------------------*/
+
+.nav>li>a>img{
+  max-height:100px;
+}
