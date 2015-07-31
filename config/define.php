@@ -38,11 +38,11 @@ define("GLPI_DEMO_MODE","0");
 define("GLPI_USE_CSRF_CHECK", "1");
 define("GLPI_CSRF_EXPIRES","7200");
 define("GLPI_CSRF_MAX_TOKENS","100");
-//define("GLPI_THEME_PATH","extras/themes/blue/");
-//define("GLPI_THEME_PATH","extras/themes/classic/");
-//define("GLPI_THEME_PATH","extras/themes/default/");
-define("GLPI_THEME_PATH","extras/themes/green/");
-
+define("GLPI_THEME_PATH","extras/themes/");
+define("GLPI_THEME_NAME","blue");
+//define("GLPI_THEME_NAME","classic");
+//define("GLPI_THEME_NAME","default");
+//define("GLPI_THEME_NAME","green");
 
 // rights
 define("READ",        1);
