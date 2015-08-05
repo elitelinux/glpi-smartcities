@@ -27,7 +27,7 @@ function setdisplay(objet, statut) {
 **/
 function isIe() {
 
-   var ie     = false;	
+   var ie     = false;  
    var appVer = navigator.appVersion.toLowerCase();
    var iePos  = appVer.indexOf('msie');
 
@@ -84,24 +84,24 @@ function completecleandisplay(id) {
    if (e) {
       setdisplay(e,'block');
 
-/*	if(document.getElementById('show_entities')){
-		var oneTime=0;
-		var divHeight = document.getElementById('show_entities').offsetHeight;
-		var divWidth = document.getElementById('show_entities').offsetWidth;
-				
-		if (divHeight>300){
+/* if(document.getElementById('show_entities')){
+      var oneTime=0;
+      var divHeight = document.getElementById('show_entities').offsetHeight;
+      var divWidth = document.getElementById('show_entities').offsetWidth;
+            
+      if (divHeight>300){
 
-			
-			document.getElementById('show_entities').style.overflow = 'auto';
-			document.getElementById('show_entities').style.height = '400px';
-			// document.getElementById('show_entities').style.width =  divWidth + 'px';
-			document.getElementById('show_entities').style.width =  '300px';
+         
+         document.getElementById('show_entities').style.overflow = 'auto';
+         document.getElementById('show_entities').style.height = '400px';
+         // document.getElementById('show_entities').style.width =  divWidth + 'px';
+         document.getElementById('show_entities').style.width =  '300px';
 
-		}
+      }
 
-	
+   
 
-	}	
+   }  
 */
 
 
@@ -139,7 +139,7 @@ function completecleanhide(id) {
 function hidemenu(idMenu) {
 
    var e = document.getElementById(idMenu);
-   var e = e.getElementsByTagName('ul');
+   var e = e.getElementsByTagName("ul");
 
    for (var i=0 ; i<e.length ; i++) {
       if (e[i]) {
@@ -205,7 +205,7 @@ function doShowSelect(objet) {
 function showSelect(x,y,w,h) {
 
    var selx,sely,selw,selh;
-   var sel = document.getElementsByTagName("SELECT");
+   var sel = document.getElementsByTagName("SEECT");
 
    for (var i=0 ; i<sel.length ; i++) {
       selx = 0; 
@@ -263,7 +263,7 @@ function doHideSelect(object) {
 function hideSelect(x,y,w,h) {
 
    var selx,sely,selw,selh,i;
-   var sel = document.getElementsByTagName("SELECT");
+   var sel = document.getElementsByTagName("SEECT");
    for (i=0 ; i<sel.length ; i++) {
       selx = 0; 
       sely = 0; 
@@ -293,29 +293,33 @@ function hideSelect(x,y,w,h) {
 function menuAff(id,idMenu){
 
    var m    = document.getElementById(idMenu);
-   var item = m.getElementsByTagName('li');
-   for (var i=0 ; i<item.length ; i++) {
-      if (item[i].id == id) {
-         var ssmenu = item[i];
+   if(m!=undefined){
+      var item = m.getElementsByTagName("li");
+      for (var i=0 ; i<item.length ; i++) {
+         if (item[i].id == id) {
+            var ssmenu = item[i];
+         }
       }
    }
-   var m = m.getElementsByTagName('ul');
-   if (isIe()) {
-      //masquage des elements select du document
-      if (m) {
-         for (var i=1 ; i<10 ; i++) { //probleme dans le listage et le nomage des menus xhtml
-            //listage des elements li nommes du type smenu + i
-            var e = document.getElementById('menu'+i);
-            if (e) {
-               var smenu = e.getElementsByTagName('ul');
-               doShowSelect(smenu[0]);
+   var m = m.getElementsByTagName("ul");
+   if(m!=undefined){
+      if (isIe()) {
+         //masquage des elements select du document
+         if (m) {
+            for (var i=1 ; i<10 ; i++) { //probleme dans le listage et le nomage des menus xhtml
+               //listage des elements li nommes du type smenu + i
+               var e = document.getElementById('menu'+i);
+               if (e) {
+                  var smenu = e.getElementsByTagName("ul");
+                  doShowSelect(smenu[0]);
+               }
             }
          }
       }
    }
 
    if (ssmenu) {
-      var smenu = ssmenu.getElementsByTagName('ul');
+      var smenu = ssmenu.getElementsByTagName("ul");
       if (smenu) {
          //masquer tous les menus ouverts
          for (var i=0 ; i<m.length ; i++) {
@@ -382,7 +386,7 @@ function fillidfield(Type,Id) {
 **/
 function markCheckboxes(container_id) {
 
-   var checkboxes = document.getElementById(container_id).getElementsByTagName('input');
+   var checkboxes = document.getElementById(container_id).getElementsByTagName("inut");
    for (var j=0 ; j<checkboxes.length ; j++ ) {
       checkbox = checkboxes[j];
       if (checkbox && (checkbox.type == 'checkbox')) {
@@ -403,7 +407,7 @@ function markCheckboxes(container_id) {
 **/
 function unMarkCheckboxes(container_id) {
 
-   var checkboxes = document.getElementById(container_id).getElementsByTagName('input');
+   var checkboxes = document.getElementById(container_id).getElementsByTagName("inut");
    for (var j=0 ; j<checkboxes.length ; j++ ) {
       checkbox = checkboxes[j];
       if (checkbox && (checkbox.type == 'checkbox')) {
@@ -422,7 +426,7 @@ function unMarkCheckboxes(container_id) {
 **/
 function toggleCheckboxes( container_id ) {
 
-   var checkboxes = document.getElementById(container_id).getElementsByTagName('input');
+   var checkboxes = document.getElementById(container_id).getElementsByTagName("inut");
    for (var j=0 ; j<checkboxes.length ; j++ ) {
       checkbox = checkboxes[j];
          if (checkbox && (checkbox.type == 'checkbox')) {
@@ -471,7 +475,7 @@ function displayOtherSelectOptions(select_object, other_option_name) {
 function checkAsCheckboxes( reference_id, container_id ) {
 
    var ref        =  document.getElementById(reference_id);
-   var checkboxes = document.getElementById(container_id).getElementsByTagName('input');
+   var checkboxes = document.getElementById(container_id).getElementsByTagName("inut");
 
    for (var j=0 ; j<checkboxes.length ; j++ ) {
       checkbox = checkboxes[j];
