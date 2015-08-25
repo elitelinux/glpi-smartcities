@@ -22,7 +22,7 @@ check here:
 Seriously. What is a Smart City?
 ================================
 According to wikipedia this is a smart city: See link http://en.wikipedia.org/wiki/Smart_city
-From another perspective academic a Smart City is one city where their services and products are aimed at improving the quality of life of its inhabitants, increase their welfare and security, economic prosperity through the use of best practices and standards, assuming e implementing a model of technocratic government. In that city, the use of comparative advantages is done to achieve various surplus needed to generate the necessary human capital and sustain investments in diverse areas needed and involve becoming a Smart City.
+From another perspective academic a Smart City is one city where their services and products are aimed at improving the quality of life of its habitants, increase their welfare and security, economic prosperity through the use of best practices and standards, assuming e implementing a model of technocratic government. In that city, the use of comparative advantages is done to achieve various surplus needed to generate the necessary human capital and sustain investments in diverse areas needed and involve becoming a Smart City.
 
 Easy right? and this is just the beginning.
 
@@ -33,10 +33,8 @@ GLPI is an excellent software that has been undervalued and is little known or u
 Improvements in this version compared to the original version
 =============================================================
 Improvements in:
-- Security in htaccess
-- Styles in GUI and Look and feel in CSS
-- HTML5 transition
-- Some code for user UX
+- Security in htaccess - by Juan Fernando Villa link: https://github.com/elitelinux/killer-htaccess
+- Styles in GUI and Look and feel in CSS and html5 - by Stevenes Donato link: http://sourceforge.net/projects/glpibootstrap/
 
 The True
 ========
