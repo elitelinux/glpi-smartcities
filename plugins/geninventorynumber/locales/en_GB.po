@@ -1,0 +1,65 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Project - geninventorynumber plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-08 15:01+0100\n"
+"PO-Revision-Date: 2014-09-08 13:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: English (France) ()\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: inc/profile.class.php:175 inc/config.class.php:58 inc/config.class.php:64
+#: setup.php:34 setup.php:35 setup.php:37 setup.php:43 setup.php:44
+#: setup.php:50 setup.php:54 setup.php:60 hook.php:34 hook.php:36
+msgid "geninventorynumber"
+msgstr "Inventory number generation"
+
+#: inc/profile.class.php:103 hook.php:51
+msgid "GenerateInventoryNumber"
+msgstr "Generate inventory number"
+
+#: inc/profile.class.php:108 hook.php:55
+msgid "RegenerateInventoryNumber"
+msgstr "Regenerate inventory number (overwrite)"
+
+#: inc/generation.class.php:82
+msgid "InventoryNumberGenerated"
+msgstr "An inventory number have been generated"
+
+#: inc/generation.class.php:107
+msgid "GenerateInventoryNumberDenied"
+msgstr "You can't modify inventory number"
+
+#: inc/configfield.class.php:111
+msgid "GenerationModel"
+msgstr "Generation templates"
+
+#: inc/configfield.class.php:116
+msgid "GlobalParameters"
+msgstr "Global Parameters"
+
+#: inc/configfield.class.php:118
+msgid "UseGlobalIndex"
+msgstr "Use global index"
+
+#: inc/configfield.class.php:119 inc/config.class.php:82
+#: inc/config.class.php:115
+msgid "IndexPosition"
+msgstr "Global index position"
+
+#: inc/config.class.php:108
+msgid "GenerationEnabled"
+msgstr "Active"
+
+#: inc/configfield.class.php:38
+msgid "PerDeviceTypeConfiguration"
+msgstr "GLPI's inventory items configuration"
+

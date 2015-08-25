@@ -1,0 +1,44 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE ESCALADE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Talk package.
+# 
+# Translators:
+# sismic <dmonnetbesson@gmail.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Project - Plugin Talk\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-30 09:41+0200\n"
+"PO-Revision-Date: 2015-03-26 10:22+0000\n"
+"Last-Translator: Alexandre DELAUNAY <delaunay.alexandre@gmail.com>\n"
+"Language-Team: Polish (Poland) (http://www.transifex.com/teclib/glpi-project-plugin-talk/language/pl_PL/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pl_PL\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.5.4\n"
+
+msgid "Talks"
+msgstr "Konwersacja"
+
+msgid "Processing ticket"
+msgstr "bilet przetwarzanie"
+
+msgid "Timeline filter"
+msgstr "Filtr historyczny "
+
+msgid "Actions historical"
+msgstr "Akcje historyczne"
+
+msgid "Enable Talk Tab"
+msgstr "Zainstaluj Konwersacja"
+
+msgid "Show replaced Tabs"
+msgstr ""
+
+msgid "Enable horizontal split view"
+msgstr "Włącz widok poziomy bilety"
+
+msgid "Ticket recall"
+msgstr ""

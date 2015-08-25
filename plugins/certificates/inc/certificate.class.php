@@ -33,7 +33,7 @@ if (!defined('GLPI_ROOT')) {
 
 class PluginCertificatesCertificate extends CommonDBTM {
    
-   public $dohistory=true;
+   public $dohistory                   = true;
    static $rightname                   = "plugin_certificates";
    protected $usenotepadrights         = true;
    
@@ -394,7 +394,7 @@ class PluginCertificatesCertificate extends CommonDBTM {
     *
     * @return nothing (print out an HTML select box)
    **/
-   static function dropdown($options=array()) {
+   static function dropdownCertificate($options=array()) {
       global $DB, $CFG_GLPI;
 
 
@@ -492,7 +492,7 @@ class PluginCertificatesCertificate extends CommonDBTM {
 
       switch ($ma->getAction()) {
          case 'plugin_certificates_add_item':
-            self::dropdown(array());
+            self::dropdownCertificate(array());
             echo "&nbsp;".
                  Html::submit(_x('button','Post'), array('name' => 'massiveaction'));
             return true;

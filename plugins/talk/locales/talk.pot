@@ -1,0 +1,41 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE ESCALADE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Talk package.
+# Alexandre DELAUNAY <adelaunay@teclib.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Talks 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-30 09:41+0200\n"
+"PO-Revision-Date: 2014-05-14 11:44+0100\n"
+"Last-Translator: Alexandre Delaunay <adelaunay@teclib.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+msgid "Talks"
+msgstr ""
+
+msgid "Processing ticket"
+msgstr ""
+
+msgid "Timeline filter"
+msgstr ""
+
+msgid "Actions historical"
+msgstr ""
+
+msgid "Enable Talk Tab"
+msgstr ""
+
+msgid "Show replaced Tabs"
+msgstr ""
+
+msgid "Enable horizontal split view"
+msgstr ""
+
+msgid "Ticket recall"
+msgstr ""

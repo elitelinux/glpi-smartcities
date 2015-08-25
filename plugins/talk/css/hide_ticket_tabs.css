@@ -1,0 +1,12 @@
+#tabspanel + div.ui-tabs li a.ui-tabs-anchor[href*=TicketFollowup],
+#tabspanel + div.ui-tabs li a.ui-tabs-anchor[href*=TicketTask],
+#tabspanel + div.ui-tabs li a.ui-tabs-anchor[href*=Document_Item],
+#tabspanel + div.ui-tabs li a.ui-tabs-anchor[href*=Ticket\$2]
+{
+   display: none;
+}
+
+#tabspanel + div.ui-tabs li {
+   border-bottom: 0;
+   margin-bottom: 0;
+}

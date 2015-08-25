@@ -1,0 +1,151 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Moreticket Development Team
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI - Moreticket plugin 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-24 09:59+0200\n"
+"PO-Revision-Date: 2015-07-24 10:06+0100\n"
+"Last-Translator: Xavier CAILLAUD <tsmr@thetsmr.fr>\n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.7.4\n"
+
+#: hook.php:140 inc/waitingticket.class.php:111
+#: inc/waitingticket.class.php:228 inc/waitingticket.class.php:286
+msgid "Postponement date"
+msgstr "Date de report"
+
+#: hook.php:157 hook.php:164 hook.php:171 hook.php:178
+#: inc/closeticket.class.php:67 inc/closeticket.class.php:103
+#: inc/closeticket.class.php:146 inc/closeticket.class.php:271
+#: inc/closeticket.class.php:323 inc/config.class.php:113
+msgid "Close ticket informations"
+msgstr "Informations de clôture des tickets"
+
+#: setup.php:71 inc/profile.class.php:39 inc/profile.class.php:130
+msgid "More ticket"
+msgstr "More ticket"
+
+#: setup.php:83
+msgid "This plugin requires GLPI >= 0.85"
+msgstr "Ce plugin requiert GLPI >= 0.85"
+
+#: front/config.form.php:57
+msgid "Please activate the plugin"
+msgstr "Merci d'activer le plugin"
+
+#: inc/closeticket.class.php:110 inc/closeticket.class.php:417
+msgid "Solution description"
+msgstr "Description de la solution"
+
+#: inc/closeticket.class.php:129
+msgid "Ticket cannot be closed"
+msgstr "Impossible de clore le ticket"
+
+#: inc/closeticket.class.php:484
+#, php-format
+msgid "%1$s added closing informations"
+msgstr "%1$s a ajouté des informations de clôture"
+
+#: inc/closeticket.class.php:496
+#, php-format
+msgid "%1$s updated closing informations"
+msgstr "%1$s a mis à jour des informations de clôture"
+
+#: inc/closeticket.class.php:507
+#, php-format
+msgid "%1$s deleted closing informations"
+msgstr "%1$s a supprimé des informations de clôture"
+
+#: inc/config.class.php:71
+msgid "Plugin configuration"
+msgstr "Configuration du plugin"
+
+#: inc/config.class.php:76
+msgid "Use waiting process"
+msgstr "Utiliser les types d'attentes"
+
+#: inc/config.class.php:84
+msgid "Report date is mandatory"
+msgstr "La date de report est obligatoire"
+
+#: inc/config.class.php:90
+msgid "Waiting type is mandatory"
+msgstr "Le type d'attente est obligatoire"
+
+#: inc/config.class.php:97
+msgid "Use solution process"
+msgstr "Utiliser le bloc solution à la création du ticket"
+
+#: inc/config.class.php:105
+msgid "Solution type is mandatory"
+msgstr "Le type de solution est obligatoire"
+
+#: inc/config.class.php:119
+msgid "Status used to display solution bloc"
+msgstr "Statuts utilisés pour afficher le bloc solution"
+
+#: inc/waitingticket.class.php:58
+msgid "Waiting ticket"
+msgid_plural "Waiting tickets"
+msgstr[0] "Mise en attente"
+msgstr[1] "Mises en attente"
+
+#: inc/waitingticket.class.php:108 inc/waitingticket.class.php:216
+#: inc/waitingticket.class.php:284
+msgid "Reason"
+msgstr "Raison"
+
+#: inc/waitingticket.class.php:146
+msgid "Waiting ticket cannot be saved"
+msgstr "Impossible d'enregistrer la mise en attente"
+
+#: inc/waitingticket.class.php:148
+msgid "Ticket cannot be saved"
+msgstr "Impossible d'enregistrer le ticket"
+
+#: inc/waitingticket.class.php:152
+msgid "Report date is inferior of today's date"
+msgstr "Date de report inférieure à la date d'aujourd'hui"
+
+#: inc/waitingticket.class.php:280 inc/waitingticket.class.php:318
+msgid "Ticket suspension history"
+msgstr "Historique des suspensions de ticket"
+
+#: inc/waitingticket.class.php:283
+msgid "Suspension date"
+msgstr "Date de suspension"
+
+#: inc/waitingticket.class.php:287
+msgid "Suspension end date"
+msgstr "Date de fin de suspension"
+
+#: inc/waitingtype.class.php:37
+msgid "Waiting type"
+msgid_plural "Waiting types"
+msgstr[0] "Type d'attente"
+msgstr[1] "Types d'attente"
+
+#~ msgid "Solution management"
+#~ msgid_plural "Solutions management"
+#~ msgstr[0] "Gestion de la solution"
+#~ msgstr[1] "Gestion des solutions"
+
+#~ msgid "This plugin requires GLPI >= 0.84"
+#~ msgstr "Ce plugin requiert GLPI >= 0.84"
+
+#~ msgid "Rights management"
+#~ msgstr "Gestion des droits"
+
+#~ msgid "Ticket"
+#~ msgid_plural "Tickets"
+#~ msgstr[0] "Ticket"
+#~ msgstr[1] "Tickets"

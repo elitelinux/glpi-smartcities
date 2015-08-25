@@ -158,7 +158,7 @@ function plugin_certificates_install() {
       Plugin::migrateItemType(
          array(1700=>'PluginCertificatesCertificate'),
          array("glpi_bookmarks", "glpi_bookmarks_users", "glpi_displaypreferences",
-               "glpi_documents_items", "glpi_infocoms", "glpi_logs", "glpi_tickets"),
+               "glpi_documents_items", "glpi_infocoms", "glpi_logs", "glpi_items_tickets"),
          array("glpi_plugin_certificates_certificates_items"));
       
       Plugin::migrateItemType(
@@ -238,7 +238,7 @@ function plugin_certificates_uninstall() {
                "glpi_documents_items",
                "glpi_bookmarks",
                "glpi_logs",
-               "glpi_tickets",
+               "glpi_items_tickets",
                "glpi_contracts_items",
                "glpi_notepads");
 

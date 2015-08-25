@@ -418,8 +418,8 @@ class PluginCertificatesCertificate_Item extends CommonDBRelation {
                echo "<input type='hidden' name='tickets_id' value='$ID'>";
             }
 
-            PluginCertificatesCertificate::dropdown(array('entity' => $entities ,
-                                                            'used'   => $used));
+            PluginCertificatesCertificate::dropdownCertificate(array('entity' => $entities ,
+                                                                     'used'   => $used));
                                      
             echo "</td><td class='center' width='20%'>";
             echo "<input type='submit' name='additem' value=\"".

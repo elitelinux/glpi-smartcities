@@ -37,7 +37,10 @@ $certif_item=new PluginCertificatesCertificate_Item();
 
 if (isset($_POST["add"])) {
    $certif->check(-1,CREATE,$_POST);
-   $newID=$certif->add($_POST);
+   $newID= $certif->add($_POST);
+   if ($_SESSION['glpibackcreated']) {
+      Html::redirect($certif->getFormURL()."?id=".$newID);
+   }
    Html::back();
    
 } else if (isset($_POST["delete"])) {

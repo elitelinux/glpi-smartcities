@@ -1,0 +1,113 @@
+// Titre principal du document :
+= GLPI : Plugin Discussions
+// Sous titre du document :
+:subtitle: Utilisation et configuration
+avec un saut de ligne
+// Date du document :
+:docdate: 25/09/2014
+:customerid: 
+:city: Toulouse
+
+== Configuration 
+
+Une fois le plugin installé et activé par un administrateur de GLPI (via le menu Configuration > Plugins), vous devrez l'activer pour tous les profils que vous souhaitez. Un onglet "Discussions" est disponible dans chacun de ces profils.
+
+<<<
+
+== Utilisation 
+
+=== Regroupement des onglets et actions
+
+Une fois le plugin activé pour votre profil, il modifie l'affichage lors de l'édition d'un ticket existant : 
+
+image::pics/tabs_and_actions.png[scaledwidth="100%"]
+
+Les onglets suivants : 
+
+* Suivis
+* Tâches 
+* Documents
+* Solutions
+
+sont regroupés dans un seul et même onglet nommé "Traitement du ticket". +
+Dans celui-ci, des boutons vous permettant d'ajouter ces différents objets sont disponibles en entête. +
+
+<<<
+
+Lors de l'ajout d'un suivi, vous avez la possibilité d'ajouter un document dans la même action.
+
+image::pics/add_followup.png[scaledwidth="80%"]
+
+Les contenus des différents onglets regroupés sont maintenant affichées sous la forme d'une "timeline" globale ordonnée de façon anti-chronologique : 
+
+image::pics/timeline.png[scaledwidth="80%"]
+
+Les différentes objets ont une couleur de fond différente pour pouvoir les distinguer.
+Ces couleurs correspondent à celles des boutons d'ajout en haut de la zone. +
+ +
+Les réponses sont positionnées en fonction du rôle de l'utilisateur dans le ticket.
+Celles des techniciens sont placées à droite, celles des autres (demandeurs, observateurs) à gauche. +
+Dans le cas où un utilisateur serait à la fois technicien et demandeur par exemple, sa position "technicien" est prioritaire. +
+ +
+Dans cette "timeline" apparaîtront aussi les demandes et réponses de validation. +
+Vous devrez, par contre, toujours passer par l'onglet dédié pour effectuer les actions liées aux validations de ticket.
+
+<<<
+
+=== Filtrage
+
+En haut à droite de l'historique des actions, est disponible une liste de contrôles permettant de filtrer temporairement les différents objets : 
+
+image::pics/filter.png[scaledwidth="40%"]
+
+Un clic sur l'une des icônes la fait passer en couleur verte et n'affiche que les objets correspondants. +
+Les sélections se cumulent afin de pouvoir afficher en même temps les suivis et les documents par exemple. +
+Un nouveau clic sur une icône active masque les objets correspondants. +
+Si aucune icône n'est sélectionnée ou si on clique sur le bouton de réinitialisation (tout à droite de la liste), on revient au mode par défaut, à savoir l'affichage de tous les éléments. 
+
+
+=== Icônes
+
+Différents pictogrammes sont affichés pour identifier les propriétés d'un objet : +
+
+*Actions privées :*
+
+image::pics/private.png[scaledwidth="4%"]
+
+
+*Sources de la demande :*
+
+image::pics/requestsources.png[scaledwidth="20%"]
+
+
+[NOTE]
+====
+Note pour les administrateurs de GLPI : +
+Pour d'éventuelles autres sources, il est possible d'ajouter sur le serveur glpi, des icônes correspondants aux numéro de ces sources de la demandes. A placer dans le dossier "glpi/plugins/talk/pics/".
+====
+
+*Pour les statuts des tâches de ticket :* +
+
+image::pics/task_status.png[scaledwidth="19%"]
+
+Les tâches de tickets peuvent aussi comporter les deux icônes suivantes : 
+
+image::pics/task_other.png[scaledwidth="25%"]
+
+
+
+== Séparation de l'interface
+
+De façon optionnelle, il existe la possibilité de réorganiser le formulaire principal et les onglets des tickets sous une vue horizontale : 
+
+image::pics/split.png[scaledwidth="100%"]
+
+Vous pouvez activer cette option en passant par le menu "Préférences" (en haut à droite de GLPI), un onglet "Discussions" étant disponible. +
+L'option est nommée : Activer la vue horizontale sur les tickets. +
+
+[NOTE]
+====
+Cette option se désactive automatiquement dès que la taille de la fenêtre ne permet pas d'afficher tous les éléments (la limite se situe à 1200 pixels).
+====
+
+Il existe aussi sur cette page, une autre option nommée "Activer l'onglet traitement du ticket", par défaut sur Oui. Si vous désactivez cette option, le regroupement d'onglets ne sera plus effectif.

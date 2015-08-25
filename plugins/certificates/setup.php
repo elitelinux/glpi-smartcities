@@ -79,7 +79,7 @@ function plugin_version_certificates() {
 
    return array (
       'name' => _n('Certificate', 'Certificates', 2, 'certificates'),
-      'version' => '2.0.0',
+      'version' => '2.0.1',
       'license' => 'GPLv2+',
       'author'  => "<a href='http://infotel.com/services/expertise-technique/glpi/'>Infotel</a>",
       'homepage'=>'https://forge.indepnet.net/projects/certificates',
@@ -89,8 +89,8 @@ function plugin_version_certificates() {
 
 // Optional : check prerequisites before install : may print errors or add to message after redirect
 function plugin_certificates_check_prerequisites() {
-   if (version_compare(GLPI_VERSION,'0.85','lt') || version_compare(GLPI_VERSION,'0.86','ge')) {
-      _e('This plugin requires GLPI >= 0.85', 'certificates');
+   if (version_compare(GLPI_VERSION,'0.85.3','lt') || version_compare(GLPI_VERSION,'0.86','ge')) {
+      _e('This plugin requires GLPI >= 0.85.3', 'certificates');
       return false;
    }
    return true;

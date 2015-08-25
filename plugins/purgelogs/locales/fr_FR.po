@@ -1,0 +1,114 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PURGELOGS'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PURGELOGS package.
+# Alexandre DELAUNAY <adelaunay@teclib.com>, 2013.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PURGELOGS 0.84\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-30 11:16+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Alexandre Delaunay <adelaunay@teclib.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: setup.php:48 front/config.form.php:40 inc/config.class.php:57
+#: inc/purge.class.php:61
+msgid "Purge history"
+msgstr "Purge de l'historique"
+
+#: inc/config.class.php:65 inc/config.class.php:91
+msgid "Logs purge configuration"
+msgstr "Configuration de la purge des logs"
+
+#: inc/config.class.php:67
+msgid "Change all"
+msgstr "Changer tous"
+
+#: inc/config.class.php:87
+msgid "Add relation between items"
+msgstr "Ajout relation entre objets"
+
+#: inc/config.class.php:211
+msgid "All sections"
+msgstr "Toutes rubriques confondues"
+
+#: inc/config.class.php:213
+msgid "Purge all log entries"
+msgstr "Toutes les lignes de la table de log"
+
+#: inc/config.class.php:123
+msgid "Installation/uninstallation of software on computers"
+msgstr "Installation/désinstallation des logiciels sur les postes"
+
+#: inc/config.class.php:127
+msgid "Installation/uninstallation versions on softwares"
+msgstr "Installation/désinstallation des versions sur les logiciels"
+
+#: inc/config.class.php:136
+msgid "Add financial information to an item"
+msgstr "Ajout informations financières à un objet"
+
+#: inc/config.class.php:144
+msgid "Add/remove profiles to users"
+msgstr "Ajout/suppression de profils à des utilisateurs"
+
+#: inc/config.class.php:147
+msgid "Add/remove groups to users"
+msgstr "Ajout/suppression de groupes à des utilisateurs"
+
+#: inc/config.class.php:158
+msgid "OCSNG"
+msgstr "OCSNG"
+
+#: inc/config.class.php:160
+msgid "OCS ID Change"
+msgstr "Changements d'ID OCS"
+
+#: inc/config.class.php:163
+msgid "Add from OCS"
+msgstr "Ajout depuis OCS"
+
+#: inc/config.class.php:168
+msgid "Link with OCS"
+msgstr "Liaison depuis OCS"
+
+#: inc/config.class.php:171
+msgid "Delete from OCS"
+msgstr "Suppression depuis OCS"
+
+#: inc/config.class.php:178
+msgid "Add component"
+msgstr "Ajout d'un composant"
+
+#: inc/config.class.php:181
+msgid "Update component"
+msgstr "Modification d'un composant"
+
+#: inc/config.class.php:186
+msgid "Disconnect a component"
+msgstr "Déconnexion d'un composant"
+
+#: inc/config.class.php:190
+msgid "Connect a component"
+msgstr "Connexion d'un composant"
+
+#: inc/config.class.php:195
+msgid "Delete component"
+msgstr "Suppression d'un composant"
+
+#: inc/config.class.php:204
+msgid "Logs Webservices connections"
+msgstr "Logs connexions des services web"
+
+#: inc/config.class.php:207
+msgid "Old Genericobject item types"
+msgstr "Ancien types Genericobject"
+
+#: inc/config.class.php:153
+msgid "User authentication method changes"
+msgstr "Changement de type d'authentification"

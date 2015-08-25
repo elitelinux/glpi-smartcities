@@ -1,0 +1,63 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#: inc/generation.class.php:46 inc/generation.class.php:49
+#: inc/generation.class.php:50 inc/generation.class.php:55
+#: inc/generation.class.php:114 inc/generation.class.php:143
+#: inc/generation.class.php:194 inc/config.class.php:61
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-30 19:39+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: inc/configfield.class.php:120
+msgid "GenerationModel"
+msgstr "Modèle de génération : "
+
+#: inc/configfield.class.php:122
+msgid "UseGlobalIndex"
+msgstr "Utiliser l'index global"
+
+#: inc/configfield.class.php:123 inc/config.class.php:97
+#: inc/config.class.php:130
+msgid "IndexPosition"
+msgstr "Position de l'index"
+
+#: inc/profile.class.php:117 hook.php:52
+msgid "GenerateInventoryNumber"
+msgstr "Générer un numéro d'inventaire"
+
+#: inc/generation.class.php:85 inc/generation.class.php:135
+msgid "GenerateInventoryNumberDenied"
+msgstr "Vous ne pouvez pas modifier le numéro d'inventaire"
+
+#: inc/generation.class.php:99
+msgid "InventoryNumberGenerated"
+msgstr "Un numéro d'inventaire a été généré"
+
+#: inc/config.class.php:122
+msgid "GenerationEnabled"
+msgstr "Génération activée"
+
+#: hook.php:57
+msgid "RegenerateInventoryNumber"
+msgstr "Regénérer un numéro d'inventaire (à écraser)"
+
+#: inc/configfield.class.php:38
+msgid "PerDeviceTypeConfiguration"
+msgstr "Configuration spécifique à un type d'objet d'inventaire"
+
+msgid "geninventorynumber"
+msgstr "Génération de numéros d'inventaire"
+

@@ -1,0 +1,44 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE ESCALADE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Talk package.
+# 
+# Translators:
+# Alexey Petukhov <lexx015@gmail.com>, 2014-2015
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Project - Plugin Talk\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-30 09:41+0200\n"
+"PO-Revision-Date: 2015-07-29 10:29+0000\n"
+"Last-Translator: Alexey Petukhov <lexx015@gmail.com>\n"
+"Language-Team: Russian (Russia) (http://www.transifex.com/teclib/glpi-project-plugin-talk/language/ru_RU/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru_RU\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Poedit 1.5.4\n"
+
+msgid "Talks"
+msgstr "Обсуждения"
+
+msgid "Processing ticket"
+msgstr "Ход работы"
+
+msgid "Timeline filter"
+msgstr "Фильтр временной шкалы"
+
+msgid "Actions historical"
+msgstr "История действий"
+
+msgid "Enable Talk Tab"
+msgstr "Включить вкладку обсуждений"
+
+msgid "Show replaced Tabs"
+msgstr "Показать замененные вкладки"
+
+msgid "Enable horizontal split view"
+msgstr "Включить горизонтальный вид"
+
+msgid "Ticket recall"
+msgstr "Отзыв пользователя"

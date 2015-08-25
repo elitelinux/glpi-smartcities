@@ -1,0 +1,43 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE ESCALADE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Talk package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Project - Plugin Talk\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-30 09:41+0200\n"
+"PO-Revision-Date: 2015-03-26 10:22+0000\n"
+"Last-Translator: Alexandre DELAUNAY <delaunay.alexandre@gmail.com>\n"
+"Language-Team: Hungarian (Hungary) (http://www.transifex.com/teclib/glpi-project-plugin-talk/language/hu_HU/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hu_HU\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.4\n"
+
+msgid "Talks"
+msgstr "Párbeszédek"
+
+msgid "Processing ticket"
+msgstr "Bejelentés feldolgozása"
+
+msgid "Timeline filter"
+msgstr "Idősáv szűrő"
+
+msgid "Actions historical"
+msgstr "Korábbi műveletek "
+
+msgid "Enable Talk Tab"
+msgstr "Párbeszéd fül engedélyezése"
+
+msgid "Show replaced Tabs"
+msgstr ""
+
+msgid "Enable horizontal split view"
+msgstr "Vízszintesen osztott nézet engedélyezése"
+
+msgid "Ticket recall"
+msgstr ""

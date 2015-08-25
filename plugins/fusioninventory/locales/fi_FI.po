@@ -1,0 +1,3222 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Ilkka Yläkoski <iylakoski@learn-it2.fi>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Project - plugin FusionInventory\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-18 01:16+0100\n"
+"PO-Revision-Date: 2014-12-19 14:44+0000\n"
+"Last-Translator: Ilkka Yläkoski <iylakoski@learn-it2.fi>\n"
+"Language-Team: Finnish (Finland) (http://www.transifex.com/projects/p/FusionInventory/language/fi_FI/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fi_FI\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: hook.php:51 hook.php:231 hook.php:238 hook.php:257 hook.php:264
+#: hook.php:275 hook.php:283 hook.php:294 hook.php:315 hook.php:322
+#: hook.php:330 inc/agent.class.php:191 inc/task.view.class.php:59
+msgid "FusInv"
+msgstr "FusInv"
+
+#: hook.php:52 hook.php:295 hook.php:323
+#: inc/inventorycomputercomputer.class.php:96
+#: inc/inventorycomputercomputer.class.php:231
+#: inc/networkequipment.class.php:563 inc/networkequipment.class.php:1114
+#: inc/printer.class.php:156 inc/printer.class.php:210
+msgid "Last inventory"
+msgstr "Edellinen kartoitus"
+
+#: hook.php:59
+msgid "Antivirus name"
+msgstr "Antivirus-nimi"
+
+#: hook.php:68
+msgid "Antivirus version"
+msgstr "Antivirus-versio"
+
+#: hook.php:78
+msgid "Antivirus enabled"
+msgstr "Antivirus käytössä"
+
+#: hook.php:88
+msgid "Antivirus up to date"
+msgstr "Antivirus ajan tasalla"
+
+#: hook.php:97 hook.php:106
+msgid "BIOS"
+msgstr "BIOS"
+
+#: hook.php:121 inc/inventorycomputercomputer.class.php:157
+msgid "Owner"
+msgstr "Omistaja"
+
+#: hook.php:126 inc/inventorycomputercomputer.class.php:164
+msgid "Company"
+msgstr "Yritys"
+
+#: hook.php:132 inc/agent.class.php:130 inc/agent.class.php:222
+#: inc/agent.class.php:428 inc/agent.class.php:1191
+msgid "Useragent"
+msgstr "User-Agent"
+
+#: hook.php:139 inc/agent.class.php:136 inc/agent.class.php:461
+#: inc/agent.class.php:1196 inc/config.class.php:468 inc/config.class.php:486
+#: inc/config.class.php:520 inc/inventoryruleentity.class.php:127
+#: inc/inventoryruleimport.class.php:143
+#: inc/inventoryrulelocation.class.php:130
+msgid "FusionInventory tag"
+msgstr "FusionInventory-tunniste"
+
+#: hook.php:143 inc/computerarch.class.php:51
+#: inc/inventorycomputercomputer.class.php:139
+#: inc/ruledictionnarycomputerarch.class.php:65
+#: inc/ruledictionnarycomputerarch.class.php:77
+msgid "Architecture"
+msgstr "Arkkitehtuuri"
+
+#: hook.php:165 hook.php:172 hook.php:179 hook.php:186 hook.php:193
+#: hook.php:200 hook.php:207 inc/agent.class.php:166 inc/agent.class.php:245
+#: inc/agentmodule.class.php:110 inc/agentmodule.class.php:222
+#: inc/agentmodule.class.php:224 inc/ignoredimportdevice.class.php:118
+#: inc/rulematchedlog.class.php:171 inc/rulematchedlog.class.php:241
+msgid "Module"
+msgstr "Moduuli"
+
+#: hook.php:165 inc/menu.class.php:454
+msgid "Deploy"
+msgstr "Ota käyttöön"
+
+#: hook.php:172
+msgid "WakeOnLan"
+msgstr "WakeOnLan"
+
+#: hook.php:179
+msgid "Local inventory"
+msgstr "Paikallinen kartoitus"
+
+#: hook.php:186
+msgid "ESX/VMWare"
+msgstr "ESX/VMWare"
+
+#: hook.php:193
+msgid "Network inventory"
+msgstr "Verkkokartoitus"
+
+#: hook.php:200 inc/agent.class.php:143 inc/agent.class.php:419
+#: inc/agent.class.php:436 inc/config.class.php:601 inc/config.class.php:623
+#: inc/staticmisc.class.php:86
+msgid "Network discovery"
+msgstr "Verkon löytäminen"
+
+#: hook.php:207
+msgid "Collect"
+msgstr "Keräys"
+
+#: hook.php:211 inc/computer.class.php:55 inc/deploygroup.class.php:73
+msgid "Static group"
+msgstr "Staattinen ryhmä"
+
+#: hook.php:247
+msgid "Agent base URL"
+msgstr "Agentin URL"
+
+#: hook.php:276 hook.php:284 hook.php:316 inc/menu.class.php:382
+#: inc/networkequipment.class.php:482 inc/printer.class.php:168
+#: inc/profile.class.php:251 inc/unmanaged.class.php:171
+#: inc/unmanaged.class.php:424
+msgid "SNMP authentication"
+msgstr "SNMP-autentikointi"
+
+#: hook.php:302 hook.php:338 inc/networkequipment.class.php:470
+#: inc/printer.class.php:147 inc/unmanaged.class.php:165
+#: inc/unmanaged.class.php:412
+msgid "Sysdescr"
+msgstr "Sysdescr-kuvaus"
+
+#: hook.php:331 inc/networkequipment.class.php:492
+msgid "CPU usage (in %)"
+msgstr "Suoritinkäyttö (%)"
+
+#: hook.php:897 hook.php:906 hook.php:917 inc/lock.class.php:180
+#: inc/lock.class.php:325 inc/profile.class.php:272
+msgid "Lock"
+msgid_plural "Locks"
+msgstr[0] "Lukko"
+msgstr[1] "Lukot"
+
+#: hook.php:898 inc/deploygroup.class.php:94
+msgid "Target a task"
+msgstr "Kohdista tehtävä"
+
+#: hook.php:900
+msgid "Add to static group"
+msgstr "Lisää staattiseen ryhmään"
+
+#: hook.php:908 hook.php:919
+msgid "Load the correct SNMP model"
+msgstr "Lataa oikea SNMP-malli"
+
+#: hook.php:909 hook.php:920
+msgid "Assign SNMP model"
+msgstr "Liitä SNMP-malli"
+
+#: hook.php:911 hook.php:922 inc/unmanaged.class.php:251
+msgid "Assign SNMP authentication"
+msgstr "Liitä SNMP-autentikointi"
+
+#: hook.php:936 inc/taskjoblog.class.php:478 inc/taskjoblog.class.php:921
+#: inc/taskjoblog.class.php:979
+msgid "Force the end"
+msgstr "Pakota lopetus"
+
+#: hook.php:1030 inc/deploygroup.class.php:119 inc/deploytask.class.php:56
+#: inc/deploytask.class.php:114 inc/profile.class.php:296
+#: inc/task.view.class.php:126
+msgid "Task"
+msgid_plural "Tasks"
+msgstr[0] "Tehtävä"
+msgstr[1] "Tehtävä"
+
+#: hook.php:1049 inc/deploygroup.class.php:138 inc/deploypackage.class.php:56
+msgid "Package"
+msgstr "Paketti"
+
+#: hook.php:1063
+msgid "Create a job for each computer"
+msgstr "Luo tehtävä jokaiselle tietokoneelle"
+
+#: hook.php:1065 inc/deploygroup.class.php:151
+msgid "Create a job for each group"
+msgstr "Luo tehtävä jokaiselle ryhmälle"
+
+#: index.php:55 front/agent.form.php:47 front/agent.php:45
+#: front/agentmodule.form.php:45 front/collect.php:45
+#: front/collectrule.form.php:45 front/collectrule.php:46
+#: front/configsecurity.form.php:50 front/configsecurity.php:45
+#: front/documentation.php:45 front/ignoredimportdevice.php:45
+#: front/inventorycomputerblacklist.form.php:45
+#: front/inventorycomputerblacklist.php:45
+#: front/inventorycomputerimportxml.php:45
+#: front/inventoryruleentity.form.php:45 front/inventoryruleentity.php:46
+#: front/inventoryruleimport.form.php:45 front/inventoryruleimport.php:45
+#: front/inventoryrulelocation.form.php:45 front/inventoryrulelocation.php:46
+#: front/iprange.form.php:47 front/iprange.php:45 front/menu.php:46
+#: front/menu_inventory.php:46 front/menu_snmpinventory.php:46
+#: front/printerlogreport.php:48 front/ruledictionnarycomputerarch.form.php:44
+#: front/ruledictionnarycomputerarch.php:44 front/statediscovery.php:45
+#: front/stateinventory.php:45 front/task.form.php:47 front/task.php:46
+#: front/taskjob.form.php:47 front/taskjob.php:45 front/taskjoblog.php:45
+#: front/timeslot.php:48 front/unmanaged.form.php:48 front/unmanaged.php:45
+#: front/wizard.php:45 front/wizard_inventory.php:45
+#: front/wizard_inventorycomputeroptions.php:45
+#: inc/inventorycomputercomputer.class.php:91
+#: inc/networkequipment.class.php:558 report/computer_last_inventory.php:49
+#: report/not_queried_recently.php:51 report/ports_date_connections.php:49
+#: report/switch_ports.history.php:50
+msgid "FusionInventory"
+msgstr "FusionInventory"
+
+#: setup.php:383 inc/printerlog.class.php:476
+msgid "Printed page counter"
+msgstr "Tulosteiden laskuri"
+
+#: setup.php:387
+msgid "Switchs ports history"
+msgstr "Kytkinporttien historia"
+
+#: setup.php:389
+msgid "Unused switchs ports"
+msgstr "Käyttämättömät kytkinportit"
+
+#: setup.php:391
+msgid "Number of days since last inventory"
+msgstr "Päivien lukumäärä edellisestä kartoituksesta"
+
+#: setup.php:395 report/computer_last_inventory.php:67
+msgid "Computers not inventoried since xx days"
+msgstr "Kartoittamattomat tietokoneet sitten xx päivää"
+
+#: setup.php:503
+msgid "Your GLPI version not compatible, require 0.85"
+msgstr "Käyttämäsi GLPI-versio ei ole yhteensopiva.Vaadittu versio on 0.85."
+
+#: setup.php:508
+msgid "fileinfo extension (PHP) is required..."
+msgstr "PHP:n fileinfo-laajennos on välttämätön …"
+
+#: setup.php:521
+#, php-format
+msgid "Please remove folder %s in glpi/plugins/"
+msgstr "Poista hakemisto %s hakemistosta glpi/plugins/"
+
+#: ajax/configurationamanagement_action.php:55
+msgid "In referentiel + alert"
+msgstr "Varastossa + hälytys"
+
+#: ajax/configurationamanagement_action.php:56
+msgid "In referentiel - alert"
+msgstr "Varastossa - hälytys"
+
+#: ajax/configurationamanagement_action.php:57
+msgid "Not in referentiel"
+msgstr "Ei varastossa"
+
+#: front/agent.form.php:58
+msgid "The agent is running"
+msgstr "Agentti on käynnissä"
+
+#: front/agent.form.php:61 inc/agent.class.php:790
+msgid "Impossible to communicate with agent!"
+msgstr "Agenttiin ei saada yhteyttä!"
+
+#: front/collect.form.php:45
+msgid "Collect management"
+msgstr "Keräyksen hallinta"
+
+#: front/config.form.php:47 front/configlogfield.form.php:47
+msgid "Features"
+msgstr "Piirteet"
+
+#: front/inventorycomputerimportxml.php:68
+msgid "Can't read zip file!"
+msgstr "Pakattua zip-tiedostoa ei voi lukea!"
+
+#: front/inventorycomputerimportxml.php:93
+msgid "No file to import!"
+msgstr "Ei tuotavia tiedostoja!"
+
+#: front/inventoryruleimport.php:61
+msgid "Reset import rules (define only default rules)"
+msgstr "Palauta tuontisäännöt oletusarvoon (vain oletussäännöt)"
+
+#: front/popup.php:64
+msgid "Cache informations"
+msgstr "Piilotiedot"
+
+#: front/popup.php:69
+msgid "Network ports display options"
+msgstr "Verkkoporttien näyttöasetukset"
+
+#: front/printerlogreport.php:92 inc/statediscovery.class.php:141
+#: inc/stateinventory.class.php:94
+msgid "Starting date"
+msgstr "Aloituspäivä"
+
+#: front/printerlogreport.php:100 inc/statediscovery.class.php:142
+#: inc/stateinventory.class.php:95
+msgid "Ending date"
+msgstr "Lopetuspäivä"
+
+#: front/rule.common.php:176
+msgid "Rules applied"
+msgstr "Käytetyt säännöt"
+
+#: front/rule.common.php:187
+msgid "Local rules"
+msgstr "Paikalliset säännöt"
+
+#: front/unmanaged.form.php:82
+msgid "restoration of the item"
+msgstr "Palauta kohde"
+
+#: front/unmanaged.form.php:103 inc/unmanaged.class.php:291
+msgid "Number of imported devices"
+msgstr "Tuotujen laitteiden lukumäärä"
+
+#: front/unmanaged.form.php:105 inc/unmanaged.class.php:292
+msgid "Number of devices not imported because type not defined"
+msgstr "Tuomattomien laitteiden lukumäärä sillä tyyppiä ei oltu määritetty"
+
+#: inc/agent.class.php:60 inc/agent.class.php:69 inc/agent.class.php:765
+#: inc/agent.class.php:1186 inc/ignoredimportdevice.class.php:59
+#: inc/rulematchedlog.class.php:167 inc/statediscovery.class.php:139
+#: inc/stateinventory.class.php:92 inc/taskjoblog.class.php:198
+#: inc/taskjoblog.class.php:272 inc/taskjoblog.class.php:339
+#: inc/taskjoblog.class.php:547 inc/taskjobstate.class.php:225
+msgid "Agent"
+msgstr "Agentti "
+
+#: inc/agent.class.php:90 inc/agent.class.php:223 inc/agent.class.php:444
+msgid "Last contact"
+msgstr "Edellinen yhteydenotto"
+
+#: inc/agent.class.php:96 inc/agent.class.php:404
+msgid "locked"
+msgstr "Lukittu"
+
+#: inc/agent.class.php:102 inc/agent.class.php:377
+msgid "Device_id"
+msgstr "Laitetunnus"
+
+#: inc/agent.class.php:108 inc/agent.class.php:384
+msgid "Computer link"
+msgstr "Liitetty tietokoneeseen"
+
+#: inc/agent.class.php:142 inc/agent.class.php:149 inc/agent.class.php:418
+#: inc/agent.class.php:452 inc/config.class.php:600 inc/config.class.php:610
+#: inc/statediscovery.class.php:144 inc/stateinventory.class.php:98
+msgid "Threads number"
+msgstr "Säikeiden lukumäärä"
+
+#: inc/agent.class.php:150 inc/agent.class.php:453 inc/agent.class.php:468
+#: inc/agentmodule.class.php:135 inc/agentmodule.class.php:248
+#: inc/config.class.php:611 inc/config.class.php:632
+#: inc/staticmisc.class.php:92
+msgid "Network inventory (SNMP)"
+msgstr "Verkon kartoitus (SNMP)"
+
+#: inc/agent.class.php:157 inc/agent.class.php:482 inc/config.class.php:320
+msgid "Agent port"
+msgstr "Agentin portti"
+
+#: inc/agent.class.php:435 inc/agent.class.php:467 inc/config.class.php:622
+#: inc/config.class.php:631
+msgid "SNMP timeout"
+msgstr "SNMP-timeout"
+
+#: inc/agent.class.php:483
+msgid "if empty use port configured in general options"
+msgstr "jos tyhjä niin käytä porttia, joka on asetettu yleisissä asetuksissa"
+
+#: inc/agent.class.php:759
+msgid "Agent state"
+msgstr "Agentin tila"
+
+#: inc/agent.class.php:815
+msgid "Force inventory"
+msgstr "Pakota kartoitus"
+
+#: inc/agent.class.php:1130
+msgid "Informations for agent configuration"
+msgstr "Tiedot agentin konfiguraatioon"
+
+#: inc/agent.class.php:1140
+msgid "Communication url of the server"
+msgstr "Palvelimen url-yhteys"
+
+#: inc/agentmodule.class.php:62 inc/agentmodule.class.php:64
+#: inc/configuration.class.php:57
+msgid "Agents modules"
+msgstr "Agenttien moduulit"
+
+#: inc/agentmodule.class.php:111
+msgid "Activation (by default)"
+msgstr "Aktivointi (oletuksena)"
+
+#: inc/agentmodule.class.php:112
+msgid "Exceptions"
+msgstr "Poikkeukset"
+
+#: inc/agentmodule.class.php:140 inc/agentmodule.class.php:253
+msgid "Package deployment"
+msgstr "Paketin käyttöönotto"
+
+#: inc/collect.class.php:52 inc/staticmisc.class.php:657
+msgid "Collect information"
+msgstr "Keräystiedot"
+
+#: inc/collect.class.php:65
+msgid "Registry"
+msgstr "Rekisteri"
+
+#: inc/collect.class.php:66
+msgid "WMI"
+msgstr "WMI"
+
+#: inc/collect.class.php:67 inc/collect_file.class.php:55
+#: inc/collect_file.class.php:62
+msgid "Find file"
+msgstr "Tiedoston haku"
+
+#: inc/collect_file.class.php:86
+msgid "Find file associated"
+msgstr "Hae yhdistetty tiedosto"
+
+#: inc/collect_file.class.php:90 inc/collect_file.class.php:160
+msgid "Limit"
+msgstr "Raja"
+
+#: inc/collect_file.class.php:91 inc/collect_file.class.php:126
+#: inc/collect_file.class.php:246
+msgid "Folder"
+msgstr "Hakemisto"
+
+#: inc/collect_file.class.php:92
+msgid "Recursive"
+msgstr "Rekursiivinen"
+
+#: inc/collect_file.class.php:93 inc/collect_file.class.php:194
+msgid "Regex"
+msgstr "Säännönmukainen lauseke"
+
+#: inc/collect_file.class.php:94 inc/collect_file.class.php:200
+#: inc/collect_file_content.class.php:189
+#: inc/collect_file_content.class.php:227
+msgid "Size"
+msgstr "Koko"
+
+#: inc/collect_file.class.php:95 inc/collect_file.class.php:215
+msgid "Checksum SHA512"
+msgstr "Tarkistussumma SHA512"
+
+#: inc/collect_file.class.php:96 inc/collect_file.class.php:221
+msgid "Checksum SHA2"
+msgstr "Tarkistussumma SHA2"
+
+#: inc/collect_file.class.php:97
+msgid "Name"
+msgstr "Nimi"
+
+#: inc/collect_file.class.php:98
+msgid "Iname"
+msgstr "Iname"
+
+#: inc/collect_file.class.php:99 inc/collect_file.class.php:241
+#: inc/deployaction.class.php:258 inc/deploycheck.class.php:235
+msgid "Type"
+msgstr "Tyyppi"
+
+#: inc/collect_file.class.php:124 inc/collect_file.class.php:245
+#: inc/deploycheck.class.php:291 inc/deploycheck.class.php:297
+#: inc/deploycheck.class.php:302 inc/deployfile.class.php:393
+msgid "File"
+msgstr "Tiedosto"
+
+#: inc/collect_file.class.php:173
+msgid "Filter"
+msgid_plural "Filters"
+msgstr[0] "Suodatin"
+msgstr[1] "Suodattimet"
+
+#: inc/collect_file.class.php:179
+msgid "Base folder"
+msgstr "Juurikansio"
+
+#: inc/collect_file.class.php:185
+msgid "Folder recursive"
+msgstr "Rekursiivinen kansio"
+
+#: inc/collect_file.class.php:204 inc/collect_file.class.php:234
+msgid "Disabled"
+msgstr "Poistettu käytöstä"
+
+#: inc/collect_file.class.php:230
+msgid "Filename"
+msgstr "Tiedoston nimi"
+
+#: inc/collect_file.class.php:235
+msgid "Non sentitive case"
+msgstr "Kirjainkoolla ei merkitystä"
+
+#: inc/collect_file.class.php:236
+msgid "Sentitive case"
+msgstr "Merkkikokoriippuvainen"
+
+#: inc/collect_file_content.class.php:52 inc/collect_file_content.class.php:73
+#: inc/collect_file_content.class.php:79
+msgid "Find file content"
+msgstr "Löydetyn tiedoston sisältö"
+
+#: inc/collect_file_content.class.php:188
+msgid "Path/file"
+msgstr "Polku/tiedosto"
+
+#: inc/collect_file_content.class.php:226
+msgid "pathfile"
+msgstr "tiedostopolku"
+
+#: inc/collect_registry.class.php:52 inc/collect_registry.class.php:61
+msgid "Windows registry"
+msgstr "Windows-rekisteri"
+
+#: inc/collect_registry.class.php:101
+msgid "Windows registry associated"
+msgstr "Yhdistetty Windows-rekisteriin"
+
+#: inc/collect_registry.class.php:105 inc/collect_registry.class.php:147
+msgid "Hive"
+msgstr "Avain"
+
+#: inc/collect_registry.class.php:106
+msgid "Path/key"
+msgstr "Polku/avain"
+
+#: inc/collect_registry.class.php:107
+#: inc/collect_registry_content.class.php:179
+#: inc/collect_registry_content.class.php:223
+#: inc/collect_wmi_content.class.php:181 inc/collect_wmi_content.class.php:226
+#: inc/deploycheck.class.php:298 inc/deploycheck.class.php:303
+#: inc/deploycheck.class.php:308
+msgid "Value"
+msgstr "Arvo"
+
+#: inc/collect_registry.class.php:155
+#: inc/collect_registry_content.class.php:178
+msgid "Path"
+msgstr "Polku"
+
+#: inc/collect_registry.class.php:161 inc/deploycheck.class.php:282
+#: inc/deploycheck.class.php:286
+msgid "Key"
+msgstr "Avain"
+
+#: inc/collect_registry_content.class.php:52
+#: inc/collect_registry_content.class.php:73
+#: inc/collect_registry_content.class.php:79
+msgid "Windows registry content"
+msgstr "Windows-rekisterin sisältö"
+
+#: inc/collect_registry_content.class.php:180
+#: inc/collect_registry_content.class.php:224
+msgid "Data"
+msgstr "Tiedot"
+
+#: inc/collect_wmi.class.php:52 inc/collect_wmi.class.php:61
+msgid "Windows WMI"
+msgstr "Windows WMI"
+
+#: inc/collect_wmi.class.php:87
+msgid "Windows WMI associated"
+msgstr "Yhdistetty Windows WMI"
+
+#: inc/collect_wmi.class.php:91 inc/collect_wmi_content.class.php:178
+msgid "Moniker"
+msgstr "Monikeri"
+
+#: inc/collect_wmi.class.php:92 inc/collect_wmi.class.php:141
+#: inc/collect_wmi_content.class.php:179
+msgid "Class"
+msgstr "Luokka"
+
+#: inc/collect_wmi.class.php:93 inc/collect_wmi.class.php:147
+msgid "Properties"
+msgstr "Ominaisuudet"
+
+#: inc/collect_wmi.class.php:133
+msgid "moniker"
+msgstr "Monikeri"
+
+#: inc/collect_wmi_content.class.php:52 inc/collect_wmi_content.class.php:73
+#: inc/collect_wmi_content.class.php:79
+msgid "Windows WMI content"
+msgstr "Windows WMI:n sisältö"
+
+#: inc/collect_wmi_content.class.php:180 inc/collect_wmi_content.class.php:225
+msgid "Property"
+msgstr "Ominaisuus"
+
+#: inc/collectrule.class.php:57 inc/collectrulecollection.class.php:57
+#: inc/menu.class.php:329 inc/profile.class.php:213
+msgid "Additional computer information rules"
+msgstr "Tietokonetietojen lisäsäännöt"
+
+#: inc/collectrule.class.php:125
+msgid "Registry key"
+msgstr "Rekisteriavain"
+
+#: inc/collectrule.class.php:129
+msgid "Registry value"
+msgstr "Rekisteriarvo"
+
+#: inc/collectrule.class.php:132
+msgid "WMI property"
+msgstr "WMI-ominaisuus"
+
+#: inc/collectrule.class.php:136
+msgid "WMI value"
+msgstr "WMI-arvo"
+
+#: inc/collectrule.class.php:139
+msgid "File name"
+msgstr "Tiedoston nimi "
+
+#: inc/collectrule.class.php:142
+msgid "File path"
+msgstr "Tiedostopolku "
+
+#: inc/collectrule.class.php:145
+msgid "File size"
+msgstr "Tiedoston koko "
+
+#: inc/common.view.class.php:188
+msgid "Warning:"
+msgstr "Varoitus"
+
+#: inc/common.view.class.php:192
+msgid "Error:"
+msgstr "Virhe "
+
+#: inc/communication.class.php:224
+#: inc/communicationnetworkinventory.class.php:215
+#: inc/communicationnetworkinventory.class.php:295
+msgid "Unattended element in"
+msgstr "Odottamaton elementti kohteessa"
+
+#: inc/computerlicenseinfo.class.php:63
+msgid "Software licenses"
+msgstr "Ohjelmistolisenssit"
+
+#: inc/computerlicenseinfo.class.php:117
+msgid "Serial number"
+msgstr "Sarjanumero"
+
+#: inc/computerlicenseinfo.class.php:122
+msgid "Full name"
+msgstr "Täydellinen nimi"
+
+#: inc/computerlicenseinfo.class.php:124
+msgid "Option"
+msgstr "Asetus"
+
+#: inc/computerlicenseinfo.class.php:148
+msgid "Union between computer and license"
+msgstr "Yhteys tietokoneen ja lisenssin välillä"
+
+#: inc/config.class.php:199 inc/staticmisc.class.php:70
+msgid "Computer Inventory"
+msgstr "Tietokonekartoitus"
+
+#: inc/config.class.php:201
+msgid "Network Inventory"
+msgstr "Verkkokartoitus"
+
+#: inc/config.class.php:203 inc/menu.class.php:439
+msgid "Package management"
+msgstr "Paketin hallinta"
+
+#: inc/config.class.php:295
+msgid "SSL-only for agent"
+msgstr "Yhteys agenttin vain SSL:än avulla"
+
+#: inc/config.class.php:299
+msgid "Inventory frequency (in hours)"
+msgstr "Kartoitustiheys (tunteina)"
+
+#: inc/config.class.php:310
+msgid "Delete tasks logs after"
+msgstr "Poista päättyneet tehtävät, kun on kulunut "
+
+#: inc/config.class.php:327
+msgid "Extra-debug"
+msgstr "Extra-debug"
+
+#: inc/config.class.php:360
+msgid "Clean agents not have contacted server since (in days)"
+msgstr "Siivoa agentit, jotka eivät ole olleet yhteydessä palvelimeen sitten (päivää)"
+
+#: inc/config.class.php:399 inc/wizard.class.php:340
+msgid "Import options"
+msgstr "Tuonnin asetukset"
+
+#: inc/config.class.php:447 inc/inventorycomputerantivirus.class.php:53
+#: inc/inventorycomputerantivirus.class.php:80
+#: inc/inventorycomputerantivirus.class.php:136
+#: inc/inventorycomputerbatteries.class.php:117
+msgid "Antivirus"
+msgstr "Antivirus"
+
+#: inc/config.class.php:490
+msgid "Virtual network card"
+msgstr "Virtuaalinen verkkokortti"
+
+#: inc/config.class.php:499
+msgid "Default status"
+msgstr "Oletustila"
+
+#: inc/config.class.php:533
+msgid ""
+"Create computer based on virtual machine information ( only when the virtual"
+" machine has no inventory agent ! )"
+msgstr "Luo tietokone perustuen virtuaalikoneen tietoihin (vain kun virtuaalikoneella ei ole agenttia)."
+
+#: inc/config.class.php:550
+msgid "Network drives"
+msgstr "Verkkoasemat"
+
+#: inc/config.class.php:595
+msgid "Network options"
+msgstr "Verkkoasetukset"
+
+#: inc/config.class.php:672
+msgid "Root folder for sending files from server"
+msgstr "Siirtohakemisto tiedostojen lähetykseen"
+
+#: inc/config.class.php:680
+msgid "Use this GLPI server as a mirror server"
+msgstr "Käytä tätä GLPI-palvelinta peilipalvelimena"
+
+#: inc/configlogfield.class.php:145
+msgid "History configuration"
+msgstr "Historiatietojen asetukset"
+
+#: inc/configlogfield.class.php:152
+msgid "List of fields for which to keep history"
+msgstr "Luettelo talletettavista kentistä"
+
+#: inc/configlogfield.class.php:156
+msgid "Retention in days"
+msgstr "Säilytysaika päivinä"
+
+#: inc/configsecurity.class.php:82
+msgid "SNMP version"
+msgstr "SNMP-versio"
+
+#: inc/configsecurity.class.php:94
+msgid "Community"
+msgstr "Yhteisö"
+
+#: inc/configsecurity.class.php:107
+msgid "Encryption protocol for authentication "
+msgstr "Kirjautumisen salausprotokolla"
+
+#: inc/configsecurity.class.php:124
+msgid "Encryption protocol for data"
+msgstr "Tietojen salausprotokolla"
+
+#: inc/credential.class.php:56 inc/credential.class.php:143
+#: inc/credentialip.class.php:97 inc/credentialip.class.php:110
+#: inc/credentialip.class.php:130 inc/menu.class.php:392
+#: inc/profile.class.php:242
+msgid "Authentication for remote devices (VMware)"
+msgstr "Kirjautuminen etälaitteille (Vmware)"
+
+#: inc/credential.class.php:229 inc/credential.class.php:244
+#: inc/profile.class.php:248
+msgid "VMware host"
+msgstr "Vmware-isäntä"
+
+#: inc/credential.class.php:349 inc/menu.class.php:373
+#: inc/profile.class.php:245 inc/wizard.class.php:1014
+msgid "Remote devices to inventory (VMware)"
+msgstr "Kartoitettavat etälaitteet (Vmware)"
+
+#: inc/credentialip.class.php:56
+msgid "Remote device inventory"
+msgstr "Etälaitteen kartoitus"
+
+#: inc/deployaction.class.php:52
+msgid "Return code is equal to"
+msgstr "Paluuarvo on yhtä suuri kuin"
+
+#: inc/deployaction.class.php:53
+msgid "Return code is not equal to"
+msgstr "Paluuarvo on eri suuri kuin"
+
+#: inc/deployaction.class.php:54
+msgid "Command output contains"
+msgstr "Komennon tulos sisältää"
+
+#: inc/deployaction.class.php:55
+msgid "Command output does not contains"
+msgstr "Komennon tulos ei sisällä"
+
+#: inc/deployaction.class.php:63
+msgid "Command"
+msgstr "Komento"
+
+#: inc/deployaction.class.php:64
+msgid "Move"
+msgstr "Siirrä"
+
+#: inc/deployaction.class.php:65
+msgid "Copy"
+msgstr "Kopioi"
+
+#: inc/deployaction.class.php:66 inc/deployaction.class.php:222
+#: inc/deploycheck.class.php:206 inc/deployfile.class.php:293
+#: inc/networkequipment.class.php:1055 inc/networkequipment.class.php:1056
+#: inc/networkportlog.class.php:193 inc/networkporttype.class.php:389
+#: inc/printerlog.class.php:354 inc/printerlog.class.php:554
+#: inc/taskjob.class.php:165 inc/taskjob.class.php:1801
+#: inc/taskjob.view.class.php:264 inc/taskjob.view.class.php:443
+#: inc/taskjob.view.class.php:455
+msgid "Delete"
+msgstr "Poista "
+
+#: inc/deployaction.class.php:67
+msgid "Make directory"
+msgstr "Luo hakemisto"
+
+#: inc/deployaction.class.php:180
+msgid "Command to execute"
+msgstr "Suoritettava komento"
+
+#: inc/deployaction.class.php:194
+msgid "return codes saved for this command"
+msgstr "tämän komennon paluuarvot talletettu "
+
+#: inc/deployaction.class.php:207 inc/deploycheck.class.php:191
+#: inc/deployfile.class.php:279 inc/taskjob.class.php:1789
+msgid "drag"
+msgstr "raahaa"
+
+#: inc/deployaction.class.php:330
+msgid "From"
+msgstr "Alkaen"
+
+#: inc/deployaction.class.php:332
+msgid "To"
+msgstr "Asti"
+
+#: inc/deployaction.class.php:340
+msgid "exec"
+msgstr "exec"
+
+#: inc/deployaction.class.php:353
+msgid "path"
+msgstr "Polku "
+
+#: inc/deployaction.class.php:392
+msgid "Execution checks"
+msgstr "Tarkistusten suoritus"
+
+#: inc/deploycheck.class.php:51
+msgid "Registry key exists"
+msgstr "Rekisteriavain on olemassa"
+
+#: inc/deploycheck.class.php:52
+msgid "Registry key missing"
+msgstr "Rekisteriavain ei ole olemassa"
+
+#: inc/deploycheck.class.php:53
+msgid "Registry key value equals to"
+msgstr "Rekisteriavain on sama kuin"
+
+#: inc/deploycheck.class.php:54
+msgid "File exists"
+msgstr "Tiedosto on olemassa"
+
+#: inc/deploycheck.class.php:55
+msgid "File is missing"
+msgstr "Tiedosto ei ole olemassa"
+
+#: inc/deploycheck.class.php:56
+msgid "File size is greater than"
+msgstr "Tiedoston koko on suurempi kuin "
+
+#: inc/deploycheck.class.php:57
+msgid "File size is equal to"
+msgstr "Tiedoston koko on yhtä suuri kuin "
+
+#: inc/deploycheck.class.php:58
+msgid "File size is lower than"
+msgstr "Tiedoston koko on pienempi kuin "
+
+#: inc/deploycheck.class.php:59
+msgid "SHA-512 hash value is"
+msgstr "SHA-512-tiiviste on "
+
+#: inc/deploycheck.class.php:60
+msgid "Free space is greater than"
+msgstr "Vapaa tila suuret mpi kuin "
+
+#: inc/deploycheck.class.php:80
+msgid "B"
+msgstr "t"
+
+#: inc/deploycheck.class.php:81
+msgid "KiB"
+msgstr "kt"
+
+#: inc/deploycheck.class.php:82
+msgid "MiB"
+msgstr "Mt"
+
+#: inc/deploycheck.class.php:83
+msgid "GiB"
+msgstr "Gt"
+
+#: inc/deploycheck.class.php:287
+msgid "Key value"
+msgstr "Avaimen arvo"
+
+#: inc/deploycheck.class.php:307
+msgid "Disk or directory"
+msgstr "Levy tai hakemisto"
+
+#: inc/deploycheck.class.php:395
+msgid "Unit"
+msgstr "Yksikkö"
+
+#: inc/deploycheck.class.php:421
+msgid "In case of error"
+msgstr "Virhetilanteessa"
+
+#: inc/deploycheck.class.php:424 inc/taskjobstate.class.php:78
+msgid "Error"
+msgstr "Virhe "
+
+#: inc/deploycheck.class.php:425
+msgid "Ignore"
+msgstr "Sivuuta"
+
+#: inc/deployfile.class.php:56
+msgid "Upload from computer"
+msgstr "Lataa tietokoneelta"
+
+#: inc/deployfile.class.php:57
+msgid "Upload from server"
+msgstr "Lataa palvelimelta"
+
+#: inc/deployfile.class.php:226
+msgid "p2p"
+msgstr "p2p"
+
+#: inc/deployfile.class.php:227
+msgid "retention"
+msgstr "säilytysaika"
+
+#: inc/deployfile.class.php:229
+msgid "days"
+msgstr "päivää"
+
+#: inc/deployfile.class.php:242
+msgid "uncompress"
+msgstr "pura"
+
+#: inc/deployfile.class.php:326
+msgid "Source"
+msgstr "Lähde"
+
+#: inc/deployfile.class.php:399
+msgid "filename"
+msgstr "Tiedoston nimi "
+
+#: inc/deployfile.class.php:405
+msgid "Choose"
+msgstr "Valitse"
+
+#: inc/deployfile.class.php:409
+msgid "Select the file on server"
+msgstr "Valitse palvelimen tiedosto"
+
+#: inc/deployfile.class.php:424
+msgid "Uncompress"
+msgstr "Pura"
+
+#: inc/deployfile.class.php:429
+msgid "P2P"
+msgstr "P2P"
+
+#: inc/deployfile.class.php:436
+msgid "retention days"
+msgstr "Säilytyspäivät"
+
+#: inc/deployfile.class.php:707
+msgid "Transfer error: the file size is too big"
+msgstr "Siirtovirhe: tiedosto on liian suuri."
+
+#: inc/deployfile.class.php:710
+msgid "The uploaded file was only partially uploaded"
+msgstr "Tiedosto ladattiin vain osittain"
+
+#: inc/deployfile.class.php:713
+msgid "No file was uploaded"
+msgstr "Yhtään tiedostoa ei ladattu"
+
+#: inc/deployfile.class.php:716
+msgid "Missing a temporary folder"
+msgstr "Väliaikaiskansio puuttuu"
+
+#: inc/deployfile.class.php:719
+msgid "Failed to write file to disk"
+msgstr "Tiedostoa ei voida kirjoittaa levylle "
+
+#: inc/deployfile.class.php:722
+msgid "PHP extension stopped the file upload"
+msgstr "PHP-laajennus keskeytti tiedoston latauksen"
+
+#: inc/deployfile.class.php:752 inc/deployfile.class.php:800
+msgid "File saved!"
+msgstr "Tiedoston tallennus onnistui"
+
+#: inc/deployfile.class.php:755 inc/deployfile.class.php:803
+msgid "Failed to copy file"
+msgstr "Tiedoston kopiointi epäonnistui"
+
+#: inc/deployfile.class.php:759 inc/deployfile.class.php:807
+msgid "File missing"
+msgstr "Tiedosto puuttuu"
+
+#: inc/deployfile.class.php:1047
+msgid "Max file size"
+msgstr "Tiedoston enimmäiskoko"
+
+#: inc/deployfile.class.php:1049
+msgid "Mio"
+msgstr "Mt"
+
+#: inc/deploygroup.class.php:64 inc/deploytaskjob.class.php:170
+#: inc/menu.class.php:227 inc/profile.class.php:302
+msgid "Groups of computers"
+msgstr "Tietokoneryhmät"
+
+#: inc/deploygroup.class.php:74
+msgid "Dynamic group"
+msgstr "Dynaaminen ryhmä"
+
+#: inc/deploygroup.class.php:298
+msgid "Add group"
+msgstr "Lisää ryhmä"
+
+#: inc/deployinstall.class.php:50 inc/deployinstall.class.php:60
+msgid "Installation"
+msgstr "Asennus"
+
+#: inc/deploymirror.class.php:54 inc/menu.class.php:448
+#: inc/profile.class.php:228
+msgid "Mirror servers"
+msgstr "Peilipalvelimet"
+
+#: inc/deploymirror.class.php:135 inc/deploymirror.class.php:196
+msgid "Mirror server address"
+msgstr "Peilipalvelimen osoite"
+
+#: inc/deploymirror.class.php:141
+msgid "Mirror location"
+msgstr "Peilipalvelimen sijainti"
+
+#: inc/deployorder.class.php:196
+msgid "The modified JSON contained a syntax error :"
+msgstr "Muokattu JSON sisältää syntaksivirheen:"
+
+#: inc/deploypackage.class.php:68 inc/menu.class.php:126
+#: inc/menu.class.php:131
+msgid "Import"
+msgstr "Tuonti"
+
+#: inc/deploypackage.class.php:72
+msgid "Export"
+msgstr "Vienti"
+
+#: inc/deploypackage.class.php:174
+msgid "Modification Denied"
+msgstr "Muokkaus estetty"
+
+#: inc/deploypackage.class.php:179
+msgid "The following task is running with this package"
+msgid_plural "The following tasks are running with this package"
+msgstr[0] "Seuraava tehtävä suoritetaan tällä paketilla"
+msgstr[1] "Seuraavat tehtävät suoritetaan tällä paketilla"
+
+#: inc/deploypackage.class.php:395
+msgid "Audits"
+msgstr "Tarkastukset"
+
+#: inc/deploypackage.class.php:396
+msgid "Files"
+msgstr "Tiedostot"
+
+#: inc/deploypackage.class.php:397
+msgid "Actions"
+msgstr "Toiminnot"
+
+#: inc/deploypackage.class.php:729
+msgid "Item successfully added"
+msgstr "Kohteen lisäys onnistui"
+
+#: inc/deploypackage.class.php:817
+msgid "Package exported in"
+msgstr "Paketin käyttöönotto"
+
+#: inc/deploypackage.class.php:901
+msgid "Packages to import"
+msgstr "Tuotavat paketit"
+
+#: inc/deploytask.class.php:54
+msgid "Group of computers"
+msgstr "Tietokoneryhmät"
+
+#: inc/deploytask.class.php:85
+msgid "Order list"
+msgstr "Järjestysluettelo"
+
+#: inc/deploytask.class.php:118
+msgid "Add task"
+msgstr "Lisää tehtävä"
+
+#: inc/deploytask.class.php:145
+msgid "Edit impossible, this task is active"
+msgstr "Muokkaus ei ole mahdollinen, sillä tämä tehtävä on aktiivinen."
+
+#: inc/deploytask.class.php:175
+msgid "This task is active. delete denied"
+msgstr "Poisto ei ole mahdollinen, sillä tämä tehtävä on aktiivinen."
+
+#: inc/deployuninstall.class.php:50 inc/deployuninstall.class.php:60
+msgid "Uninstallation"
+msgstr "Asennuksen poisto"
+
+#: inc/display.class.php:174
+msgid "Progress"
+msgstr "Edistyminen"
+
+#: inc/entity.class.php:110
+msgid "Model for automatic computers transfer in an other entity"
+msgstr "Malli tietokoneiden automaattiselle siirrolle toiseen yksikköön"
+
+#: inc/entity.class.php:156
+msgid "Service URL"
+msgstr "Palvelun URL"
+
+#: inc/ignoredimportdevice.class.php:52
+msgid "Equipment ignored on import"
+msgstr "Tuonnissa sivuutettu laite"
+
+#: inc/inventorycomputerantivirus.class.php:165
+#: inc/inventorycomputerbatteries.class.php:146
+msgid "Up to date"
+msgstr "Ajan tasalla"
+
+#: inc/inventorycomputerbatteries.class.php:53
+#: inc/inventorycomputerbatteries.class.php:80
+msgid "Batterie"
+msgstr "Akku"
+
+#: inc/inventorycomputerblacklist.class.php:68
+#: inc/inventorycomputerblacklist.class.php:118
+msgid "blacklisted value"
+msgstr "Kielletty arvo"
+
+#: inc/inventorycomputerchemistry.class.php:55
+msgid "Chemistry"
+msgstr "Kemia"
+
+#: inc/inventorycomputercomputer.class.php:105
+msgid "Public contact address"
+msgstr "Kontaktin julkinen osoite"
+
+#: inc/inventorycomputercomputer.class.php:115
+msgid "BIOS date"
+msgstr "BIOS:in päiväys"
+
+#: inc/inventorycomputercomputer.class.php:122
+msgid "BIOS version"
+msgstr "BIOS:in versio"
+
+#: inc/inventorycomputercomputer.class.php:179
+msgid "Automatic entity transfer"
+msgstr "Yksikön automaattinen siirto"
+
+#: inc/inventorycomputercomputer.class.php:183
+msgid "No, locked (by entity configuration)"
+msgstr "Ei, lukittu (yksikön määrityksissä)"
+
+#: inc/inventorycomputercomputer.class.php:186
+msgid "No, locked manually"
+msgstr "Ei, lukittu manuaalisesti"
+
+#: inc/inventorycomputercomputer.class.php:188
+msgid "Unlock it"
+msgstr "Vapauta se"
+
+#: inc/inventorycomputercomputer.class.php:192
+msgid "Lock it"
+msgstr "Lukitse se"
+
+#: inc/inventorycomputercomputer.class.php:238
+#: inc/networkequipment.class.php:1121 inc/printer.class.php:217
+msgid "Download"
+msgstr "Lataa "
+
+#: inc/inventorycomputercomputer.class.php:247
+msgid "PHP Array"
+msgstr "PHP-taulukko"
+
+#: inc/inventorycomputerimportxml.class.php:79
+msgid "Import XML file from an Agent"
+msgstr "Tuo agentin XML-tiedosto"
+
+#: inc/inventorycomputerimportxml.class.php:85
+msgid ""
+"You can use this menu to upload XML generated by an agent. The file must "
+"have .xml or .ocs extension. It's also possible to upload <b>ZIP</b> archive"
+" directly with a collection of XML files. Read you agent documentation to "
+"see how to generate such XML file"
+msgstr "Lataa agentin luoma XML-tiedosto tällä toiminnolla. Tiedostopäätteen on oltava joko .xml tai .ocs. XML-tiedostot voidaan myös ladata <b>ZIP</b>-tiedostona. Katso agentin dokumentaatiosta, miten tällainen XML-tiedosto luodaan."
+
+#: inc/inventorycomputerstorage.class.php:53
+#: inc/inventorycomputerstorage_storage.class.php:53
+msgid "Storage"
+msgstr "Tallennus"
+
+#: inc/inventorycomputerstoragetype.class.php:53
+msgid "Storage type"
+msgstr "Tallennustyyppi"
+
+#: inc/inventorycomputerwebservice.class.php:74
+msgid "Computer injected into GLPI"
+msgstr "Tietokone tuotu GLPI:hin"
+
+#: inc/inventoryruleentity.class.php:61
+#: inc/inventoryruleentitycollection.class.php:57 inc/profile.class.php:201
+msgid "Entity rules"
+msgstr "Yksiköiden säännöt"
+
+#: inc/inventoryruleentity.class.php:136
+msgid "IP Address"
+msgstr "IP-osoite"
+
+#: inc/inventoryruleentity.class.php:139
+msgid "Computer's name"
+msgstr "Tietokoneen nimi"
+
+#: inc/inventoryruleentity.class.php:168
+#: inc/inventoryrulelocation.class.php:172
+msgid "Ignore in FusionInventory import"
+msgstr "Sivuuta FusionInventoryn tuonnissa "
+
+#: inc/inventoryruleentity.class.php:212
+#: inc/inventoryrulelocation.class.php:215
+msgid "is CIDR"
+msgstr "on CIDR"
+
+#: inc/inventoryruleentity.class.php:213
+#: inc/inventoryrulelocation.class.php:216
+msgid "is not CIDR"
+msgstr "ei ole CIDR"
+
+#: inc/inventoryruleimport.class.php:86 inc/inventoryruleimport.class.php:111
+#: inc/inventoryruleimport.class.php:114 inc/inventoryruleimport.class.php:117
+#: inc/inventoryruleimport.class.php:120 inc/inventoryruleimport.class.php:132
+#: inc/inventoryruleimport.class.php:135 inc/inventoryruleimport.class.php:139
+#: inc/inventoryruleimport.class.php:142 inc/inventoryruleimport.class.php:146
+#: inc/inventoryruleimport.class.php:150 inc/inventoryruleimport.class.php:160
+msgid "Assets to import"
+msgstr "Tuotavat laitteet"
+
+#: inc/inventoryruleimport.class.php:87
+msgid "Destination of equipment entity"
+msgstr "Laitteen määränpääyksikkö"
+
+#: inc/inventoryruleimport.class.php:103
+msgid "Search GLPI equipment with the status"
+msgstr "Hae GLPI:n tietokoneet, joilla on tila"
+
+#: inc/inventoryruleimport.class.php:169
+msgid "Restrict search in defined entity"
+msgstr "Rajoita haku määritettyyn yksikköön"
+
+#: inc/inventoryruleimport.class.php:181
+msgid "FusionInventory link"
+msgstr "FusinInventory-linkki"
+
+#: inc/inventoryruleimport.class.php:194
+msgid "Link"
+msgstr "Linkki"
+
+#: inc/inventoryruleimport.class.php:195
+msgid "Import denied (no log)"
+msgstr "Tuonti estetty (ei lokia)"
+
+#: inc/inventoryruleimport.class.php:224
+msgid "equal"
+msgstr "yhtä suuri"
+
+#: inc/inventoryruleimport.class.php:226
+msgid "empty"
+msgstr "tyhjä"
+
+#: inc/inventoryruleimport.class.php:949
+#: inc/inventoryruleimportcollection.class.php:110
+msgid "Device created"
+msgstr "Laite luotu"
+
+#: inc/inventoryruleimport.class.php:954
+#: inc/inventoryruleimportcollection.class.php:115
+#: inc/taskjoblog.class.php:1133
+msgid "Import denied"
+msgstr "Tuonti estetty"
+
+#: inc/inventoryruleimportcollection.class.php:57 inc/menu.class.php:299
+msgid "Equipment import and link rules"
+msgstr "Laitteiden tuonnin ja yhdistämisen säännöt"
+
+#: inc/inventoryrulelocation.class.php:61
+#: inc/inventoryrulelocationcollection.class.php:58
+msgid "Location rules"
+msgstr "Sijaintien säännöt"
+
+#: inc/iprange.class.php:63
+msgid "Communication mode"
+msgstr "Yhteystapa"
+
+#: inc/iprange.class.php:67
+msgid "See all informations of task"
+msgstr "Katso tehtävien kaikki tiedot"
+
+#: inc/iprange.class.php:70 inc/iprange.class.php:74 inc/menu.class.php:364
+#: inc/staticmisc.class.php:366 inc/staticmisc.class.php:387
+#: inc/wizard.class.php:376 inc/wizard.class.php:425 inc/wizard.class.php:955
+msgid "IP Ranges"
+msgstr "IP-osoitealueet"
+
+#: inc/iprange.class.php:91 inc/profile.class.php:239
+msgid "IP range configuration"
+msgstr "IP-osoitealueen määritys"
+
+#: inc/iprange.class.php:110 inc/iprange.class.php:151
+#: inc/iprange.class.php:259 inc/wizard.class.php:961
+msgid "Start of IP range"
+msgstr "IP-osoitealueen alku"
+
+#: inc/iprange.class.php:116 inc/iprange.class.php:176
+#: inc/iprange.class.php:262 inc/wizard.class.php:962
+msgid "End of IP range"
+msgstr "IP-osoitealueen loppu"
+
+#: inc/iprange.class.php:257
+msgid "Bad IP"
+msgstr "Virheellinen IP-osoite"
+
+#: inc/iprange_configsecurity.class.php:64
+msgid "Associated SNMP authentications"
+msgstr "Yhdistetyt SNMP-autentikoinnit"
+
+#: inc/iprange_configsecurity.class.php:146
+msgid "SNMP Authentication"
+msgstr "SNMP-autentikointi"
+
+#: inc/iprange_configsecurity.class.php:149
+msgid "Version"
+msgstr "Versio"
+
+#: inc/lock.class.php:177
+msgid "Values GLPI"
+msgstr "GLPI:n arvot"
+
+#: inc/lock.class.php:178
+msgid "Values of last inventory"
+msgstr "Edellisen kartoituksen arvot"
+
+#: inc/lock.class.php:261 inc/taskjob.class.php:58 inc/taskjob.class.php:805
+#: inc/taskjoblog.class.php:171 inc/taskjobstate.class.php:224
+#: inc/unmanaged.class.php:197
+msgid "Job"
+msgstr "Työ"
+
+#: inc/lock.class.php:265
+msgid "Add locks"
+msgstr "Lisää lukot"
+
+#: inc/lock.class.php:271
+msgid "Delete locks"
+msgstr "Poista lukot"
+
+#: inc/mapping.class.php:112
+msgid "networking > location"
+msgstr "verkko > sijainti"
+
+#: inc/mapping.class.php:116
+msgid "networking > firmware"
+msgstr "verkko > laiteohjelmisto"
+
+#: inc/mapping.class.php:120
+msgid "networking > uptime"
+msgstr "verkko > uptime"
+
+#: inc/mapping.class.php:124
+msgid "networking > port > mtu"
+msgstr "verkko > portti > mtu"
+
+#: inc/mapping.class.php:128
+msgid "networking > port > speed"
+msgstr "verkko > portti > nopeus"
+
+#: inc/mapping.class.php:132
+msgid "networking > port > internal status"
+msgstr "verkko > portti > sisäinen tila"
+
+#: inc/mapping.class.php:136
+msgid "networking > ports > last change"
+msgstr "verkko > portti > viimeisin muutos"
+
+#: inc/mapping.class.php:140
+msgid "networking > port > number of bytes entered"
+msgstr "verkko > portti > saapuneiden tavujen lukumäärä"
+
+#: inc/mapping.class.php:144
+msgid "networking > port > number of bytes out"
+msgstr "verkko > portti > lähteneiden tavujen lukumäärä"
+
+#: inc/mapping.class.php:148
+msgid "networking > port > number of input errors"
+msgstr "verkko > portti > vastaanottovirheiden lukumäärä"
+
+#: inc/mapping.class.php:152
+msgid "networking > port > number of errors output"
+msgstr "verkko > portti > lähetysvirheiden lukumäärä"
+
+#: inc/mapping.class.php:156
+msgid "networking > CPU usage"
+msgstr "verkko > suoritinkäyttö"
+
+#: inc/mapping.class.php:160
+msgid "networking > serial number"
+msgstr "verkko > sarjanumero"
+
+#: inc/mapping.class.php:164
+msgid "networking > port > connection status"
+msgstr "verkko > portti > yhteyden tila"
+
+#: inc/mapping.class.php:168
+msgid "networking > port > MAC address"
+msgstr "verkko > portti > MAC-osoite"
+
+#: inc/mapping.class.php:172
+msgid "networking > port > name"
+msgstr "verkko > portti > nimi"
+
+#: inc/mapping.class.php:176
+msgid "networking > model"
+msgstr "verkko > malli"
+
+#: inc/mapping.class.php:180
+msgid "networking > port > type"
+msgstr "verkko > portti > tyyppi"
+
+#: inc/mapping.class.php:184
+msgid "networking > VLAN"
+msgstr "verkko > VLAN"
+
+#: inc/mapping.class.php:188
+msgid "networking > name"
+msgstr "verkko > nimi"
+
+#: inc/mapping.class.php:192
+msgid "networking > total memory"
+msgstr "verkko > kokonaismuisti"
+
+#: inc/mapping.class.php:196
+msgid "networking > free memory"
+msgstr "verkko > vapaa muisti"
+
+#: inc/mapping.class.php:200
+msgid "networking > port > port description"
+msgstr "verkko > portti > portin kuvaus"
+
+#: inc/mapping.class.php:204
+msgid "printer > name"
+msgstr "tulostin > nimi"
+
+#: inc/mapping.class.php:208
+msgid "printer > model"
+msgstr "tulostin > malli"
+
+#: inc/mapping.class.php:212
+msgid "printer > total memory"
+msgstr "tulostin > kokonaismuisti"
+
+#: inc/mapping.class.php:216
+msgid "printer > serial number"
+msgstr "tulostin > sarjanumero"
+
+#: inc/mapping.class.php:220
+msgid "printer > meter > total number of printed pages"
+msgstr "tulostin > laskuri > tulosteiden kokonaismäärä"
+
+#: inc/mapping.class.php:224
+msgid "printer > meter > number of printed black and white pages"
+msgstr "tulostin > laskuri > mustavalkotulosteiden määrä"
+
+#: inc/mapping.class.php:228
+msgid "printer > meter > number of printed color pages"
+msgstr "tulostin > laskuri > väritulosteiden määrä"
+
+#: inc/mapping.class.php:232
+msgid "printer > meter > number of printed monochrome pages"
+msgstr "tulostin > laskuri > yksiväristen tulosteiden määrä"
+
+#: inc/mapping.class.php:236
+msgid "networking > port > duplex type"
+msgstr "verkko > portti > dublex-tyyppi"
+
+#: inc/mapping.class.php:240
+msgid "printer > consumables > black cartridge (%)"
+msgstr "tulostin > kulutustarvikkeet > musta värikasetti (%)"
+
+#: inc/mapping.class.php:244
+msgid "printer > consumables > photo black cartridge (%)"
+msgstr "tulostin > kulutustarvikkeet > valokuvamusta värikasetti (%)"
+
+#: inc/mapping.class.php:248
+msgid "printer > consumables > cyan cartridge (%)"
+msgstr "tulostin > kulutustarvikkeet > syaani värikasetti (%)"
+
+#: inc/mapping.class.php:252
+msgid "printer > consumables > yellow cartridge (%)"
+msgstr "tulostin > kulutustarvikkeet > keltainen värikasetti (%)"
+
+#: inc/mapping.class.php:256
+msgid "printer > consumables > magenta cartridge (%)"
+msgstr "tulostin > kulutustarvikkeet > magenta värikasetti (%)"
+
+#: inc/mapping.class.php:260
+msgid "printer > consumables > light cyan cartridge (%)"
+msgstr "tulostin > kulutustarvikkeet > vaaleansyaani värikasetti (%)"
+
+#: inc/mapping.class.php:264
+msgid "printer > consumables > light magenta cartridge (%)"
+msgstr "tulostin > kulutustarvikkeet > vaaleanmagenta värikasetti (%)"
+
+#: inc/mapping.class.php:268
+msgid "printer > consumables > photoconductor (%)"
+msgstr "tulostin > kulutustarvikkeet > valojohde (%)"
+
+#: inc/mapping.class.php:272
+msgid "printer > consumables > black photoconductor (%)"
+msgstr "tulostin > kulutustarvikkeet > musta valojohde (%)"
+
+#: inc/mapping.class.php:276
+msgid "printer > consumables > color photoconductor (%)"
+msgstr "tulostin > kulutustarvikkeet > värillinen valojohde (%)"
+
+#: inc/mapping.class.php:280
+msgid "printer > consumables > cyan photoconductor (%)"
+msgstr "tulostin > kulutustarvikkeet > syaani valojohde (%)"
+
+#: inc/mapping.class.php:284
+msgid "printer > consumables > yellow photoconductor (%)"
+msgstr "tulostin > kulutustarvikkeet > keltainen valojohde (%)"
+
+#: inc/mapping.class.php:288
+msgid "printer > consumables > magenta photoconductor (%)"
+msgstr "tulostin > kulutustarvikkeet > magenta valojohde (%)"
+
+#: inc/mapping.class.php:292
+msgid "printer > consumables > black transfer unit (%)"
+msgstr "tulostin > kulutustarvikkeet > musta siirtoyksikkö (%)"
+
+#: inc/mapping.class.php:296
+msgid "printer > consumables > cyan transfer unit (%)"
+msgstr "tulostin > kulutustarvikkeet > syaani siirtoyksikkö (%)"
+
+#: inc/mapping.class.php:300
+msgid "printer > consumables > yellow transfer unit (%)"
+msgstr "tulostin > kulutustarvikkeet > keltainen siirtoyksikkö (%)"
+
+#: inc/mapping.class.php:304
+msgid "printer > consumables > magenta transfer unit (%)"
+msgstr "tulostin > kulutustarvikkeet > magenta siirtoyksikkö (%)"
+
+#: inc/mapping.class.php:308
+msgid "printer > consumables > waste bin (%)"
+msgstr "tulostin > kulutustarvikkeet > hukkasäiliö (%)"
+
+#: inc/mapping.class.php:312
+msgid "printer > consumables > four (%)"
+msgstr "tulostin > kulutustarvikkeet > kuumennusyksikkö (%)"
+
+#: inc/mapping.class.php:316
+msgid "printer > consumables > cleaning module (%)"
+msgstr "tulostin > kulutustarvikkeet > puhdistusyksikkö (%)"
+
+#: inc/mapping.class.php:320
+msgid "printer > meter > number of printed duplex pages"
+msgstr "tulostin > laskuri > kaksipuoleisten tulosteiden määrä"
+
+#: inc/mapping.class.php:324
+msgid "printer > meter > nomber of scanned pages"
+msgstr "tulostin > laskuri > skannattujen määrä"
+
+#: inc/mapping.class.php:328
+msgid "printer > location"
+msgstr "tulostin > sijainti"
+
+#: inc/mapping.class.php:332
+msgid "printer > port > name"
+msgstr "tulostin > portti > nimi"
+
+#: inc/mapping.class.php:336
+msgid "printer > port > MAC address"
+msgstr "tulostin > portti > MAC-osoite"
+
+#: inc/mapping.class.php:340
+msgid "printer > consumables > black cartridge (max ink)"
+msgstr "tulostin > kulutustarvikkeet > musta värikasetti (maks. muste)"
+
+#: inc/mapping.class.php:344
+msgid "printer > consumables > black cartridge (remaining ink )"
+msgstr "tulostin > kulutustarvikkeet > musta värikasetti (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:348
+msgid "printer > consumables > cyan cartridge (max ink)"
+msgstr "tulostin > kulutustarvikkeet > syaani värikasetti (maks. muste)"
+
+#: inc/mapping.class.php:352
+msgid "printer > consumables > cyan cartridge (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > syaani värikasetti (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:356
+msgid "printer > consumables > yellow cartridge (max ink)"
+msgstr "tulostin > kulutustarvikkeet > keltainen värikasetti (maks. muste)"
+
+#: inc/mapping.class.php:360
+msgid "printer > consumables > yellow cartridge (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > keltainen värikasetti (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:364
+msgid "printer > consumables > magenta cartridge (max ink)"
+msgstr "tulostin > kulutustarvikkeet > magenta värikasetti (maks. muste)"
+
+#: inc/mapping.class.php:368
+msgid "printer > consumables > magenta cartridge (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > magenta värikasetti (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:372
+msgid "printer > consumables > light cyan cartridge (max ink)"
+msgstr "tulostin > kulutustarvikkeet > vaaleansyaani värikasetti (maks. muste)"
+
+#: inc/mapping.class.php:376
+msgid "printer > consumables > light cyan cartridge (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > vaaleansyaani värikasetti (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:380
+msgid "printer > consumables > light magenta cartridge (max ink)"
+msgstr "tulostin > kulutustarvikkeet > vaaleanmagenta värikasetti (maks. muste)"
+
+#: inc/mapping.class.php:384
+msgid "printer > consumables > light magenta cartridge (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > vaalean magenta värikasetti (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:388
+msgid "printer > consumables > photoconductor (max ink)"
+msgstr "tulostin > kulutustarvikkeet > valojohde (maks muste)"
+
+#: inc/mapping.class.php:392
+msgid "printer > consumables > photoconductor (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > valojohde (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:396
+msgid "printer > consumables > black photoconductor (max ink)"
+msgstr "tulostin > kulutustarvikkeet >musta valojohde (maks muste)"
+
+#: inc/mapping.class.php:400
+msgid "printer > consumables > black photoconductor (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > musta valojohde (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:404
+msgid "printer > consumables > color photoconductor (max ink)"
+msgstr "tulostin > kulutustarvikkeet > värillinen valojohde (maks muste)"
+
+#: inc/mapping.class.php:408
+msgid "printer > consumables > color photoconductor (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > värillinen valojohde (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:412
+msgid "printer > consumables > cyan photoconductor (max ink)"
+msgstr "tulostin > kulutustarvikkeet >syaani valojohde (maks muste)"
+
+#: inc/mapping.class.php:416
+msgid "printer > consumables > cyan photoconductor (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet >syaani valojohde (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:420
+msgid "printer > consumables > yellow photoconductor (max ink)"
+msgstr "tulostin > kulutustarvikkeet > keltainen valojohde (maks muste)"
+
+#: inc/mapping.class.php:424
+msgid "printer > consumables > yellow photoconductor (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > keltainen valojohde (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:428
+msgid "printer > consumables > magenta photoconductor (max ink)"
+msgstr "tulostin > kulutustarvikkeet > magenta valojohde (maks muste)"
+
+#: inc/mapping.class.php:432
+msgid "printer > consumables > magenta photoconductor (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > magenta valojohde (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:436
+msgid "printer > consumables > black transfer unit (max ink)"
+msgstr "tulostin > kulutustarvikkeet > musta siirtoyksikkö (maks muste)"
+
+#: inc/mapping.class.php:440
+msgid "printer > consumables > black transfer unit (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > musta siirtoyksikkö (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:444
+msgid "printer > consumables > cyan transfer unit (max ink)"
+msgstr "tulostin > kulutustarvikkeet > syaani siirtoyksikkö (maks muste)"
+
+#: inc/mapping.class.php:448
+msgid "printer > consumables > cyan transfer unit (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > syaani siirtoyksikkö (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:452
+msgid "printer > consumables > yellow transfer unit (max ink)"
+msgstr "tulostin > kulutustarvikkeet > keltainen siirtoyksikkö (maks muste)"
+
+#: inc/mapping.class.php:456
+msgid "printer > consumables > yellow transfer unit (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > keltainen siirtoyksikkö (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:460
+msgid "printer > consumables > magenta transfer unit (max ink)"
+msgstr "tulostin > kulutustarvikkeet > magenta siirtoyksikkö (maks muste)"
+
+#: inc/mapping.class.php:464
+msgid "printer > consumables > magenta transfer unit (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > magenta siirtoyksikkö (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:468
+msgid "printer > consumables > waste bin (max ink)"
+msgstr "tulostin > kulutustarvikkeet > hukkasäiliö (maks muste)"
+
+#: inc/mapping.class.php:472
+msgid "printer > consumables > waste bin (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > hukkasäiliö (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:476
+msgid "printer > consumables > four (max ink)"
+msgstr "tulostin > kulutustarvikkeet > kuumennusyksikkö (maks muste)"
+
+#: inc/mapping.class.php:480
+msgid "printer > consumables > four (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > kuumennusyksikkö (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:484
+msgid "printer > consumables > cleaning module (max ink)"
+msgstr "tulostin > kulutustarvikkeet > puhdistusyksikkö (maks muste)"
+
+#: inc/mapping.class.php:488
+msgid "printer > consumables > cleaning module (remaining ink)"
+msgstr "tulostin > kulutustarvikkeet > puhdistusyksikkö (jäljellä oleva muste)"
+
+#: inc/mapping.class.php:492
+msgid "printer > port > type"
+msgstr "tulostin > portti > tyyppi"
+
+#: inc/mapping.class.php:496
+msgid "printer > consumables > maintenance kit (max)"
+msgstr "tulostin > kulutustarvikkeet > huoltosarja (maks.)"
+
+#: inc/mapping.class.php:500
+msgid "printer > consumables > maintenance kit (remaining)"
+msgstr "tulostin > kulutustarvikkeet > huoltosarja (jäljellä)"
+
+#: inc/mapping.class.php:504
+msgid "printer > consumables > maintenance kit (%)"
+msgstr "tulostin > kulutustarvikkeet > huoltosarja (%)"
+
+#: inc/mapping.class.php:508
+msgid "networking > CPU user"
+msgstr "verkko > CPU user"
+
+#: inc/mapping.class.php:512
+msgid "networking > CPU system"
+msgstr "verkko > CPU system"
+
+#: inc/mapping.class.php:516
+msgid "networking > contact"
+msgstr "verkko > kontakti"
+
+#: inc/mapping.class.php:520
+msgid "networking > comments"
+msgstr "verkko > kommentit"
+
+#: inc/mapping.class.php:524
+msgid "printer > contact"
+msgstr "tulostin > kontakti"
+
+#: inc/mapping.class.php:528
+msgid "printer > comments"
+msgstr "tulostin > kommentit"
+
+#: inc/mapping.class.php:532
+msgid "printer > port > IP address"
+msgstr "tulostin > portti > IP-osoite"
+
+#: inc/mapping.class.php:536
+msgid "networking > port > index number"
+msgstr "verkko > portti > indeksinumero"
+
+#: inc/mapping.class.php:540
+msgid "networking > Address CDP"
+msgstr "verkko > CDP-osoite"
+
+#: inc/mapping.class.php:544
+msgid "networking > Port CDP"
+msgstr "verkko > CDP-portti"
+
+#: inc/mapping.class.php:548
+msgid "networking > port > trunk/tagged"
+msgstr "verkko > portti > trunkki/tagged"
+
+#: inc/mapping.class.php:552
+msgid "networking > MAC address filters (dot1dTpFdbAddress)"
+msgstr "verkko > MAC-osoitesuodin (dot1dTpFdbAddress)"
+
+#: inc/mapping.class.php:556
+msgid "networking > Physical addresses in memory (ipNetToMediaPhysAddress)"
+msgstr "verkko > fyysinen muistiosoite (ipNetToMediaPhysAddress)"
+
+#: inc/mapping.class.php:560
+msgid "networking > instances de ports (dot1dTpFdbPort)"
+msgstr "verkko > portin ilmentymät (dot1dTpFdbPort)"
+
+#: inc/mapping.class.php:568
+msgid "printer > port > index number"
+msgstr "tulostin > portti > indeksinumero"
+
+#: inc/mapping.class.php:572
+msgid "networking > MAC address"
+msgstr "verkko > MAC-osoite"
+
+#: inc/mapping.class.php:576
+msgid "printer > Inventory number"
+msgstr "tulostin > inventointinumero"
+
+#: inc/mapping.class.php:580
+msgid "networking > Inventory number"
+msgstr "verkko > inventointinumero"
+
+#: inc/mapping.class.php:584
+msgid "printer > manufacturer"
+msgstr "tulostin > valmistaja"
+
+#: inc/mapping.class.php:588
+msgid "networking > IP addresses"
+msgstr "verkko > ip-osoite"
+
+#: inc/mapping.class.php:592
+msgid "networking > PVID (port VLAN ID)"
+msgstr "verkko > PVID (portin VLAN-tunniste)"
+
+#: inc/mapping.class.php:596
+msgid "printer > meter > total number of printed pages (print)"
+msgstr "tulostin > laskuri > tulosteiden kokonaismäärä (tulostettu)"
+
+#: inc/mapping.class.php:600
+msgid "printer > meter > number of printed black and white pages (print)"
+msgstr "tulostin > laskuri > mustavalkotulosteiden määrä (tulostettu)"
+
+#: inc/mapping.class.php:604
+msgid "printer > meter > number of printed color pages (print)"
+msgstr "tulostin > laskuri > väritulosteiden määrä (tulostettu)"
+
+#: inc/mapping.class.php:608
+msgid "printer > meter > total number of printed pages (copy)"
+msgstr "tulostin > laskuri > tulosteiden kokonaismäärä (kopioitu)"
+
+#: inc/mapping.class.php:612
+msgid "printer > meter > number of printed black and white pages (copy)"
+msgstr "tulostin > laskuri > mustavalkotulosteiden määrä (kopioitu)"
+
+#: inc/mapping.class.php:616
+msgid "printer > meter > number of printed color pages (copy)"
+msgstr "tulostin > laskuri > väritulosteiden määrä (kopioitu)"
+
+#: inc/mapping.class.php:620
+msgid "printer > meter > total number of printed pages (fax)"
+msgstr "tulostin > laskuri > tulosteiden kokonaismäärä (faksi)"
+
+#: inc/mapping.class.php:624
+msgid "networking > port > vlan"
+msgstr "verkko > portti > vlan"
+
+#: inc/mapping.class.php:628
+msgid "networking > CDP remote sysdescr"
+msgstr "verkko > etä-CDP-sysdescr"
+
+#: inc/mapping.class.php:632
+msgid "networking > CDP remote id"
+msgstr "verkko > etä-CDP-tunniste"
+
+#: inc/mapping.class.php:636
+msgid "networking > CDP remote model device"
+msgstr "verkko > etä-CDP-laitemalli"
+
+#: inc/mapping.class.php:640
+msgid "networking > LLDP remote sysdescr"
+msgstr "verkko > etä-LLDP-sysdescr"
+
+#: inc/mapping.class.php:644
+msgid "networking > LLDP remote id"
+msgstr "verkko > etä-LLDP-ID"
+
+#: inc/mapping.class.php:648
+msgid "networking > LLDP remote port description"
+msgstr "verkko > etä-LLDP-porttikuvaus"
+
+#: inc/mapping.class.php:653 inc/networkequipment.class.php:684
+#: inc/networkport.class.php:77
+msgid "MTU"
+msgstr "MTU"
+
+#: inc/mapping.class.php:661 inc/networkequipment.class.php:692
+#: inc/networkport.class.php:85
+msgid "Internal status"
+msgstr "Sisäinen tila"
+
+#: inc/mapping.class.php:665 inc/networkequipment.class.php:696
+msgid "Last Change"
+msgstr "Edellinen muutos"
+
+#: inc/mapping.class.php:669
+msgid "Number of received bytes"
+msgstr "Vastaanotettujen tavujen lukumäärä"
+
+#: inc/mapping.class.php:673
+msgid "Number of outgoing bytes"
+msgstr "Lähteneiden tavujen lukumäärä"
+
+#: inc/mapping.class.php:677
+msgid "Number of input errors"
+msgstr "Vastaanottovirheiden lukumäärä"
+
+#: inc/mapping.class.php:681
+msgid "Number of output errors"
+msgstr "Lähetysvirheiden lukumäärä"
+
+#: inc/mapping.class.php:685
+msgid "CPU usage"
+msgstr "Suoritinkäyttö"
+
+#: inc/mapping.class.php:693 inc/networkequipment.class.php:712
+#: inc/networkport.class.php:105
+msgid "Internal MAC address"
+msgstr "Sisäinen MAC-osoite"
+
+#: inc/mapping.class.php:713 inc/networkequipment.class.php:732
+#: inc/networkport.class.php:125
+msgid "Alias"
+msgstr "Alias"
+
+#: inc/mapping.class.php:717 inc/printerlog.class.php:145
+msgid "Total number of printed pages"
+msgstr "Tulosteiden kokonaismäärä"
+
+#: inc/mapping.class.php:721 inc/printerlog.class.php:150
+msgid "Number of printed black and white pages"
+msgstr "Mustavalkotulosteiden lukumäärä"
+
+#: inc/mapping.class.php:725 inc/printerlog.class.php:155
+msgid "Number of printed color pages"
+msgstr "Väritulosteiden lukumäärä"
+
+#: inc/mapping.class.php:729
+msgid "Number of printed monochrome pages"
+msgstr "Yksiväritulosteiden lukumäärä"
+
+#: inc/mapping.class.php:733
+msgid "Black cartridge"
+msgstr "Musta värikasetti"
+
+#: inc/mapping.class.php:737
+msgid "Photo black cartridge"
+msgstr "Valokuvamusta värikasetti"
+
+#: inc/mapping.class.php:741
+msgid "Cyan cartridge"
+msgstr "Syaanivärikasetti"
+
+#: inc/mapping.class.php:745
+msgid "Yellow cartridge"
+msgstr "Keltainen värikasetti"
+
+#: inc/mapping.class.php:749
+msgid "Magenta cartridge"
+msgstr "Magenta värikasetti"
+
+#: inc/mapping.class.php:753
+msgid "Light cyan cartridge"
+msgstr "Vaaleansyaani värikasetti"
+
+#: inc/mapping.class.php:757
+msgid "Light magenta cartridge"
+msgstr "Vaaleanmagenta värikasetti"
+
+#: inc/mapping.class.php:761
+msgid "Photoconductor"
+msgstr "Valojohde"
+
+#: inc/mapping.class.php:765
+msgid "Black photoconductor"
+msgstr "Musta valojohde"
+
+#: inc/mapping.class.php:769
+msgid "Color photoconductor"
+msgstr "Värillinen valojohde"
+
+#: inc/mapping.class.php:773
+msgid "Cyan photoconductor"
+msgstr "Syaani valojohde"
+
+#: inc/mapping.class.php:777
+msgid "Yellow photoconductor"
+msgstr "Keltainen valojohde"
+
+#: inc/mapping.class.php:781
+msgid "Magenta photoconductor"
+msgstr "Magenta valojohde"
+
+#: inc/mapping.class.php:785
+msgid "Black transfer unit"
+msgstr "Musta siirtoyksikkö"
+
+#: inc/mapping.class.php:789
+msgid "Cyan transfer unit"
+msgstr "Syaani siirtoyksikkö"
+
+#: inc/mapping.class.php:793
+msgid "Yellow transfer unit"
+msgstr "Keltainen siirtoyksikkö"
+
+#: inc/mapping.class.php:797
+msgid "Magenta transfer unit"
+msgstr "Magenta siirtoyksikkö"
+
+#: inc/mapping.class.php:801
+msgid "Waste bin"
+msgstr "Hukkasäiliö"
+
+#: inc/mapping.class.php:805
+msgid "Four"
+msgstr "Kuumennusyksikkö"
+
+#: inc/mapping.class.php:809
+msgid "Cleaning module"
+msgstr "Puhdistusyksikkö"
+
+#: inc/mapping.class.php:813 inc/printerlog.class.php:160
+msgid "Number of pages printed duplex"
+msgstr "Kaksipuoleisten tulosteiden lukumäärä"
+
+#: inc/mapping.class.php:817 inc/printerlog.class.php:165
+msgid "Number of scanned pages"
+msgstr "Skannattujen sivujen lukumäärä"
+
+#: inc/mapping.class.php:821
+msgid "Maintenance kit"
+msgstr "Huoltosarja"
+
+#: inc/mapping.class.php:825
+msgid "Black toner"
+msgstr "Musta väriaine"
+
+#: inc/mapping.class.php:829
+msgid "Cyan toner"
+msgstr "Syaani väriaine"
+
+#: inc/mapping.class.php:833
+msgid "Magenta toner"
+msgstr "Magenta väriaine"
+
+#: inc/mapping.class.php:837
+msgid "Yellow toner"
+msgstr "Keltainen väriaine"
+
+#: inc/mapping.class.php:841
+msgid "Black drum"
+msgstr "Musta rumpu"
+
+#: inc/mapping.class.php:845
+msgid "Cyan drum"
+msgstr "Syaani rumpu"
+
+#: inc/mapping.class.php:849
+msgid "Magenta drum"
+msgstr "Magenta rumpu"
+
+#: inc/mapping.class.php:853
+msgid "Yellow drum"
+msgstr "Keltainen rumpu"
+
+#: inc/mapping.class.php:857
+msgid "Many informations grouped"
+msgstr "Erilaisia tietoja yhdistetty"
+
+#: inc/mapping.class.php:861
+msgid "Black toner 2"
+msgstr "Musta väriaine 2"
+
+#: inc/mapping.class.php:865
+msgid "Black toner Utilisé"
+msgstr "Musta väriaine, käytetty "
+
+#: inc/mapping.class.php:869
+msgid "Black toner Restant"
+msgstr "Musta väriaine, jäljellä"
+
+#: inc/mapping.class.php:873
+msgid "Cyan toner Max"
+msgstr "Syaani väriaine, maksimi "
+
+#: inc/mapping.class.php:877
+msgid "Cyan toner Utilisé"
+msgstr "Syaani väriaine, käytetty "
+
+#: inc/mapping.class.php:881
+msgid "Cyan toner Restant"
+msgstr "Syaani väriaine, jäljellä"
+
+#: inc/mapping.class.php:885
+msgid "Magenta toner Max"
+msgstr "Magenta väriaine, maksimi "
+
+#: inc/mapping.class.php:889
+msgid "Magenta toner Utilisé"
+msgstr "Magenta väriaine, käytetty "
+
+#: inc/mapping.class.php:893
+msgid "Magenta toner Restant"
+msgstr "Magenta väriaine, jäljellä"
+
+#: inc/mapping.class.php:897
+msgid "Yellow toner Max"
+msgstr "Keltainen väriaine, maksimi "
+
+#: inc/mapping.class.php:901
+msgid "Yellow toner Utilisé"
+msgstr "Keltainen väriaine, käytetty "
+
+#: inc/mapping.class.php:905
+msgid "Yellow toner Restant"
+msgstr "Keltainen väriaine, jäljellä "
+
+#: inc/mapping.class.php:909
+msgid "Black drum Max"
+msgstr "Musta rumpu, maksimi "
+
+#: inc/mapping.class.php:913
+msgid "Black drum Utilisé"
+msgstr "Musta rumpu, käytetty "
+
+#: inc/mapping.class.php:917
+msgid "Black drum Restant"
+msgstr "Musta rumpu, jäljellä"
+
+#: inc/mapping.class.php:921
+msgid "Cyan drum Max"
+msgstr "Syaani rumpu, maksimi "
+
+#: inc/mapping.class.php:925
+msgid "Cyan drum Utilisé"
+msgstr "Syaani rumpu, käytetty"
+
+#: inc/mapping.class.php:929
+msgid "Cyan drumRestant"
+msgstr "Syaani rumpu, jäljellä "
+
+#: inc/mapping.class.php:933
+msgid "Magenta drum Max"
+msgstr "Magenta rumpu, maksimi "
+
+#: inc/mapping.class.php:937
+msgid "Magenta drum Utilisé"
+msgstr "Magenta rumpu, käytetty "
+
+#: inc/mapping.class.php:941
+msgid "Magenta drum Restant"
+msgstr "Magenta rumpu, jäljellä"
+
+#: inc/mapping.class.php:945
+msgid "Yellow drum Max"
+msgstr "Keltainen rumpu, maksimi "
+
+#: inc/mapping.class.php:949
+msgid "Yellow drum Utilisé"
+msgstr "Keltainen rumpu, käytetty "
+
+#: inc/mapping.class.php:953
+msgid "Yellow drum Restant"
+msgstr "Keltainen rumpu, jäljellä "
+
+#: inc/mapping.class.php:957
+msgid "Waste bin Max"
+msgstr "Hukkasäiliö, maksimi "
+
+#: inc/mapping.class.php:961
+msgid "Waste bin Utilisé"
+msgstr "Hukkasäiliö, käytetty "
+
+#: inc/mapping.class.php:965
+msgid "Waste bin Restant"
+msgstr "Hukkasäiliö, jäljellä "
+
+#: inc/mapping.class.php:969
+msgid "Maintenance kit Max"
+msgstr "Huoltosarja, maksimi "
+
+#: inc/mapping.class.php:973
+msgid "Maintenance kit Utilisé"
+msgstr "Huoltosarjaa käytetty "
+
+#: inc/mapping.class.php:977
+msgid "Maintenance kit Restant"
+msgstr "Huoltosarjaa jäljellä"
+
+#: inc/mapping.class.php:981
+msgid "Grey ink cartridge"
+msgstr "Harmaa värikasetti"
+
+#: inc/mapping.class.php:986 inc/printerlog.class.php:170
+msgid "Total number of printed pages (print)"
+msgstr "Tulosteiden kokonaismäärä (tulostettu)"
+
+#: inc/mapping.class.php:990 inc/printerlog.class.php:175
+msgid "Number of printed black and white pages (print)"
+msgstr "Mustavalkotulosteiden lukumäärä (tulostettu)"
+
+#: inc/mapping.class.php:994 inc/printerlog.class.php:180
+msgid "Number of printed color pages (print)"
+msgstr "Väritulosteiden lukumäärä (tulostettu)"
+
+#: inc/mapping.class.php:998 inc/printerlog.class.php:185
+msgid "Total number of printed pages (copy)"
+msgstr "Tulosteiden kokonaismäärä (kopioitu)"
+
+#: inc/mapping.class.php:1002 inc/printerlog.class.php:190
+msgid "Number of printed black and white pages (copy)"
+msgstr "Mustavalkotulosteiden lukumäärä (kopioitu)"
+
+#: inc/mapping.class.php:1006 inc/printerlog.class.php:195
+msgid "Number of printed color pages (copy)"
+msgstr "Väritulosteiden määrä (kopioitu)"
+
+#: inc/mapping.class.php:1010 inc/printerlog.class.php:200
+msgid "Total number of printed pages (fax)"
+msgstr "Tulosteiden kokonaismäärä (faksi)"
+
+#: inc/mapping.class.php:1014
+msgid "Total number of large printed pages"
+msgstr "Suurikokoisten tulosteiden kokonaismäärä"
+
+#: inc/menu.class.php:155
+msgid "Computer inv."
+msgstr "Tietokonekartoitus"
+
+#: inc/menu.class.php:158
+msgid "SNMP inv."
+msgstr "SNMP-kartoitus"
+
+#: inc/menu.class.php:197
+msgid ""
+"The server needs to kown the URL the agents use to access the server. Please"
+" configure it in the General Configuration page."
+msgstr "Palvelimen tulee tietää URL, jota agentit käyttävät kommunikoidessaan sen kanssa. Aseta URL sivulla Asetukset > Yleinen."
+
+#: inc/menu.class.php:221
+msgid "Agents management"
+msgstr "Agenttien hallinta"
+
+#: inc/menu.class.php:233
+msgid "General configuration"
+msgstr "Yleiset asetukset"
+
+#: inc/menu.class.php:240 inc/profile.class.php:144
+msgid "General"
+msgstr "Yleinen"
+
+#: inc/menu.class.php:256 inc/task.class.php:54
+msgid "Task management"
+msgstr "Tehtävän hallinta"
+
+#: inc/menu.class.php:260
+msgid "Monitoring / Logs"
+msgstr "Seuranta/lokit"
+
+#: inc/menu.class.php:267
+msgid "Import agent XML file"
+msgstr "Agentin XML-tiedoston tuonti"
+
+#: inc/menu.class.php:275 inc/profile.class.php:305
+msgid "Additional computer information"
+msgstr "Tietokoneen lisätiedot"
+
+#: inc/menu.class.php:281 inc/timeslot.class.php:61 inc/timeslot.class.php:70
+#: inc/timeslotentry.class.php:70
+msgid "Time slot"
+msgstr "Aikaväli"
+
+#: inc/menu.class.php:287
+msgid "Tasks"
+msgstr "Tehtävät"
+
+#: inc/menu.class.php:307
+msgid "Ignored import devices"
+msgstr "Tuonnissa sivuutetut laitteet"
+
+#: inc/menu.class.php:315
+msgid "Computer entity rules"
+msgstr "Tietokoneyksikön säännöt"
+
+#: inc/menu.class.php:322
+msgid "Computer location rules"
+msgstr "Tietokoneen sijainnin säännöt"
+
+#: inc/menu.class.php:336 inc/ruledictionnarycomputerarch.class.php:53
+#: inc/ruledictionnarycomputerarchcollection.class.php:50
+msgid "Dictionnary of computer architectures"
+msgstr "Tietokonearkkitehtuurien säännöstö"
+
+#: inc/menu.class.php:351
+msgid "Rules"
+msgstr "Säännöt"
+
+#: inc/menu.class.php:401
+msgid "Discovery status"
+msgstr "Löytämisen tila"
+
+#: inc/menu.class.php:409
+msgid "Network inventory status"
+msgstr "Verkon kartoituksen tila"
+
+#: inc/menu.class.php:419
+msgid "SNMP models creation"
+msgstr "SNMP-mallin luonti"
+
+#: inc/menu.class.php:426
+msgid "Networking"
+msgstr "Verkko "
+
+#: inc/menu.class.php:484 inc/menu.class.php:558
+msgid "Statistics"
+msgstr "Tilastot"
+
+#: inc/menu.class.php:484 inc/menu.class.php:874
+msgid "Number of computer inventories of last hours"
+msgstr "Edellisten tuntien tietokonekartoitusten lukumäärä"
+
+#: inc/menu.class.php:496
+msgid ""
+"This is the steps to configure FusionInventory plugin for computer inventory"
+msgstr "FusionInventory-liitännäinen konfiguroidaan tekemään tietokonekartoitus seuraavilla vaiheilla"
+
+#: inc/menu.class.php:502
+msgid "Configure frequency of agent contact (and so each inventory)"
+msgstr "Aseta agentin yhteydenottotiheys (koskee jokaista kartoitusta)"
+
+#: inc/menu.class.php:507
+msgid "Configure inventory options"
+msgstr "Konfiguroi kartoitusasetukset"
+
+#: inc/menu.class.php:512
+msgid "Define rules for entity"
+msgstr "Määritä säännöt yksikölle"
+
+#: inc/menu.class.php:517
+msgid "Define rules for location"
+msgstr "Määritä säännöt sijainnille"
+
+#: inc/menu.class.php:522
+msgid ""
+"Define rules for import : merge and create new computer (CAUTION: same rules"
+" for SNMP inventory)"
+msgstr "Määritä säännöt tuonnille: yhdistä ja luo uusi tietokone. (Huomaa, että samat säännöt koskevat SNMP.kartoitusta)"
+
+#: inc/menu.class.php:583
+msgid ""
+"This is the steps to configure FusionInventory plugin for SNMP inventory "
+"(swicth, router, network printer)"
+msgstr "FusionInventory-liitännäinen konfiguroidaan tekemään SNMP-kartoitus (kytkimet, reittimet, verkkotulostimet)  seuraavilla vaiheilla"
+
+#: inc/menu.class.php:589
+msgid "Configure SNMP credentials"
+msgstr "Aseta SNMP-tunnistetiedot"
+
+#: inc/menu.class.php:594
+msgid ""
+"Define rules for import : merge and create new devices (CAUTION: same rules "
+"for computer inventory)"
+msgstr "Määritä säännöt tuonnille: yhdistä ja luo uudet laitteet. (Huomaa, että samat säännöt koskevat tietokonekartoitusta)"
+
+#: inc/menu.class.php:599
+msgid "`Network Discovery`, used to discover the devices on the network"
+msgstr "`Verkon löytäminen`, käytetään laitteiden löytämiseen verkosta"
+
+#: inc/menu.class.php:604
+msgid "Define IP Ranges of your network + related SNMP authentication"
+msgstr "Määritä verkkosi IP-osoitealue ja siihen liittyvä SNMP-autentikointi."
+
+#: inc/menu.class.php:609
+msgid "Define an agent allowed to discover the network"
+msgstr "Määrita agentti, jonka on sallittu löytää verkko."
+
+#: inc/menu.class.php:614
+msgid ""
+"Create a new Task with discovery module and the agent defined previously"
+msgstr "Luo uusi tehtävä käyttäen aikaisemmin määriteltyä löytämismoduulia ja agenttia"
+
+#: inc/menu.class.php:619
+msgid "If you have devices not typed, import them from unmanaged devices"
+msgstr "Jos sinulla on laitteita, joita ei ole määritetty. Tuo ne ei-hallituista laitteista"
+
+#: inc/menu.class.php:624
+msgid "`Network Inventory`, used to complete inventory the discovered devices"
+msgstr "`Verkon kartoitus`, käytetään täydentämään löydettyjen laitteiden tiedot"
+
+#: inc/menu.class.php:629
+msgid "Define an agent allowed to inventory the network by SNMP"
+msgstr "Määritä agentti, joka voi kartoittaa verkkoa SNMP:n avulla"
+
+#: inc/menu.class.php:634
+msgid ""
+"Create a new Task with network inventory module and the agent defined "
+"previously"
+msgstr "Luo uusi tehtävä käyttäen aikaisemmin määriteltyä verkkokartoitusta ja agenttia"
+
+#: inc/menu.class.php:879
+msgid "Deployment"
+msgstr "Käyttöönotto"
+
+#: inc/networkequipment.class.php:54 inc/printer.class.php:65
+msgid "FusionInventory SNMP"
+msgstr "SNMP FusionInventory"
+
+#: inc/networkequipment.class.php:140
+msgid "Display the view"
+msgstr "Katso näkymää"
+
+#: inc/networkequipment.class.php:142
+msgid "If you prefer, you can display the view"
+msgstr "Voit katsoa näkymää"
+
+#: inc/networkequipment.class.php:463 inc/printer.class.php:140
+msgid "SNMP information"
+msgstr "SNMP:n tiedot"
+
+#: inc/networkequipment.class.php:502
+msgid "Memory usage (in %)"
+msgstr "Muistinkäyttö (prosentteina)"
+
+#: inc/networkequipment.class.php:516
+msgid "Datas not available"
+msgstr "Tiedot eivät ole saatavilla"
+
+#: inc/networkequipment.class.php:572
+msgid "Uptime"
+msgstr "Käyttöaika"
+
+#: inc/networkequipment.class.php:599 inc/taskjob.class.php:1212
+msgid "day(s)"
+msgstr "päivää"
+
+#: inc/networkequipment.class.php:600 inc/taskjob.class.php:1206
+msgid "hour(s)"
+msgstr "tuntia"
+
+#: inc/networkequipment.class.php:601 inc/taskjob.class.php:1200
+msgid "Minute(s)"
+msgstr "minuuttia"
+
+#: inc/networkequipment.class.php:602
+msgid "sec(s)"
+msgstr "sekuntia"
+
+#: inc/networkequipment.class.php:622
+msgid "Ports array"
+msgstr "Porttitaulukko"
+
+#: inc/networkequipment.class.php:646
+msgid "Legend"
+msgstr "Selite"
+
+#: inc/networkequipment.class.php:656
+msgid "Connection with a switch or a server in trunk or tagged mode"
+msgstr "Yhteys kytkimeen tai palvelimeen trunkin tai tägatyn VLAN:in kautta"
+
+#: inc/networkequipment.class.php:662
+msgid "Other connections (with a computer, a printer...)"
+msgstr "Muut yhteydet (tietokoneeseen, tulostimeen, ...)"
+
+#: inc/networkequipment.class.php:676
+msgid "Monitoring"
+msgstr "Seuranta"
+
+#: inc/networkequipment.class.php:700
+msgid "Traffic received/sent"
+msgstr "Saapunut/lähtenyt liikenne"
+
+#: inc/networkequipment.class.php:704
+msgid "Errors received/sent"
+msgstr "Saapuneen/lähteneen liikenteen virheet"
+
+#: inc/networkequipment.class.php:708 inc/networkport.class.php:101
+msgid "Duplex"
+msgstr "Duplex"
+
+#: inc/networkequipment.class.php:728 inc/networkport.class.php:121
+msgid "Port not connected since"
+msgstr "Porttiin ei yhteyttä sitten"
+
+#: inc/networkequipment.class.php:892
+msgid "Half"
+msgstr "Puolet"
+
+#: inc/networkequipment.class.php:896
+msgid "Full"
+msgstr "Täydellinen"
+
+#: inc/networkport.class.php:89
+msgid "Last change"
+msgstr "Viimeisin muutos"
+
+#: inc/networkport.class.php:93
+msgid "Number of bytes received / Number of bytes sent"
+msgstr "Vastaanotettujen tavujen lukumäärä / lähettyjen tavujen lukumäärä"
+
+#: inc/networkport.class.php:97
+msgid "Number of input errors / Number of errors in reception"
+msgstr "Vastaanottovirheiden / lähetysvirheiden lukumäärä"
+
+#: inc/networkportconnectionlog.class.php:59
+msgid "PID"
+msgstr "PID"
+
+#: inc/networkportconnectionlog.class.php:134
+#: inc/networkportconnectionlog.class.php:160 inc/networkportlog.class.php:448
+#: inc/networkportlog.class.php:469
+msgid "on"
+msgstr "/"
+
+#: inc/networkportlog.class.php:62
+msgid "FusionInventory historical"
+msgstr "FusionInventoryn historia"
+
+#: inc/networkportlog.class.php:127
+msgid "List of fields to history"
+msgstr "Luettelo talletettavista kentistä"
+
+#: inc/networkportlog.class.php:212
+msgid "Clean history"
+msgstr "Poista historia"
+
+#: inc/networkporttype.class.php:358
+msgid "Ports types to import (for network equipments)"
+msgstr "Tuotavat porttityypit (verkkolaitteille)"
+
+#: inc/printercartridge.class.php:64
+msgid "Cartridge(s)"
+msgstr "Värikasetit"
+
+#: inc/printercartridge.class.php:86
+msgid "remaining pages"
+msgstr "jäljellä olevat sivut"
+
+#: inc/printerlog.class.php:53 inc/printerlog.class.php:323
+msgid "History meter printer"
+msgstr "Tulostuslaskurin historia"
+
+#: inc/printerlog.class.php:287
+msgid "Total printed pages"
+msgstr "Tulosteiden kokonaismäärä"
+
+#: inc/printerlog.class.php:291
+msgid "Pages / day"
+msgstr "Sivua / päivä"
+
+#: inc/printerlog.class.php:328
+msgid "Meter"
+msgstr "Laskuri"
+
+#: inc/printerlog.class.php:350
+msgid "Check All"
+msgstr "Valitse kaikki"
+
+#: inc/printerlog.class.php:353
+msgid "Uncheck All"
+msgstr "Poista kaikki valinnat"
+
+#: inc/printerlog.class.php:485
+msgid "Time unit"
+msgstr "Aikayksikkö"
+
+#: inc/printerlog.class.php:493
+msgid "year"
+msgstr "vuosi"
+
+#: inc/printerlog.class.php:505
+msgid "Display"
+msgstr "Näyttö"
+
+#: inc/printerlog.class.php:507
+msgid "Total counter"
+msgstr "Laskurin kokonaisarvo"
+
+#: inc/printerlog.class.php:509
+msgid "pages per day"
+msgstr "sivua päivässä"
+
+#: inc/printerlog.class.php:524
+msgid "Printers to compare"
+msgstr "Vertailtavat tulostimet"
+
+#: inc/printerlog.class.php:532
+msgid "Add a printer"
+msgstr "Lisää tulostin"
+
+#: inc/printerlog.class.php:548
+msgid "Remove a printer"
+msgstr "Poista tulostin"
+
+#: inc/printerlog.class.php:674
+msgid "Too datas to display"
+msgstr "Liian paljon tietoa näytettäväksi"
+
+#: inc/profile.class.php:154
+msgid "Inventory"
+msgstr "Kartoitus"
+
+#: inc/profile.class.php:159
+msgid "Software deployment"
+msgstr "Ohjelmiston käyttöönotto"
+
+#: inc/profile.class.php:209
+msgid "Fields blacklist"
+msgstr "Luettelo kielletyistä kentistä"
+
+#: inc/profile.class.php:254
+msgid "Network equipment SNMP"
+msgstr "Verkkolaitteiden SNMP"
+
+#: inc/profile.class.php:257
+msgid "Printer SNMP"
+msgstr "Tulostimien SNMP"
+
+#: inc/profile.class.php:260
+msgid "Unmanaged devices"
+msgstr "Ei-hallitut laitteet"
+
+#: inc/profile.class.php:263
+msgid "computer XML manual import"
+msgstr "Tietokoneen XML-tiedoston manuaalinen tuonti"
+
+#: inc/profile.class.php:266
+msgid "Printers report"
+msgstr "Tulostimien raportti"
+
+#: inc/profile.class.php:283
+msgid "Menu"
+msgstr "Tehtävälista"
+
+#: inc/profile.class.php:286 inc/staticmisc.class.php:287
+msgid "Agents"
+msgstr "Agentit"
+
+#: inc/profile.class.php:289
+msgid "Agent remote control"
+msgstr "Agenttien etähallinta"
+
+#: inc/profile.class.php:293
+msgid "Configuration"
+msgstr "Konfiguraatio"
+
+#: inc/profile.class.php:299 inc/staticmisc.class.php:62
+msgid "Wake On LAN"
+msgstr "Wake On LAN"
+
+#: inc/rulematchedlog.class.php:74 inc/rulematchedlog.class.php:79
+msgid "Import information"
+msgstr "Tuonnin tiedot"
+
+#: inc/rulematchedlog.class.php:152 inc/rulematchedlog.class.php:218
+msgid "Rule import logs"
+msgstr "Lokien tuonnin säännöt"
+
+#: inc/snmpmodelimportexport.class.php:134
+msgid "SNMP model import"
+msgstr "SNMP-mallin tuonti"
+
+#: inc/snmpmodelimportexport.class.php:161
+msgid "Mass import of models"
+msgstr "Mallien massatuonti"
+
+#: inc/snmpmodelimportexport.class.php:165
+msgid "Mass import of models in folder plugins/fusioninventory/snmpmodels/"
+msgstr "Mallien massatuonti hakemistosta plugins/fusioninventory/snmpmodels/"
+
+#: inc/snmpmodelimportexport.class.php:217
+msgid "Model already exists"
+msgstr "Malli on jo olemassa"
+
+#: inc/snmpmodelimportexport.class.php:490
+#: inc/snmpmodelimportexport.class.php:495
+msgid "Importing SNMP models, please wait..."
+msgstr "SNMP-malleja tuodaan, odota hetki …"
+
+#: inc/statediscovery.class.php:137 inc/stateinventory.class.php:90
+#: inc/taskjoblog.class.php:188 inc/taskjoblog.class.php:270
+#: inc/taskjoblog.class.php:338 inc/taskjobstate.class.php:223
+msgid "Unique id"
+msgstr "Yksilöllinen tunniste"
+
+#: inc/statediscovery.class.php:138 inc/stateinventory.class.php:91
+msgid "Task job"
+msgstr "Työtehtävä"
+
+#: inc/statediscovery.class.php:145
+msgid "Total discovery devices"
+msgstr "Löydettyjen laitteiden kokonaismäärä"
+
+#: inc/statediscovery.class.php:146
+msgid "Devices not imported"
+msgstr "Tuomattomat laitteet"
+
+#: inc/statediscovery.class.php:147
+msgid "Devices linked"
+msgstr "Linkitetyt laitteet"
+
+#: inc/statediscovery.class.php:148
+msgid "Devices imported"
+msgstr "Tuodut laitteet"
+
+#: inc/statediscovery.class.php:209 inc/stateinventory.class.php:154
+#: inc/task.view.class.php:224 inc/task.view.class.php:300
+#: inc/taskjoblog.class.php:68 inc/taskjoblog.class.php:673
+#: inc/taskjoblog.class.php:1019 inc/taskjobstate.class.php:74
+msgid "Prepared"
+msgstr "Valmiina"
+
+#: inc/statediscovery.class.php:214 inc/stateinventory.class.php:159
+#: inc/taskjoblog.class.php:70 inc/taskjoblog.class.php:679
+#: inc/taskjoblog.class.php:803 inc/taskjoblog.class.php:1024
+msgid "Started"
+msgstr "Käynnistyi"
+
+#: inc/statediscovery.class.php:218 inc/stateinventory.class.php:163
+#: inc/taskjobstate.class.php:181
+msgid "Finished tasks"
+msgstr "Päättyneet tehtävät"
+
+#: inc/stateinventory.class.php:97
+msgid "Number per second"
+msgstr "Numeroa sekunnissa"
+
+#: inc/stateinventory.class.php:99
+msgid "To inventory"
+msgstr "Kartoitettavat"
+
+#: inc/stateinventory.class.php:100
+msgid "Error(s)"
+msgstr "Virheet"
+
+#: inc/staticmisc.class.php:78
+msgid "VMware host remote inventory"
+msgstr "Vmware-isäntien etäkartoitus"
+
+#: inc/staticmisc.class.php:98
+msgid "Package install"
+msgstr "Paketin asennus"
+
+#: inc/staticmisc.class.php:106
+msgid "Package uninstall"
+msgstr "Paketin asennuksen poisto"
+
+#: inc/staticmisc.class.php:114
+msgid "Collect data"
+msgstr "Tiedon keräys"
+
+#: inc/staticmisc.class.php:431 inc/staticmisc.class.php:437
+#: inc/taskjob.class.php:179 inc/taskjob.class.php:505
+#: inc/taskjob.class.php:1243 inc/taskjob.view.class.php:415
+msgid "Auto managenement dynamic of agents"
+msgstr "Agenttien dynaaminen hallinta"
+
+#: inc/staticmisc.class.php:535
+msgid "Fusinv"
+msgstr "FusInv"
+
+#: inc/task.class.php:81 inc/task.view.class.php:425
+msgid "Schedule start"
+msgstr "Aikatauluta aloitus"
+
+#: inc/task.class.php:87 inc/task.view.class.php:431
+msgid "Schedule end"
+msgstr "Aikatauluta lopetus"
+
+#: inc/task.class.php:295
+msgid ""
+"The agent is requesting a configuration that has already been sent to him by"
+" the server. It is more likely that the agent is subject to a critical "
+"error."
+msgstr "Agentti pyytää konfiguraatiota, jonka se on jo saanut palvelimelta. Agentti on todennäköisesti virhetilassa."
+
+#: inc/task.class.php:304
+msgid "The task has been deactivated after preparation of this job."
+msgstr "Tehtävä on deaktivoitu tämän työn valmistelun jälkeen."
+
+#: inc/task.class.php:322
+msgid "This job can not be executed anymore due to the task's schedule."
+msgstr "Tätä työtä ei voida suorittaa enää johtuen tehtävän aikataulusta."
+
+#: inc/task.class.php:354
+msgid "This job can not be executed anymore due to the task's timeslot."
+msgstr "Tätä työtä ei voida suorittaa enää johtuen tehtävän aikavälistä."
+
+#: inc/task.class.php:371
+msgid "This agent does not belong anymore in the actors defined in the job."
+msgstr "Tämä agentti ei kuulu enää työssä määritetyille toimijoille"
+
+#: inc/task.class.php:563
+msgid "Device no longer defined in definition of job"
+msgstr "Laite ei ole enää työn määrityksissä"
+
+#: inc/task.class.php:1364
+msgid "Task has been disabled"
+msgstr "Tehtävä ei ole käytössä"
+
+#: inc/task.view.class.php:81
+msgid "To Be Done"
+msgstr "Suoritettavat tehtävät"
+
+#: inc/task.view.class.php:89
+msgid "Off"
+msgstr "Ei käynnissä"
+
+#: inc/task.view.class.php:101
+msgid "refresh interval"
+msgstr "tarkistustiheys"
+
+#: inc/task.view.class.php:186
+msgid "Show/Hide details"
+msgstr "Näytä/piilota tiedot"
+
+#: inc/task.view.class.php:220 inc/task.view.class.php:296
+msgid "Not done yet"
+msgstr "Ei vielä suoritettu"
+
+#: inc/task.view.class.php:221 inc/task.view.class.php:297
+msgid "In error"
+msgstr "Virhetilassa"
+
+#: inc/task.view.class.php:222 inc/task.view.class.php:298
+msgid "Successful"
+msgstr "Onnistunut"
+
+#: inc/task.view.class.php:223 inc/task.view.class.php:299
+msgid "Running"
+msgstr "Käynnissä"
+
+#: inc/task.view.class.php:225 inc/task.view.class.php:301
+#: inc/taskjobstate.class.php:79
+msgid "Cancelled"
+msgstr "Peruttu"
+
+#: inc/task.view.class.php:307
+msgid "N/A"
+msgstr "N/A"
+
+#: inc/task.view.class.php:335
+msgid "Show/Hide Agent details"
+msgstr "Näytä/piilota agentin tiedot"
+
+#: inc/task.view.class.php:362
+msgid "Execution"
+msgstr "Suoritus"
+
+#: inc/task.view.class.php:437
+msgid "Timeslot"
+msgstr "Aikaväli"
+
+#: inc/taskjob.class.php:144 inc/taskjob.class.php:1181
+#: inc/taskjob.class.php:1753 inc/taskjoblog.class.php:569
+msgid "Definition"
+msgstr "Toiminta-alue"
+
+#: inc/taskjob.class.php:146 inc/taskjob.class.php:1182
+#: inc/taskjob.class.php:1770
+msgid "Action"
+msgstr "Toiminto"
+
+#: inc/taskjob.class.php:182 inc/taskjob.class.php:507
+#: inc/taskjob.class.php:1247 inc/taskjob.view.class.php:420
+msgid "Auto managenement dynamic of agents (same subnet)"
+msgstr "Dynaamisten agenttien hallinta (sama aliverkko)"
+
+#: inc/taskjob.class.php:199
+msgid "Selection"
+msgstr "Valitse "
+
+#: inc/taskjob.class.php:728
+msgid "Unable to run task because some jobs is running yet!"
+msgstr "Tehtävää ei voi käynnistää meneillään olevien töiden vuoksi!"
+
+#: inc/taskjob.class.php:798
+msgid "Action on this device"
+msgstr "Tämän laitteen toiminto"
+
+#: inc/taskjob.class.php:826 inc/taskjob.class.php:1179
+msgid "Scheduled date"
+msgstr "Aikataulutettu päiväys"
+
+#: inc/taskjob.class.php:1180
+msgid "Periodicity"
+msgstr "Jaksottaisuus"
+
+#: inc/taskjob.class.php:1405 inc/taskjob.class.php:1438
+msgid "Force start"
+msgstr "Pakota aloitus"
+
+#: inc/taskjob.class.php:1616
+msgid "Action after finish running task"
+msgstr "Toiminto tehtävän suorittamisen jälkeen"
+
+#: inc/taskjob.class.php:1621
+msgid "Delete this task and finish"
+msgstr "Poista tämä tehtävä ja lopeta"
+
+#: inc/taskjob.class.php:1626 inc/wizard.class.php:248
+msgid "Finish"
+msgstr "Lopeta"
+
+#: inc/taskjob.class.php:1631
+msgid "Run again this task"
+msgstr "Aja uudestaan tämä tehtävä"
+
+#: inc/taskjob.view.class.php:60
+msgid "Jobs configuration"
+msgstr "Töiden konfiguraatio"
+
+#: inc/taskjob.view.class.php:183
+msgid "Add a job"
+msgstr "Lisää työ"
+
+#: inc/taskjob.view.class.php:310
+msgid "Actor Type"
+msgstr "Toimijatyyppi"
+
+#: inc/taskjob.view.class.php:314
+msgid "Target Type"
+msgstr "Tavoitekohteen tyyppi"
+
+#: inc/taskjob.view.class.php:346
+msgid "Actor Item"
+msgstr "Toimijan kohde"
+
+#: inc/taskjob.view.class.php:350
+msgid "Target Item"
+msgstr "Tavoitekohteen osa"
+
+#: inc/taskjob.view.class.php:609 inc/taskjob.view.class.php:613
+msgid "New action"
+msgstr "Uusi toiminto"
+
+#: inc/taskjob.view.class.php:666
+msgid "Module method"
+msgstr "Moduulin menetelmä"
+
+#: inc/taskjob.view.class.php:708 inc/taskjob.view.class.php:738
+msgid "Targets"
+msgstr "Tavoitekohteet"
+
+#: inc/taskjob.view.class.php:713
+msgid "The items that should be applied for this job."
+msgstr "Kohteet, joita tulee käyttää tässä työssä"
+
+#: inc/taskjob.view.class.php:719 inc/taskjob.view.class.php:760
+msgid "Actors"
+msgstr "Toimijat"
+
+#: inc/taskjob.view.class.php:723
+msgid "The items that should carry out those targets."
+msgstr "Kohteet tavoitekohteen suorittamiseksi"
+
+#: inc/taskjob.view.class.php:746 inc/taskjob.view.class.php:768
+msgid "Clear list"
+msgstr "Tyhjennä luettelo"
+
+#: inc/taskjob.view.class.php:750 inc/taskjob.view.class.php:772
+msgid "Delete selected items"
+msgstr "Poista valitut kohteet"
+
+#: inc/taskjob.view.class.php:875
+msgid "Cancel modifications"
+msgstr "Peru muutokset"
+
+#: inc/taskjob.view.class.php:881
+msgid "Purge"
+msgstr "Poista pysyvästi"
+
+#: inc/taskjob.view.class.php:883
+msgid "Confirm the final deletion ?"
+msgstr "Vahvista pysyvä poisto"
+
+#: inc/taskjoblog.class.php:74 inc/taskjoblog.class.php:687
+#: inc/taskjoblog.class.php:804 inc/taskjoblog.class.php:1031
+msgid "Ok"
+msgstr "Ok "
+
+#: inc/taskjoblog.class.php:76 inc/taskjoblog.class.php:695
+#: inc/taskjoblog.class.php:805 inc/taskjoblog.class.php:1038
+msgid "Error / rescheduled"
+msgstr "Virhe/aikataulutettu uudelleen"
+
+#: inc/taskjoblog.class.php:80 inc/taskjoblog.class.php:711
+msgid "Info"
+msgstr "Tiedot"
+
+#: inc/taskjoblog.class.php:271 inc/taskjoblog.class.php:531
+msgid "Process number"
+msgstr "Prosessinumero"
+
+#: inc/taskjoblog.class.php:915 inc/taskjoblog.class.php:966
+msgid "View logs of this execution"
+msgstr "Katso tämän ajon lokeja"
+
+#: inc/taskjoblog.class.php:936 inc/taskjoblog.class.php:991
+msgid "See all executions"
+msgstr "Katso kaikkia suorituksia"
+
+#: inc/taskjoblog.class.php:1053
+msgid "unknown"
+msgstr "tuntematon"
+
+#: inc/taskjoblog.class.php:1124
+msgid "devices queried"
+msgstr "kysellyt oheislaitteet"
+
+#: inc/taskjoblog.class.php:1125
+msgid "devices found"
+msgstr "löydetyt oheislaitteet"
+
+#: inc/taskjoblog.class.php:1126
+msgid ""
+"SNMP equipment definition isn't up to date on agent. For the next run, it "
+"will get new version from server."
+msgstr "Agentin SNMP-laitemääritykset eivät ole ajantasaiset. Se saa palvelimelta uuden version seuraavalla käynnistyskerralla."
+
+#: inc/taskjoblog.class.php:1127
+msgid "Add the item"
+msgstr "Lisää kohde"
+
+#: inc/taskjoblog.class.php:1128
+msgid "Update the item"
+msgstr "Päivitä kohde"
+
+#: inc/taskjoblog.class.php:1129
+msgid "Inventory started"
+msgstr "Kartoitus käynnistyi"
+
+#: inc/taskjoblog.class.php:1130
+msgid "Detail"
+msgstr "Yksityiskohta"
+
+#: inc/taskjoblog.class.php:1131
+msgid "Agent communication error, impossible to start agent"
+msgstr "Agentin yhteysvirhe. Agenttia ei voi käynnistää."
+
+#: inc/taskjoblog.class.php:1132
+msgid "Agent stopped/crashed"
+msgstr "Agentti pysähtyi/kaatui"
+
+#: inc/taskjoblog.class.php:1204
+msgid "Completion"
+msgstr "Suoritettu"
+
+#: inc/taskjobstate.class.php:75
+msgid "Server has sent data to the agent"
+msgstr "Palvelin on lähettänyt tietoja agentille"
+
+#: inc/taskjobstate.class.php:76
+msgid "Agent replied with data to the server"
+msgstr "Agentti vastasi lähettämällä tietoa palvelimelle"
+
+#: inc/taskjobstate.class.php:77
+msgid "Finished"
+msgstr "Päättynyt"
+
+#: inc/taskjobstate.class.php:174
+msgid "Running tasks"
+msgstr "Käynnissä olevat tehtävät"
+
+#: inc/timeslotentry.class.php:61
+msgid "Time slot entry"
+msgstr "Aikavälimerkintä"
+
+#: inc/timeslotentry.class.php:108
+msgid "Start time"
+msgstr "Aloitusaika"
+
+#: inc/timeslotentry.class.php:134
+msgid "End time"
+msgstr "Päättymisaika"
+
+#: inc/unmanaged.class.php:56 inc/unmanaged.class.php:90
+msgid "Unmanaged device"
+msgstr "Ei-hallittu laite"
+
+#: inc/unmanaged.class.php:128 inc/unmanaged.class.php:388
+msgid "Network hub"
+msgstr "Keskitin"
+
+#: inc/unmanaged.class.php:376
+msgid "Approved devices"
+msgstr "Hyväksytyt laitteet"
+
+#: inc/unmanaged.class.php:462
+msgid "Import unmanaged device into asset"
+msgstr "Tuo ei-hallittu laite"
+
+#: inc/wizard.class.php:74
+msgid "Breadcrumb"
+msgstr "Navigointipolku"
+
+#: inc/wizard.class.php:338 inc/wizard.class.php:356 inc/wizard.class.php:374
+#: inc/wizard.class.php:394 inc/wizard.class.php:409
+msgid "Action choice"
+msgstr "Toiminnon valinta"
+
+#: inc/wizard.class.php:339 inc/wizard.class.php:357 inc/wizard.class.php:375
+#: inc/wizard.class.php:410
+msgid "Type of device to inventory"
+msgstr "Kartoitettavan laitteen tyyppi"
+
+#: inc/wizard.class.php:343
+msgid "Agent configuration"
+msgstr "Agentin määritykset"
+
+#: inc/wizard.class.php:358
+msgid "ESX servers management"
+msgstr "ESX-palvelimen hallinta"
+
+#: inc/wizard.class.php:359 inc/wizard.class.php:380 inc/wizard.class.php:429
+msgid "Run tasks"
+msgstr "Käynnistä tehtävät"
+
+#: inc/wizard.class.php:360 inc/wizard.class.php:381 inc/wizard.class.php:430
+msgid "Tasks running result"
+msgstr "Tehtävien ajotulokset"
+
+#: inc/wizard.class.php:361 inc/wizard.class.php:382 inc/wizard.class.php:431
+msgid "End Task"
+msgstr "Lopeta tehtävä"
+
+#: inc/wizard.class.php:411
+msgid "Choice (netdiscovery or inventory)"
+msgstr "Valitse (verkon löytäminen tai kartoitus) "
+
+#: inc/wizard.class.php:452
+msgid "Discover the network"
+msgstr "Löydä verkko"
+
+#: inc/wizard.class.php:457
+msgid "Inventory devices"
+msgstr "Kartoita laitteet"
+
+#: inc/wizard.class.php:462
+msgid "Welcome in FusionInventory. Begin configuration?"
+msgstr "Tervetuloa FusionInventory-palvelun käyttäjäksi. Aloitetaanko?"
+
+#: inc/wizard.class.php:488
+msgid "ESX servers"
+msgstr "ESX-palvelimet"
+
+#: inc/wizard.class.php:492
+msgid "Network devices and printers"
+msgstr "Verkkolaitteet ja -tulostimet"
+
+#: inc/wizard.class.php:1020
+msgid "Credential"
+msgstr "Tunnistetiedot"
+
+#: report/computer_last_inventory.php:73
+msgid "Number of days (minimum) since last inventory"
+msgstr "Edellisestä kartoitukset kulunut (vähintään)"

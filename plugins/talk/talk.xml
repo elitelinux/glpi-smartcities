@@ -1,0 +1,86 @@
+<root>
+   <name>Talk</name>
+   <key>talk</key>
+   <state>stable</state>
+   <logo>https://raw.githubusercontent.com/TECLIB/talk/master/pics/1.png</logo>
+   <description>
+      <short>
+         <fr>Le plugin Discussion regroupe les onglets principaux des tickets en un seul</fr>
+         <en>Talk plugin merges in one tab the main tabs of ticket form.</en>
+      </short>
+      <long>
+         <fr>Ce plugin GLPI modifie l'interface des formulaires de tickets.   
+Il regroupe en un onglet les suivants :
+
+* Followups
+* Task
+* Documents
+* Solution
+
+Le contenu de ces onglets sont affiché dans une "timeline".   
+
+En option, il est possible de séparer l'interface des tickets verticalement (en 0.84 seulement, voir dans les préférences)</fr>
+         <en>This glpi plugin alters the ticket form interface. It merges in one tab the followings :
+
+* Followups
+* Task
+* Documents
+* Solution
+
+The content of theses tabs now displayed in a timeline.   
+
+Optionnaly, the ticket form can be displayed in horizontal split (with 0.84 only, see user preferences)</en>
+      </long>
+   </description>
+   <homepage>https://github.com/TECLIB/talk#talk</homepage>
+   <download>https://github.com/TECLIB/talk/releases</download>
+   <issues>https://github.com/TECLIB/talk/issues</issues>
+   <readme>https://raw.githubusercontent.com/TECLIB/talk/master/README.md</readme>
+   <authors>
+      <author>Alexandre Delaunay</author>
+   </authors>
+   <versions>
+      <version>
+         <num>0.85-1.1</num>
+         <compatibility>0.85</compatibility>
+      </version>
+      <version>
+         <num>0.85-1.0</num>
+         <compatibility>0.85</compatibility>
+      </version>
+      <version>
+         <num>0.84-1.1</num>
+         <compatibility>0.84</compatibility>
+      </version>
+      <version>
+         <num>0.84-1.0</num>
+         <compatibility>0.84</compatibility>
+      </version>
+      <version>
+         <num>0.83-1.0</num>
+         <compatibility>0.83</compatibility>
+      </version>
+   </versions>
+   <langs>
+      <lang>en_GB</lang>
+      <lang>es_MX</lang>
+      <lang>fr_FR</lang>
+      <lang>hu_HU</lang>
+      <lang>pl_PL</lang>
+      <lang>pt_BR</lang>
+      <lang>ru_RU</lang>
+   </langs>
+   <license>GPL v2+</license>
+   <tags>
+      <fr>
+         <tag>Assistance</tag>
+      </fr>
+      <en>
+         <tag>Helpdesk</tag>
+      </en>
+   </tags>
+   <screenshots>
+      <screenshot>https://raw.githubusercontent.com/TECLIB/talk/master/screenshots/0.84/talk_splitview.png</screenshot>
+      <screenshot>https://raw.githubusercontent.com/TECLIB/talk/master/screenshots/0.84/talk_timeline.png</screenshot>
+   </screenshots>
+</root>
