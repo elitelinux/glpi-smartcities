@@ -152,14 +152,15 @@ window.onload = function() {
 			   }
 			   //Html::closeForm();          			          				
 			?>        
-			
-          </div>
-          <div class="foot">	
-            <a href="#"><button type="submit" name="submit" data-dismiss="modal" style="right: 35%;" class="btn btn-primary submit"><?php echo _sx('button','Post'); ?></button></a>
+			          
+          <div class="foot1">	
+            <a href="#"><button type="submit" name="submit" data-dismiss="modal" style="width:100%;" class="btn btn-primary submit"><?php echo _sx('button','Post'); ?></button></a>
           </div>
 			<?php
 			Html::closeForm();
-			?>			
+			?>
+			
+		</div>				
       </div>
     </div>
     <div class="text-center out-links"><a href="#">

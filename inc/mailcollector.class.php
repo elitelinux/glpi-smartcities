@@ -1688,7 +1688,7 @@ class MailCollector  extends CommonDBTM {
       }
 
       if (count($buttons)) {
-         Html::displayTitle($CFG_GLPI["root_doc"] . "/pics/user.png",
+         Html::displayTitle($CFG_GLPI["root_doc"] . "/pics/users.png",
                             _n('Receiver', 'Receivers', Session::getPluralNumber()), $message, $buttons);
       }
 

@@ -4150,15 +4150,27 @@ class Search {
                   } else if ($less_warn < $less_warn_limit) {
                      $color = $_SESSION['glpiduedatewarning_color'];
                   }
+                  
+
+                  //bar colors						
+						if($percentage == 100) { $cor = "progress-bar-danger"; }
+						if($percentage >= 80 and $percentage < 100) { $cor = "progress-bar-danger"; }
+						if($percentage > 51 and $percentage < 80) { $cor = "progress-bar-warning"; }
+						if($percentage > 0 and $percentage <= 50) { $cor = "progress-bar-success"; }
+						if($percentage < 0) { $cor = "progress-bar-success"; $percentage = 0; }
+
 
                   //Calculate bar progress
-                  $out .= "<div class='center' style='background-color: #ffffff; width: 100%;
-                            border: 1px solid #9BA563;' >";
-                  $out .= "<div style='position:absolute;'>&nbsp;".$percentage_text."%</div>";
-                  $out .= "<div class='center' style='background-color: ".$color.";
-                            width: ".$percentage."%; height: 12px' ></div>";
+                  // $out .= "<div class='center' style='background-color: #ffffff; width: 100%; border: 1px solid #9BA563;' >";
+                  $out .= "<div class='center'>";
+                  $out .= "<div style='position:absolute; color:#000;'>&nbsp;".$percentage_text."%</div>";
+                  $out .= "<div class='progress' style='margin-top: 0px; margin-bottom: 0px; height: 14px;'>";
+                  $out .= "<div class='center progress-bar ".$cor." progress-bar-striped ' role='progressbar' aria-valuenow='".$percentage."' aria-valuemin='0' aria-valuemax='100' 
+                   style='background-colorx: ".$color."; width: ".$percentage."%; height: 14px' > </div>";
                   $out .= "</div>";
-                  return $out;
+                  $out .= "</div>";
+                  return $out;                  
+                  
                }
                break;
 

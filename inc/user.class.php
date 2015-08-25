@@ -1768,7 +1768,7 @@ class User extends CommonDBTM {
             $buttons["ldap.php"] = __('LDAP directory link');
          }
       }
-      Html::displayTitle($CFG_GLPI["root_doc"] . "/pics/user.png", self::getTypeName(Session::getPluralNumber()), $title,
+      Html::displayTitle($CFG_GLPI["root_doc"] . "/pics/users.png", self::getTypeName(Session::getPluralNumber()), $title,
                          $buttons);
    }
 

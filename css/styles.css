@@ -2622,10 +2622,15 @@ div#list_nav .tab_glpi a {
 	background: url("../pics/reset.png") !important;
 }
 
-.ui-tabs-anchor {
-	width: 185px !important;
+
+#page {
+	margin-top: -15px !important;
+}  
+
+
+.tab_cadre_pager {
+	margin-bottom: 5px !important;
 }
 
-a:focus { 
-    outline: none !important; 
-}
+
+a { outline:none !important; }

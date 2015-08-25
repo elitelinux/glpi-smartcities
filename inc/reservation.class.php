@@ -476,7 +476,7 @@ class Reservation extends CommonDBChild {
              "\" title=\"".__s('Next')."\"></a></td></tr></table>\n";
 
       // test
-      echo "<table width='90%' class='tab_glpi'><tr><td class='top' width='100px'>";
+      echo "<table width='90%' class='tab_glpi' style='width:90%;'><tr><td class='top' width='100px'>";
 
       echo "<table><tr><td width='100px' class='top'>";
 
