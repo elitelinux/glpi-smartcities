@@ -35,6 +35,7 @@ Improvements in this version compared to the original version
 Improvements in:
 - Security in htaccess - by Juan Fernando Villa link: https://github.com/elitelinux/killer-htaccess
 - Styles in GUI and Look and feel in CSS and html5 - by Stevenes Donato link: http://sourceforge.net/projects/glpibootstrap/
+- Full Pack of Plugins and another addons
 
 The True
 ========
