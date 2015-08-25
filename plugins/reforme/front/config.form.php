@@ -1,0 +1,106 @@
+<?php
+//============================================================================//
+//==    Plugin pour GLPI - Dévelloppeur: Viduc (Fleury Tristan) - ©2013     ==//
+//==            http://viduc.sugarbox.fr - viduc@sugarbox.fr                ==//
+//============================================================================//
+
+/**
+ * Gestion du formulaire de configuration plugin reforme
+ * Reçoit les informations depuis un formulaire de configuration
+ * Renvoi sur la page de l'item traité
+ */
+
+// récupération des chemins absolus
+$cheminSmarty = getAbsolutePath()."plugins/reforme/Smarty";
+define('GLPI_ROOT', getAbsolutePath());
+include (GLPI_ROOT."inc/includes.php"); 
+
+// définition de l'emplacement de la bibliothèque
+define('SMARTY_DIR', $cheminSmarty."/libs/");
+
+// instanciation de la class Smarty
+require_once(SMARTY_DIR . 'Smarty.class.php');
+$smarty = new Smarty();
+
+// définition des dossiers Smarty
+$smarty->template_dir = $cheminSmarty."/templates/";
+$smarty->compile_dir = $cheminSmarty."/templates_c/";
+$smarty->config_dir = $cheminSmarty."/configs/";
+$smarty->cache_dir = $cheminSmarty."/cache/"; 
+
+/**
+ * Si un fihcier image (logo) est envoyé par le template, on l'enregistre
+ */
+if(isset($_FILES['logo']))
+    {
+    if(!empty($_FILES['logo']['tmp_name']) && is_uploaded_file($_FILES['logo']['tmp_name'])) 
+        {
+        // Le fichier a bien été téléchargé
+        if (exif_imagetype($_FILES['logo']['tmp_name']) == IMAGETYPE_PNG) 
+            {
+            $size = getimagesize($_FILES['logo']['tmp_name']);
+            if($size[0]<=165 && $size[1]<=180)
+                {move_uploaded_file($_FILES['logo']['tmp_name'],getAbsolutePath()."plugins/reforme/images/logo.png");}
+            }
+        }
+    }  
+    
+//Instanciation de la class config
+$config = new PluginReformeConfig();
+//Gestion des images
+$logoOption['title'] = 'Logo';
+$logoOption['alt'] = "Relancer le formulaire de configuration pour recharger l'image, puis faites F5";
+$testOption['title'] = 'Tester';
+$testOption['alt'] = "Tester";
+$actualiserOption['title'] = "Modifier";
+$actualiserOption['alt'] = "Modifier";
+$menuaddOption['title'] = "Ajouter AD";
+$menuaddOption['alt'] = "Ajouter AD";
+$ajoutInfo = array(1=>'Modèle du bien',2=>'Référence Type',3=>'Numéro de commande',4=>'Numéro de facture');
+//Envoie des variables à Smarty
+$smarty->assign('ajoutInfo',$ajoutInfo);
+$smarty->assign('infoAdministrative', $config->getInfoAdministrative());
+$smarty->assign('supp_ids', array(1,0));
+$smarty->assign('supp_names', array('Oui','Non'));
+$smarty->assign('infoStatut', $config->getStatutListe());
+$smarty->assign('infoAD', $config->getAD());
+$smarty->assign('targetForm', getHttpPath()."plugins/reforme/front/config.form.php");
+$smarty->assign('endform', HTML::closeForm(false));
+$smarty->assign('testIMG', HTML::image(getHttpPath()."plugins/reforme/images/test.png", $testOption));
+$smarty->assign('logoIMG', HTML::image(getHttpPath()."plugins/reforme/images/logo.png", $logoOption));
+$smarty->assign('actualiserIMG', HTML::image(getHttpPath().'pics/actualiser.png', $actualiserOption));
+$smarty->assign('menuaddIMG', HTML::image(getHttpPath().'pics/menu_add.png', $menuaddOption));
+$smarty->assign('targetCSS', getHttpPath()."plugins/reforme/css/reforme.css");
+$smarty->assign('targetConfigAjax', getHttpPath()."plugins/reforme/ajax/config.ajax.php");
+$smarty->assign('addstatut', getHttpPath()."front/state.php");
+//Affichage de l'entête GLPI
+HTML::header('Configuration Plugin Reforme');
+//Affichage du plugin
+$smarty->display('config.tpl');
+//Affichage du pied de page GLPI
+HTML::footer();  
+
+//========================================================================//
+/**
+ * Récupère le chemin absolue de l'instance glpi
+ * @return String : le chemin absolue (racine principale)
+ */
+function getAbsolutePath()
+    {return str_replace("plugins/reforme/front/config.form.php", "", $_SERVER['SCRIPT_FILENAME']);}
+
+/**
+ * Récupère le chemin http absolu de l'application glpi
+ * @return string : le chemin http absolue de l'application
+ */
+function getHttpPath()
+    {
+    $temp = explode("/",$_SERVER['HTTP_REFERER']);
+    $Ref = "";
+    foreach ($temp as $value)
+        {
+        if($value != "front"){$Ref.= $value."/";}
+        else{break;}
+        }
+    return $Ref;
+    }
+?>

@@ -1,0 +1,80 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-23 21:04+0200\n"
+"PO-Revision-Date: 2014-11-18 21:20+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#: hook.php:163 inc/simcard.class.php:181 inc/simcard.class.php:427
+#: inc/simcardsize.class.php:41
+msgid "Size"
+msgstr "Storlek"
+
+#: hook.php:164 inc/phoneoperator.class.php:40 inc/simcard.class.php:204
+#: inc/simcard.class.php:435
+msgid "Provider"
+msgstr "Utgivare"
+
+#: hook.php:165 hook.php:231 inc/simcard.class.php:197
+#: inc/simcard.class.php:409 inc/simcardvoltage.class.php:41
+msgid "Voltage"
+msgstr "Volt"
+
+#: hook.php:166 inc/simcard.class.php:167 inc/simcardtype.class.php:41
+msgid "Type of SIM card"
+msgstr "SIM-kortstyp"
+
+#: hook.php:222 inc/simcard.class.php:243 inc/simcard.class.php:443
+msgid "Phone number"
+msgstr "Telefonnummer"
+
+#: setup.php:130
+msgid "Sim cards management"
+msgstr "Hantera SIM-kort"
+
+#: inc/profile.class.php:127
+msgid "Right manager"
+msgstr "Rättighetshantering"
+
+#: inc/profile.class.php:263 inc/simcard.class.php:54
+msgid "SIM card"
+msgid_plural "SIM cards"
+msgstr[0] "SIM-kort"
+msgstr[1] "SIM-kort"
+
+#: inc/simcard.class.php:253 inc/simcard.class.php:367
+msgid "IMSI"
+msgstr "IMSI"
+
+#: inc/simcard.class.php:273 inc/simcard.class.php:453
+msgid "Pin 1"
+msgstr "Pin 1"
+
+#: inc/simcard.class.php:279 inc/simcard.class.php:469
+msgid "Pin 2"
+msgstr "Pin 2"
+
+#: inc/simcard.class.php:285 inc/simcard.class.php:461
+msgid "Puk 1"
+msgstr "Puk 1"
+
+#: inc/simcard.class.php:291 inc/simcard.class.php:477
+msgid "Puk 2"
+msgstr "Puk 2"
+
+#: inc/simcard_item.class.php:217
+msgid "New SIM card"
+msgstr "Nytt SIM-kort"

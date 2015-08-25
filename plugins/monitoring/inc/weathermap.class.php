@@ -905,8 +905,6 @@ class PluginMonitoringWeathermap extends CommonDBTM {
 
       $this->getFromDB($weathermaps_id);
 
-      PluginMonitoringSecurity::updateSession();
-
       if (countElementsInTable('glpi_plugin_monitoring_weathermapnodes', "`plugin_monitoring_weathermaps_id`='".$weathermaps_id."'") == 0) {
          return;
       }
@@ -1250,21 +1248,61 @@ echo '        </script>';
          html: true,
          title: function () {
            var d = this.__data__;
-           return "<div id=\'chart" + d.services_id + "2h'.$updown.$type.$rand.'\'>'.
+           return "<div id=\'chart'.$updown.$type.$rand.'\'>'.
                       '<svg style=\'height: 300px; width: 450px;\'></"+"svg>'.
                     '</"+"div><div id=\'updategraph" + d.services_id + "2h'.$updown.$type.$rand.'\'></"+"div>'.
-            '<script>$.ajax({'.
 
-                 'type: \'post\','.
-                 'url: \''.$CFG_GLPI['root_doc'].'/plugins/monitoring/ajax/updateChart.php\','.
-                 'data: { rrdtool_template:" + d.rrdtool_template + ",itemtype:\'PluginMonitoringService\',items_id:" + d.services_id + ",timezone:0,time:\'2h\',suffix:\''.$updown.$type.$rand.'\',customdate:\'\',customtime:\'\',components_id:" + d.components_id + ",sess_id:\''.session_id().'\',glpiID:\''.$_SESSION['glpiID'].'\',plugin_monitoring_securekey:\''.$_SESSION['plugin_monitoring_securekey'].'\' },'.
-                 'success: function(data) {'.
-                 '     $(\'#updategraph" + d.services_id + "2h'.$updown.$type.$rand.'\').html(data);'.
-                 '}'.
-               '});</"+"script>";
-          },
+                  '<script>\n'.
+                  'var formaty = \'.0f\';\n'.
+                  'var data'.$updown.$type.$rand.' = [];\n'.
+                  'var chart'.$updown.$type.$rand.';\n'.
+                  'redraw'.$updown.$type.$rand.' = function () {\n'.
+                  '   nv.addGraph(function() {\n'.
+                  '      if (typeof data'.$updown.$type.$rand.'[0] != \'undefined\') {\n'.
+                  '         formaty = data'.$updown.$type.$rand.'[0][\'formaty\'];\n'.
+                  '      }\n'.
+                  '      chart'.$updown.$type.$rand.' = nv.models.lineChart();\n'.
+
+                  '      chart'.$updown.$type.$rand.'.useInteractiveGuideline(true);\n'.
+
+                  '      chart'.$updown.$type.$rand.'.xAxis\n'.
+                  '         .tickFormat(function(d) { return d3.time.format(\'%H:%M\')(new Date(d)); });\n'.
+
+                  '      chart'.$updown.$type.$rand.'.yAxis\n'.
+                  '         .axisLabel(\'test\')\n'.
+                  '         .tickFormat(d3.format(formaty))\n'.
+
+                  '      chart'.$updown.$type.$rand.'.forceY([0]);\n'.
+
+                  '      d3.select(\'#chart'.$updown.$type.$rand.' svg\')\n'.
+                  '        .attr(\'height\', 300)\n'.
+                  '        .datum(data'.$updown.$type.$rand.')\n'.
+                  '        .transition().duration(50)\n'.
+                  '        .call(chart'.$updown.$type.$rand.');\n'.
+
+                  '     return chart'.$updown.$type.$rand.';\n'.
+                  '   });\n'.
+                  '};\n'.
+
+
+
+                  '$.getJSON(\''.$CFG_GLPI["root_doc"].'/plugins/monitoring/ajax/updateChart.php'.
+                          '?rrdtool_template=" + d.rrdtool_template + "'.
+                          '&itemtype=PluginMonitoringService'.
+                          '&items_id=" + d.services_id + "'.
+                          '&timezone=0'.
+                          '&time=2h&customdate=1429538070'.
+                          '&customtime=323618070'.
+                          '&components_id=" + d.components_id + "\', function(data) {\n'.
+                 '     data'.$updown.$type.$rand.' = data;\n'.
+                 '     redraw'.$updown.$type.$rand.'();\n'.
+               '});\n</"+"script>";';
+      echo    '},
       });
       ';
+
+
+
    }
 
 

@@ -384,8 +384,8 @@ class PluginMonitoringSlider extends CommonDBTM {
       PluginMonitoringToolbox::loadLib();
 
       $this->getFromDB($id);
-      echo '<div id="custom_date" style="display:none"></div>';
-      echo '<div id="custom_time" style="display:none"></div>';
+      echo '<div style="display:none"><input type="text" id="custom_date" value="'.date('m/d/Y').'"> '
+              . ' <input type="text" id="custom_time" value="'.date('H:i').'"></div>';
 
       echo '<script src="'.$CFG_GLPI["root_doc"].'/plugins/monitoring/lib/slider.js-14/js/jssor.slider.mini.js"></script>
 <script>
@@ -536,32 +536,25 @@ echo '    </div>
             $pmCustomitem_Counter->ajaxLoad($data['items_id']);
          }
          if ($itemtype == "PluginMonitoringWeathermap") {
-            $sess_id = session_id();
-            PluginMonitoringSecurity::updateSession();
 
             echo "<script type='text/javascript'>
             var mgr = new Ext.UpdateManager('weathermap-".$data['items_id']."');
             mgr.startAutoRefresh(50, \"".$CFG_GLPI["root_doc"].
                     "/plugins/monitoring/ajax/widgetWeathermap.php\","
                     . " \"id=".$data['items_id']."&extra_infos=".
-                    $data['extra_infos']."&sess_id=".$sess_id.
+                    $data['extra_infos'].
                     "&glpiID=".$_SESSION['glpiID'].
-                    "&plugin_monitoring_securekey=".$_SESSION['plugin_monitoring_securekey'].
                     "\", \"\", true);
             </script>";
          }
          if ($itemtype == "PluginMapsMap") {
-            $sess_id = session_id();
-            PluginMonitoringSecurity::updateSession();
-
             echo "<script type='text/javascript'>
             var mgr = new Ext.UpdateManager('pluginmap');
             mgr.startAutoRefresh(50, \"".$CFG_GLPI["root_doc"].
                     "/plugins/monitoring/ajax/widgetPluginmap.php\","
                     . " \"extra_infos=".
-                    $data['extra_infos']."&sess_id=".$sess_id.
+                    $data['extra_infos'].
                     "&glpiID=".$_SESSION['glpiID'].
-                    "&plugin_monitoring_securekey=".$_SESSION['plugin_monitoring_securekey'].
                     "\", \"\", true);
             </script>";
          }

@@ -55,6 +55,6 @@ Session::checkLoginUser();
 
 $pmDisplayview_item = new PluginMonitoringDisplayview_item();
 
-$pmDisplayview_item->reloadView($_POST['id'], $_POST['config']);
+$pmDisplayview_item->reloadView($_GET['id'], $_GET['config']);
 
 ?>

@@ -42,7 +42,7 @@
 
 include ("../../../inc/includes.php");
 
-Session::checkRight("plugin_monitoring_service", UPDATE);
+Session::checkRight("plugin_monitoring_componentscatalog", UPDATE);
 
 $pmContact_Item = new PluginMonitoringContact_Item();
 

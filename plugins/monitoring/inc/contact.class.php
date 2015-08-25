@@ -46,7 +46,7 @@ if (!defined('GLPI_ROOT')) {
 
 class PluginMonitoringContact extends CommonDBTM {
 
-   static $rightname = 'plugin_monitoring_service';
+   static $rightname = 'plugin_monitoring_componentscatalog';
 
    /**
    * Get name of this type
@@ -95,7 +95,7 @@ class PluginMonitoringContact extends CommonDBTM {
       global $DB,$CFG_GLPI;
 
       if ($items_id == '0') {
-         $a_list = $this->find("`users_id`='".$_POST['id']."'", '', 1);
+         $a_list = $this->find("`users_id`='".$_GET['id']."'", '', 1);
          if (count($a_list)) {
             $array = current($a_list);
             $items_id = $array['id'];
@@ -108,6 +108,7 @@ class PluginMonitoringContact extends CommonDBTM {
          $this->getEmpty();
       }
 
+//      $this->initForm($items_id, $options);
       $this->showFormHeader($options);
 
       if ($items_id!='') {
@@ -130,7 +131,7 @@ class PluginMonitoringContact extends CommonDBTM {
          // Add button for host creation
          echo "<tr>";
          echo "<td colspan='4' align='center'>";
-         echo "<input name='users_id' type='hidden' value='".$_POST['id']."' />";
+         echo "<input name='users_id' type='hidden' value='".$_GET['id']."' />";
          echo "<input name='add' value='".__('Manage this user for monitoring system', 'monitoring')."' class='submit' type='submit'></td>";
          echo "</tr>";
          $this->showFormButtons(array('canedit'=>false));

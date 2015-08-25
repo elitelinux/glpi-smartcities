@@ -206,7 +206,7 @@ class PluginMonitoringWebservice {
    static function methodShinkenTimeperiods($params, $protocol) {
 
       $pmShinken = new PluginMonitoringShinken();
-      $array = $pmShinken->generateTimeperiodsCfg();
+      $array = $pmShinken->generateTimeperiodsCfg(0, $params['tag']);
       return $array;
    }
 

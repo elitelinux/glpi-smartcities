@@ -63,11 +63,15 @@ class PluginMonitoringDashboard extends CommonGLPI {
    static function getAdditionalMenuOptions() {
       global $CFG_GLPI;
 
+      $main_menu = '<img src="'.$CFG_GLPI["root_doc"].'/plugins/monitoring/pics/main_menu.png" alt="'.
+                                     __('Main menu', 'monitoring').'" title="'.__('Main menu', 'monitoring').'"\>';
+
       return array(
          'componentscatalog' => array(
               'title' => PluginMonitoringComponentscatalog::getTypeName(),
               'page'  => PluginMonitoringComponentscatalog::getSearchURL(false),
               'links' => array(
+                  $main_menu => '/plugins/monitoring/front/menu.php',
                   'search' => '/plugins/monitoring/front/componentscatalog.php',
                   'add'    => '/plugins/monitoring/front/componentscatalog.form.php'
               )),
@@ -75,6 +79,7 @@ class PluginMonitoringDashboard extends CommonGLPI {
               'title' => PluginMonitoringCommand::getTypeName(),
               'page'  => PluginMonitoringCommand::getSearchURL(false),
               'links' => array(
+                  $main_menu => '/plugins/monitoring/front/menu.php',
                   'search' => '/plugins/monitoring/front/command.php',
                   'add'    => '/plugins/monitoring/front/command.form.php'
               )),
@@ -82,6 +87,7 @@ class PluginMonitoringDashboard extends CommonGLPI {
               'title' => PluginMonitoringCheck::getTypeName(),
               'page'  => PluginMonitoringCheck::getSearchURL(false),
               'links' => array(
+                  $main_menu => '/plugins/monitoring/front/menu.php',
                   'search' => '/plugins/monitoring/front/check.php',
                   'add'    => '/plugins/monitoring/front/check.form.php'
               )),
@@ -89,6 +95,7 @@ class PluginMonitoringDashboard extends CommonGLPI {
               'title' => PluginMonitoringEventhandler::getTypeName(),
               'page'  => PluginMonitoringEventhandler::getSearchURL(false),
               'links' => array(
+                  $main_menu => '/plugins/monitoring/front/menu.php',
                   'search' => '/plugins/monitoring/front/eventhandler.php',
                   'add'    => '/plugins/monitoring/front/eventhandler.form.php'
               )),
@@ -96,6 +103,7 @@ class PluginMonitoringDashboard extends CommonGLPI {
               'title' => PluginMonitoringPerfdata::getTypeName(),
               'page'  => PluginMonitoringPerfdata::getSearchURL(false),
               'links' => array(
+                  $main_menu => '/plugins/monitoring/front/menu.php',
                   'search' => '/plugins/monitoring/front/perfdata.php',
                   'add'    => '/plugins/monitoring/front/perfdata.form.php'
               )),
@@ -103,6 +111,7 @@ class PluginMonitoringDashboard extends CommonGLPI {
               'title' => PluginMonitoringComponent::getTypeName(),
               'page'  => PluginMonitoringComponent::getSearchURL(false),
               'links' => array(
+                  $main_menu => '/plugins/monitoring/front/menu.php',
                   'search' => '/plugins/monitoring/front/component.php',
                   'add'    => '/plugins/monitoring/front/component.form.php'
               )),
@@ -110,6 +119,7 @@ class PluginMonitoringDashboard extends CommonGLPI {
               'title' => PluginMonitoringContacttemplate::getTypeName(),
               'page'  => PluginMonitoringContacttemplate::getSearchURL(false),
               'links' => array(
+                  $main_menu => '/plugins/monitoring/front/menu.php',
                   'search' => '/plugins/monitoring/front/contacttemplate.php',
                   'add'    => '/plugins/monitoring/front/contacttemplate.form.php'
               )),
@@ -117,6 +127,7 @@ class PluginMonitoringDashboard extends CommonGLPI {
               'title' => PluginMonitoringNotificationcommand::getTypeName(),
               'page'  => PluginMonitoringNotificationcommand::getSearchURL(false),
               'links' => array(
+                  $main_menu => '/plugins/monitoring/front/menu.php',
                   'search' => '/plugins/monitoring/front/notificationcommand.php',
                   'add'    => '/plugins/monitoring/front/notificationcommand.form.php'
               )),
@@ -124,6 +135,7 @@ class PluginMonitoringDashboard extends CommonGLPI {
               'title' => PluginMonitoringRealm::getTypeName(),
               'page'  => PluginMonitoringRealm::getSearchURL(false),
               'links' => array(
+                  $main_menu => '/plugins/monitoring/front/menu.php',
                   'search' => '/plugins/monitoring/front/realm.php',
                   'add'    => '/plugins/monitoring/front/realm.form.php'
               )),
@@ -131,12 +143,14 @@ class PluginMonitoringDashboard extends CommonGLPI {
               'title' => PluginMonitoringTag::getTypeName(),
               'page'  => PluginMonitoringTag::getSearchURL(false),
               'links' => array(
+                  $main_menu => '/plugins/monitoring/front/menu.php',
                   'search' => '/plugins/monitoring/front/tag.php'
               )),
          'servicescatalog' => array(
               'title' => PluginMonitoringServicescatalog::getTypeName(),
               'page'  => PluginMonitoringServicescatalog::getSearchURL(false),
               'links' => array(
+                  $main_menu => '/plugins/monitoring/front/menu.php',
                   'search' => '/plugins/monitoring/front/servicescatalog.php',
                   'add'    => '/plugins/monitoring/front/servicescatalog.form.php'
               )),
@@ -144,6 +158,7 @@ class PluginMonitoringDashboard extends CommonGLPI {
               'title' => PluginMonitoringWeathermap::getTypeName(),
               'page'  => PluginMonitoringWeathermap::getSearchURL(false),
               'links' => array(
+                  $main_menu => '/plugins/monitoring/front/menu.php',
                   'search' => '/plugins/monitoring/front/weathermap.php',
                   'add'    => '/plugins/monitoring/front/weathermap.form.php'
               )),
@@ -158,6 +173,7 @@ class PluginMonitoringDashboard extends CommonGLPI {
               'title' => PluginMonitoringSlider::getTypeName(),
               'page'  => PluginMonitoringSlider::getSearchURL(false),
               'links' => array(
+                  $main_menu => '/plugins/monitoring/front/menu.php',
                   'search' => '/plugins/monitoring/front/slider.php',
                   'add'    => '/plugins/monitoring/front/slider.form.php'
               )),
@@ -176,15 +192,19 @@ class PluginMonitoringDashboard extends CommonGLPI {
          'menu' => array(
               'title' => PluginMonitoringMenu::getTypeName(),
               'links' => array(
+                  $main_menu => '/plugins/monitoring/front/menu.php',
                   'config' => '/plugins/monitoring/front/config.form.php'
               )),
          'dashboard' => array(
               'title' => PluginMonitoringDisplay::getTypeName(),
               'links' => array(
-                  '<img src="'.$CFG_GLPI["root_doc"].'/plugins/monitoring/pics/main_menu.png" alt="'.
-                                     __('Main menu', 'monitoring').'" title="'.__('Main menu', 'monitoring').'"\>'
-                        => '/plugins/monitoring/front/menu.php',
-                  'config' => '/plugins/monitoring/front/config.form.php'
+                  $main_menu => '/plugins/monitoring/front/menu.php',
+                  'config'   => '/plugins/monitoring/front/config.form.php'
+              )),
+         'config' => array(
+              'title' => PluginMonitoringConfig::getTypeName(),
+              'links' => array(
+                  $main_menu => '/plugins/monitoring/front/menu.php'
               ))
 
          );

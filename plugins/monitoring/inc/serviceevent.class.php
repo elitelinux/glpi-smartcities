@@ -455,7 +455,8 @@ class PluginMonitoringServiceevent extends CommonDBTM {
                   $unity = '';
                   foreach ($a_perfdata_final as $nb_val=>$val) {
                      if (count($todisplay) == 0
-                             || isset($todisplay[$data['DS'][$nb_val]['dsname']])) {
+                             || (isset($data['DS'][$nb_val])
+                                 && isset($todisplay[$data['DS'][$nb_val]['dsname']]))) {
 
                         //No value, no graph
                         if ('' == $val) {

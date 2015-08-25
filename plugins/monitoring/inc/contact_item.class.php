@@ -47,7 +47,7 @@ if (!defined('GLPI_ROOT')) {
 class PluginMonitoringContact_Item extends CommonDBTM {
 
 
-   static $rightname = 'plugin_monitoring_service';
+   static $rightname = 'plugin_monitoring_componentscatalog';
 
    static function getTypeName($nb=0) {
       return __('Contacts', 'monitoring');

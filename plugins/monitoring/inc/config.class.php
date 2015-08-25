@@ -107,17 +107,17 @@ class PluginMonitoringConfig extends CommonDBTM {
 
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Logs retention (in days)', 'monitoring')."&nbsp;:</td>";
-      echo "<td align='center'>";
+      echo "<td width='100'>";
       Dropdown::showNumber("logretention", array(
                 'value' => $this->fields['logretention'],
                 'min'   => 0,
                 'max'   => 1000)
       );
       echo "</td>";
-      echo "<td>";
+      echo "<td rowspan='4'>";
       echo __('Timezones (for graph)', 'monitoring')."&nbsp:";
       echo "</td>";
-      echo "<td>";
+      echo "<td rowspan='4'>";
          $a_timezones = $this->getTimezones();
 
          $a_timezones_selected = importArrayFromDB($this->fields['timezones']);
@@ -176,7 +176,19 @@ class PluginMonitoringConfig extends CommonDBTM {
       echo "<td>";
       Dropdown::showYesNo("extradebug", $this->fields['extradebug']);
       echo "</td>";
-      echo "<td colspan='2'>";
+      echo "</tr>";
+
+      echo "<tr class='tab_bg_1'>";
+      echo "<td>".__('Use container/VM name as prefix of NRPE command + use IP address of host', 'monitoring')." :</td>";
+      echo "<td>";
+      Dropdown::showYesNo("nrpe_prefix_contener", $this->fields['nrpe_prefix_contener']);
+      echo "</td>";
+      echo "</tr>";
+
+      echo "<tr class='tab_bg_1'>";
+      echo "<td>".__('Append id to hostname when generate conf', 'monitoring')." :</td>";
+      echo "<td>";
+      Dropdown::showYesNo("append_id_hostname", $this->fields['append_id_hostname']);
       echo "</td>";
       echo "</tr>";
 

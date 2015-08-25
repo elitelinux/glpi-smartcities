@@ -661,9 +661,6 @@ class PluginMonitoringCustomitem_Gauge extends CommonDBTM {
    function ajaxLoad($id) {
       global $CFG_GLPI;
 
-      $sess_id = session_id();
-      PluginMonitoringSecurity::updateSession();
-
       echo "<script type=\"text/javascript\">
 
       var elcc".$id." = Ext.get(\"updatecustomitem_gauge".$id."\");
@@ -672,9 +669,8 @@ class PluginMonitoringCustomitem_Gauge extends CommonDBTM {
       mgrcc".$id.".showLoadIndicator=false;
       mgrcc".$id.".startAutoRefresh(50, \"".$CFG_GLPI["root_doc"].
               "/plugins/monitoring/ajax/updateWidgetCustomitem_gauge.php\","
-              . " \"id=".$id."&sess_id=".$sess_id.
+              . " \"id=".$id.
               "&glpiID=".$_SESSION['glpiID'].
-              "&plugin_monitoring_securekey=".$_SESSION['plugin_monitoring_securekey'].
               "\", \"\", true);
       </script>";
    }

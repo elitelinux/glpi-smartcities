@@ -50,7 +50,6 @@ Html::header(__('Monitoring - dashboard', 'monitoring'), $_SERVER["PHP_SELF"], "
 Session::checkRight("plugin_monitoring_dashboard", READ);
 
 $pmDisplay = new PluginMonitoringDisplay();
-$pmServicescatalog = new PluginMonitoringServicescatalog();
 $pmMessage = new PluginMonitoringMessage();
 
 $pmMessage->getMessages();

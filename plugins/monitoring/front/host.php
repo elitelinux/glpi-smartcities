@@ -66,9 +66,7 @@ $pmMessage = new PluginMonitoringMessage();
 
 $pmMessage->getMessages();
 
-$pmDisplay->menu();
-
-$pmDisplay->refreshPage();
+$pmDisplay->menu('service');
 
 $pmDisplay->showHostsCounters("Hosts", 1, 1);
 

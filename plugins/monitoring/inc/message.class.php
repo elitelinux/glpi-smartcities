@@ -52,33 +52,18 @@ class PluginMonitoringMessage extends CommonDBTM {
 
       $pmMessage = new self();
 
-      $sess_id = session_id();
-//      PluginMonitoringSecurity::updateSession();
-
       // Display if shinken is in restart or if restarted less than 5 minutes
       echo "<div id='shikenrestart'></div>";
-//      echo "<script type=\"text/javascript\">
-//      var elshikenrestart = Ext.get(\"shikenrestart\");
-//      var mgrshikenrestart = elshikenrestart.getUpdateManager();
-//      mgrshikenrestart.loadScripts=true;
-//      mgrshikenrestart.showLoadIndicator=false;
-//      mgrshikenrestart.startAutoRefresh(30, \"".$CFG_GLPI["root_doc"].
-//                 "/plugins/monitoring/ajax/updateshinkenrestartmessage.php\","
-//              . " \"sess_id=".$sess_id.
-//              "&glpiID=".$_SESSION['glpiID'].
-//              "&plugin_monitoring_securekey=".$_SESSION['plugin_monitoring_securekey'].
-//              "\", \"\", true);";
-//      echo "</script>";
 
-echo "<script type=\"text/javascript\">
-(function worker() {
-  $.get('".$CFG_GLPI["root_doc"]."/plugins/monitoring/ajax/updateshinkenrestartmessage.php"
-        ."?sess_id=".$sess_id."&glpiID=".$_SESSION['glpiID']."', function(data) {
-    $('#shikenrestart').html(data);
-    setTimeout(worker, 30000);
-  });
-})();
-</script>";
+      echo "<script type=\"text/javascript\">
+      (function worker() {
+        $.get('".$CFG_GLPI["root_doc"]."/plugins/monitoring/ajax/updateshinkenrestartmessage.php"
+              ."?glpiID=".$_SESSION['glpiID']."', function(data) {
+          $('#shikenrestart').html(data);
+          setTimeout(worker, 30000);
+        });
+      })();
+      </script>";
 
       $servicecatalog = '';
       $confchanges = '';
@@ -160,7 +145,7 @@ echo "<script type=\"text/javascript\">
       $pmLog = new PluginMonitoringLog();
       // Get id of last Shinken restart
       $id_restart = 0;
-      $a_restarts = $pmLog->find("`action` LIKE 'restart%'", "`id` DESC", 1);
+      $a_restarts = $pmLog->find("(`action`='restart' OR `action`='restart_planned')", "`id` DESC", 1);
       if (count($a_restarts) > 0) {
          $a_restart = current($a_restarts);
          $id_restart = $a_restart['id'];
@@ -270,11 +255,10 @@ echo "<script type=\"text/javascript\">
 
 
    function displayShinkenRestart() {
-      global $CFG_GLPI;
 
       $pmLog = new PluginMonitoringLog();
 
-      $a_reload_planned = $pmLog->find("`action` LIKE 'reload%' AND "
+      $a_reload_planned = $pmLog->find("(`action`='reload' OR `action`='reload_planned') AND "
               ."`date_mod` > date_add(now(), interval - 10 MINUTE)", "`id` DESC", 1);
       if (count($a_reload_planned) == 1) {
          $a_reload = current($a_reload_planned);
@@ -289,7 +273,7 @@ echo "<script type=\"text/javascript\">
          }
       }
 
-      $a_restart_planned = $pmLog->find("`action` LIKE 'restart%' AND "
+      $a_restart_planned = $pmLog->find("(`action`='restart' OR `action`='restart_planned') AND "
               ."`date_mod` > date_add(now(), interval - 10 MINUTE)", "`id` DESC", 1);
       if (count($a_restart_planned) == 1) {
          $a_restart = current($a_restart_planned);

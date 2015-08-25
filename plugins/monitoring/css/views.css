@@ -1,5 +1,5 @@
 .msgboxmonit {
-    margin: 0 auto 20px;
+    margin: 0 auto 5px;
     width: 700px;
     padding: 11px 0;
     font-size: 11px;
@@ -624,3 +624,7 @@ line.linkblack {
   .tipsy-w .tipsy-arrow { left: 0; top: 50%; margin-top: -5px; border-right-style: solid; border-left: none; border-top-color: transparent; border-bottom-color: transparent; }
 
   
+
+.qtip-monitoring{
+   max-width: 650px;
+}

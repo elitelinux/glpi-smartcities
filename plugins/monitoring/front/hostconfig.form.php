@@ -53,7 +53,8 @@ $pmHostconfig = new PluginMonitoringHostconfig();
 
 if (isset($_POST["update"])) {
    if ($_POST['plugin_monitoring_components_id'] != '-1'
-           OR $_POST['plugin_monitoring_realms_id'] != '-1') {
+           OR $_POST['plugin_monitoring_realms_id'] != '-1'
+           OR $_POST['jetlag'] != '100') {
 
       if (isset($_POST['id'])) {
          $pmHostconfig->update($_POST);

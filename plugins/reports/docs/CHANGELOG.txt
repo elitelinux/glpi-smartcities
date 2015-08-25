@@ -1,0 +1,77 @@
+﻿/*
+ * @version $Id: CHANGELOG.txt 204 2011-11-08 12:28:40Z remi $
+ -------------------------------------------------------------------------
+ reports - Additional reports plugin for GLPI
+ Copyright (C) 2003-2011 by the reports Development Team.
+
+ https://forge.indepnet.net/projects/reports
+ -------------------------------------------------------------------------
+
+ LICENSE
+
+ This file is part of reports.
+
+ reports is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ reports is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with reports. If not, see <http://www.gnu.org/licenses/>.
+ --------------------------------------------------------------------------
+*/
+
+// ----------------------------------------------------------------------
+// Original Author of file: Remi COLLET 
+// Purpose of file: CHANGELOG
+// ----------------------------------------------------------------------
+
+Authors : Dévi BALPE & Walid NOUH & Remi COLLET & Nelly LASSON
+
+Version 1.4.0 GLPI = 0.80
+
+Version 1.3.1 GLPI = 0.72.x
+   - #1777 If no result, add a "no found message"
+
+Version 1.3.0 GLPI = 0.72.x
+   - #125 writting for glpi 0.72
+   - #158 New duplicate criteria   
+   - #189 add phones in equipment by location
+   - #227 Manage reports and stats additonnals entry
+   - #232 Extend Report creation
+   - #233  Move each report in a separate directory
+   - #234 Remove plugin_report. prefix in report's php pages
+   - delete "computer" report
+   - delete "user" report
+
+Version 1.2.1
+   - #237 Add locales it_IT and de_DE
+   - #238 Add tickets open sorted by priority and tickets open at night sorted by priority
+
+Version 1.2 GLPI = 0.71
+    - #147 Add pager to SimpleReport function
+    - #148 Add Report : list of all the devices by users and by groups
+    - #149 Add report for all rules
+    - #150 Add report 'infocom' 
+
+ see : https://dev.indepnet.net/plugins/query?status=closed&milestone=Reports+1.2
+
+Version 1.1 - GLPI = 0.70
+   - allow report to provide a config page
+   - add "simpleReport" function
+   - add report "doublons"
+   - add report "location"
+
+Version 1.0 - GLPI = 0.70
+   - first version
+   - simple framework to add new report
+   - add report "computer"
+   - add report "histoinst"
+   - add report "pcsbyentity"
+   - add report "user"
+

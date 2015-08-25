@@ -331,6 +331,9 @@ class PluginMonitoringComponent extends CommonDBTM {
       // * freshness
       echo "<td>".__('Freshness (for passive mode)', 'monitoring')."&nbsp;:</td>";
       echo "<td>";
+      if ($this->fields['freshness_count'] == '') {
+         $this->fields['freshness_count'] = 0;
+      }
       Dropdown::showNumber("freshness_count", array(
              'value' => $this->fields['freshness_count'],
              'min'   => 0,

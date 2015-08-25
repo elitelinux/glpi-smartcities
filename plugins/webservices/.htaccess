@@ -1,0 +1,5 @@
+<Files xmlrpc.php>
+# Uncomment next line to enable compression and reduce network load
+# If this is globally enabled, it should NOT be enable for a client from GUI
+#php_value zlib.output_compression 4096
+</Files>

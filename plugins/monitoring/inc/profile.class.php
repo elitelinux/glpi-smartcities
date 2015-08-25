@@ -214,6 +214,10 @@ class PluginMonitoringProfile extends Profile {
                 'label'     => __('Tag', 'monitoring'),
                 'field'     => 'plugin_monitoring_tag'
           ),
+          array('rights'    => array(UPDATE => __('Update'), CREATE => __('Create')),
+                'label'     => __('Host configuration', 'monitoring'),
+                'field'     => 'plugin_monitoring_hostconfig'
+          ),
           array('rights'    => array(CREATE => __('Create')),
                 'label'     => __('Restart Shinken', 'monitoring'),
                 'field'     => 'plugin_monitoring_restartshinken'

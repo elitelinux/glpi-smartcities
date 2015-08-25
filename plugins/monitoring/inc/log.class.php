@@ -59,7 +59,7 @@ class PluginMonitoringLog extends CommonDBTM {
       return __('Logs', 'monitoring');
    }
 
-   
+
 
    static function cronInfo($name){
 
@@ -114,7 +114,8 @@ class PluginMonitoringLog extends CommonDBTM {
 
 
    function isRestartLessThanFiveMinutes() {
-      $a_restarts = $this->find("`action` LIKE 'restart%' AND `date_mod` > date_add(now(), interval - 5 MINUTE)", "`id` DESC", 1);
+      $a_restarts = $this->find("(`action`='restart' OR `action`='restart_planned') "
+              . " AND `date_mod` > date_add(now(), interval - 5 MINUTE)", "`id` DESC", 1);
       if (count($a_restarts) > 0) {
          return true;
       }
@@ -122,7 +123,8 @@ class PluginMonitoringLog extends CommonDBTM {
    }
 
    function isReloadLessThanFiveMinutes() {
-      $a_restarts = $this->find("`action` LIKE 'reload%' AND `date_mod` > date_add(now(), interval - 5 MINUTE)", "`id` DESC", 1);
+      $a_restarts = $this->find("(`action`='reload' OR `action`='reload_planned') "
+              . " AND `date_mod` > date_add(now(), interval - 5 MINUTE)", "`id` DESC", 1);
       if (count($a_restarts) > 0) {
          return true;
       }

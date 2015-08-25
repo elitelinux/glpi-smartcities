@@ -59,7 +59,7 @@ class PluginMonitoringCustomitem_Counter extends CommonDBTM {
       return __('Custom item', 'monitoring')." - ".__('Counter', 'monitoring');
    }
 
-   
+
 
    function getSearchOptions() {
 
@@ -683,9 +683,6 @@ class PluginMonitoringCustomitem_Counter extends CommonDBTM {
    function ajaxLoad($id) {
       global $CFG_GLPI;
 
-      $sess_id = session_id();
-      PluginMonitoringSecurity::updateSession();
-
       echo "<script type=\"text/javascript\">
 
       var elcc".$id." = Ext.get(\"updateCustomitem_Counter".$id."\");
@@ -694,9 +691,8 @@ class PluginMonitoringCustomitem_Counter extends CommonDBTM {
       mgrcc".$id.".showLoadIndicator=false;
       mgrcc".$id.".startAutoRefresh(50, \"".$CFG_GLPI["root_doc"].
               "/plugins/monitoring/ajax/updateWidgetCustomitem_Counter.php\","
-              . " \"id=".$id."&sess_id=".$sess_id.
+              . " \"id=".$id.
               "&glpiID=".$_SESSION['glpiID'].
-              "&plugin_monitoring_securekey=".$_SESSION['plugin_monitoring_securekey'].
               "\", \"\", true);
       </script>";
    }

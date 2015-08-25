@@ -208,7 +208,8 @@ class PluginMonitoringHost extends CommonDBTM {
          case 'Central' :
             $pmDisplay = new PluginMonitoringDisplay();
             // $pmDisplay->showHostsCounters("Hosts", 1, 1);
-            $pmDisplay->showHostsBoard();
+            $params = Search::manageParams("PluginMonitoringHost", array());
+            $pmDisplay->showHostsBoard($params);
             return true;
 
       }
@@ -488,7 +489,7 @@ class PluginMonitoringHost extends CommonDBTM {
 
          $link = $CFG_GLPI['root_doc'].
             "/plugins/monitoring/front/host.php?field[0]=".$search_id."&searchtype[0]=equals&contains[0]=".$item->getID()."&itemtype=PluginMonitoringHost&start=0";
-         return "<a href='$link'>".$this->getName($options)."</a>"."&nbsp;".$this->getComments();
+         return $item->getLink()." [<a href='$link'>".__('Status', 'monitoring')."</a>]"."&nbsp;".$this->getComments();
       } else {
          $itemtype = $this->getField("itemtype");
          $item = new $itemtype();

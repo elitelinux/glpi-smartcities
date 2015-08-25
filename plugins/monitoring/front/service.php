@@ -71,9 +71,7 @@ $pmMessage = new PluginMonitoringMessage();
 
 $pmMessage->getMessages();
 
-$pmDisplay->menu();
-
-$pmDisplay->refreshPage();
+$pmDisplay->menu('service');
 
 $pmDisplay->showCounters("Ressources", 1, 0);
 // Manage search

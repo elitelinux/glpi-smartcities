@@ -75,9 +75,9 @@ class PluginMonitoringShinkenwebservice extends CommonDBTM {
       }
       $ip = $pmTag->getIP($tag);
       $auth = $pmTag->getAuth($tag);
+      $port = $pmTag->getPort($tag);
 
-
-      $url = 'http://'.$ip.':7760/';
+      $url = 'http://'.$ip.':'.$port.'/';
       $action = 'acknowledge';
       $a_fields = array(
           'action'               => empty($operation) ? 'add' : $operation,
@@ -120,8 +120,9 @@ class PluginMonitoringShinkenwebservice extends CommonDBTM {
       }
       $ip = $pmTag->getIP($tag);
       $auth = $pmTag->getAuth($tag);
+      $port = $pmTag->getPort($tag);
 
-      $url = 'http://'.$ip.':7760/';
+      $url = 'http://'.$ip.':'.$port.'/';
       $action = 'downtime';
       $a_fields = array(
           'action'               => empty($operation) ? 'add' : $operation,
@@ -207,6 +208,8 @@ class PluginMonitoringShinkenwebservice extends CommonDBTM {
       curl_setopt($ch,CURLOPT_POST, count($a_fields));
       curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
       curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+      curl_setopt($ch,CURLOPT_TIMEOUT, 4);
       if ($auth != '') {
          curl_setopt($ch,CURLOPT_USERPWD, $auth);
       }

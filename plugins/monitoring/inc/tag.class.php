@@ -262,6 +262,84 @@ class PluginMonitoringTag extends CommonDBTM {
       }
       return FALSE;
    }
+
+
+
+   function servers_status() {
+
+      $servers = $this->find();
+
+      echo "<table class='tab_cadre' width='950'>";
+      foreach ($servers as $data) {
+         echo "<tr class='tab_bg_1'>";
+         echo "<th colspan='2'>";
+         echo $data['ip'];
+         echo "</th>";
+         echo "</tr>";
+
+         echo "<tr class='tab_bg_1'>";
+         echo "<td>";
+         echo "ping :";
+         echo "</td>";
+         echo "<td>";
+         $ch = curl_init();
+         curl_setopt($ch,CURLOPT_URL, 'http://'.$data['ip'].':7770/ping');
+         curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+         curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+         curl_setopt($ch,CURLOPT_TIMEOUT, 4);
+         $ret = curl_exec($ch);
+         curl_close($ch);
+         echo $ret;
+         echo "</td>";
+         echo "</tr>";
+
+         $ch = curl_init();
+         curl_setopt($ch,CURLOPT_URL, 'http://'.$data['ip'].':7770/get-all-states');
+         curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+         curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+         curl_setopt($ch,CURLOPT_TIMEOUT, 4);
+         $ret = curl_exec($ch);
+         curl_close($ch);
+         foreach (json_decode($ret) as $module=>$dataret) {
+            echo "<tr class='tab_bg_1'>";
+            echo "<td>";
+            echo $module;
+            echo "</td>";
+            echo "<td>";
+            if ($dataret[0]->alive == 1) {
+               echo "<div class='service serviceOK' style='float : left;'></div>";
+            } else {
+               echo "<div class='service serviceCRITICAL' style='float : left;'></div>";
+            }
+            echo "</td>";
+            echo "</tr>";
+         }
+
+      }
+      echo "</table>";
+   }
+
+
+   function get_servers_status() {
+      $ok = true;
+      $servers = $this->find();
+
+      foreach ($servers as $data) {
+         $ch = curl_init();
+         curl_setopt($ch,CURLOPT_URL, 'http://'.$data['ip'].':7770/get-all-states');
+         curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+         curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+         curl_setopt($ch,CURLOPT_TIMEOUT, 4);
+         $ret = curl_exec($ch);
+         curl_close($ch);
+         foreach (json_decode($ret) as $module=>$dataret) {
+            if ($dataret[0]->alive != 1) {
+               $ok = 0;
+            }
+         }
+      }
+      return $ok;
+   }
 }
 
 ?>

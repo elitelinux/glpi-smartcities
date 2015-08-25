@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+   <name>Reforme</name>
+   <key>Reforme</key>
+   <state>stable</state>
+    <logo>https://forge.indepnet.net/svn/reforme/images/logo-reforme.png</logo>
+   <description>
+      <short>
+         <fr><![CDATA[Plugin permettant de gérer la réforme complète d'une machine]]></fr>
+         <en></en>
+      </short>
+      <long>
+         <fr><![CDATA[Ce plugin a comme objectif de gérer la réforme d'une machine:<br />
+
+1/ retire le nom de la fiche glpi et le met en comentaire <br />
+2/ passe le statut de la machine à réformé (ou autre) <br />
+3/ désactive la machine du domaine (si la machine appartient à un domaine) <br />
+4/ créé un bon de réforme avec les informations financières <br />
+5/ envoie le bon de réforme par mail à une adresse <br />
+6/ supprime la fiche glpi de la machine (si besoin) <br /><br />
+Compatible version 0.85
+         ]]></fr>
+         <en></en>
+      </long>
+   </description>
+   <homepage>https://forge.indepnet.net/projects/show/reforme</homepage>
+   <download>https://forge.indepnet.net/projects/reforme/files</download>
+   <authors>
+      <author>Tristan Fleury </author>
+      <author></author>
+   </authors>
+   <versions>
+      <version>
+          <num>1.0.23</num>
+          <compatibility>0.83,0.84,0.85</compatibility>
+      </version>
+
+   </versions>
+   <langs>
+      <lang>fr_FR</lang>
+   </langs>
+   <license><![CDATA[GPL v2+]]></license>
+   <tags>
+         <fr>
+            <tag>Inventaire</tag>
+         </fr>
+   </tags>
+</root>

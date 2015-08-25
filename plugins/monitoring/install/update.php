@@ -1240,6 +1240,14 @@ function pluginMonitoringUpdate($current_version, $migrationname='Migration') {
                                  'logretention',
                                  'logretention',
                                  "int(5) NOT NULL DEFAULT '30'");
+         $migration->changeField($newTable,
+                                 'nrpe_prefix_contener',
+                                 'nrpe_prefix_contener',
+                                 "tinyint(1) NOT NULL DEFAULT '0'");
+         $migration->changeField($newTable,
+                                 'append_id_hostname',
+                                 'append_id_hostname',
+                                 "tinyint(1) NOT NULL DEFAULT '0'");
          $migration->dropField($newTable,
                               'phppath');
          $migration->dropField($newTable,
@@ -1256,6 +1264,12 @@ function pluginMonitoringUpdate($current_version, $migrationname='Migration') {
                               "int(5) NOT NULL DEFAULT '30'");
          $migration->addField($newTable,
                               'extradebug',
+                              "tinyint(1) NOT NULL DEFAULT '0'");
+         $migration->addField($newTable,
+                              'nrpe_prefix_contener',
+                              "tinyint(1) NOT NULL DEFAULT '0'");
+         $migration->addField($newTable,
+                              'append_id_hostname',
                               "tinyint(1) NOT NULL DEFAULT '0'");
       $migration->migrationOneTable($newTable);
 
@@ -1611,7 +1625,9 @@ function pluginMonitoringUpdate($current_version, $migrationname='Migration') {
                            array('type' => 'integer',       'value'   => NULL),
          'plugin_monitoring_realms_id' =>
                            array('type' => 'integer',       'value'   => NULL),
-         'computers_id' => array('type' => 'integer',       'value'   => NULL)
+         'computers_id' => array('type' => 'integer',       'value'   => NULL),
+         'jetlag'       => array('type' => 'varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL',
+                                 'value'   => '0'),
       );
 
       $a_table['oldfields']  = array(
@@ -2571,43 +2587,6 @@ function pluginMonitoringUpdate($current_version, $migrationname='Migration') {
 
 
     /*
-    * Table glpi_plugin_monitoring_securities
-    */
-      $a_table = array();
-      $a_table['name'] = 'glpi_plugin_monitoring_securities';
-      $a_table['oldname'] = array();
-
-      $a_table['fields']  = array(
-         'id'           => array('type'    => 'autoincrement', 'value'   => ''),
-         'users_id'
-                        => array('type'    => 'integer',       'value'   => 0),
-         'key'
-                        => array('type'    => 'string',        'value'   => NULL),
-         'session_id'
-                        => array('type'    => 'string',        'value'   => NULL),
-         'last_session_start'
-                        => array('type'    => 'datetime',      'value'   => NULL),
-         'session'
-                        => array('type'    => 'text',          'value'   => NULL),
-      );
-
-      $a_table['oldfields']  = array();
-
-      $a_table['renamefields'] = array();
-
-      $a_table['keys'] = array();
-      $a_table['keys'][] = array('field' => array("users_id", "last_session_start"),
-                                 'name' => 'users_id',
-                                 'type' => 'INDEX');
-
-      $a_table['oldkeys'] = array();
-
-      migrateTablesMonitoring($migration, $a_table);
-
-
-
-
-    /*
     * Table glpi_plugin_monitoring_servicedefs
     */
       $newTable = "glpi_plugin_monitoring_servicedefs";
@@ -3422,6 +3401,9 @@ function pluginMonitoringUpdate($current_version, $migrationname='Migration') {
       if (TableExists("glpi_plugin_monitoring_servicegraphs")) {
          $DB->query("DROP TABLE `glpi_plugin_monitoring_servicegraphs`");
       }
+      if (TableExists("glpi_plugin_monitoring_securities")) {
+         $DB->query("DROP TABLE `glpi_plugin_monitoring_securities`");
+      }
 
 
    if (!is_dir(GLPI_PLUGIN_DOC_DIR.'/monitoring')) {
@@ -3638,6 +3620,41 @@ function pluginMonitoringUpdate($current_version, $migrationname='Migration') {
               . "WHERE `id`='".$data['id']."'");
    }
 
+
+   // Udpate componentcatalog_rules with new search engine (0.85)
+   $query = "SELECT *
+      FROM `glpi_plugin_monitoring_componentscatalogs_rules`";
+   $result = $DB->query($query);
+   while ($data=$DB->fetch_array($result)) {
+      $data_array = importArrayFromDB($data['condition']);
+      if (!isset($data_array['searchtype'])) {
+         continue;
+      }
+      $criteria = array();
+      foreach ($data_array['field'] as $num=>$value) {
+         $criteria[$num]['field'] = $value;
+      }
+      unset($data_array['field']);
+      foreach ($data_array['searchtype'] as $num=>$value) {
+         $criteria[$num]['searchtype'] = $value;
+      }
+      unset($data_array['searchtype']);
+      foreach ($data_array['contains'] as $num=>$value) {
+         $criteria[$num]['value'] = $value;
+      }
+      unset($data_array['contains']);
+      if (isset($data_array['link'])) {
+         foreach ($data_array['link'] as $num=>$value) {
+            $criteria[$num]['link'] = $value;
+         }
+         unset($data_array['link']);
+      }
+      $data_array['criteria'] = $criteria;
+      unset($data_array['_glpi_csrf_token']);
+      $DB->query("UPDATE `glpi_plugin_monitoring_componentscatalogs_rules` "
+              . "SET `condition`='".exportArrayToDB($data_array)."' "
+              . "WHERE `id`='".$data['id']."'");
+   }
 
 
 

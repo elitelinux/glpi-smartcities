@@ -47,7 +47,7 @@ if (!defined('GLPI_ROOT')) {
 class PluginMonitoringHostaddress extends CommonDBTM {
    public $table = "glpi_plugin_monitoring_hostaddresses";
 
-   static $rightname = 'plugin_monitoring_hoststatus';
+   static $rightname = 'plugin_monitoring_hostconfig';
 
    /**
    * Get name of this type

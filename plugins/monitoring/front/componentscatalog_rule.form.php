@@ -73,6 +73,7 @@ if (isset($_GET['addrule'])) {
       unset($_POST['addrule']);
       unset($_POST['itemtypen']);
       unset($_POST['plugin_monitoring_componentscalalog_id']);
+      unset($_POST['_glpi_csrf_token']);
       $input['condition'] = exportArrayToDB($_POST);
       $rules_id = $pmComponentscatalog_rule->add($input);
       unset($_SESSION['plugin_monitoring_rules']);
@@ -81,7 +82,7 @@ if (isset($_GET['addrule'])) {
 
    }
 } else if (isset($_GET['updaterule'])) {
-   if (!isset($_GET['contains'])
+   if (!isset($_GET['criteria'])
         AND !isset($_GET['reset'])) {
 //      $_SESSION['plugin_monitoring_rules'] = $_POST;
    } else {
@@ -101,6 +102,7 @@ if (isset($_GET['addrule'])) {
       unset($_POST['itemtypen']);
       unset($_POST['plugin_monitoring_componentscalalog_id']);
       unset($_POST['id']);
+      unset($_POST['_glpi_csrf_token']);
       $input['condition'] = exportArrayToDB($_POST);
       $pmComponentscatalog_rule->update($input);
       unset($_SESSION['plugin_monitoring_rules']);
@@ -112,7 +114,7 @@ if (isset($_GET['addrule'])) {
    $_POST = $_GET;
    $pmComponentscatalog_rule->delete($_POST);
    Html::redirect($CFG_GLPI['root_doc']."/plugins/monitoring/front/componentscatalog.form.php?id=".$_POST['plugin_monitoring_componentscalalog_id']);
-} else if (isset($_GET['contains'])
+} else if (isset($_GET['criteria'])
         OR isset($_GET['reset'])) {
 //   if (isset($_SESSION['plugin_monitoring_rules'])) {
 //      unset($_SESSION['plugin_monitoring_rules']);
@@ -125,28 +127,16 @@ if (isset($_GET['addrule'])) {
    $pmComponentscatalog_rule->getFromDB($_GET['id']);
 
    $val = importArrayFromDB($pmComponentscatalog_rule->fields['condition']);
-   $nbfields = 1;
-   $nbfields = count($val['field']);
-   foreach ($val as $name=>$data) {
-      if (is_array($data)) {
-         $i =0;
-         foreach ($data as $key => $value) {
-            $val[$name."[".$key."]"] = $value;
-         }
-         unset($val[$name]);
-      }
-   }
-   $_POST = $val;
-   $_POST["glpisearchcount"] = $nbfields;
-   $_POST['id'] = $_GET['id'];
-   $_POST['name'] = $pmComponentscatalog_rule->fields['name'];
-   $_POST['itemtype'] = $pmComponentscatalog_rule->fields['itemtype'];
-   $_POST['plugin_monitoring_componentscalalog_id'] = $pmComponentscatalog_rule->fields['plugin_monitoring_componentscalalog_id'];
-   $_SERVER['REQUEST_URI'] = str_replace("?id=".$_GET['id'], "", $_SERVER['REQUEST_URI']);
 
+   $params = Search::manageParams($pmComponentscatalog_rule->fields['itemtype'], $val);
 
-   unset($_SESSION["glpisearchcount"][$_POST['itemtype']]);
-   unset($_SESSION["glpisearch"]);
+   $url = str_replace("?id=".$_GET['id'], "", $_SERVER['REQUEST_URI']);
+   $url .= "?".Toolbox::append_params($params);
+   $url .= "&plugin_monitoring_componentscalalog_id=".$pmComponentscatalog_rule->fields['plugin_monitoring_componentscalalog_id'];
+   $url .= "&name=".$pmComponentscatalog_rule->fields['name'];
+   $url .= "&id=".$_GET['id'];
+
+   Html::redirect($url);
 }
 
 if (isset($_POST['name'])) {

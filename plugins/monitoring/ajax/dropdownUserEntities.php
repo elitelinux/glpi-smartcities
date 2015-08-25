@@ -48,7 +48,7 @@ Session::checkLoginUser();
 
 $all_entities = Profile_User::getUserEntities($_POST["value"], true);
 $value = current($all_entities);
-Dropdown::show("entity", array('name' => 'entities_id',
+Dropdown::show("Entity", array('name' => 'entities_id',
                                'value'=>$value,
                                'entity' => $all_entities));
 

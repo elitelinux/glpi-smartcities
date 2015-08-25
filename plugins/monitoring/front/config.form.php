@@ -45,7 +45,7 @@ include ("../../../inc/includes.php");
 Session::checkRight("config", UPDATE);
 
 Html::header(__('Monitoring', 'monitoring'),$_SERVER["PHP_SELF"], "plugins",
-             "monitoring", "config");
+             "PluginMonitoringDashboard", "config");
 
 
 $pmConfig = new PluginMonitoringConfig();

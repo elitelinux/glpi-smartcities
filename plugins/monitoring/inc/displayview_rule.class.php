@@ -166,12 +166,44 @@ class PluginMonitoringDisplayview_rule extends CommonDBTM {
 
 
    function addRule() { // Verified
+      global $CFG_GLPI;
 
-      Search::manageGetValues($_GET['itemtype']);
-      $pmSearch = new PluginMonitoringSearch();
-      $pmSearch->showGenericSearch($_GET['itemtype'], $_GET);
+      $params = Search::manageParams($_GET['itemtype'], $_GET);
+      $params['showbookmark'] = false;
+      $params['target'] = $CFG_GLPI['root_doc']."/plugins/monitoring/front/displayview_rule.form.php";
+      $params['addhidden'] = array();
+      $params['addhidden']['plugin_monitoring_displayviews_id'] = $_GET['plugin_monitoring_displayviews_id'];
+      $params['addhidden']['name'] = $_GET['name'];
+      if (isset($_GET['id'])) {
+         $params['addhidden']['id'] = $_GET['id'];
+      }
 
-      echo "<br/><br/>";
+      ob_start();
+      Search::showGenericSearch($_GET['itemtype'], $params);
+      $form = ob_get_contents();
+      ob_end_clean();
+      if (isset($_GET['id'])) {
+         $table = "<tr class='tab_bg_1'>"
+                 . "<td align='center'>"
+                 . "<input type='submit' name='updaterule' value=\"Update this rule\" class='submit' >"
+                 . "</td>"
+                 . "<td align='center'>"
+                 . "<input type='submit' name='deleterule' value=\"Delete this rule\" class='submit' >"
+                 . "</td>"
+                 . "</tr>"
+                 . "</table><input";
+      } else {
+         $table = "<tr class='tab_bg_1'>"
+                 . "<td align='center' colspan='2'>"
+                 . "<input type='submit' name='addrule' value=\"Add this rule\" class='submit' >"
+                 . "</td>"
+                 . "</tr>"
+                 . "</table><input";
+      }
+      $form = str_replace("</table>\n<input", $table, $form);
+      echo $form;
+
+      echo "<br/>";
       echo "<table class='tab_cadre_fixe'>";
 
       echo "<tr>";
@@ -199,15 +231,13 @@ class PluginMonitoringDisplayview_rule extends CommonDBTM {
       Session::changeActiveEntities($pmDisplayview->fields['entities_id'],
                            $pmDisplayview->fields['is_recursive']);
 
-      Search::showList($_GET['itemtype'], $_GET);
+      Search::showList($_GET['itemtype'], $params);
 
       Session::changeActiveEntities($default_entity,
                            $entities_isrecursive);
       echo "</td>";
       echo "</tr>";
       echo "</table>";
-
-
    }
 
 
@@ -261,7 +291,8 @@ class PluginMonitoringDisplayview_rule extends CommonDBTM {
                $_GET["glpisearchcount2"] = count($_GET['field2']);
             }
 
-            Search::manageGetValues($pmDisplayview_rule->fields['itemtype']);
+            $params = Search::manageParams($pmDisplayview_rule->fields['itemtype'], $_GET);
+//            Search::manageGetValues($pmDisplayview_rule->fields['itemtype']);
 
             $queryd = "SELECT * FROM `glpi_plugin_monitoring_displayviews_items`
                WHERE `plugin_monitoring_displayviews_id`='".$pmDisplayview_rule->fields["plugin_monitoring_displayviews_id"]."'

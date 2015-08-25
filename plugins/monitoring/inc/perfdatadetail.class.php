@@ -51,73 +51,11 @@ class PluginMonitoringPerfdataDetail extends CommonDBTM {
 
 
    function showDetails($perfdatas_id) {
-      global $CFG_GLPI;
 
       $a_details = $this->find("`plugin_monitoring_perfdatas_id`='".$perfdatas_id."'", "position");
-      echo "<table class='tab_cadre_fixe'>";
-      echo "<tr class='tab_bg_1'>";
-      echo "<th>";
-      echo __('Name');
-      echo "</th>";
-      echo "<th>";
-      echo __('Is name dynamic', 'monitoring');
-      echo "</th>";
-      echo "<th>";
-      echo __('Position', 'monitoring');
-      echo "</th>";
-      for ($i=1; $i<9; $i++) {
-         echo "<th>";
-         echo __('Value', 'monitoring').' '.$i;
-         echo "</th>";
-      }
-      echo "<th>";
-      echo "</th>";
-      echo "</tr>";
       foreach ($a_details as $a_detail) {
-         echo "<form name='form' method='post'
-            action='".$CFG_GLPI['root_doc']."/plugins/monitoring/front/perfdatadetail.form.php'>";
-
-            $this->showDetail($a_detail['id']);
-         Html::closeForm();
+         $this->showForm($a_detail['id']);
       }
-      echo "</table>";
-   }
-
-
-
-   function showDetail($perfdatadetails_id) {
-      $this->getFromDB($perfdatadetails_id);
-      echo "<tr class='tab_bg_1'>";
-      echo "<td><strong>";
-      echo $this->fields['name'];
-      echo "</strong></td>";
-      echo "<td>";
-      Dropdown::showYesNo('dynamic_name', $this->fields['dynamic_name']);
-      echo "</td>";
-      echo "<td>";
-      echo $this->fields['position'];
-      echo "</td>";
-      for ($i=1; $i<9; $i++) {
-         echo "<td>";
-         if ($i <= $this->fields['dsname_num']) {
-            echo "<input type='text' name='dsname".$i."' value='".$this->fields['dsname'.$i]."' />";
-            $checked = '';
-            if ($this->fields['dsnameincr'.$i] == 1) {
-               $checked = 'checked';
-            }
-            echo "<br/><input type='checkbox' name='dsnameincr".$i."' title='".__('Incremental', 'monitoring')."' $checked />";
-            echo __('Incremental', 'monitoring');
-         }
-         echo "</td>";
-      }
-
-      if (Session::haveRight("config", UPDATE)) {
-         echo "<td>";
-         echo "<input type='hidden' name='id' value='".$this->fields['id']."'/>";
-         echo "<input type='submit' class='submit' name='update' value='update'/>";
-         echo "</td>";
-      }
-      echo "</tr>";
    }
 
 
@@ -196,6 +134,93 @@ class PluginMonitoringPerfdataDetail extends CommonDBTM {
             $input['dsname'.$i] = 'value'.$position.'.'.$i;
          }
          $pmPerfdataDetail->add($input);
+      }
+   }
+
+
+
+   function showForm($id, $options=array()) {
+
+      $options['candel'] = false;
+      $this->initForm($id, $options);
+      $this->showFormHeader($options);
+
+      echo "<tr>";
+      echo "<td>";
+      echo __('Name')."&nbsp;:";
+      echo "</td>";
+      echo "<td>";
+      echo $this->fields['name'];
+      echo "</td>";
+      echo "<td>";
+      echo __('Value', 'monitoring').' 1';
+      echo "</td>";
+      echo "<td>";
+      $this->showFormValue(1);
+      echo "</td>";
+      echo "</tr>";
+
+      echo "<tr>";
+      echo "<td>";
+      echo __('Is name dynamic', 'monitoring');
+      echo "</td>";
+      echo "<td>";
+      Dropdown::showYesNo('dynamic_name', $this->fields['dynamic_name']);
+      echo "</td>";
+      echo "<td>";
+      echo __('Value', 'monitoring').' 2';
+      echo "</td>";
+      echo "<td>";
+      $this->showFormValue(2);
+      echo "</td>";
+      echo "</tr>";
+
+      echo "<tr>";
+      echo "<td>";
+      echo __('Position', 'monitoring');
+      echo "</td>";
+      echo "<td>";
+      echo $this->fields['position'];
+      echo "</td>";
+      echo "<td>";
+      echo __('Value', 'monitoring').' 3';
+      echo "</td>";
+      echo "<td>";
+      $this->showFormValue(3);
+      echo "</td>";
+      echo "</tr>";
+
+      for ($i=4; $i<9; $i++) {
+         if ($i <= $this->fields['dsname_num']) {
+            echo "<tr>";
+            echo "<td colspan='2'>";
+            echo "</td>";
+            echo "<td>";
+            echo __('Value', 'monitoring').' '.$i;
+            echo "</td>";
+            echo "<td>";
+            $this->showFormValue($i);
+            echo "</td>";
+            echo "</tr>";
+         }
+      }
+
+      $this->showFormButtons($options);
+
+      return true;
+   }
+
+
+
+   function showFormValue($i) {
+      if ($i <= $this->fields['dsname_num']) {
+         echo "<input type='text' name='dsname".$i."' value='".$this->fields['dsname'.$i]."' />";
+         $checked = '';
+         if ($this->fields['dsnameincr'.$i] == 1) {
+            $checked = 'checked';
+         }
+         echo " <input type='checkbox' name='dsnameincr".$i."' title='".__('Incremental', 'monitoring')."' $checked />";
+         echo __('Incremental', 'monitoring');
       }
    }
 }

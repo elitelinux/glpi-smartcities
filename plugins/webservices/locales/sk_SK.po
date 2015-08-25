@@ -1,0 +1,107 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# balucha <balucha@horizon.sk>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Project - Plugin Webservices\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-22 16:42+0200\n"
+"PO-Revision-Date: 2014-04-15 07:56+0000\n"
+"Last-Translator: balucha <balucha@horizon.sk>\n"
+"Language-Team: Slovak (Slovakia) (http://www.transifex.com/projects/p/GLPI_webservices/language/sk_SK/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sk_SK\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: setup.php:136 front/client.form.php:55 front/client.php:36
+#: inc/client.class.php:254
+msgid "Web Services"
+msgstr "Webové Služby"
+
+#: setup.php:149
+msgid "Incompatible GLPI version. Requires 0.84"
+msgstr "Nekompatibilná verzia GLPI. Požadovaná verzia je 0.84"
+
+#: setup.php:151
+msgid "Incompatible PHP Installation. Requires module soap"
+msgstr "Nekompatibilná inštalácia PHP. Je požadovaný modul soap"
+
+#: setup.php:153
+msgid "Incompatible PHP Installation. Requires module xmlrpc"
+msgstr "Nekompatibilná inštalácia PHP. Je požadovaný modul xmlrpc"
+
+#: setup.php:155
+msgid "Incompatible PHP Installation. Requires module json"
+msgstr "Nekompatibilná inštalácia PHP. Je požadovaný modul json"
+
+#: inc/client.class.php:42 inc/client.class.php:44
+msgid "Client"
+msgid_plural "Clients"
+msgstr[0] "Klient"
+msgstr[1] "Klienti"
+msgstr[2] "Klienti"
+
+#: inc/client.class.php:71
+msgid "Methods"
+msgstr "Methódy"
+
+#: inc/client.class.php:147 inc/client.class.php:268
+msgid "Enabled services"
+msgstr "Povolené služby"
+
+#: inc/client.class.php:152 inc/client.class.php:277
+msgid "Compression enabled"
+msgstr "Kompresia povolená"
+
+#: inc/client.class.php:160 inc/client.class.php:273
+msgid "Log connections"
+msgstr "Zaznamenávať spojenia"
+
+#: inc/client.class.php:173 inc/client.class.php:291
+msgid "SQL pattern for services"
+msgstr "SQL šablóna pre služby"
+
+#: inc/client.class.php:178
+msgid "IPv4 address range"
+msgstr "IPv4 adresný rozsah"
+
+#: inc/client.class.php:187 inc/client.class.php:287
+msgid "IPv6 address"
+msgstr "IPv6 adresa"
+
+#: inc/client.class.php:192
+msgid "User name"
+msgstr "Užívateľské meno"
+
+#: inc/client.class.php:212
+msgid "Method list - defined and allowed by this rule"
+msgstr "Zoznam metód - definované a povolené týmto pravidlom"
+
+#: inc/client.class.php:214
+msgid "Method name"
+msgstr "Názov metódy"
+
+#: inc/client.class.php:215
+msgid "Provider plugin"
+msgstr "Poskytovateľ pluginu"
+
+#: inc/client.class.php:216
+msgid "Internal function name"
+msgstr "Názov internej funkcie"
+
+#: inc/client.class.php:217
+msgid "Function is available"
+msgstr "Funkcia je dostupná"
+
+#: inc/client.class.php:350
+msgid "Local"
+msgstr "Lokálne"
+
+#: inc/client.class.php:352
+msgid "Allow all from local"
+msgstr "Povoliť všetko z lokálu"

@@ -1,0 +1,14 @@
+Plugin Webservices developers :
+
+Xavier Caillaud
+Remi Collet
+Jean Marc Grisard
+François Legastelois
+Nelly Mahu-Lasson
+Walid Nouh
+
+
+
+Traductors
+Remi Collet (en_GB, fr_FR)
+Nelly Mahu-Lasson -en_GB, fr_FR)

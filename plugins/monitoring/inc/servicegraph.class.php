@@ -60,9 +60,6 @@ class PluginMonitoringServicegraph {
       $pmComponent->getFromDB($item->fields['plugin_monitoring_components_id']);
       $ret = '<div class="counter" id="counters_'.$counter_id.'_'.$items_id.'">'.$counter_id.'</div>';
 
-      $sess_id = session_id();
-      PluginMonitoringSecurity::updateSession();
-
       $ret .= "<script>
          // window.setInterval(function () {
             Ext.Ajax.request({
@@ -77,9 +74,7 @@ class PluginMonitoringServicegraph {
                   'counter_name': '$counter_name',
                   'items_id': '$items_id',
                   'components_id': '". $item->fields['plugin_monitoring_components_id'] ."',
-                  'sess_id': '".$sess_id."',
-                  'glpiID': '".$_SESSION['glpiID']."',
-                  'plugin_monitoring_securekey': '".$_SESSION['plugin_monitoring_securekey']."'
+                  'glpiID': '".$_SESSION['glpiID']."'
                },
                success: function(response)  {
                   document.getElementById('counters_".$counter_id.'_'.$items_id."').innerHTML = response.responseText;
@@ -108,7 +103,7 @@ class PluginMonitoringServicegraph {
          if ($part == ''
                  OR $part == 'div') {
             echo '<div id="chart'.$ident.'">'.
-                '<svg style="width: '.$width.'px;display: block;"></svg>'.
+                '<svg style="width: '.$width.'px;display: block;height: 300px;"></svg>'.
               '</div>';
 
             echo "<div id=\"updategraph".$items_id.$time."\"></div>";
@@ -135,13 +130,16 @@ class PluginMonitoringServicegraph {
                $format = $a_ret[2];
             }
             echo "<script>";
-            $formaty = ".0f";
             echo '
 
+            var formaty = ".0f";
             var data'.$ident.' = [];
             var chart'.$ident.';
             redraw'.$ident.' = function () {
                nv.addGraph(function() {
+                  if (typeof data'.$ident.'[0] != "undefined") {
+                     formaty = data'.$ident.'[0]["formaty"];
+                  }
                   chart'.$ident.' = nv.models.lineChart();
 
                   chart'.$ident.'.useInteractiveGuideline(true);
@@ -151,7 +149,7 @@ class PluginMonitoringServicegraph {
 
                   chart'.$ident.'.yAxis
                      .axisLabel("test")
-                     .tickFormat(d3.format(\''.$formaty.'\'));
+                     .tickFormat(d3.format(formaty));
 
                   chart'.$ident.'.forceY([0]);
 
@@ -160,8 +158,6 @@ class PluginMonitoringServicegraph {
                     .datum(data'.$ident.')
                     .transition().duration(50)
                     .call(chart'.$ident.');
-
-
 
                  return chart'.$ident.';
                });
@@ -180,8 +176,26 @@ class PluginMonitoringServicegraph {
                           "&components_id=".$pmComponent->fields['id']."', function(data) {
                 data".$ident." = data;
 
+                var newDate = $('#custom_date').val() + ' ' + $('#custom_time').val();
+                var timestamp = new Date(newDate).getTime();
+                if (timestamp > (new Date().getTime() - 3600000)) {
+                    var datenow = new Date();
+                    $('#custom_time').val(datenow.getHours() + ':' + datenow.getMinutes());
+                    $('#custom_date').val((datenow.getMonth() + 1) + '/' + datenow.getDate() + '/' + datenow.getFullYear());
+                }
+
                 redraw".$ident."();
-                setTimeout(worker".$items_id.$time.", 30000);
+                ";
+                $refresh = 30; // 30 seconds
+                if ($time == '12h') {
+                   $refresh = 240; // 4 minutes
+                } else if ($time == '1d') {
+                   $refresh = 600; // 10 minutes
+                } else if ($time == '1w') {
+                   $refresh = 1800; // 30 minutes
+                }
+                echo "
+                setTimeout(worker".$items_id.$time.", ".$refresh."000);
               });
             })();";
             echo "
@@ -197,8 +211,6 @@ class PluginMonitoringServicegraph {
    function startAutoRefresh($rrdtool_template, $itemtype, $items_id, $timezone, $time, $pmComponents_id) {
       global $CFG_GLPI;
 
-      $sess_id = session_id();
-      PluginMonitoringSecurity::updateSession();
       $refresh = "50"; // all 50 seconds
       if ($time == '1d') {
          $refresh = "300"; // 5 minutes
@@ -218,9 +230,8 @@ class PluginMonitoringServicegraph {
                  "&time=".$time.
                  "&customdate=\" + document.getElementById('custom_date').textContent + \"".
                  "&customtime=\" + document.getElementById('custom_time').textContent + \"".
-                 "&components_id=".$pmComponents_id."&sess_id=".$sess_id.
+                 "&components_id=".$pmComponents_id.
                  "&glpiID=".$_SESSION['glpiID'].
-//                 "&plugin_monitoring_securekey=".$_SESSION['plugin_monitoring_securekey'].
                  "\", \"\", true);
                     ";
    }

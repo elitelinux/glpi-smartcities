@@ -45,10 +45,6 @@ if (!defined('GLPI_ROOT')) {
    die("Can not acces directly to this file");
 }
 
-//$pmSecurity = new PluginMonitoringSecurity();
-//$pmSecurity->isSecure();
-//PluginMonitoringSecurity::deleteCheckSessionTime();
-
 Session::checkLoginUser();
 
 if (! isset($_SESSION['plugin_monitoring_reduced_interface'])) {

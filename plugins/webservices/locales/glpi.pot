@@ -1,0 +1,105 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-22 16:42+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: setup.php:136 front/client.form.php:55 front/client.php:36
+#: inc/client.class.php:254
+msgid "Web Services"
+msgstr ""
+
+#: setup.php:149
+msgid "Incompatible GLPI version. Requires 0.84"
+msgstr ""
+
+#: setup.php:151
+msgid "Incompatible PHP Installation. Requires module soap"
+msgstr ""
+
+#: setup.php:153
+msgid "Incompatible PHP Installation. Requires module xmlrpc"
+msgstr ""
+
+#: setup.php:155
+msgid "Incompatible PHP Installation. Requires module json"
+msgstr ""
+
+#: inc/client.class.php:42 inc/client.class.php:44
+msgid "Client"
+msgid_plural "Clients"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/client.class.php:71
+msgid "Methods"
+msgstr ""
+
+#: inc/client.class.php:147 inc/client.class.php:268
+msgid "Enabled services"
+msgstr ""
+
+#: inc/client.class.php:152 inc/client.class.php:277
+msgid "Compression enabled"
+msgstr ""
+
+#: inc/client.class.php:160 inc/client.class.php:273
+msgid "Log connections"
+msgstr ""
+
+#: inc/client.class.php:173 inc/client.class.php:291
+msgid "SQL pattern for services"
+msgstr ""
+
+#: inc/client.class.php:178
+msgid "IPv4 address range"
+msgstr ""
+
+#: inc/client.class.php:187 inc/client.class.php:287
+msgid "IPv6 address"
+msgstr ""
+
+#: inc/client.class.php:192
+msgid "User name"
+msgstr ""
+
+#: inc/client.class.php:212
+msgid "Method list - defined and allowed by this rule"
+msgstr ""
+
+#: inc/client.class.php:214
+msgid "Method name"
+msgstr ""
+
+#: inc/client.class.php:215
+msgid "Provider plugin"
+msgstr ""
+
+#: inc/client.class.php:216
+msgid "Internal function name"
+msgstr ""
+
+#: inc/client.class.php:217
+msgid "Function is available"
+msgstr ""
+
+#: inc/client.class.php:350
+msgid "Local"
+msgstr ""
+
+#: inc/client.class.php:352
+msgid "Allow all from local"
+msgstr ""

@@ -48,15 +48,11 @@ Html::header(__('Monitoring', 'monitoring'), $_SERVER["PHP_SELF"], "plugins",
              "PluginMonitoringDashboard", "dashboard");
 
 $pmDisplay = new PluginMonitoringDisplay();
+$pmTag     = new PluginMonitoringTag();
+
 $pmDisplay->menu();
 
-echo "<table class='tab_cadre' width='950'>";
-echo "<tr class='tab_bg_1'>";
-echo "<th height='80'>";
-echo __('Sorry, this content is not yet available in the Monitoring', 'monitoring');
-echo "</th>";
-echo "</tr>";
-echo "</table>";
+$pmTag->servers_status();
 
 Html::footer();
 ?>

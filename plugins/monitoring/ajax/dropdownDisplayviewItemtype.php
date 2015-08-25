@@ -20,20 +20,25 @@ switch ($_POST['itemtype']) {
 
    case 'PluginMonitoringService':
       $rand = mt_rand();
-      echo "<select name='itemtype' id='itemtype$rand'>";
-      echo "<option value='0'>".Dropdown::EMPTY_VALUE."</option>";
-
-//      $a_types =array();
-      echo "<option value='Computer'>".Computer::getTypeName()."</option>";
-      echo "<option value='NetworkEquipment'>".NetworkEquipment::getTypeName()."</option>";
-      echo "</select>";
+      $elements = array(
+         '0'                => Dropdown::EMPTY_VALUE,
+         'Computer'         => Computer::getTypeName(),
+         'NetworkEquipment' => NetworkEquipment::getTypeName()
+      );
+      Dropdown::showFromArray(
+              'itemtype',
+              $elements,
+              array(
+                 'rand'                => $rand,
+                 'emptylabel' => true,
+                 'display_emptychoice' => true));
 
       $params = array('itemtype'        => '__VALUE__',
                       'entity_restrict' => $_POST['a_entities'],
                       'selectgraph'     => '1',
                       'rand'            => $rand);
 
-      Ajax::updateItemOnSelectEvent("itemtype$rand", "show_itemtype$rand",
+      Ajax::updateItemOnSelectEvent("dropdown_itemtype$rand", "show_itemtype$rand",
                                   $CFG_GLPI["root_doc"]."/plugins/monitoring/ajax/dropdownServiceHostType.php",
                                   $params);
 
@@ -47,7 +52,7 @@ switch ($_POST['itemtype']) {
               array(
                   'name'  => 'items_id',
                   'toadd' => $toadd));
-      echo "&nbsp;&nbsp;&nbsp;".__('% of the width of the frame', 'monitoring')."&nbsp: ";
+      echo "<br/>".__('% of the width of the frame', 'monitoring')."&nbsp: ";
       Dropdown::showNumber("extra_infos", array(
                       'value' => 100,
                       'min'   => 0,

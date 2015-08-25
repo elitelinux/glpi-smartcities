@@ -1,0 +1,65 @@
+<?php
+//============================================================================//
+//==    Plugin pour GLPI - Dévelloppeur: Viduc (Fleury Tristan) - ©2013     ==//
+//==            http://viduc.sugarbox.fr - viduc@sugarbox.fr                ==//
+//============================================================================//
+
+/**
+ * Fonction de définition de la version du plugin
+ * @return type
+ */
+function plugin_version_reforme() 
+    {
+    return array('name'           => "reforme",
+                 'version'        => '1.0.26',
+                 'author'         => 'Viduc',
+                 'license'        => 'GPLv2+',
+                 'homepage'       => 'http://viduc.sugarbox.fr',
+                 'minGlpiVersion' => '0.85');// For compatibility / no install in version < 0.80
+    }
+
+/**
+ * Fonction de vérification des pré-requis
+ * @return boolean
+ */
+function plugin_reforme_check_prerequisites() 
+    {
+    if (GLPI_VERSION >= 0.85)
+        return true;
+    echo "A besoin de la version 0.85 au minimum";
+    return false; 
+    }        
+
+/**
+ * Fonction de vérification de la configuration initiale
+ * @param type $verbose
+ * @return boolean
+ */
+function plugin_reforme_check_config($verbose=false) 
+    {
+    if (true) 
+        { // Your configuration check
+        return true;
+        }
+    if ($verbose) 
+        {
+        echo 'Installed / not configured';
+        }
+    return false;
+    }
+
+    /**
+     * Fonction d'initialisation du plugin
+     * @global array $PLUGIN_HOOKS
+     */
+    function plugin_init_reforme() {
+        global $PLUGIN_HOOKS;   
+        $PLUGIN_HOOKS['config_page']['reforme'] = 'front/config.form.php';
+        Plugin::registerClass('PluginReformeReforme', array('addtabon' => array('Computer','Plugins','Monitor')));
+        Plugin::registerClass('PluginReformeProfile', array('addtabon' => array('Profile')));
+        $PLUGIN_HOOKS['csrf_compliant']['reforme'] = true;
+        Plugin::registerClass('PluginReformeConfigold');
+    } 
+
+    
+?>

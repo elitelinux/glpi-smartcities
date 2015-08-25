@@ -85,8 +85,9 @@ class PluginMonitoringServicescatalog extends CommonDropdown {
       $this->addDefaultFormTab($ong);
       $this->addStandardTab('PluginMonitoringBusinessrulegroup', $ong, $options);
       $this->addStandardTab("PluginMonitoringServicescatalog", $ong, $options);
+      $this->addStandardTab('Document_Item', $ong, $options);
 
-      return $ong;
+	return $ong;
    }
 
 
@@ -120,6 +121,10 @@ class PluginMonitoringServicescatalog extends CommonDropdown {
       } else if ($tabnum == 50) {
          $pmContact_Item = new PluginMonitoringContact_Item();
          $pmContact_Item->showContacts("PluginMonitoringServicescatalog", $item->getID());
+      } else {
+		Plugin::load('monitoring',true);
+		Plugin::displayAction($appliance, $_POST['glpi_tab']);
+
       }
 
       return true;
@@ -361,7 +366,7 @@ class PluginMonitoringServicescatalog extends CommonDropdown {
          if (isset($_SESSION['plugin_monitoring_reduced_interface'])) {
             $this->ajaxLoad($data['id'], ! $_SESSION['plugin_monitoring_reduced_interface']);
          } else {
-            $this->ajaxLoad($data['id'], $reduced);
+            $this->ajaxLoad($data['id']);
          }
 
          echo "</td>";

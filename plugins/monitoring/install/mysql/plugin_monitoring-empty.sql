@@ -229,6 +229,8 @@ CREATE TABLE `glpi_plugin_monitoring_configs` (
   `version` varchar(255) DEFAULT NULL,
   `logretention` int(5) NOT NULL DEFAULT '30',
   `extradebug` tinyint(1) NOT NULL DEFAULT '0',
+  `nrpe_prefix_contener` tinyint(1) NOT NULL DEFAULT '0',
+  `append_id_hostname` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -385,6 +387,7 @@ CREATE TABLE `glpi_plugin_monitoring_hostconfigs` (
   `plugin_monitoring_components_id` int(11) NOT NULL DEFAULT '0',
   `plugin_monitoring_realms_id` int(11) NOT NULL DEFAULT '0',
   `computers_id` int(11) NOT NULL DEFAULT '0',
+  `jetlag` varchar(10) COLLATE utf8_unicode_ci DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -644,21 +647,6 @@ CREATE TABLE `glpi_plugin_monitoring_profiles` (
   `restartshinken` char(1) COLLATE utf8_unicode_ci DEFAULT NULL,
   `host_command` char(1) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-
-
-DROP TABLE IF EXISTS `glpi_plugin_monitoring_securities`;
-
-CREATE TABLE `glpi_plugin_monitoring_securities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `users_id` int(11) NOT NULL DEFAULT '0',
-  `key` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `session_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `last_session_start`  datetime DEFAULT NULL,
-  `session` text DEFAULT NULL COLLATE utf8_unicode_ci,
-  PRIMARY KEY (`id`),
-  KEY `users_id` (`users_id`, `last_session_start`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 

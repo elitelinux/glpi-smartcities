@@ -47,7 +47,7 @@ if (!defined('GLPI_ROOT')) {
 class PluginMonitoringDisplay extends CommonDBTM {
    static $ar_counterTypes;
 
-   function menu() {
+   function menu($refreshtype='') {
       global $CFG_GLPI;
 
       $redirect = FALSE;
@@ -69,6 +69,8 @@ class PluginMonitoringDisplay extends CommonDBTM {
       echo "<tr class='tab_bg_3'>";
       echo "<td>";
 
+      $this->restartShinken();
+
       if (Session::haveRight("plugin_monitoring_systemstatus", PluginMonitoringSystem::DASHBOARD)
               || Session::haveRight("plugin_monitoring_hoststatus", PluginMonitoringHost::DASHBOARD)
               || Session::haveRight("plugin_monitoring_servicescatalog", PluginMonitoringService::DASHBOARD)
@@ -82,6 +84,12 @@ class PluginMonitoringDisplay extends CommonDBTM {
             echo "<a href='".$CFG_GLPI['root_doc']."/plugins/monitoring/front/display_system_status.php'>";
             echo __('System status', 'monitoring');
             echo "</a>";
+            $pmTag = new PluginMonitoringTag();
+            $servers = 'OK';
+            if (!$pmTag->get_servers_status()) {
+               $servers = 'CRITICAL';
+            }
+            echo "<div class='service service".$servers."' style='float : left;'></div>";
             $a_url[] = $CFG_GLPI['root_doc']."/plugins/monitoring/front/display_system_status.php";
             echo "</th>";
          } else {
@@ -253,6 +261,9 @@ class PluginMonitoringDisplay extends CommonDBTM {
             }
       }
 
+      if ($refreshtype == 'service') {
+         $this->refreshPage();
+      }
 
       echo "</td>";
       echo "</tr>";
@@ -671,11 +682,16 @@ class PluginMonitoringDisplay extends CommonDBTM {
          // Search case
          $begin_display = $data['data']['begin'];
          $end_display   = $data['data']['end'];
+      } else {
+         $search_config_top    = "";
+         $search_config_bottom = "";
+         $begin_display = 0;
+         $end_display   = 0;
       }
 
       // Pour la génération des graphes ...
-      echo '<div id="custom_date" style="display:none"></div>';
-      echo '<div id="custom_time" style="display:none"></div>';
+      echo '<div style="display:none"><input type="text" id="custom_date" value="'.date('m/d/Y').'"> '
+              . ' <input type="text" id="custom_time" value="'.date('H:i').'"></div>';
 
       echo "<br/>";
       if ($perfdatas) {
@@ -693,6 +709,9 @@ class PluginMonitoringDisplay extends CommonDBTM {
       $num = 0;
 
       echo "<tr class='tab_bg_1'>";
+      if (!isset($_SESSION['plugin_monitoring_reduced_interface'])) {
+         $_SESSION['plugin_monitoring_reduced_interface'] = 0;
+      }
       if (! $_SESSION['plugin_monitoring_reduced_interface']) {
          // echo Search::showHeaderItem(0, __('Show counters', 'monitoring'), $num);
          echo Search::showHeaderItem(0, __('Show graphics', 'monitoring'), $num);
@@ -1035,7 +1054,7 @@ echo "
 
       $linkto = $CFG_GLPI['root_doc']."/plugins/monitoring/front/$page?".
               "itemtype=$itemtype&amp;sort=".$numoption."&amp;order=".
-                ($order=="ASC"?"DESC":"ASC")."&amp;start=".$start.
+                ($order=="ASC"?"DESC":"ASC")."&amp;start=".$start."&".
                 $globallinkto;
       $issort = false;
       if (isset($_GET['sort']) && $_GET['sort'] == $numoption) {
@@ -1047,7 +1066,7 @@ echo "
 
 
    static function displayLine($data, $displayhost=1, $displayCounters=0, $displayGraphs=true) {
-      global $DB,$CFG_GLPI;
+      global $CFG_GLPI;
 
       $pMonitoringService = new PluginMonitoringService();
       $pMonitoringService->getFromDB($data['id']);
@@ -1093,7 +1112,12 @@ echo "
                $div = ob_get_contents();
                ob_end_clean();
                $chart = "<table width='600' class='tab_cadre'><tr><td>".$div."</td></tr></table>";
-               Html::showToolTip($chart, array('img'=>$CFG_GLPI['root_doc']."/plugins/monitoring/pics/stats_32.png"));
+               $qtip = Html::showToolTip($chart,
+                       array(
+                          'img'     => $CFG_GLPI['root_doc']."/plugins/monitoring/pics/stats_32.png' width='26' height='32'",
+                          'display' => false));
+               $qtip = str_replace('qtip-shadow qtip-bootstrap', 'qtip-shadow qtip-bootstrap qtip-monitoring', $qtip);
+               echo $qtip;
                $pmServicegraph->displayGraph($pMonitoringComponent->fields['graph_template'],
                                              "PluginMonitoringService",
                                              $data['id'],
@@ -1193,9 +1217,15 @@ echo "
             $pmUnavailability->displayValues($pMonitoringService->fields['id'], 'currentyear', 1);
 
             echo "<td class='center'>";
-            echo "<a href='".$CFG_GLPI['root_doc']."/plugins/monitoring/front/unavailability.php?".
-                    "field[0]=2&searchtype[0]=equals&contains[0]=".$pMonitoringService->fields['id'].
-                    "&sort=3&order=DESC&itemtype=PluginMonitoringUnavailability'>
+            echo "<a href='".$CFG_GLPI['root_doc']."/plugins/monitoring/front/unavailability.php?"
+                    . "&criteria[0][field]=2"
+                    . "&criteria[0][searchtype]=equals"
+                    . "&criteria[0][value]=".$pMonitoringService->fields['id']
+
+                    . "&itemtype=PluginMonitoringUnavailability"
+                    . "&start=0"
+                    . "&sort=1"
+                    . "&order=DESC'>
                <img src='".$CFG_GLPI['root_doc']."/plugins/monitoring/pics/info.png'/></a>";
             echo "</td>";
          }
@@ -1208,14 +1238,16 @@ echo "
                   echo "<a href='".$CFG_GLPI['root_doc']."/plugins/monitoring/front/acknowledge.form.php?itemtype=Service&items_id=".$data['id']."'>"
                            ."<img src='".$CFG_GLPI['root_doc']."/plugins/monitoring/pics/acknowledge_ok.png'"
                           ." alt='".htmlspecialchars(__('Modify acknowledge comment for the service', 'monitoring'), ENT_QUOTES)."'"
-                          ." title='".htmlspecialchars(__('Modify acknowledge comment for the service', 'monitoring'), ENT_QUOTES)."'/>"
+                          ." title='".htmlspecialchars(__('Modify acknowledge comment for the service', 'monitoring'), ENT_QUOTES)."'"
+                          ." width='25' height='20'/>"
                        ."</a>";
                   echo "&nbsp;&nbsp;</span>";
                } else {
                   echo "<span>";
                   echo "<img src='".$CFG_GLPI['root_doc']."/plugins/monitoring/pics/acknowledge_ok.png'"
                           ." alt='".htmlspecialchars(__('Service problem has been acknowledged', 'monitoring'), ENT_QUOTES)."'"
-                          ." title='".htmlspecialchars(__('Service problem has been acknowledged', 'monitoring'), ENT_QUOTES)."'/>";
+                          ." title='".htmlspecialchars(__('Service problem has been acknowledged', 'monitoring'), ENT_QUOTES)."'"
+                          ." width='25' height='20'/>";
                   echo "&nbsp;&nbsp;</span>";
                }
                // Display acknowledge data ...
@@ -1229,7 +1261,8 @@ echo "
                   echo "<a href='".$CFG_GLPI['root_doc']."/plugins/monitoring/front/acknowledge.form.php?itemtype=Service&items_id=".$data['id']."'>"
                            ."<img src='".$CFG_GLPI['root_doc']."/plugins/monitoring/pics/acknowledge_ko.png'"
                           ." alt='".htmlspecialchars(__('Add an acknowledge for the service', 'monitoring'), ENT_QUOTES)."'"
-                          ." title='".htmlspecialchars(__('Add an acknowledge for the service', 'monitoring'), ENT_QUOTES)."'/>"
+                          ." title='".htmlspecialchars(__('Add an acknowledge for the service', 'monitoring'), ENT_QUOTES)."'"
+                          ." width='25' height='20'/>"
                        ."</a>";
                   echo "&nbsp;&nbsp;</span>";
                }
@@ -1241,14 +1274,18 @@ echo "
       if ($displayhost == '0') {
          echo "<td>";
          if (Session::haveRight("plugin_monitoring_componentscatalog", UPDATE)) {
-
-            $a_arg = importArrayFromDB($pMonitoringService->fields['arguments']);
-            $cnt = '';
-            if (count($a_arg) > 0) {
-               $cnt = " (".count($a_arg).")";
+            if ($pMonitoringComponent->fields['remotesystem'] == 'nrpe'
+                    && $pMonitoringComponent->fields['is_arguments'] == 0) {
+               echo __('Managed by NRPE', 'monitoring');
+            } else {
+               $a_arg = importArrayFromDB($pMonitoringService->fields['arguments']);
+               $cnt = '';
+               if (count($a_arg) > 0) {
+                  $cnt = " (".count($a_arg).")";
+               }
+               echo "<a href='".$CFG_GLPI['root_doc']."/plugins/monitoring/front/servicearg.form.php?id=".$data['id']."'>".
+                       __('Configure', 'monitoring').$cnt."</a>";
             }
-            echo "<a href='".$CFG_GLPI['root_doc']."/plugins/monitoring/front/servicearg.form.php?id=".$data['id']."'>".
-                    __('Configure', 'monitoring').$cnt."</a>";
          }
          echo "</td>";
       }
@@ -1414,14 +1451,16 @@ echo "
                echo "<a href='".$CFG_GLPI['root_doc']."/plugins/monitoring/front/acknowledge.form.php?itemtype=Host&items_id=".$data['id']."'>"
                         ."<img src='".$CFG_GLPI['root_doc']."/plugins/monitoring/pics/acknowledge_ok.png'"
                        ." alt='".htmlspecialchars(__('Modify acknowledge comment for the host', 'monitoring'), ENT_QUOTES)."'"
-                       ." title='".htmlspecialchars(__('Modify acknowledge comment for the host', 'monitoring'), ENT_QUOTES)."'/>"
+                       ." title='".htmlspecialchars(__('Modify acknowledge comment for the host', 'monitoring'), ENT_QUOTES)."'"
+                       ." width='25' height='20'/>"
                     ."</a>";
                echo "&nbsp;&nbsp;</span>";
             } else {
                echo "<span>";
                echo "<img src='".$CFG_GLPI['root_doc']."/plugins/monitoring/pics/acknowledge_ok.png'"
                        ." alt='".htmlspecialchars(__('Host problem has been acknowledged', 'monitoring'), ENT_QUOTES)."'"
-                       ." title='".htmlspecialchars(__('Host problem has been acknowledged', 'monitoring'), ENT_QUOTES)."'/>";
+                       ." title='".htmlspecialchars(__('Host problem has been acknowledged', 'monitoring'), ENT_QUOTES)."'"
+                       ." width='25' height='20'/>";
                echo "&nbsp;&nbsp;</span>";
             }
             // Display acknowledge data ...
@@ -1435,7 +1474,8 @@ echo "
                echo "<a href='".$CFG_GLPI['root_doc']."/plugins/monitoring/front/acknowledge.form.php?itemtype=Host&items_id=".$data['id']."'>"
                         ."<img src='".$CFG_GLPI['root_doc']."/plugins/monitoring/pics/acknowledge_ko.png'"
                        ." alt='".htmlspecialchars(__('Add an acknowledge for the host and all faulty services of the host', 'monitoring'), ENT_QUOTES)."'"
-                       ." title='".htmlspecialchars(__('Add an acknowledge for the host and all faulty services of the host', 'monitoring'), ENT_QUOTES)."'/>"
+                       ." title='".htmlspecialchars(__('Add an acknowledge for the host and all faulty services of the host', 'monitoring'), ENT_QUOTES)."'"
+                       ." width='25' height='20'/>"
                     ."</a>";
                echo "&nbsp;&nbsp;</span>";
             }
@@ -1574,12 +1614,10 @@ echo "
       $a_list["2h"]  = __("Last 2 hours", "monitoring");
       $a_list["12h"] = __("Last 12 hours", "monitoring");
       $a_list["1d"]  = __("Last 24 hours", "monitoring");
-      if (!isset($_GET['mobile'])) {
-         $a_list["1w"]     = __("Last 7 days (average)", "monitoring");
-//         $a_list["1m"]     = __("Last month (average)", "monitoring");
-//         $a_list["0y6m"]   = __("Last 6 months (average)", "monitoring");
-//         $a_list["1y"]     = __("Last year (average)", "monitoring");
-      }
+      $a_list["1w"]     = __("Last 7 days (average)", "monitoring");
+//      $a_list["1m"]     = __("Last month (average)", "monitoring");
+//      $a_list["0y6m"]   = __("Last 6 months (average)", "monitoring");
+//      $a_list["1y"]     = __("Last year (average)", "monitoring");
 
       foreach ($a_list as $time=>$name) {
 
@@ -2607,9 +2645,6 @@ echo "
       }
 
       if ($ajax == 1) {
-         $sess_id = session_id();
-         PluginMonitoringSecurity::updateSession();
-
          echo "<div id=\"updatecounter".$type."\"></div>";
          echo "<script type=\"text/javascript\">
 
@@ -2619,9 +2654,8 @@ echo "
          mgrcc".$type.".showLoadIndicator=false;
          mgrcc".$type.".startAutoRefresh(50, \"".$CFG_GLPI["root_doc"].
                  "/plugins/monitoring/ajax/updateHostsCounter.php\","
-                 . " \"type=".$type."&sess_id=".$sess_id.
+                 . " \"type=".$type.
                  "&glpiID=".$_SESSION['glpiID'].
-                 "&plugin_monitoring_securekey=".$_SESSION['plugin_monitoring_securekey'].
                  "\", \"\", true);
          </script>";
       } else {
@@ -2632,25 +2666,21 @@ echo "
 
 
    function refreshPage($onlyreduced=false) {
-
-      // Toolbox::logInFile("pm", "refreshPage : $onlyreduced\n");
       if (!$onlyreduced) {
          if (isset($_POST['_refresh'])) {
             $_SESSION['glpi_plugin_monitoring']['_refresh'] = $_POST['_refresh'];
          }
-
          echo '<meta http-equiv ="refresh" content="'.$_SESSION['glpi_plugin_monitoring']['_refresh'].'">';
       }
 
       echo "<form name='form' method='post' action='".$_SERVER["PHP_SELF"]."' >";
-      echo "<div align='right'>";
-      echo "<table class='tab_cadre_navigation' width='450'>";
+      echo "<table class='tab_cadre_fixe' width='950'>";
+      echo "<tr class='tab_bg_1'>";
       if (!$onlyreduced) {
-         echo "<tr class='tab_bg_1'>";
          echo "<td>";
          echo __('Page refresh (in seconds)', 'monitoring')." : ";
          echo "</td>";
-         echo "<td>";
+         echo "<td width='120'>";
          Dropdown::showNumber("_refresh", array(
                 'value' => $_SESSION['glpi_plugin_monitoring']['_refresh'],
                 'min'   => 30,
@@ -2658,27 +2688,19 @@ echo "
                 'step'  => 10)
          );
          echo "</td>";
-         echo "<td rowspan='2' align='center'>";
-         echo "<input type='submit' name='sessionupdate' class='submit' value=\"".__('Post')."\">";
-         echo "</td>";
-         echo "</tr>";
       }
-      echo "<tr class='tab_bg_1'>";
       echo "<td>";
       echo __('Reduced interface', 'monitoring')." : ";
       echo "</td>";
       echo "<td width='80'>";
       Dropdown::showYesNo("reduced_interface", $_SESSION['plugin_monitoring_reduced_interface']);
       echo "</td>";
-      if ($onlyreduced) {
-         echo "<td align='center'>";
-         echo "<input type='submit' name='sessionupdate' class='submit' value=\"".__('Post')."\">";
-         echo "</td>";
-      }
+      echo "<td align='center'>";
+      echo "<input type='submit' name='sessionupdate' class='submit' value=\"".__('Post')."\">";
+      echo "</td>";
       echo "</tr>";
 
       echo "</table>";
-      echo "</div>";
       Html::closeForm();
    }
 
@@ -2701,6 +2723,66 @@ echo "
          if ($display == 1) {
             echo "<img src='".$CFG_GLPI['root_doc']."/pics/right.png' /> ";
          }
+      }
+   }
+
+
+
+   /**
+    * Restart Shinken buttons :
+    * - on main Monitoring plugin page
+    * - one button per each declared Shinken tag
+    * - one button to restart all Shinken instances
+    *
+    * @global type $CFG_GLPI
+    */
+   static function restartShinken() {
+      global $CFG_GLPI;
+
+      if (Session::haveRight("plugin_monitoring_restartshinken", CREATE)) {
+         $pmTag = new PluginMonitoringTag();
+         $a_tagsBrut = $pmTag->find();
+
+         $a_tags = array();
+         foreach ($a_tagsBrut as $data) {
+            if (!isset($a_tags[$data['ip'].':'.$data['port']])) {
+               $a_tags[$data['ip'].':'.$data['port']] = $data;
+            }
+         }
+
+         if (count($a_tags) > 0) {
+            $shinken_commands = [
+                  'reload'    => [
+                        'command' => 'reload',
+                        'title' => __('Reload Shinken configuration from Glpi database', 'monitoring'),
+                        'button' => __('Reload Shinken config', 'monitoring'),
+                  ],
+                  'restart'   => [
+                        'command' => 'restart',
+                        'title' => __('Restart all Shinken daemons', 'monitoring'),
+                        'button' => __('Restart Shinken', 'monitoring'),
+                  ],
+            ];
+
+            foreach ($shinken_commands as $command) {
+               echo "<table class='tab_cadre_fixe' width='950'>";
+               echo "<tr class='tab_bg_1'>";
+               echo "<th width='400'>";
+               echo $command['title'].' : ';
+               echo '</th>';
+               echo '<td> | ';
+               echo "<a href='".$CFG_GLPI['root_doc']."/plugins/monitoring/front/restartshinken.form.php?action=".$command['command']."&tag=0'>".__('All instances', 'monitoring')."</a> | ";
+               if (count($a_tags) > 1) {
+                  foreach ($a_tags as $taginfo=>$data) {
+                     echo "<a href='".$CFG_GLPI['root_doc']."/plugins/monitoring/front/restartshinken.form.php?action=".$command['command']."&tag=". $data['id'] ."'>".$taginfo."</a> | ";
+                  }
+               }
+               echo '</td>';
+               echo '</tr>';
+               echo '</table>';
+            }
+            echo '<br/>';
+        }
       }
    }
 }

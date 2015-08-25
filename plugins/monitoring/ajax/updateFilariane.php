@@ -58,40 +58,40 @@ $pmDisplayview = new PluginMonitoringDisplayview();
 if (!isset($_SESSION['plugin_monitoring_view_ariane'])) {
    $_SESSION['plugin_monitoring_view_ariane'] = array();
 }
-if (!isset($_SESSION['plugin_monitoring_view_ariane'][$_POST['id']])) {
-   $_SESSION['plugin_monitoring_view_ariane'][$_POST['id']] = array();
+if (!isset($_SESSION['plugin_monitoring_view_ariane'][$_GET['id']])) {
+   $_SESSION['plugin_monitoring_view_ariane'][$_GET['id']] = array();
 }
 
 if (!isset($_SESSION['plugin_monitoring_view_arianelist'])) {
    $_SESSION['plugin_monitoring_view_arianelist'] = array();
 }
-if (!isset($_SESSION['plugin_monitoring_view_arianelist'][$_POST['id']])) {
-   $_SESSION['plugin_monitoring_view_arianelist'][$_POST['id']] = array();
+if (!isset($_SESSION['plugin_monitoring_view_arianelist'][$_GET['id']])) {
+   $_SESSION['plugin_monitoring_view_arianelist'][$_GET['id']] = array();
 }
 
-if (strstr($_POST['updatefil'], '!')) {
-   $displayviews_id = str_replace("!", "", $_POST['updatefil']);
+if (strstr($_GET['updatefil'], '!')) {
+   $displayviews_id = str_replace("!", "", $_GET['updatefil']);
    $pmDisplayview->getFromDB($displayviews_id);
-   if (!isset($_SESSION['plugin_monitoring_view_arianelist'][$_POST['id']][$displayviews_id])) {
-      $cnt = count($_SESSION['plugin_monitoring_view_ariane'][$_POST['id']]);
-      $_SESSION['plugin_monitoring_view_ariane'][$_POST['id']][$cnt] = array(
+   if (!isset($_SESSION['plugin_monitoring_view_arianelist'][$_GET['id']][$displayviews_id])) {
+      $cnt = count($_SESSION['plugin_monitoring_view_ariane'][$_GET['id']]);
+      $_SESSION['plugin_monitoring_view_ariane'][$_GET['id']][$cnt] = array(
           'id'    => $displayviews_id,
           'name'  => $pmDisplayview->fields['name']
       );
-      $_SESSION['plugin_monitoring_view_arianelist'][$_POST['id']][$displayviews_id] = 1;
+      $_SESSION['plugin_monitoring_view_arianelist'][$_GET['id']][$displayviews_id] = 1;
    }
 }
 
 
 $elements = array();
 $todelete = 0;
-foreach ($_SESSION['plugin_monitoring_view_ariane'][$_POST['id']] as $num=>$data) {
+foreach ($_SESSION['plugin_monitoring_view_ariane'][$_GET['id']] as $num=>$data) {
    if ($todelete) {
-      unset($_SESSION['plugin_monitoring_view_ariane'][$_POST['id']][$num]);
-      unset($_SESSION['plugin_monitoring_view_arianelist'][$_POST['id']][$data['id']]);
+      unset($_SESSION['plugin_monitoring_view_ariane'][$_GET['id']][$num]);
+      unset($_SESSION['plugin_monitoring_view_arianelist'][$_GET['id']][$data['id']]);
    } else {
       $link = '';
-      if ($data['id'] != $_POST['currentview']) {
+      if ($data['id'] != $_GET['currentview']) {
       $link = '<a href="javascript:;" onclick="document.getElementById(\'updatefil\').value = \''.$data['id'].'!\';'.
                  'document.getElementById(\'updateviewid\').value = \''.$data['id'].'\';reloadfil();reloadview();">';
          $elements[] = "<i>".$link.$data['name']."</a></i>";

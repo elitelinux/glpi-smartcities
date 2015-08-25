@@ -326,7 +326,7 @@ class PluginMonitoringDisplayview extends CommonDBTM {
       echo "<input type='text' name='name' value='".$this->fields["name"]."' size='30'/>";
       echo "</td>";
 
-      echo "<td>".__('Display view in dashboard', 'monitoring')."&nbsp;:</td>";
+      echo "<td>".__('Display view in dashboard (front view)', 'monitoring')."&nbsp;:</td>";
       echo "<td>";
       Dropdown::showYesNo("is_frontview", $this->fields['is_frontview']);
       echo "</td>";
@@ -649,21 +649,14 @@ class PluginMonitoringDisplayview extends CommonDBTM {
    function ajaxLoad($id) {
       global $CFG_GLPI;
 
-      $sess_id = session_id();
-      PluginMonitoringSecurity::updateSession();
-
       echo "<script type=\"text/javascript\">
-
-      var elcc".$id." = Ext.get(\"updatedisplayview".$id."\");
-      var mgrcc".$id." = elcc".$id.".getUpdateManager();
-      mgrcc".$id.".loadScripts=true;
-      mgrcc".$id.".showLoadIndicator=false;
-      mgrcc".$id.".startAutoRefresh(50, \"".$CFG_GLPI["root_doc"].
-              "/plugins/monitoring/ajax/updateWidgetDisplayview.php\","
-              . " \"id=".$id."&sess_id=".$sess_id.
-              "&glpiID=".$_SESSION['glpiID'].
-              "&plugin_monitoring_securekey=".$_SESSION['plugin_monitoring_securekey'].
-              "\", \"\", true);
+         (function worker() {
+           $.get('".$CFG_GLPI["root_doc"]."/plugins/monitoring/ajax/updateWidgetDisplayview.php"
+                 ."?id=".$id."', function(data) {
+             $('#updatedisplayview".$id."').html(data);
+             setTimeout(worker, 50000);
+           });
+         })();
       </script>";
    }
 
@@ -672,21 +665,14 @@ class PluginMonitoringDisplayview extends CommonDBTM {
    function ajaxLoad2($id, $is_minemap) {
       global $CFG_GLPI;
 
-      $sess_id = session_id();
-      PluginMonitoringSecurity::updateSession();
-
       echo "<script type=\"text/javascript\">
-
-      var elcc".$id." = Ext.get(\"updatedisplayview2-".$id."\");
-      var mgrcc".$id." = elcc".$id.".getUpdateManager();
-      mgrcc".$id.".loadScripts=true;
-      mgrcc".$id.".showLoadIndicator=false;
-      mgrcc".$id.".startAutoRefresh(50, \"".$CFG_GLPI["root_doc"].
-              "/plugins/monitoring/ajax/updateWidgetDisplayview2.php\","
-              . " \"id=".$id."&is_minemap=".$is_minemap."&sess_id=".$sess_id.
-              "&glpiID=".$_SESSION['glpiID'].
-              "&plugin_monitoring_securekey=".$_SESSION['plugin_monitoring_securekey'].
-              "\", \"\", true);
+         (function worker() {
+           $.get('".$CFG_GLPI["root_doc"]."/plugins/monitoring/ajax/updateWidgetDisplayview2.php"
+                 ."?id=".$id."&is_minemap=".$is_minemap."', function(data) {
+             $('#updatedisplayview".$id."').html(data);
+             setTimeout(worker, 50000);
+           });
+         })();
       </script>";
    }
 
@@ -699,39 +685,40 @@ class PluginMonitoringDisplayview extends CommonDBTM {
     */
    function showWidgetFrame($id) {
 
-      $this->getFromDB($id);
-      $data = $this->fields;
+      if ($this->getFromDB($id)) {
+         $data = $this->fields;
 
-      $pmDisplayview_item = new PluginMonitoringDisplayview_item();
-      $a_counter = $pmDisplayview_item->getCounterOfViews($id, array('ok'          => 0,
-                                                                     'warning'     => 0,
-                                                                     'critical'    => 0,
-                                                                     'acknowledge' => 0));
-      $nb_ressources = 0;
-      $class = 'ok';
-      if ($a_counter['critical'] > 0) {
-         $nb_ressources = $a_counter['critical'];
-         $class = 'crit';
-      } else if ($a_counter['warning'] > 0) {
-         $nb_ressources = $a_counter['warning'];
-         $class = 'warn';
-      } else {
-         $nb_ressources = $a_counter['ok'];
+         $pmDisplayview_item = new PluginMonitoringDisplayview_item();
+         $a_counter = $pmDisplayview_item->getCounterOfViews($id, array('ok'          => 0,
+                                                                        'warning'     => 0,
+                                                                        'critical'    => 0,
+                                                                        'acknowledge' => 0));
+         $nb_ressources = 0;
+         $class = 'ok';
+         if ($a_counter['critical'] > 0) {
+            $nb_ressources = $a_counter['critical'];
+            $class = 'crit';
+         } else if ($a_counter['warning'] > 0) {
+            $nb_ressources = $a_counter['warning'];
+            $class = 'warn';
+         } else {
+            $nb_ressources = $a_counter['ok'];
+         }
+         echo '<div class="ch-item" style="background-image:url(\'../pics/picto_view.png\');
+            background-repeat:no-repeat;background-position:center center;">
+            <div class="ch-info-'.$class.'">
+            <h1><a href="javascript:;" onclick="$(\'#updatefil\').val(\''.$id.'!\');'.
+                 '$(\'#updateviewid\').val(\''.$id.'\');reloadfil();reloadview();"'
+                 .'><span id="viewa-'.$id.'">'
+                 .$data['name'].'</span></a></h1>
+            <p>'.$nb_ressources.'<font style="font-size: 14px;"> / '.array_sum($a_counter).'</font></p>
+            </div>
+         </div>';
+
+         echo "<script>
+            fittext('viewa-".$id."');
+         </script>";
       }
-      echo '<div class="ch-item" style="background-image:url(\'../pics/picto_view.png\');
-         background-repeat:no-repeat;background-position:center center;">
-         <div class="ch-info-'.$class.'">
-         <h1><a href="javascript:;" onclick="document.getElementById(\'updatefil\').value = \''.$id.'!\';'.
-              'document.getElementById(\'updateviewid\').value = \''.$id.'\';reloadfil();reloadview();"'
-              .'><span id="viewa-'.$id.'">'
-              .$data['name'].'</span></a></h1>
-			<p>'.$nb_ressources.'<font style="font-size: 14px;"> / '.array_sum($a_counter).'</font></p>
-         </div>
-		</div>';
-
-      echo "<script>
-         fittext('viewa-".$id."');
-      </script>";
    }
 
 
@@ -739,7 +726,8 @@ class PluginMonitoringDisplayview extends CommonDBTM {
    /**
     * Display info of device
     *
-    * @global type $DB
+    * @global type $DB      Toolbox::logDebug($this->fields);
+
     * @param type $id
     */
    function showWidget2Frame($id, $is_minemap=FALSE) {
@@ -831,7 +819,7 @@ class PluginMonitoringDisplayview extends CommonDBTM {
       </script>";
 
       echo "<div class='minemapdiv' align='center'>"
-      ."<a onclick='Ext.get(\"minemapdisplayview2-".$id."\").toggle()'>"
+      ."<a onclick='$(\"#minemapdisplayview2-".$id."\").toggle()'>"
               ."Minemap</a></div>";
       if (!$is_minemap) {
          echo '<div class="minemapdiv" id="minemapdisplayview2-'.$id.'" style="display: none; z-index: 1500">';
@@ -881,7 +869,7 @@ class PluginMonitoringDisplayview extends CommonDBTM {
          echo '<a href="'.$link.'" title="'.$resources[$services_id]['state'].
                  " - ".$resources[$services_id]['last_check']." - ".
                  $resources[$services_id]['event'].'">'
-                 . '<div class="service'.$resources[$services_id]['state'].'"></div></a>';
+                 . '<div class="service service'.$resources[$services_id]['state'].'"></div></a>';
          echo '</td>';
          echo '</tr>';
       }

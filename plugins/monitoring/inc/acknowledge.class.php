@@ -568,6 +568,7 @@ class PluginMonitoringAcknowledge extends CommonDBTM {
          }
       } else {
          $this->getFromDB($id);
+         $createAcknowledge = true;
       }
 
       // Now ...
@@ -634,7 +635,7 @@ class PluginMonitoringAcknowledge extends CommonDBTM {
       Html::showDateTimeField("end_time", array('value'      => $date,
                                                   'timestep'   => 10,
                                                   'maybeempty' => false,
-                                                  'canedit'    => false,
+                                                  'canedit'    => $createAcknowledge,
                                                   'mindate'    => $nowDate,
                                                   'mintime'    => $nowTime
                                             ));
