@@ -1,3 +1,4 @@
+#Cuidado esto puede generarte dependiendo del servidor un error 503
 #Restringir el acceso en caso de emergencia
 #order deny,allow
 #deny from all
