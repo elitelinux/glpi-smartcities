@@ -12,7 +12,9 @@ allow from 127.0.0.1
 #allow from $MIIP
 </files>
 #Habilitar Moto de Escritura
-RewriteEngine on
+#obligar a usar solo SSL. CUIDADO DEBES TENER SSL
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301] 
 #Habilitar Links Simbolicos
 Options +FollowSymLinks  
 # Protegerse contra los ataques DOS limitando el tamaño de 
