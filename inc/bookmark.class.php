@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: bookmark.class.php 23303 2015-01-21 14:24:35Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -663,7 +663,7 @@ class Bookmark extends CommonDBTM {
 
       // No massive action on bottom
 
-      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+      echo "<table class='tab_cadre_fixehov'>";
       echo "<tr>";
       echo "<th>".Html::getCheckAllAsCheckbox('mass'.__CLASS__.$rand)."</th>";
       echo "<th class='center' colspan='2'>"._n('Bookmark', 'Bookmarks', Session::getPluralNumber())."</th>";

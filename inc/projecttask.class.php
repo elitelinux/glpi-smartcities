@@ -1,11 +1,9 @@
 <?php
 /*
- * @version $Id: projecttask.class.php 23312 2015-01-21 17:16:49Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
-
- http://indepnet.net/   http://glpi-project.org
  -------------------------------------------------------------------------
 
  LICENSE
@@ -53,6 +51,8 @@ class ProjectTask extends CommonDBChild {
    protected $team             = array();
    static $rightname           = 'project';
    protected $usenotepadrights = true;
+
+   var $can_be_translated      = true;
 
    const READMY      = 1;
    const UPDATEMY    = 1024;
@@ -259,11 +259,12 @@ class ProjectTask extends CommonDBChild {
 
 
    function prepareInputForUpdate($input) {
-      if (isset($input['is_milestone']) 
+
+      if (isset($input['is_milestone'])
             && $input['is_milestone']){
          $input['plan_end_date'] = $input['plan_start_date'];
          $input['real_end_date'] = $input['real_start_date'];
-      }   
+      }
       return Project::checkPlanAndRealDates($input);
    }
 
@@ -277,7 +278,7 @@ class ProjectTask extends CommonDBChild {
          $input['date'] = $_SESSION['glpi_currenttime'];
       }
 
-      if (isset($input['is_milestone']) 
+      if (isset($input['is_milestone'])
             && $input['is_milestone']){
          $input['plan_end_date'] = $input['plan_start_date'];
          $input['real_end_date'] = $input['real_start_date'];
@@ -347,9 +348,11 @@ class ProjectTask extends CommonDBChild {
 
       if ($ID > 0) {
          $this->check($ID, READ);
-         $projects_id = $this->fields['projects_id'];
+         $projects_id     = $this->fields['projects_id'];
+         $projecttasks_id = $this->fields['projecttasks_id'];
       } else {
-         $projects_id = $options['projects_id'];
+         $projects_id     = $options['projects_id'];
+         $projecttasks_id = $options['projecttasks_id'];
          $this->check(-1, CREATE, $options);
       }
 
@@ -366,7 +369,7 @@ class ProjectTask extends CommonDBChild {
       echo "<td>".__('As child of')."</td>";
       echo "<td>";
       $this->dropdown(array('entity'    => $this->fields['entities_id'],
-                            'value'     => $this->fields['projecttasks_id'],
+                            'value'     => $projecttasks_id,
                             'condition' => "`glpi_projecttasks`.`projects_id`='".
                                              $this->fields['projects_id']."'",
                             'used'      => array($this->fields['id'])));
@@ -381,7 +384,6 @@ class ProjectTask extends CommonDBChild {
          echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Creation date')."</td>";
          echo "<td>";
-         echo Html::convDateTime($this->fields["date"]);
          echo sprintf(__('%1$s by %2$s'), Html::convDateTime($this->fields["date"]),
                                        getUserName($this->fields["users_id"], $showuserlink));
          echo "</td>";
@@ -421,7 +423,7 @@ class ProjectTask extends CommonDBChild {
       echo "</td>";
       echo "<td>";
       Dropdown::showYesNo("is_milestone", $this->fields["is_milestone"]);
-      echo "</td>";      
+      echo "</td>";
       echo "</tr>";
 
       echo "<tr><td colspan='4' class='subheader'>".__('Planning')."</td></tr>";
@@ -484,14 +486,14 @@ class ProjectTask extends CommonDBChild {
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Description')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea id='content' name='content' cols='90' rows='6' class='form-control'>".$this->fields["content"].
+      echo "<textarea id='content' name='content' cols='90' rows='6'>".$this->fields["content"].
            "</textarea>";
       echo "</td></tr>\n";
 
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Comments')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea id='comment' name='comment' cols='90' rows='6' class='form-control'>".$this->fields["comment"].
+      echo "<textarea id='comment' name='comment' cols='90' rows='6'>".$this->fields["comment"].
            "</textarea>";
       echo "</td></tr>\n";
 
@@ -786,12 +788,50 @@ class ProjectTask extends CommonDBChild {
          echo "</div>";
       }
 
+      if (($item->getType() == 'ProjectTask')
+          && $item->can($ID, UPDATE)) {
+         $rand = mt_rand();
+         echo "<div class='firstbloc'>";
+         echo "<form name='projecttask_form$rand' id='projecttask_form$rand' method='post'
+                action='".Toolbox::getItemTypeFormURL('ProjectTask')."'>";
+         $projet = $item->fields['projects_id'];
+         echo "<a href='".Toolbox::getItemTypeFormURL('ProjectTask')."?projecttasks_id=$ID&amp;projects_id=$projet'>";
+         _e('Create a sub task from this task of project');
+         echo "</a>";
+         Html::closeForm();
+         echo "</div>";
+      }
+
+      $addselect = '';
+      $addjoin = '';
+      if (Session::haveTranslations('ProjectTaskType', 'name')) {
+         $addselect .= ", `namet2`.`value` AS transname2";
+         $addjoin   .= " LEFT JOIN `glpi_dropdowntranslations` AS namet2
+                           ON (`namet2`.`itemtype` = 'ProjectTaskType'
+                               AND `namet2`.`items_id` = `glpi_projecttasks`.`projecttasktypes_id`
+                               AND `namet2`.`language` = '".$_SESSION['glpilanguage']."'
+                               AND `namet2`.`field` = 'name')";
+      }
+
+      if (Session::haveTranslations('ProjectState', 'name')) {
+         $addselect .= ", `namet3`.`value` AS transname3";
+         $addjoin   .= " LEFT JOIN `glpi_dropdowntranslations` AS namet3
+                           ON (`namet3`.`itemtype` = 'ProjectState'
+                               AND `namet3`.`language` = '".$_SESSION['glpilanguage']."'
+                               AND `namet3`.`field` = 'name')";
+         $where     .= " AND `namet3`.`items_id` = `glpi_projectstates`.`id` ";
+      }
+
+
       $query = "SELECT `glpi_projecttasks`.*,
                        `glpi_projecttasktypes`.`name` AS tname,
                        `glpi_projectstates`.`name` AS sname,
+                       `glpi_projectstates`.`color`,
                        `father`.`name` AS fname,
                        `father`.`id` AS fID
+                       $addselect
                 FROM `glpi_projecttasks`
+                $addjoin
                 LEFT JOIN `glpi_projecttasktypes`
                    ON (`glpi_projecttasktypes`.`id` = `glpi_projecttasks`.`projecttasktypes_id`)
                 LEFT JOIN `glpi_projectstates`
@@ -809,7 +849,7 @@ class ProjectTask extends CommonDBChild {
 
       if ($result = $DB->query($query)) {
          if ($DB->numrows($result)) {
-            echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+            echo "<table class='tab_cadre_fixehov'>";
 
             $sort_img = "<img src=\"" . $CFG_GLPI["root_doc"] . "/pics/" .
                           (($order == "DESC") ? "puce-down.png" : "puce-up.png") ."\" alt='' title=''>";
@@ -841,8 +881,12 @@ class ProjectTask extends CommonDBChild {
                                                array('display' => false,
                                                      'applyto' => "ProjectTask".$data["id"].$rand)));
                echo "</td>";
-               echo "<td>".$data['tname']."</td>";
-               echo "<td>".$data['sname']."</td>";
+               $name = !empty($data['transname2'])?$data['transname2']:$data['tname'];
+               echo "<td>".$name."</td>";
+               echo "<td";
+               $statename = !empty($data['transname3'])?$data['transname3']:$data['sname'];
+               echo " style=\"background-color:".$data['color']."\"";
+               echo ">".$statename."</td>";
                echo "<td>";
                echo Dropdown::getValueWithUnit($data["percent_done"],"%");
                echo "</td>";
@@ -974,7 +1018,7 @@ class ProjectTask extends CommonDBChild {
 //          }
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+      echo "<table class='tab_cadre_fixehov'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';
@@ -1044,7 +1088,7 @@ class ProjectTask extends CommonDBChild {
                                                                 'real_start_date'))) as $data) {
             $subtasks += static::getDataToDisplayOnGantt($data['id']);
          }
-         
+
          $real_begin = NULL;
          $real_end   = NULL;
          // Use real if set

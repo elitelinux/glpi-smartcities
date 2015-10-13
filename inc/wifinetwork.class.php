@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: wifinetwork.class.php 23267 2014-12-11 09:18:42Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

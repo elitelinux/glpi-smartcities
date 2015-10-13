@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: reservation.class.php 23305 2015-01-21 15:06:28Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -476,7 +476,7 @@ class Reservation extends CommonDBChild {
              "\" title=\"".__s('Next')."\"></a></td></tr></table>\n";
 
       // test
-      echo "<table width='90%' class='tab_glpi' style='width:90%;'><tr><td class='top' width='100px'>";
+      echo "<table width='90%' class='tab_glpi'><tr><td class='top' width='100px'>";
 
       echo "<table><tr><td width='100px' class='top'>";
 
@@ -517,10 +517,10 @@ class Reservation extends CommonDBChild {
       }
       echo "</div>";
       echo "</td></tr></table>";
-      echo "</td><td class='top' width='100%' style='vertical-align: top;' >";
+      echo "</td><td class='top' width='100%'>";
 
       // test
-      echo "<table width='100%' class='tab_cadre table-striped table-bordered table-hover'><tr>";
+      echo "<table width='100%' class='tab_cadre'><tr>";
       echo "<th width='14%'>".__('Monday')."</th>";
       echo "<th width='14%'>".__('Tuesday')."</th>";
       echo "<th width='14%'>".__('Wednesday')."</th>";
@@ -739,7 +739,7 @@ class Reservation extends CommonDBChild {
       }
 
       echo "<tr class='tab_bg_2'><td>".__('Comments')."</td>";
-      echo "<td><textarea name='comment' rows='8' cols='60' class='form-control'>".$resa->fields["comment"]."</textarea>";
+      echo "<td><textarea name='comment' rows='8' cols='60'>".$resa->fields["comment"]."</textarea>";
       echo "</td></tr>\n";
 
       if (empty($ID)) {
@@ -1054,7 +1054,7 @@ class Reservation extends CommonDBChild {
                    ORDER BY `begin`";
          $result = $DB->query($query);
 
-         echo "<table class='tab_cadre_fixehov table-striped table-hover'><tr><th colspan='5'>";
+         echo "<table class='tab_cadre_fixehov'><tr><th colspan='5'>";
 
          if ($ri->fields["is_active"]) {
             echo "<a href='".$CFG_GLPI["root_doc"]."/front/reservation.php?reservationitems_id=".
@@ -1102,7 +1102,7 @@ class Reservation extends CommonDBChild {
                    ORDER BY `begin` DESC";
          $result = $DB->query($query);
 
-         echo "<div class='spaced'><table class='tab_cadre_fixehov table-striped table-hover'><tr><th colspan='5'>";
+         echo "<div class='spaced'><table class='tab_cadre_fixehov'><tr><th colspan='5'>";
 
          if ($ri->fields["is_active"]) {
             echo "<a href='".$CFG_GLPI["root_doc"]."/front/reservation.php?reservationitems_id=".
@@ -1175,7 +1175,7 @@ class Reservation extends CommonDBChild {
       $result = $DB->query($query);
 
       $ri = new ReservationItem();
-      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+      echo "<table class='tab_cadre_fixehov'>";
       echo "<tr><th colspan='6'>".__('Current and future reservations')."</th></tr>\n";
 
       if ($DB->numrows($result) == 0) {
@@ -1236,7 +1236,7 @@ class Reservation extends CommonDBChild {
       $result = $DB->query($query);
 
       echo "<div class='spaced'>";
-      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+      echo "<table class='tab_cadre_fixehov'>";
       echo "<tr><th colspan='6'>".__('Past reservations')."</th></tr>\n";
 
       if ($DB->numrows($result) == 0) {

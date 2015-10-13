@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: knowbaseitem.php 23080 2014-07-17 08:40:03Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: computer_item.class.php 23304 2015-01-21 14:46:37Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -426,7 +426,7 @@ class Computer_Item extends CommonDBRelation{
                            => 'mass'.__CLASS__.$rand);
             Html::showMassiveActions($massiveactionparams);
          }
-         echo "<table class='tab_cadre_fixehov table-striped table-hover table-striped table-hover'>";
+         echo "<table class='tab_cadre_fixehov'>";
          $header_begin  = "<tr>";
          $header_top    = '';
          $header_bottom = '';
@@ -570,7 +570,7 @@ class Computer_Item extends CommonDBRelation{
                         => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+      echo "<table class='tab_cadre_fixehov'>";
 
       if ($number > 0) {
          $header_begin  = "<tr>";

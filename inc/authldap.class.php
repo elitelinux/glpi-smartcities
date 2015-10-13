@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: authldap.class.php 23305 2015-01-21 15:06:28Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -335,7 +335,7 @@ class AuthLDAP extends CommonDBTM {
             echo "</a></td></tr>";
          }
          echo "<tr class='tab_bg_1'><td>" . __('Name') . "</td>";
-         echo "<td><input type='text' name='name' class='form-control' value='". $this->fields["name"] ."'></td>";
+         echo "<td><input type='text' name='name' value='". $this->fields["name"] ."'></td>";
          if ($ID > 0) {
             echo "<td>".__('Last update')."</td><td>".Html::convDateTime($this->fields["date_mod"]);
           } else {
@@ -353,41 +353,41 @@ class AuthLDAP extends CommonDBTM {
          echo "</td></tr>";
 
          echo "<tr class='tab_bg_1'><td>" . __('Server') . "</td>";
-         echo "<td><input type='text' name='host' class='form-control' value='" . $this->fields["host"] . "'></td>";
+         echo "<td><input type='text' name='host' value='" . $this->fields["host"] . "'></td>";
          echo "<td>" . __('Port (default=389)') . "</td>";
-         echo "<td><input id='port' type='text' name='port' class='form-control' value='".$this->fields["port"]."'>";
+         echo "<td><input id='port' type='text' name='port' value='".$this->fields["port"]."'>";
          echo "</td></tr>";
 
          echo "<tr class='tab_bg_1'><td>" . __('Connection filter') . "</td>";
          echo "<td colspan='3'>";
-         echo "<textarea cols='100' rows='1' name='condition' class='form-control' >".$this->fields["condition"];
+         echo "<textarea cols='100' rows='1' name='condition'>".$this->fields["condition"];
          echo "</textarea>";
          echo "</td></tr>";
 
          echo "<tr class='tab_bg_1'><td>" . __('BaseDN') . "</td>";
          echo "<td colspan='3'>";
-         echo "<input type='text' name='basedn' size='100' class='form-control' value=\"".$this->fields["basedn"]."\">";
+         echo "<input type='text' name='basedn' size='100' value=\"".$this->fields["basedn"]."\">";
          echo "</td></tr>";
 
          echo "<tr class='tab_bg_1'><td>" . __('RootDN (for non anonymous binds)') . "</td>";
-         echo "<td colspan='3'><input type='text' name='rootdn' size='100' class='form-control' value=\"".
+         echo "<td colspan='3'><input type='text' name='rootdn' size='100' value=\"".
                 $this->fields["rootdn"]."\">";
          echo "</td></tr>";
 
          echo "<tr class='tab_bg_1'><td>" . __('Password (for non-anonymous binds)') . "</td>";
-         echo "<td><input type='password' name='rootdn_passwd' class='form-control' value='' autocomplete='off'>";
+         echo "<td><input type='password' name='rootdn_passwd' value='' autocomplete='off'>";
          if ($ID) {
             echo "<input type='checkbox' name='_blank_passwd'>&nbsp;".__('Clear');
          }
 
          echo "</td>";
          echo "<td>" . __('Login field') . "</td>";
-         echo "<td><input type='text' name='login_field' class='form-control' value='".$this->fields["login_field"]."'>";
+         echo "<td><input type='text' name='login_field' value='".$this->fields["login_field"]."'>";
          echo "</td></tr>";
 
          echo "<tr class='tab_bg_1'><td>" . __('Comments') . "</td>";
          echo "<td colspan='3'>";
-         echo "<textarea cols='40' rows='4' name='comment' class='form-control' >".$this->fields["comment"]."</textarea>";
+         echo "<textarea cols='40' rows='4' name='comment'>".$this->fields["comment"]."</textarea>";
 
          //Fill fields when using preconfiguration models
          if (!$ID) {
@@ -410,7 +410,7 @@ class AuthLDAP extends CommonDBTM {
          $this->showFormButtons($options);
 
       } else {
-         echo "<div class='center'>&nbsp;<table class='tab_cadre_fixe table-hover table-striped'>";
+         echo "<div class='center'>&nbsp;<table class='tab_cadre_fixe'>";
          echo "<tr><th colspan='2'>" . self::getTypeName(1) . "</th></tr>";
          echo "<tr class='tab_bg_2'><td class='center'>";
          echo "<p class='red'>". __("The LDAP extension of your PHP parser isn't installed")."</p>";
@@ -427,7 +427,7 @@ class AuthLDAP extends CommonDBTM {
 
       echo "<div class='center'>";
       echo "<form method='post' action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
-      echo "<table class='tab_cadre_fixe table-hover table-striped'>";
+      echo "<table class='tab_cadre_fixe'>";
 
       echo "<tr class='tab_bg_2'><th colspan='4'>";
       echo "<input type='hidden' name='id' value='$ID'>". __('Advanced information')."</th></tr>";
@@ -615,7 +615,7 @@ class AuthLDAP extends CommonDBTM {
       echo "<div class='center'>";
       echo "<form method='post' action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
       echo "<input type='hidden' name='id' value='$ID'>";
-      echo "<table class='tab_cadre_fixe table-hover table-striped'>";
+      echo "<table class='tab_cadre_fixe'>";
 
       echo "<tr><th class='center' colspan='4'>" . __('Belonging to groups') . "</th></tr>";
 
@@ -623,16 +623,16 @@ class AuthLDAP extends CommonDBTM {
       self::dropdownGroupSearchType(array('value' => $this->fields["group_search_type"]));
       echo "</td>";
       echo "<td>" . __('User attribute containing its groups') . "</td>";
-      echo "<td><input type='text' name='group_field' class='form-control' value='".$this->fields["group_field"]."'>";
+      echo "<td><input type='text' name='group_field' value='".$this->fields["group_field"]."'>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'><td>" . __('Filter to search in groups')."</td><td colspan='3'>";
-      echo "<input type='text' name='group_condition' class='form-control' value='".$this->fields["group_condition"]."'
+      echo "<input type='text' name='group_condition' value='".$this->fields["group_condition"]."'
              size='100'>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'><td>" . __('Group attribute containing its users') . "</td>";
-      echo "<td><input type='text' name='group_member_field' class='form-control' value='".
+      echo "<td><input type='text' name='group_member_field' value='".
                  $this->fields["group_member_field"]."'></td>";
       echo "<td>" . __('Use DN in the search') . "</td>";
       echo "<td>";
@@ -656,7 +656,7 @@ class AuthLDAP extends CommonDBTM {
          echo "<div class='center'>";
          echo "<form method='post' action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
          echo "<input type='hidden' name='id' value='$ID'>";
-         echo "<table class='tab_cadre_fixe table-hover table-striped'>";
+         echo "<table class='tab_cadre_fixe'>";
          echo "<tr><th colspan='4'>" . __('Test of connection to LDAP directory') . "</th></tr>";
 
          if (isset($_SESSION["LDAP_TEST_MESSAGE"])) {
@@ -684,72 +684,72 @@ class AuthLDAP extends CommonDBTM {
       echo "<div class='center'>";
       echo "<form method='post' action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
       echo "<input type='hidden' name='id' value='$ID'>";
-      echo "<table class='tab_cadre_fixe table-hover table-striped'>";
+      echo "<table class='tab_cadre_fixe'>";
 
       echo "<tr class='tab_bg_1'>";
       echo "<th class='center' colspan='4'>" . __('Binding to the LDAP directory') . "</th></tr>";
 
       echo "<tr class='tab_bg_2'><td>" . __('Surname') . "</td>";
-      echo "<td><input type='text' name='realname_field' class='form-control' value='".
+      echo "<td><input type='text' name='realname_field' value='".
                  $this->fields["realname_field"]."'></td>";
       echo "<td>" . __('First name') . "</td>";
-      echo "<td><input type='text' name='firstname_field' class='form-control' value='".
+      echo "<td><input type='text' name='firstname_field' value='".
                  $this->fields["firstname_field"]."'></td></tr>";
 
       echo "<tr class='tab_bg_2'><td>" . __('Comments') . "</td>";
-      echo "<td><input type='text' name='comment_field' class='form-control' value='".$this->fields["comment_field"]."'>";
+      echo "<td><input type='text' name='comment_field' value='".$this->fields["comment_field"]."'>";
       echo "</td>";
       echo "<td>" . __('Administrative number') . "</td>";
       echo "<td>";
-      echo "<input type='text' name='registration_number_field' class='form-control' value='".
+      echo "<input type='text' name='registration_number_field' value='".
              $this->fields["registration_number_field"]."'>";
       echo "</td></tr>";
 
 
       echo "<tr class='tab_bg_2'>";
       echo "<td>" . __('Email') . "</td>";
-      echo "<td><input type='text' name='email1_field' class='form-control' value='".$this->fields["email1_field"]."'>";
+      echo "<td><input type='text' name='email1_field' value='".$this->fields["email1_field"]."'>";
       echo "</td>";
       echo "<td>" . sprintf(__('%1$s %2$s'),_n('Email','Emails',1), '2') . "</td>";
-      echo "<td><input type='text' name='email2_field' class='form-control' value='".$this->fields["email2_field"]."'>";
+      echo "<td><input type='text' name='email2_field' value='".$this->fields["email2_field"]."'>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td>" . sprintf(__('%1$s %2$s'),_n('Email','Emails',1),  '3') . "</td>";
-      echo "<td><input type='text' name='email3_field' class='form-control' value='".$this->fields["email3_field"]."'>";
+      echo "<td><input type='text' name='email3_field' value='".$this->fields["email3_field"]."'>";
       echo "</td>";
       echo "<td>" . sprintf(__('%1$s %2$s'),_n('Email','Emails',1),  '4') . "</td>";
-      echo "<td><input type='text' name='email4_field' class='form-control' value='".$this->fields["email4_field"]."'>";
+      echo "<td><input type='text' name='email4_field' value='".$this->fields["email4_field"]."'>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_2'><td>" . __('Phone') . "</td>";
-      echo "<td><input type='text' class='form-control' name='phone_field'value='".$this->fields["phone_field"]."'>";
+      echo "<td><input type='text' name='phone_field'value='".$this->fields["phone_field"]."'>";
       echo "</td>";
       echo "<td>" .  __('Phone 2') . "</td>";
-      echo "<td><input type='text' class='form-control' name='phone2_field'value='".$this->fields["phone2_field"]."'>";
+      echo "<td><input type='text' name='phone2_field'value='".$this->fields["phone2_field"]."'>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_2'><td>" . __('Mobile phone') . "</td>";
-      echo "<td><input type='text' class='form-control' name='mobile_field'value='".$this->fields["mobile_field"]."'>";
+      echo "<td><input type='text' name='mobile_field'value='".$this->fields["mobile_field"]."'>";
       echo "</td>";
       echo "<td>" . _x('person','Title') . "</td>";
-      echo "<td><input type='text' class='form-control' name='title_field' value='".$this->fields["title_field"]."'>";
+      echo "<td><input type='text' name='title_field' value='".$this->fields["title_field"]."'>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_2'><td>" . __('Category') . "</td>";
-      echo "<td><input type='text' name='category_field' class='form-control' value='".
+      echo "<td><input type='text' name='category_field' value='".
                  $this->fields["category_field"]."'></td>";
       echo "<td>" . __('Language') . "</td>";
-      echo "<td><input type='text' name='language_field' class='form-control' value='".
+      echo "<td><input type='text' name='language_field' value='".
                  $this->fields["language_field"]."'></td></tr>";
 
       echo "<tr class='tab_bg_2'><td>" . __('Picture') . "</td>";
-      echo "<td><input type='text' name='picture_field' class='form-control' value='".
+      echo "<td><input type='text' name='picture_field' value='".
                  $this->fields["picture_field"]."'></td><td colspan='2'></td></tr>";
 
 
       echo "<tr class='tab_bg_2'><td class='center' colspan='4'>";
-      echo "<input type='submit' name='update' class='submit' class='form-control' value=\"".__s('Save')."\">";
+      echo "<input type='submit' name='update' class='submit' value=\"".__s('Save')."\">";
       echo "</td></tr>";
       echo "</table>";
       Html::closeForm();
@@ -764,7 +764,7 @@ class AuthLDAP extends CommonDBTM {
       echo "<div class='center'>";
       echo "<form method='post' action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
       echo "<input type='hidden' name='id' value='$ID'>";
-      echo "<table class='tab_cadre_fixe table-hover table-striped'>";
+      echo "<table class='tab_cadre_fixe'>";
 
       echo "<tr><th class='center' colspan='4'>". __('Import entities from LDAP directory').
            "</th></tr>";
@@ -1081,7 +1081,7 @@ class AuthLDAP extends CommonDBTM {
 
       echo "<div class='center'>";
       echo "<form method='post' action='$target'>";
-      echo "<table class='tab_cadre_fixe table-hover table-striped'>";
+      echo "<table class='tab_cadre_fixe'>";
       echo "<tr><th colspan='2'>" . ($users?__('Search filter for users')
                                            :__('Filter to search in groups')) . "</th></tr>";
 
@@ -1196,7 +1196,7 @@ class AuthLDAP extends CommonDBTM {
       global $CFG_GLPI;
 
       if ($limitexceeded) {
-         echo "<div class='firstbloc'><table class='tab_cadre_fixe table-hover table-striped'>";
+         echo "<div class='firstbloc'><table class='tab_cadre_fixe'>";
          echo "<tr><th class='red'>";
          echo "<img class='center' src='".$CFG_GLPI["root_doc"]."/pics/warning.png'
                 alt='".__('Warning')."'>&nbsp;".
@@ -1257,7 +1257,7 @@ class AuthLDAP extends CommonDBTM {
                               'specific_actions' => array($form_action => $textbutton));
             Html::showMassiveActions($massiveactionparams);
 
-            echo "<table class='tab_cadre_fixe table-hover table-striped'>";
+            echo "<table class='tab_cadre_fixe'>";
             echo "<tr>";
             echo "<th width='10'>";
             Html::checkAllAsCheckbox('mass'.__CLASS__.$rand);
@@ -1649,7 +1649,7 @@ class AuthLDAP extends CommonDBTM {
                                                                      'ldap_import_recursive')));
             Html::showMassiveActions($massiveactionparams);
 
-            echo "<table class='tab_cadre_fixe table-hover table-striped'>";
+            echo "<table class='tab_cadre_fixe'>";
             echo "<tr>";
             echo "<th width='10'>";
             Html::showCheckbox(array('criterion' => array('tag_for_massive' => 'select_item')));
@@ -1960,7 +1960,7 @@ class AuthLDAP extends CommonDBTM {
       echo "<div class='center'>";
       echo "<form action='$target' method=\"post\">";
       echo "<p>" . __('Please choose LDAP directory to import users from') . "</p>";
-      echo "<table class='tab_cadre_fixe table-hover table-striped'>";
+      echo "<table class='tab_cadre_fixe'>";
       echo "<tr class='tab_bg_2'><th colspan='2'>" . __('LDAP directory choice') . "</th></tr>";
 
       //If more than one ldap server
@@ -2644,7 +2644,7 @@ class AuthLDAP extends CommonDBTM {
 
       echo "<form method='post' action='".$_SERVER['PHP_SELF']."'>";
 
-      echo "<table class='tab_cadre_fixe table-hover table-striped'>";
+      echo "<table class='tab_cadre_fixe'>";
 
       echo "<tr><th colspan='4' class='middle'><div class='relative'>";
       echo "<span>" .($_SESSION['ldap_import']['mode']?__('Synchronizing already imported users')
@@ -2691,12 +2691,12 @@ class AuthLDAP extends CommonDBTM {
                }
 
                echo "<tr class='tab_bg_2'><td>".__('BaseDN')."</td><td colspan='3'>";
-               echo "<input type='text' class='form-control' name='basedn' value=\"".$_SESSION['ldap_import']['basedn'].
+               echo "<input type='text' name='basedn' value=\"".$_SESSION['ldap_import']['basedn'].
                      "\" size='90' ".(!$_SESSION['ldap_import']['basedn']?"disabled":"").">";
                echo "</td></tr>";
 
                echo "<tr class='tab_bg_2'><td>".__('Search filter for users')."</td><td colspan='3'>";
-               echo "<input type='text' class='form-control' name='ldap_filter' value=\"".
+               echo "<input type='text' name='ldap_filter' value=\"".
                       $_SESSION['ldap_import']['ldap_filter']."\" size='90'>";
                echo "</td></tr>";
             }
@@ -2765,7 +2765,7 @@ class AuthLDAP extends CommonDBTM {
                   }
                   echo "<td>$label</td><td>";
                   $field_counter++;
-                  echo "<input type='text' class='form-control' name='criterias[$field]' value='".
+                  echo "<input type='text' name='criterias[$field]' value='".
                         (isset($_SESSION['ldap_import']['criterias'][$field])
                          ?$_SESSION['ldap_import']['criterias'][$field]:'')."'>";
                   echo "</td>";
@@ -3005,7 +3005,7 @@ class AuthLDAP extends CommonDBTM {
    **/
    static function showDateRestrictionForm($options=array()) {
 
-      echo "<table class='tab_cadre_fixe table-hover table-striped'>";
+      echo "<table class='tab_cadre_fixe'>";
       echo "<tr class='tab_bg_2'>";
 
       $enabled = (isset($options['enabled'])?$options['enabled']:false);

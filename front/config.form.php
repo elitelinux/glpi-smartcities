@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: config.form.php 23172 2014-10-04 18:08:30Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

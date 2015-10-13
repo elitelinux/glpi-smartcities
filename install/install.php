@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: install.php 23361 2015-02-06 10:05:00Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -339,7 +339,7 @@ function step4 ($databasename, $newdatabasename) {
       include_once (GLPI_CONFIG_DIR . "/config_db.php");
 
       $DB = new DB();
-      if (!$DB->runFile(GLPI_ROOT ."/install/mysql/glpi-0.85.3-empty.sql")) {
+      if (!$DB->runFile(GLPI_ROOT ."/install/mysql/glpi-0.85.5-empty.sql")) {
          echo "Errors occurred inserting default database";
       }
       // update default language

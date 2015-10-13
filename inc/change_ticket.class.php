@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: change_ticket.class.php 23305 2015-01-21 15:06:28Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -257,7 +257,7 @@ class Change_Ticket extends CommonDBRelation{
          Html::showMassiveActions($massiveactionparams);
       }
 
-      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+      echo "<table class='tab_cadre_fixehov'>";
       echo "<tr class='noHover'><th colspan='12'>".Ticket::getTypeName($numrows)."</th>";
       echo "</tr>";
       if ($numrows) {
@@ -355,7 +355,7 @@ class Change_Ticket extends CommonDBRelation{
          Html::showMassiveActions($massiveactionparams);
       }
 
-      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+      echo "<table class='tab_cadre_fixehov'>";
       echo "<tr class='noHover'><th colspan='12'>".Change::getTypeName($numrows)."</th>";
       echo "</tr>";
       if ($numrows) {

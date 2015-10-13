@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: dropdownItilActors.php 23430 2015-04-09 11:08:12Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

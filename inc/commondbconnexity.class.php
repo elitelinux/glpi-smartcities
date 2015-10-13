@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: commondbconnexity.class.php 23305 2015-01-21 15:06:28Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -173,7 +173,7 @@ abstract class CommonDBConnexity extends CommonDBTM {
       } else {
          $type = $itemtype;
       }
-      $item = getItemForItemtype($type);
+      $item = ($type ? getItemForItemtype($type) : false);
       if ($item !== false) {
          if ($getFromDB
              || $getFromDBOrEmpty) {

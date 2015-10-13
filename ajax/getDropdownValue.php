@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: getDropdownValue.php 23464 2015-04-25 15:54:47Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -44,6 +44,13 @@ if (!defined('GLPI_ROOT')) {
 }
 
 Session::checkLoginUser();
+
+if (isset($_GET["entity_restrict"])
+    && !is_array($_GET["entity_restrict"])
+    && (substr($_GET["entity_restrict"], 0, 1) === '[')
+    && (substr($_GET["entity_restrict"], -1) === ']')) {
+   $_GET["entity_restrict"] = json_decode($_GET["entity_restrict"]);
+}
 
 // Security
 if (!($item = getItemForItemtype($_GET['itemtype']))) {
@@ -313,7 +320,7 @@ if ($item instanceof CommonTreeDropdown) {
 
                      $work_level    = $level-1;
                      $work_parentID = $data[$item->getForeignKeyField()];
-                     $to_display    = '';
+                     $parent_datas  = array();
 
                      do {
                         // Get parent
@@ -330,7 +337,12 @@ if ($item instanceof CommonTreeDropdown) {
                                                                            $item->fields['comment']);
                                  $title = sprintf(__('%1$s - %2$s'), $title, $addcomment);
                               }
-                              $output2 = $item->getName();
+                              $output2 = DropdownTranslation::getTranslatedValue($item->fields['id'],
+                                                                                 $_GET['itemtype'],
+                                                                                 'name',
+                                                                                 $_SESSION['glpilanguage'],
+                                                                                 $item->fields['name']);
+                           //   $output2 = $item->getName();
 
                               $temp = array('id'       => $ID,
                                             'text'     => $output2,
@@ -339,8 +351,9 @@ if ($item instanceof CommonTreeDropdown) {
                               if ($_GET['permit_select_parent']) {
                                  unset($temp['disabled']);
                               }
-                              array_push($datastoadd, $temp);
+                              array_unshift($parent_datas, $temp);
                            }
+
                            $last_level_displayed[$work_level] = $item->fields['id'];
                            $work_level--;
                            $work_parentID = $item->fields[$item->getForeignKeyField()];
@@ -353,6 +366,10 @@ if ($item instanceof CommonTreeDropdown) {
                               && (!isset($last_level_displayed[$work_level])
                                   || ($last_level_displayed[$work_level] != $work_parentID)));
 
+                     // Add parents
+                     foreach($parent_datas as $val){
+                        array_push($datastoadd, $val);
+                     }
                   }
                }
                $last_level_displayed[$level] = $data['id'];

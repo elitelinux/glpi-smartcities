@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: config.php 22721 2014-02-26 16:08:02Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

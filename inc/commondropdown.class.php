@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: commondropdown.class.php 23305 2015-01-21 15:06:28Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -226,7 +226,7 @@ abstract class CommonDropdown extends CommonDBTM {
 
       echo "<td rowspan='".($nb+1)."'>". __('Comments')."</td>";
       echo "<td rowspan='".($nb+1)."'>
-            <textarea cols='45' rows='".($nb+2)."' name='comment' class='form-control'>".$this->fields["comment"];
+            <textarea cols='45' rows='".($nb+2)."' name='comment' >".$this->fields["comment"];
       echo "</textarea></td></tr>\n";
 
       foreach ($fields as $field) {
@@ -291,7 +291,7 @@ abstract class CommonDropdown extends CommonDBTM {
                if (isset($field['cols'])) {
                   $cols = $field['cols'];
                }
-               echo "<textarea name='".$field['name']."' cols='$cols' rows='$rows' class='form-control'>".
+               echo "<textarea name='".$field['name']."' cols='$cols' rows='$rows'>".
                      $this->fields[$field['name']]."</textarea >";
                break;
 

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: document.class.php 23458 2015-04-19 09:47:17Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -397,7 +397,7 @@ class Document extends CommonDBTM {
       echo "</td>";
       echo "<td rowspan='3' class='middle'>".__('Comments')."</td>";
       echo "<td class='middle' rowspan='3'>";
-      echo "<textarea cols='45' rows='6' name='comment' class='form-control' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea cols='45' rows='6' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
@@ -906,14 +906,7 @@ class Document extends CommonDBTM {
       }
 
       // Local file : try to detect mime type
-      if (function_exists('finfo_open')
-          && ($finfo = finfo_open(FILEINFO_MIME))) {
-         $input['mime'] = finfo_file($finfo, $fullpath);
-         finfo_close($finfo);
-
-      } else if (function_exists('mime_content_type')) {
-         $input['mime'] = mime_content_type($fullpath);
-      }
+      $input['mime'] = Toolbox::getMime($fullpath);
 
       if (is_writable(GLPI_UPLOAD_DIR)
           && is_writable ($fullpath)) { // Move if allowed
@@ -994,14 +987,7 @@ class Document extends CommonDBTM {
       }
 
       // Local file : try to detect mime type
-      if (function_exists('finfo_open')
-          && ($finfo = finfo_open(FILEINFO_MIME))) {
-         $input['mime'] = finfo_file($finfo, $fullpath);
-         finfo_close($finfo);
-
-      } else if (function_exists('mime_content_type')) {
-         $input['mime'] = mime_content_type($fullpath);
-      }
+      $input['mime'] = Toolbox::getMime($fullpath);
 
       if (is_writable(GLPI_TMP_DIR)
           && is_writable ($fullpath)) { // Move if allowed

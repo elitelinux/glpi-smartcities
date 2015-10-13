@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: commondbtm.class.php 23389 2015-03-14 19:43:32Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -691,6 +691,13 @@ class CommonDBTM extends CommonGLPI {
          $di = new Document_Item();
          $di->cleanDBonItemDelete($this->getType(), $this->fields['id']);
       }
+
+      // If this type have NOTEPAD, clean one associated to purged item
+      if ($this->usenotepadrights) {
+         $note = new Notepad();
+         $note->cleanDBonItemDelete($this->getType(), $this->fields['id']);
+      }
+
    }
 
 
@@ -3599,13 +3606,16 @@ class CommonDBTM extends CommonGLPI {
                         $result = false;
                      }
                      if ($fields['action_notify']) {
-                        $params = array('message'     => Html::clean($message_text),
+                        $params = array(//'message'     => Html::clean($message_text),
                                         'action_type' => $add,
                                         'action_user' => getUserName(Session::getLoginUserID()),
                                         'entities_id' => $entities_id,
                                         'itemtype'    => get_class($this),
                                         'date'        => $_SESSION['glpi_currenttime'],
-                                        'refuse'      => $fields['action_refuse']);
+                                        'refuse'      => $fields['action_refuse'],
+                                        'label'       => $message,
+                                        'field'       => $fields,
+                                        'double'      => $doubles);
                         NotificationEvent::raiseEvent('refuse', new FieldUnicity(), $params);
                      }
                   }
@@ -4007,7 +4017,7 @@ class CommonDBTM extends CommonGLPI {
                if (isset($searchoptions['htmltext']) && $searchoptions['htmltext']) {
                   $out = Html::initEditorSystem($name, '', false);
                }
-               return $out."<textarea cols='45' rows='5' name='$name' class='form-control' >$value</textarea>";
+               return $out."<textarea cols='45' rows='5' name='$name'>$value</textarea>";
 
             case "bool" :
                return Dropdown::showYesNo($name, $value, -1, $options);

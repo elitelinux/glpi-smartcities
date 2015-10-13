@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: document_item.class.php 23445 2015-04-10 12:18:49Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -61,6 +61,25 @@ class Document_Item extends CommonDBRelation{
       $forbidden   = parent::getForbiddenStandardMassiveAction();
       $forbidden[] = 'update';
       return $forbidden;
+   }
+
+
+   /**
+    * @since version 0.85.5
+    * @see CommonDBRelation::canCreateItem()
+   **/
+   function canCreateItem() {
+
+      if ($this->fields['itemtype'] == 'Ticket') {
+         $ticket = new Ticket();
+         // Not item linked for closed tickets
+         if ($ticket->getFromDB($this->fields['items_id'])
+             && in_array($ticket->fields['status'],$ticket->getClosedStatusArray())) {
+           return false;
+         }
+      }
+
+      return parent::canCreateItem();
    }
 
 
@@ -337,7 +356,7 @@ class Document_Item extends CommonDBRelation{
          $massiveactionparams = array('container' => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+      echo "<table class='tab_cadre_fixehov'>";
 
       $header_begin  = "<tr>";
       $header_top    = '';
@@ -739,7 +758,7 @@ class Document_Item extends CommonDBRelation{
       $sort_img = "<img src=\"" . $CFG_GLPI["root_doc"] . "/pics/" .
                     (($order == "DESC") ? "puce-down.png" : "puce-up.png") ."\" alt='' title=''>";
 
-      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+      echo "<table class='tab_cadre_fixehov'>";
 
       $header_begin  = "<tr>";
       $header_top    = '';

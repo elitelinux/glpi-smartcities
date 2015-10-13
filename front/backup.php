@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: backup.php 23371 2015-02-27 14:22:59Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -348,7 +348,12 @@ function backupMySql($DB, $dumpFile, $duree, $rowlimit) {
    // $dumpFile, fichier source
    // $duree=timeout pour changement de page (-1 = aucun)
 
-   $fileHandle = gzopen($dumpFile, "a");
+   if (function_exists('gzopen')) {
+      $fileHandle = gzopen($dumpFile, "a");
+   } else {
+      $fileHandle = gzopen64($dumpFile, "a");
+   }
+   
 
    if (!$fileHandle) {
       //TRANS: %s is the name of the file

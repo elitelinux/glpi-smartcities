@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: stat.graph.php 22783 2014-03-14 10:41:31Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

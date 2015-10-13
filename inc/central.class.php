@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: central.class.php 23421 2015-04-08 09:06:11Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -105,7 +105,7 @@ class Central extends CommonGLPI {
       $showproblem = Session::haveRight("problem", Problem::READALL);
 
       echo "<table class='tab_cadre_central'><tr class='noHover'>";
-      echo "<td class='top' width='50%' style='vertical-align:top !important;'>";
+      echo "<td class='top' width='50%'>";
       echo "<table class='central'>";
       echo "<tr class='noHover'><td>";
       if ($showticket) {
@@ -121,7 +121,7 @@ class Central extends CommonGLPI {
       echo "</table></td>";
 
       if (Session::haveRight("logs", READ)) {
-         echo "<td class='top'  width='50%' style='vertical-align:top !important;'>";
+         echo "<td class='top'  width='50%'>";
 
          //Show last add events
          Event::showForUser($_SESSION["glpiname"]);
@@ -181,7 +181,7 @@ class Central extends CommonGLPI {
                             __('MySQL replica: read only'));
          echo "</th></tr>";
       }
-      echo "<tr class='noHover'><td class='top' width='50%' style='vertical-align:top !important;'><table class='central'>";
+      echo "<tr class='noHover'><td class='top' width='50%'><table class='central'>";
       echo "<tr class='noHover'><td>";
       if (Session::haveRightsOr('ticketvalidation', TicketValidation::getValidateRights())) {
          Ticket::showCentralList(0,"tovalidate",false);
@@ -206,7 +206,7 @@ class Central extends CommonGLPI {
       }
       echo "</td></tr>";
       echo "</table></td>";
-      echo "<td class='top'  width='50%' style='vertical-align:top !important;'><table class='central'>";
+      echo "<td class='top'  width='50%'><table class='central'>";
       echo "<tr class='noHover'><td>";
       Planning::showCentral(Session::getLoginUserID());
       Reminder::showListForCentral();
@@ -227,9 +227,9 @@ class Central extends CommonGLPI {
 
       echo "<table class='tab_cadre_central'>";
 
-      echo "<tr class='noHover'><td class='top' width='50%' style='vertical-align:top !important;'>";
+      echo "<tr class='noHover'><td class='top' width='50%'>";
       RSSFeed::showListForCentral();
-      echo "</td><td class='top' width='50%' style='vertical-align:top !important;'>";
+      echo "</td><td class='top' width='50%'>";
       if (RSSFeed::canView()) {
          RSSFeed::showListForCentral(false);
       } else {
@@ -264,7 +264,7 @@ class Central extends CommonGLPI {
 
       echo "</td></tr>";
       echo "</table></td>";
-      echo "<td class='top' width='50%' style='vertical-align:top !important;'><table class='central'>";
+      echo "<td class='top' width='50%'><table class='central'>";
       echo "<tr class='noHover'><td>";
       if (Session::haveRight('ticket', Ticket::READGROUP)) {
          Ticket::showCentralList(0, "observed", true);

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: item_deviceprocessor.class.php 23040 2014-06-20 12:03:45Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

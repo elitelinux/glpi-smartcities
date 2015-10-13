@@ -2,7 +2,7 @@
 /*
  * ntlm_sasl_client.php
  *
- * @(#) $Id: ntlm_sasl_client.php 23120 2014-08-11 15:45:42Z remi $
+ * @(#) $Id$
  *
  **
  ** Source: http://www.phpclasses.org/browse/file/7495.html

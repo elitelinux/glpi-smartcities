@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: problem.class.php 23436 2015-04-09 14:06:48Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -418,14 +418,37 @@ class Problem extends CommonITILObject {
 
       $tab += $this->getSearchOptionsMain();
 
-      $tab[65]['table']         = 'glpi_items_problems';
-      $tab[65]['field']         = 'id';
-      $tab[65]['name']          = _x('quantity','Number of items');
-      $tab[65]['forcegroupby']  = true;
-      $tab[65]['usehaving']     = true;
-      $tab[65]['datatype']      = 'count';
-      $tab[65]['massiveaction'] = false;
-      $tab[65]['joinparams']    = array('jointype' => 'child');
+      $tab[63]['table']         = 'glpi_items_problems';
+      $tab[63]['field']         = 'id';
+      $tab[63]['name']          = _x('quantity','Number of items');
+      $tab[63]['forcegroupby']  = true;
+      $tab[63]['usehaving']     = true;
+      $tab[63]['datatype']      = 'count';
+      $tab[63]['massiveaction'] = false;
+      $tab[63]['joinparams']    = array('jointype' => 'child');
+
+      $tab[13]['table']             = 'glpi_items_problems';
+      $tab[13]['field']             = 'items_id';
+      $tab[13]['name']              = _n('Associated element', 'Associated elements', Session::getPluralNumber());
+      $tab[13]['datatype']          = 'specific';
+      $tab[13]['comments']          = true;
+      $tab[13]['nosort']            = true;
+      $tab[13]['nosearch']          = true;
+      $tab[13]['additionalfields']  = array('itemtype');
+      $tab[13]['joinparams']        = array('jointype'   => 'child');
+      $tab[13]['forcegroupby']      = true;
+      $tab[13]['massiveaction']     = false;
+
+      $tab[131]['table']            = 'glpi_items_problems';
+      $tab[131]['field']            = 'itemtype';
+      $tab[131]['name']             = _n('Associated item type', 'Associated item types', Session::getPluralNumber());
+      $tab[131]['datatype']         = 'itemtypename';
+      $tab[131]['itemtype_list']    = 'ticket_types';
+      $tab[131]['nosort']           = true;
+      $tab[131]['additionalfields'] = array('itemtype');
+      $tab[131]['joinparams']       = array('jointype'   => 'child');
+      $tab[131]['forcegroupby']     = true;
+      $tab[131]['massiveaction']    = false;
 
       $tab += $this->getSearchOptionsActors();
 
@@ -648,7 +671,7 @@ class Problem extends CommonITILObject {
       }
 
       if ($numrows > 0) {
-         echo "<table class='tab_cadrehov table-bordered table-striped'>";
+         echo "<table class='tab_cadrehov'>";
          echo "<tr class='noHover'><th colspan='3'>";
 
          $options['reset'] = 'reset';
@@ -851,7 +874,7 @@ class Problem extends CommonITILObject {
       $options['criteria'][0]['link']       = 'AND';
       $options['reset']                     ='reset';
 
-      echo "<table class='tab_cadrehov table-bordered table-striped' >";
+      echo "<table class='tab_cadrehov' >";
       echo "<tr class='noHover'><th colspan='2'>";
 
       echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/problem.php?".
@@ -971,9 +994,9 @@ class Problem extends CommonITILObject {
       // In percent
       $colsize1 = '13';
       $colsize2 = '37';
-        
+
       $default_use_notif = Entity::getUsedConfig('is_notif_enable_default', $_SESSION['glpiactive_entity'], '', 1);
-    
+
       // Set default options
       if (!$ID) {
          $values = array('_users_id_requester'        => Session::getLoginUserID(),
@@ -1147,7 +1170,7 @@ class Problem extends CommonITILObject {
       echo "<tr class='tab_bg_1'>";
       echo "<th width='$colsize1%'>".__('Title')."</th>";
       echo "<td colspan='3'>";
-      echo "<input type='text' size='90' maxlength=250 name='name' class='form-control' ".
+      echo "<input type='text' size='90' maxlength=250 name='name' ".
              " value=\"".Html::cleanInputText($this->fields["name"])."\">";
       echo "</td></tr>";
 
@@ -1155,7 +1178,7 @@ class Problem extends CommonITILObject {
       echo "<th>".__('Description')."</th>";
       echo "<td colspan='3'>";
       $rand = mt_rand();
-      echo "<textarea id='content$rand' name='content' cols='90' rows='6' class='form-control'>".
+      echo "<textarea id='content$rand' name='content' cols='90' rows='6'>".
              Html::clean(Html::entity_decode_deep($this->fields["content"]))."</textarea>";
       echo "</td></tr>";
 
@@ -1194,7 +1217,7 @@ class Problem extends CommonITILObject {
       echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Impacts')."</td><td colspan='3'>";
       if ($canedit) {
-         echo "<textarea id='impactcontent' name='impactcontent' rows='6' cols='80' class='form-control'>";
+         echo "<textarea id='impactcontent' name='impactcontent' rows='6' cols='80'>";
          echo $this->getField('impactcontent');
          echo "</textarea>";
       } else {
@@ -1205,7 +1228,7 @@ class Problem extends CommonITILObject {
       echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Causes')."</td><td colspan='3'>";
       if ($canedit) {
-         echo "<textarea id='causecontent' name='causecontent' rows='6' cols='80' class='form-control'>";
+         echo "<textarea id='causecontent' name='causecontent' rows='6' cols='80'>";
          echo $this->getField('causecontent');
          echo "</textarea>";
       } else {
@@ -1216,7 +1239,7 @@ class Problem extends CommonITILObject {
       echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Symptoms')."</td><td colspan='3'>";
       if ($canedit) {
-         echo "<textarea id='symptomcontent' name='symptomcontent' rows='6' cols='80' class='form-control'>";
+         echo "<textarea id='symptomcontent' name='symptomcontent' rows='6' cols='80'>";
          echo $this->getField('symptomcontent');
          echo "</textarea>";
       } else {
@@ -1302,12 +1325,12 @@ class Problem extends CommonITILObject {
             $options['criteria'][1]['searchtype'] = 'equals';
             $options['criteria'][1]['value']      = $item->getID();
             $options['criteria'][1]['link']       = 'OR';
-            
+
             $options['criteria'][5]['field']      = 5; // status
             $options['criteria'][5]['searchtype'] = 'equals';
             $options['criteria'][5]['value']      = $item->getID();
             $options['criteria'][5]['link']       = 'OR';
-            
+
             break;
 
          case 'Supplier' :

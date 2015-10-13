@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: networkequipment.class.php 23435 2015-04-09 13:37:15Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -365,7 +365,7 @@ class NetworkEquipment extends CommonDBTM {
       echo "</td>";
       echo "<td rowspan='$rowspan'>".__('Comments')."</td>";
       echo "<td rowspan='$rowspan'>
-            <textarea cols='45' rows='".($rowspan+3)."' class='form-control' name='comment' >".$this->fields["comment"];
+            <textarea cols='45' rows='".($rowspan+3)."' name='comment' >".$this->fields["comment"];
       echo "</textarea></td></tr>";
 
       echo "<tr class='tab_bg_1'>";

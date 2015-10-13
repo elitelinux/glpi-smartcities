@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: helpdesk.public.php 23421 2015-04-08 09:06:11Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

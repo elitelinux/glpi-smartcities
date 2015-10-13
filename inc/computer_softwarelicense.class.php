@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: computer_softwarelicense.class.php 23305 2015-01-21 15:06:28Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -481,7 +481,7 @@ class Computer_SoftwareLicense extends CommonDBRelation {
 
             $sort_img = "<img src='" . $CFG_GLPI["root_doc"] . "/pics/" .
                           ($order == "DESC" ? "puce-down.png" : "puce-up.png") . "' alt='' title=''>";
-            echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+            echo "<table class='tab_cadre_fixehov'>";
 
             $columns = array('compname'          => __('Name'),
                              'entity'            => __('Entity'),

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: ajax.class.php 22946 2014-04-23 07:30:55Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: ticketvalidation.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -71,6 +71,11 @@ class TicketValidation  extends CommonITILValidation {
       if ($this->canChildItem('canViewItem', 'canView')) {
           $ticket = new Ticket();
           if ($ticket->getFromDB($this->fields['tickets_id'])) {
+              // No validation for closed tickets
+              if (in_array($ticket->fields['status'],$ticket->getClosedStatusArray())) {
+                return false;
+              }
+          
               if ($ticket->fields['type'] == Ticket::INCIDENT_TYPE) {
                  return Session::haveRight(self::$rightname, self::CREATEINCIDENT);
               }

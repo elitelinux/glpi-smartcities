@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: commondbrelation.class.php 23385 2015-03-13 16:02:40Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -1222,6 +1222,9 @@ abstract class CommonDBRelation extends CommonDBConnexity {
                   }
                } else {
                   $options['name'] = 'peer_'.$peers_id;
+                  if ($normalized_action == 'remove') {
+                     $options['nochecklimit'] = true;
+                  }
                   $dropdown_method = $specificities['dropdown_method_'.$peer_number];
                   $peertype::$dropdown_method($options);
                }

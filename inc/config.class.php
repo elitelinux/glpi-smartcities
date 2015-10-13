@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: config.class.php 23310 2015-01-21 16:25:48Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -245,13 +245,13 @@ class Config extends CommonDBTM {
       echo "<tr><th colspan='4'>" . __('General setup') . "</th></tr>";
       echo "<tr class='tab_bg_2'>";
       echo "<td>" . __('URL of the application') . "</td>";
-      echo "<td colspan='3'><input type='text' name='url_base' size='80' value='".$CFG_GLPI["url_base"]."' class='form-control'>";
+      echo "<td colspan='3'><input type='text' name='url_base' size='80' value='".$CFG_GLPI["url_base"]."'>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td> " . __('Text in the login box') . "</td>";
       echo "<td colspan='3'>";
-      echo "<textarea cols='70' rows='4' name='text_login' class='form-control'>".$CFG_GLPI["text_login"]."</textarea>";
+      echo "<textarea cols='70' rows='4' name='text_login'>".$CFG_GLPI["text_login"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_2'>";
@@ -259,7 +259,7 @@ class Config extends CommonDBTM {
       Dropdown::showYesNo("use_public_faq", $CFG_GLPI["use_public_faq"]);
       echo "</td><td width='30%'>" . __('Simplified interface help link') . "</td>";
       echo "<td><input size='22' type='text' name='helpdesk_doc_url' value='" .
-                 $CFG_GLPI["helpdesk_doc_url"] . "' class='form-control'></td>";
+                 $CFG_GLPI["helpdesk_doc_url"] . "'></td>";
       echo "</tr>";
 
       echo "<tr class='tab_bg_2'>";
@@ -270,7 +270,7 @@ class Config extends CommonDBTM {
                                                    'step'  => 5));
       echo "</td><td>" . __('Standard interface help link') . "</td>";
       echo "<td><input size='22' type='text' name='central_doc_url' value='" .
-                 $CFG_GLPI["central_doc_url"] . "' class='form-control'></td>";
+                 $CFG_GLPI["central_doc_url"] . "'></td>";
       echo "</tr>";
 
       echo "<tr class='tab_bg_2'>";
@@ -477,7 +477,7 @@ class Config extends CommonDBTM {
       echo "<th>" . __('Status') . "</th>";
       echo "</tr>";
 
-      $fields = array("contact", "group", "location", "user");
+      $fields = array("contact", "user", "group", "location");
       echo "<tr class='tab_bg_2'>";
       echo "<td> " . __('When connecting or updating') . "</td>";
       $values[0] = __('Do not copy');
@@ -597,14 +597,14 @@ class Config extends CommonDBTM {
       }
       echo "<tr class='tab_bg_2'>";
       echo "<td>" . __('Mysql server') . "</td>";
-      echo "<td><input type='text' name='_dbreplicate_dbhost' size='40' value='$host' class='form-control'></td>";
+      echo "<td><input type='text' name='_dbreplicate_dbhost' size='40' value='$host'></td>";
       echo "<td>" . __('Database') . "</td>";
-      echo "<td><input type='text' name='_dbreplicate_dbdefault' value='".$DBslave->dbdefault."' class='form-control'>";
+      echo "<td><input type='text' name='_dbreplicate_dbdefault' value='".$DBslave->dbdefault."'>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td>" . __('Mysql user') . "</td>";
-      echo "<td><input type='text' name='_dbreplicate_dbuser' value='".$DBslave->dbuser."' class='form-control'></td>";
+      echo "<td><input type='text' name='_dbreplicate_dbuser' value='".$DBslave->dbuser."'></td>";
       echo "<td>" . __('Mysql password') . "</td>";
       echo "<td><input type='password' name='_dbreplicate_dbpassword' value='".
                  rawurldecode($DBSlave->dbpassword)."'>";
@@ -1331,7 +1331,7 @@ class Config extends CommonDBTM {
       //TRANS: Proxy port
       echo "<td>" . __('Maintenance text') . "</td>";
       echo "<td>";
-      echo "<textarea cols='70' rows='4' name='maintenance_text' class='form-control'>".$CFG_GLPI["maintenance_text"];
+      echo "<textarea cols='70' rows='4' name='maintenance_text'>".$CFG_GLPI["maintenance_text"];
       echo "</textarea>";
       echo "</td></tr>";
 
@@ -1341,17 +1341,17 @@ class Config extends CommonDBTM {
 
       echo "<tr class='tab_bg_2'>";
       echo "<td>" . __('Server') . "</td>";
-      echo "<td><input type='text' name='proxy_name' value='".$CFG_GLPI["proxy_name"]."' class='form-control'></td>";
+      echo "<td><input type='text' name='proxy_name' value='".$CFG_GLPI["proxy_name"]."'></td>";
       //TRANS: Proxy port
       echo "<td>" . __('Port') . "</td>";
-      echo "<td><input type='text' name='proxy_port' value='".$CFG_GLPI["proxy_port"]."' class='form-control'></td>";
+      echo "<td><input type='text' name='proxy_port' value='".$CFG_GLPI["proxy_port"]."'></td>";
       echo "</tr>";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td>" . __('Login') . "</td>";
-      echo "<td><input type='text' name='proxy_user' value='".$CFG_GLPI["proxy_user"]."' class='form-control'></td>";
+      echo "<td><input type='text' name='proxy_user' value='".$CFG_GLPI["proxy_user"]."'></td>";
       echo "<td>" . __('Password') . "</td>";
-      echo "<td><input type='password' name='proxy_passwd' value='' autocomplete='off' class='form-control'>";
+      echo "<td><input type='password' name='proxy_passwd' value='' autocomplete='off'>";
       echo "<br><input type='checkbox' name='_blank_proxy_passwd'>".__('Clear');
       echo "</td></tr>";
 
@@ -1458,7 +1458,8 @@ class Config extends CommonDBTM {
       echo "PHPMailer version " . $pm->Version . " in (" . realpath(GLPI_PHPMAILER_DIR) . ")\n";
 
       // EZ component
-      echo "eZ Graph componnent installed :  ".(class_exists('ezcGraph')?'OK':'KO'). "\n";
+      echo "ZetaComponent ezcGraph installed in (" . dirname(dirname(GLPI_EZC_BASE)) .
+           "):  ".(class_exists('ezcGraph') ? 'OK' : 'KO'). "\n";
 
       // Zend
       $zv = new Zend\Version\Version;
@@ -1471,6 +1472,11 @@ class Config extends CommonDBTM {
       // TCPDF
       include_once(GLPI_TCPDF_DIR.'/include/tcpdf_static.php');
       echo "TCPDF version " . TCPDF_STATIC::getTCPDFVersion() . " in (" . realpath(GLPI_TCPDF_DIR) . ")\n";
+
+      // password_compat
+      require_once GLPI_PASSWORD_COMPAT;
+      $check = (PasswordCompat\binary\check() ? "Ok" : "KO");
+      echo "ircmaxell/password-compat in (" . realpath(dirname(GLPI_PASSWORD_COMPAT)) . "). Compatitility: $check\n";
 
       echo "\n</pre></td></tr>";
    }

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: item_devicenetworkcard.class.php 22703 2014-02-26 10:50:34Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

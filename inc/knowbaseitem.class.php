@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: knowbaseitem.class.php 23456 2015-04-19 09:36:30Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -696,7 +696,7 @@ class KnowbaseItem extends CommonDBTM {
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Subject')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea cols='100' rows='1' name='name' class='form-control'>".$this->fields["name"]."</textarea>";
+      echo "<textarea cols='100' rows='1' name='name'>".$this->fields["name"]."</textarea>";
       echo "</td>";
       echo "</tr>\n";
 
@@ -711,7 +711,7 @@ class KnowbaseItem extends CommonDBTM {
          echo Html::hidden('_in_modal', array('value' => 1));
       }
 
-      echo "<textarea cols='$cols' rows='$rows' id='answer' name='answer' class='form-control'>".$this->fields["answer"];
+      echo "<textarea cols='$cols' rows='$rows' id='answer' name='answer'>".$this->fields["answer"];
       echo "</textarea>";
       echo "</td>";
       echo "</tr>\n";
@@ -901,7 +901,7 @@ class KnowbaseItem extends CommonDBTM {
       echo "<form method='get' action='".$this->getSearchURL()."'>";
       echo "<table class='tab_cadre_fixe'>";
       echo "<tr class='tab_bg_2'><td class='right' width='50%'>";
-      echo "<input type='text' size='50' name='contains' class='form-control' value=\"".
+      echo "<input type='text' size='50' name='contains' value=\"".
              Html::cleanInputText(stripslashes($params["contains"]))."\"></td>";
       echo "<td class='left'>";
       echo "<input type='submit' value=\""._sx('button','Search')."\" class='submit'></td></tr>";
@@ -1651,7 +1651,7 @@ class KnowbaseItem extends CommonDBTM {
          }
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+      echo "<table class='tab_cadre_fixehov'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';

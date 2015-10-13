@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: report.class.php 23371 2015-02-27 14:22:59Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -177,7 +177,7 @@ class Report extends CommonGLPI{
       global $DB;
 
       # Title
-      echo "<span class='big b' style='margin-left:15%; width:70%;' >GLPI ".Report::getTypeName(Session::getPluralNumber())."</span><br><br>";
+      echo "<span class='big b'>GLPI ".Report::getTypeName(Session::getPluralNumber())."</span><br><br>";
 
       # 1. Get counts of itemtype
       $items     = array('Computer', 'Monitor', 'NetworkEquipment', 'Peripheral', 'Phone',
@@ -185,7 +185,7 @@ class Report extends CommonGLPI{
 
       $linkitems = array('Monitor', 'Peripheral', 'Phone', 'Printer');
 
-      echo "<table class='tab_cadrehov table table-hover table-striped' style='width:70%;'>";
+      echo "<table class='tab_cadrehov'>";
 
       foreach ($items as $itemtype) {
          $table_item = getTableForItemType($itemtype);
@@ -349,7 +349,7 @@ class Report extends CommonGLPI{
 
       $result = $DB->request($query);
       if ($result->numrows() > 0) {
-         echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+         echo "<table class='tab_cadre_fixehov'>";
          echo "<tr>";
          if (!empty($extra)) {
             echo "<td>&nbsp;</td>";

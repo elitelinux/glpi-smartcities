@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: stat.location.php 23450 2015-04-17 10:44:51Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

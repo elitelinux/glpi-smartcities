@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: visibility.php 22878 2014-04-09 07:47:31Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

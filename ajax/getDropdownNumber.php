@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: getDropdownNumber.php 23182 2014-10-13 16:51:56Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

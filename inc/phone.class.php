@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: phone.class.php 23457 2015-04-19 09:38:12Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -282,7 +282,7 @@ class Phone extends CommonDBTM {
       echo "</td>";
       echo "<td rowspan='$rowspan'>".__('Comments')."</td>";
       echo "<td rowspan='$rowspan'>
-            <textarea cols='45' rows='".($rowspan+3)."' name='comment' class='form-control' >".$this->fields["comment"];
+            <textarea cols='45' rows='".($rowspan+3)."' name='comment' >".$this->fields["comment"];
       echo "</textarea></td></tr>\n";
 
       echo "<tr class='tab_bg_1'>";

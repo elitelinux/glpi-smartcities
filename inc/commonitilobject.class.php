@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: commonitilobject.class.php 23460 2015-04-20 07:48:52Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -871,7 +871,13 @@ abstract class CommonITILObject extends CommonDBTM {
                $this->oldvalues['status'] = $this->fields['status'];
                $this->updates[] = 'status';
             }
-            $this->fields['status'] = self::INCOMING;
+
+  //          $this->fields['status'] = self::INCOMING;
+            // Don't change status if it's a new status allow
+            if (in_array($this->oldvalues['status'], $this->getNewStatusArray())
+                && !in_array($this->input['status'], $this->getNewStatusArray())) {
+               $this->fields['status'] = $this->oldvalues['status'];
+            }
          }
 
          if (in_array("status", $this->updates)
@@ -3017,7 +3023,7 @@ abstract class CommonITILObject extends CommonDBTM {
                   $icontitle = __s('Technician');
                   break;
             }
-            return "<img width=16 src='".$CFG_GLPI['root_doc']."/pics/user.png'
+            return "<img width=20 src='".$CFG_GLPI['root_doc']."/pics/users.png'
                      alt=\"$icontitle\" title=\"$icontitle\">";
 
          case 'group' :
@@ -3035,12 +3041,12 @@ abstract class CommonITILObject extends CommonDBTM {
                   $icontitle = __('Group in charge of the ticket');
                   break;
             }
-            return  "<img width=16 src='".$CFG_GLPI['root_doc']."/pics/group.png'
+            return  "<img width=20 src='".$CFG_GLPI['root_doc']."/pics/groupes.png'
                       alt=\"$icontitle\" title=\"$icontitle\">";
 
          case 'supplier' :
             $icontitle = __('Supplier');
-            return  "<img width=16 src='".$CFG_GLPI['root_doc']."/pics/supplier.png'
+            return  "<img width=20 src='".$CFG_GLPI['root_doc']."/pics/supplier.png'
                       alt=\"$icontitle\" title=\"$icontitle\">";
 
       }
@@ -3493,6 +3499,11 @@ abstract class CommonITILObject extends CommonDBTM {
          }
       }
       $can_admin      = $this->canAdminActors();
+      // on creation can select actor
+      if (!$ID) {
+         $can_admin = true;
+      }
+
       $can_assign     = $this->canAssign();
       $can_assigntome = $this->canAssignToMe();
 
@@ -3988,7 +3999,7 @@ abstract class CommonITILObject extends CommonDBTM {
          Html::initEditorSystem("solution$rand");
 
          echo "<div id='solution$rand_text'>";
-         echo "<textarea id='solution$rand' name='solution' rows='12' cols='80' class='form-control'>".
+         echo "<textarea id='solution$rand' name='solution' rows='12' cols='80'>".
                 $this->getField('solution')."</textarea></div>";
 
       } else {
@@ -4048,7 +4059,7 @@ abstract class CommonITILObject extends CommonDBTM {
       $rand = mt_rand();
       Html::initEditorSystem("solution$rand");
       echo "<div id='solution$rand_text'>";
-      echo "<textarea id='solution$rand' name='solution' rows='12' cols='80' class='form-control'></textarea></div>";
+      echo "<textarea id='solution$rand' name='solution' rows='12' cols='80'></textarea></div>";
       echo "</td></tr>";
 
       echo '</table>';

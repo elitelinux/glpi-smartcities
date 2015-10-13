@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: notificationtemplate.class.php 23377 2015-03-12 13:57:08Z tsmr $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -125,12 +125,12 @@ class NotificationTemplate extends CommonDBTM {
 
       echo "<tr class='tab_bg_1'><td>".__('Comments')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea cols='60' rows='5' name='comment' class='form-control' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea cols='60' rows='5' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'><td>".__('CSS')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea cols='60' rows='5' name='css' class='form-control' >".$this->fields["css"]."</textarea></td></tr>";
+      echo "<textarea cols='60' rows='5' name='css' >".$this->fields["css"]."</textarea></td></tr>";
 
       $this->showFormButtons($options);
       return true;

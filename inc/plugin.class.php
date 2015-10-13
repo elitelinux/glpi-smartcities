@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: plugin.class.php 23305 2015-01-21 15:06:28Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -341,7 +341,7 @@ class Plugin extends CommonDBTM {
       global $CFG_GLPI, $PLUGIN_HOOKS;
 
       $this->checkStates();
-      echo "<div class='center'><table class='tab_cadrehov table-striped table-hover table-condensed'>";
+      echo "<div class='center'><table class='tab_cadrehov'>";
 
       $pluglist          = $this->find("", "name, directory");
       $i                 = 0;

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: update_0845_0846.php 22959 2014-04-28 18:59:22Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

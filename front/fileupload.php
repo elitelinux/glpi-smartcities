@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: fileupload.php 23370 2015-02-27 08:49:30Z remi $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

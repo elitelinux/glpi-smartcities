@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: change_group.form.php 22859 2014-04-04 13:07:19Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: calendar_holiday.class.php 23306 2015-01-21 15:09:10Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

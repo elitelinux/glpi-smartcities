@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: computer_softwareversion.class.php 23386 2015-03-13 16:04:19Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -491,7 +491,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
                Html::showMassiveActions($massiveactionparams);
             }
 
-            echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+            echo "<table class='tab_cadre_fixehov'>";
 
             $sort_img = "<img src=\"" . $CFG_GLPI["root_doc"] . "/pics/" .
                           (($order == "DESC") ? "puce-down.png" : "puce-up.png") ."\" alt='' title=''>";
@@ -776,7 +776,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
 
             Html::showMassiveActions($massiveactionparams);
          }
-         echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+         echo "<table class='tab_cadre_fixehov'>";
 
 
          $header_begin  = "<tr>";
@@ -891,7 +891,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
 
             Html::showMassiveActions($massiveactionparams);
          }
-         echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+         echo "<table class='tab_cadre_fixehov'>";
 
          $header_begin  = "<tr>";
          $header_top    = '';

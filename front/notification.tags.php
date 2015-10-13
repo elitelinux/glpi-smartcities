@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: notification.tags.php 23072 2014-07-10 17:12:01Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

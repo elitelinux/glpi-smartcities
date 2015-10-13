@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: displaypreference.form.php 23087 2014-07-18 12:30:27Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

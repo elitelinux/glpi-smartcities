@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: group_user.class.php 23317 2015-01-23 15:12:58Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -192,7 +192,7 @@ class Group_User extends CommonDBRelation{
                            'container'     => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+      echo "<table class='tab_cadre_fixehov'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';
@@ -472,7 +472,7 @@ class Group_User extends CommonDBRelation{
             Html::showMassiveActions($massiveactionparams);
          }
 
-         echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+         echo "<table class='tab_cadre_fixehov'>";
 
          $header_begin  = "<tr>";
          $header_top    = '';

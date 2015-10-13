@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: dropdowntranslation.form.php 23249 2014-11-24 18:14:57Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

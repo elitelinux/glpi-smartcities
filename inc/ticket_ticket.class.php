@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: ticket_ticket.class.php 23468 2015-04-30 12:29:26Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

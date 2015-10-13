@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: setup.templates.php 23180 2014-10-06 18:03:12Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

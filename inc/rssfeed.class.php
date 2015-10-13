@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: rssfeed.class.php 23401 2015-03-20 08:06:12Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -650,7 +650,7 @@ class RSSFeed extends CommonDBTM {
 
       echo "<tr class='tab_bg_1'><td>" . __('URL') . "</td>";
       echo "<td colspan='3'>";
-      echo "<input type='text' name='url' size='100' class='form-control' value='".$this->fields["url"]."'>";
+      echo "<input type='text' name='url' size='100' value='".$this->fields["url"]."'>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_2'>";
@@ -661,7 +661,7 @@ class RSSFeed extends CommonDBTM {
       echo "</td>";
       echo "<td rowspan='$rowspan'>".__('Comments')."</td>";
       echo "<td rowspan='$rowspan' class='middle'>";
-      echo "<textarea cols='45' rows='".($rowspan+3)."' name='comment' class='form-control' >".$this->fields["comment"].
+      echo "<textarea cols='45' rows='".($rowspan+3)."' name='comment' >".$this->fields["comment"].
            "</textarea>";
       echo "</td></tr>\n";
 

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: computerdisk.class.php 23305 2015-01-21 15:06:28Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -253,7 +253,7 @@ class ComputerDisk extends CommonDBChild {
                       AND `is_deleted` = '0'";
 
       if ($result = $DB->query($query)) {
-         echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
+         echo "<table class='tab_cadre_fixehov'>";
          $colspan = 7;
          if (Plugin::haveImport()) {
             $colspan++;

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: notificationtargetcommonitilobject.class.php 23439 2015-04-09 15:53:22Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

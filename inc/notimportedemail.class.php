@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: notimportedemail.class.php 23399 2015-03-20 07:59:15Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

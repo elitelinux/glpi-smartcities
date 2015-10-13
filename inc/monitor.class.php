@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: monitor.class.php 23435 2015-04-09 13:37:15Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -280,7 +280,7 @@ class Monitor extends CommonDBTM {
       echo "</td>";
       echo "<td rowspan='4'>" . __('Comments')."</td>";
       echo "<td rowspan='4'>
-            <textarea cols='45' rows='10' name='comment' class='form-control' >".$this->fields["comment"]."</textarea>";
+            <textarea cols='45' rows='10' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";

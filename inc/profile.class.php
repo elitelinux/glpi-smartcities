@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: profile.class.php 23305 2015-01-21 15:06:28Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -571,10 +571,10 @@ class Profile extends CommonDBTM {
       $this->showFormHeader($options);
 
       echo "<tr class='tab_bg_1'><td>".__('Name')."</td>";
-      echo "<td><input type='text' name='name' class='form-control' value=\"".$this->fields["name"]."\" $onfocus></td>";
+      echo "<td><input type='text' name='name' value=\"".$this->fields["name"]."\" $onfocus></td>";
       echo "<td rowspan='$rowspan' class='middle right'>".__('Comments')."</td>";
       echo "<td class='center middle' rowspan='$rowspan'>";
-      echo "<textarea cols='45' rows='4' name='comment' class='form-control' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea cols='45' rows='4' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'><td>".__('Default profile')."</td><td>";
@@ -648,7 +648,7 @@ class Profile extends CommonDBTM {
       $matrix_options['title'] = __('Assistance');
       $this->displayRightsChoiceMatrix($rights, $matrix_options);
 
-      echo "<table class='tab_cadre_fixehov table-striped table-hover '>";
+      echo "<table class='tab_cadre_fixehov'>";
       echo "<tr class='tab_bg_5'><th colspan='2'>".__('Association')."</th></tr>\n";
 
       echo "<tr class='tab_bg_2'>";

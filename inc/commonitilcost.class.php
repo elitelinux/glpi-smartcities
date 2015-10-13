@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: commonitilcost.class.php 23398 2015-03-16 09:03:30Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

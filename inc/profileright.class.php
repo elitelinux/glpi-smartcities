@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: profileright.class.php 22656 2014-02-12 16:15:25Z moyo $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -236,18 +236,20 @@ class ProfileRight extends CommonDBChild {
    function updateProfileRights($profiles_id, array $rights=array()) {
 
       foreach ($rights as $name => $right) {
-         if ($this->getFromDBByQuery("WHERE `profiles_id` = '$profiles_id'
-                                            AND `name` = '$name'")) {
+         if ($right) {
+            if ($this->getFromDBByQuery("WHERE `profiles_id` = '$profiles_id'
+                                               AND `name` = '$name'")) {
 
-            $input = array('id'          => $this->getID(),
-                           'rights'      => $right);
-            $this->update($input);
+               $input = array('id'          => $this->getID(),
+                              'rights'      => $right);
+               $this->update($input);
 
-         } else {
-            $input = array('profiles_id' => $profiles_id,
-                           'name'        => $name,
-                           'rights'      => $right);
-            $this->add($input);
+            } else {
+               $input = array('profiles_id' => $profiles_id,
+                              'name'        => $name,
+                              'rights'      => $right);
+               $this->add($input);
+            }
          }
       }
 
@@ -266,7 +268,8 @@ class ProfileRight extends CommonDBChild {
       // update current profile
       if (isset($_SESSION['glpiactiveprofile']['id'])
           && $_SESSION['glpiactiveprofile']['id'] == $this->fields['profiles_id']
-          && $_SESSION['glpiactiveprofile'][$this->fields['name']] != $this->fields['rights']) {
+          && (!isset($_SESSION['glpiactiveprofile'][$this->fields['name']])
+              || $_SESSION['glpiactiveprofile'][$this->fields['name']] != $this->fields['rights'])) {
 
          $_SESSION['glpiactiveprofile'][$this->fields['name']] = $this->fields['rights'];
          unset($_SESSION['glpimenu']);

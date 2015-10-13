@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: useremail.class.php 23124 2014-08-15 07:41:39Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -165,7 +165,7 @@ class UserEmail  extends CommonDBChild {
          echo "<input type='hidden' name='$field_name' value='$value'>";
          printf(__('%1$s %2$s'), $value, "<span class='b'>(". __('D').")</span>");
       } else {
-         echo "<input type='text' size=30 name='$field_name' value='$value' class='form-control'>";
+         echo "<input type='text' size=30 name='$field_name' value='$value' >";
       }
    }
 

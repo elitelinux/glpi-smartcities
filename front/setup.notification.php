@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: setup.notification.php 23285 2015-01-03 02:36:00Z yllen $
+ * @version $Id$
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -76,7 +76,7 @@ if (!$CFG_GLPI['use_mailing']) {
               "<a href='notification.php'>". _n('Notification', 'Notifications',2)."</a></td></tr>";
       } else {
             echo "<tr class='tab_bg_1'><td class='center'>" .
-            __('Impossible to configure the notifications: please configure your email followup using the above configuration.') .
+            __('Unable to configure notifications: please configure your email followup using the above configuration.') .
                  "</td></tr>";
       }
       echo "</table>";
