@@ -155,7 +155,8 @@ else {
 					</td>
 					
 					<td style="margin-top:2px;">					
-					<?php					
+					<?php		
+								
 					// lista de grupos	
 					$sql_grp = "
 					SELECT id , name 
@@ -164,8 +165,7 @@ else {
 					ORDER BY `name` ASC";
 					
 					$result_grp = $DB->query($sql_grp);
-					$grp = $DB->fetch_assoc($result_grp);
-					
+					$grp = $DB->fetch_assoc($result_grp);					
 														
 					$res_grp = $DB->query($sql_grp);
 					$arr_grp = array();
@@ -497,27 +497,28 @@ $('#grupo')
 	.removeClass( 'display' )
 	.addClass('table table-striped table-bordered');
 
-
 $(document).ready(function() {
     oTable = $('#grupo').dataTable({
         "bJQueryUI": true,
         "sPaginationType": "full_numbers",
         "bFilter": false,
-        "aaSorting": [[0,'desc']], 
+        "aaSorting": [[0,'desc'],[1,'desc'],[2,'desc'],[3,'desc'],[4,'desc'],[5,'desc'],[6,'desc'],[7,'desc']], 
         "iDisplayLength": 25,
     	  "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]], 
 
         "sDom": 'T<"clear">lfrtip',
          "oTableTools": {
+         "sRowSelect": "os",	
 	       "aButtons": [
           {
               "sExtends": "copy",
-              "sButtonText": "<?php echo __('Copy'); ?>"
+              "sButtonText": "<?php echo __('Copy'); ?>"              
           },
           {
               "sExtends": "print",
               "sButtonText": "<?php echo __('Print','dashboard'); ?>",
-              "sMessage": "<div id='print' class='info_box row-fluid span12' style='margin-bottom:35px; margin-left: -1px;'><table id='print_tb' class='row-fluid'  style='width: 80%; margin-left: 10%; font-size: 18px; font-weight:bold;' cellpadding = '1px'><td colspan='2' style='font-size: 16px; font-weight:bold; vertical-align:middle;'><span style='color:#000;'> <?php echo __('Group'); ?> : </span><?php echo $grp_name['name']; ?> </td> <td colspan='2' style='font-size: 16px; font-weight:bold; vertical-align:middle;'><span style='color:#000;'> <?php echo  __('Tickets','dashboard'); ?> : </span><?php echo $consulta ; ?></td><td colspan='2' style='font-size: 16px; font-weight:bold; vertical-align:middle; width:200px;'><span style='color:#000;'> <?php echo  __('Period','dashboard'); ?> : </span> <?php echo conv_data($data_ini2); ?> a <?php echo conv_data($data_fin2); ?> </td> </table></div>"
+              "sMessage": "<div id='print' class='info_box row-fluid span12' style='margin-bottom:35px; margin-left: -1px;'><table id='print_tb' class='row-fluid'  style='width: 80%; margin-left: 10%; font-size: 18px; font-weight:bold;' cellpadding = '1px'><td colspan='2' style='font-size: 16px; font-weight:bold; vertical-align:middle;'><span style='color:#000;'> <?php echo __('Group'); ?> : </span><?php echo $grp_name['name']; ?> </td> <td colspan='2' style='font-size: 16px; font-weight:bold; vertical-align:middle;'><span style='color:#000;'> <?php echo  __('Tickets','dashboard'); ?> : </span><?php echo $consulta ; ?></td><td colspan='2' style='font-size: 16px; font-weight:bold; vertical-align:middle; width:200px;'><span style='color:#000;'> <?php echo  __('Period','dashboard'); ?> : </span> <?php echo conv_data($data_ini2); ?> a <?php echo conv_data($data_fin2); ?> </td> </table></div>",
+              "bSelectedOnly": "true"
           },
 	       {
 	           "sExtends":    "collection",
@@ -533,7 +534,7 @@ $(document).ready(function() {
 		  
     });    
 } );
-		
+
 </script> 
 
 
@@ -557,7 +558,7 @@ else {
 ?>
 
 <script type="text/javascript" >
-$(document).ready(function() { $("#sel1").select2(); });
+	$(document).ready(function() { $("#sel1").select2(); });
 </script>
 
 </div>

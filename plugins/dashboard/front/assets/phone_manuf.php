@@ -2,9 +2,10 @@
 <?php
 
 $query_unk = "SELECT count(*) AS total
-FROM `glpi_phones`
-WHERE `is_deleted` = 0
-AND `manufacturers_id` = 0
+FROM glpi_phones
+WHERE is_deleted = 0
+AND manufacturers_id = 0
+AND is_template = 0 
 ".$ent_phone." ";
 
 $result = $DB->query($query_unk) or die('erro');
@@ -16,6 +17,7 @@ SELECT glpi_manufacturers.name AS name, count( glpi_phones.id ) AS conta
 FROM glpi_manufacturers, glpi_phones
 WHERE glpi_phones.is_deleted =0
 AND glpi_manufacturers.id = glpi_phones.manufacturers_id
+AND is_template = 0 
 ".$ent_phone." 
 GROUP BY glpi_manufacturers.name
 ORDER BY count( glpi_phones.id ) DESC ";
@@ -63,7 +65,7 @@ $(function () {
                 pie: {
                     allowPointSelect: true,
                     cursor: 'pointer',
-                    size: '85%',
+                   // size: '85%',
  					dataLabels: {
 								format: '{point.y} - ( {point.percentage:.1f}% )',
                    		style: {

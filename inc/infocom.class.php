@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: infocom.class.php 23452 2015-04-17 12:40:14Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -1065,7 +1065,7 @@ class Infocom extends CommonDBChild {
                        Html::formatNumber($ic->fields["warranty_value"], true)."' size='14'></td>";
             echo "<td rowspan='5'>".__('Comments')."</td>";
             echo "<td rowspan='5' class='middle'>";
-            echo "<textarea cols='45' rows='9' name='comment' >".$ic->fields["comment"];
+            echo "<textarea cols='45' rows='9' name='comment' class='form-control' >".$ic->fields["comment"];
             echo "</textarea></td></tr>\n";
 
             echo "<tr class='tab_bg_1'>";

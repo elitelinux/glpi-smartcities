@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: authmail.class.php 22656 2014-02-12 16:15:25Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -167,7 +167,7 @@ class AuthMail extends CommonDBTM {
          $this->showFormHeader($options);
 
          echo "<tr class='tab_bg_1'><td>" . __('Name') . "</td>";
-         echo "<td><input size='30' type='text' name='name' value='". $this->fields["name"] ."'>";
+         echo "<td><input size='30' type='text' name='name' class='form-control' value='". $this->fields["name"] ."'>";
          echo "</td></tr>";
 
          echo "<tr class='tab_bg_1'>";
@@ -178,14 +178,14 @@ class AuthMail extends CommonDBTM {
 
          echo "<tr class='tab_bg_1'>";
          echo "<td>". __('Email domain Name (users email will be login@domain)') ."</td>";
-         echo "<td><input size='30' type='text' name='host' value='" . $this->fields["host"] . "'>";
+         echo "<td><input size='30' type='text' name='host' class='form-control' value='" . $this->fields["host"] . "'>";
          echo "</td></tr>";
 
          Toolbox::showMailServerConfig($this->fields["connect_string"]);
 
          echo "<tr class='tab_bg_1'><td>" . __('Comments') . "</td>";
          echo "<td>";
-         echo "<textarea cols='40' rows='4' name='comment'>".$this->fields["comment"]."</textarea>";
+         echo "<textarea cols='40' rows='4' class='form-control' name='comment'>".$this->fields["comment"]."</textarea>";
          if ($ID>0) {
             echo "<br>";
             //TRANS: %s is the datetime of update
@@ -213,15 +213,15 @@ class AuthMail extends CommonDBTM {
 
       if ($this->getFromDB($ID)) {
          echo "<form method='post' action='".$this->getFormURL()."'>";
-         echo "<input type='hidden' name='imap_string' value=\"".$this->fields['connect_string']."\">";
+         echo "<input type='hidden' name='imap_string' class='form-control' value=\"".$this->fields['connect_string']."\">";
          echo "<div class='center'><table class='tab_cadre'>";
          echo "<tr><th colspan='2'>" . __('Test connection to email server') . "</th></tr>";
 
          echo "<tr class='tab_bg_2'><td class='center'>" . __('Login') . "</td>";
-         echo "<td><input size='30' type='text' name='imap_login' value=''></td></tr>";
+         echo "<td><input size='30' type='text' name='imap_login' class='form-control' value=''></td></tr>";
 
          echo "<tr class='tab_bg_2'><td class='center'>" . __('Password') . "</td>";
-         echo "<td><input size='30' type='password' name='imap_password' value=''
+         echo "<td><input size='30' type='password' name='imap_password' class='form-control' value=''
                     autocomplete='off'></td></tr>";
 
          echo "<tr class='tab_bg_2'><td class='center' colspan='2'>";

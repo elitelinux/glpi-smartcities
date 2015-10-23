@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: ticket.class.php 23453 2015-04-17 12:53:58Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -584,16 +584,7 @@ class Ticket extends CommonITILObject {
                   $satisfaction = new TicketSatisfaction();
                   if (($item->fields['status'] == self::CLOSED)
                       && $satisfaction->getFromDB($_GET["id"])) {
-
-                     $duration = Entity::getUsedConfig('inquest_duration', $item->fields['entities_id']);
-                     $date2    = strtotime($satisfaction->fields['date_begin']);
-                     if (($duration == 0)
-                         || (strtotime("now") - $date2) <= $duration*DAY_TIMESTAMP) {
-                        $satisfaction->showForm($item);
-                     } else {
-                        echo "<p class='center b'>".__('Satisfaction survey expired')."</p>";
-                     }
-
+                     $satisfaction->showForm($item);
                   } else {
                      echo "<p class='center b'>".__('No generated survey')."</p>";
                   }
@@ -772,47 +763,40 @@ class Ticket extends CommonITILObject {
       $check_allowed_fields_for_template = false;
       $allowed_fields                    = array();
       if (!Session::isCron()
-          && (!Session::haveRight(self::$rightname, UPDATE)
-            // Closed tickets
-            || in_array($this->fields['status'],$this->getClosedStatusArray()))
-         ) {
+          && !Session::haveRight(self::$rightname, UPDATE)) {
 
          $allowed_fields                    = array('id');
          $check_allowed_fields_for_template = true;
 
-         if (in_array($this->fields['status'],$this->getClosedStatusArray())) {
+         if ($this->canApprove()
+             && isset($input["status"])) {
             $allowed_fields[] = 'status';
-         } else {
-            if ($this->canApprove()
-                && isset($input["status"])) {
-                $allowed_fields[] = 'status';
-            }
-            // for post-only with validate right or validation created by rules
-            if (TicketValidation::canValidate($this->fields['id'])
-                || TicketValidation::canCreate()
-                || isset($input["_rule_process"])) {
-                $allowed_fields[] = 'global_validation';
-            }
-            // Manage assign and steal right
-            if (Session::haveRightsOr(self::$rightname, array(self::ASSIGN, self::STEAL))) {
-                $allowed_fields[] = '_itil_assign';
-            }
+         }
+         // for post-only with validate right or validation created by rules
+         if (TicketValidation::canValidate($this->fields['id'])
+             || TicketValidation::canCreate()
+             || isset($input["_rule_process"])) {
+            $allowed_fields[] = 'global_validation';
+         }
+         // Manage assign and steal right
+         if (Session::haveRightsOr(self::$rightname, array(self::ASSIGN, self::STEAL))) {
+            $allowed_fields[] = '_itil_assign';
+         }
 
-            // Can only update initial fields if no followup or task already added
-            if (($this->numberOfFollowups() == 0)
-                && ($this->numberOfTasks() == 0)
-                && $this->isUser(CommonITILActor::REQUESTER, Session::getLoginUserID())) {
-                $allowed_fields[] = 'content';
-                $allowed_fields[] = 'urgency';
-                $allowed_fields[] = 'priority'; // automatic recalculate if user changes urgence
-                $allowed_fields[] = 'itilcategories_id';
-                $allowed_fields[] = 'name';
-            }
+         // Can only update initial fields if no followup or task already added
+         if (($this->numberOfFollowups() == 0)
+             && ($this->numberOfTasks() == 0)
+             && $this->isUser(CommonITILActor::REQUESTER, Session::getLoginUserID())) {
+            $allowed_fields[] = 'content';
+            $allowed_fields[] = 'urgency';
+            $allowed_fields[] = 'priority'; // automatic recalculate if user changes urgence
+            $allowed_fields[] = 'itilcategories_id';
+            $allowed_fields[] = 'name';
+         }
 
-            if ($this->canSolve()) {
-                $allowed_fields[] = 'solutiontypes_id';
-                $allowed_fields[] = 'solution';
-            }
+         if ($this->canSolve()) {
+            $allowed_fields[] = 'solutiontypes_id';
+            $allowed_fields[] = 'solution';
          }
 
          foreach ($allowed_fields as $field) {
@@ -822,13 +806,7 @@ class Ticket extends CommonITILObject {
          }
 
          $input = $ret;
-
-         // Only ID return false
-         if (count($input) == 1) {
-            return false;
-         }
       }
-
 
 
       //// check mandatory fields
@@ -1178,16 +1156,6 @@ class Ticket extends CommonITILObject {
 
             $mailtype = "closed";
          }
-         // to know if a solution is approved or not
-         if ((isset($this->input['solvedate']) && ($this->input['solvedate'] == 'NULL')
-              && isset($this->oldvalues['solvedate']) && $this->oldvalues['solvedate'])
-             && (isset($this->input['status'])
-                 && ($this->input['status'] != $this->oldvalues['status'])
-                 && ($this->oldvalues['status'] == self::SOLVED))) {
-
-            $mailtype = "rejectsolution";
-         }
-
          // Read again ticket to be sure that all data are up to date
          $this->getFromDB($this->fields['id']);
          NotificationEvent::raiseEvent($mailtype, $this);
@@ -1199,8 +1167,6 @@ class Ticket extends CommonITILObject {
                                              'inquest_rate');
       $delay         = Entity::getUsedConfig('inquest_config', $this->fields['entities_id'],
                                              'inquest_delay');
-      $duration      = Entity::getUsedConfig('inquest_duration', $this->fields['entities_id'],
-                                             'inquest_duration');
       $type          = Entity::getUsedConfig('inquest_config', $this->fields['entities_id']);
       $max_closedate = $this->fields['closedate'];
 
@@ -2447,7 +2413,7 @@ class Ticket extends CommonITILObject {
       $options['display'] = false;
       switch ($field) {
          case 'content' :
-            return "<textarea cols='90' rows='6' name='$name'>".$values['content']."</textarea>";
+            return "<textarea class='form-control'  cols='90' rows='6' name='$name'>".$values['content']."</textarea>";
 
          case 'type':
             $options['value'] = $values[$field];
@@ -2767,7 +2733,7 @@ class Ticket extends CommonITILObject {
          }
 
          echo "</th></tr>";
-         echo "<tr class='tab_bg_1'><td colspan='2' class='".$class."'>";
+         echo "<tr class='tab_bg_1'><td colspan='2' class='center'>";
          echo "<div id='show_result$rand'>";
 
          $self = new self();
@@ -2870,7 +2836,7 @@ class Ticket extends CommonITILObject {
          echo "<input type='hidden' name='locations_id' value='".$values['locations_id']."'>";
       }
       echo "<input type='hidden' name='entities_id' value='".$_SESSION["glpiactive_entity"]."'>";
-      echo "<div class='center'><table class='tab_cadre_fixe'>";
+      echo "<div class='center' style='margin-bottom:80px;'><table class='tab_cadre_fixe'>";
 
       echo "<tr><th>".__('Describe the incident or request')."</th><th>";
       if (Session::isMultiEntitiesMode()) {
@@ -2990,7 +2956,7 @@ class Ticket extends CommonITILObject {
          echo "<tr class='tab_bg_1'>";
          echo "<td>".sprintf(__('%1$s%2$s'), __('Title'), $tt->getMandatoryMark('name'))."<td>";
          if (!$tt->isHiddenField('name')) {
-            echo "<input type='text' maxlength='250' size='80' name='name'
+            echo "<input type='text' maxlength='250' size='80' name='name' class='form-control'
                        value=\"".$values['name']."\">";
          } else {
             echo $values['name'];
@@ -3020,7 +2986,7 @@ class Ticket extends CommonITILObject {
          }
 
          echo "<div id='content$rand_text'>";
-         echo "<textarea id='$content_id' name='content' cols='$cols' rows='$rows'>".
+         echo "<textarea class='form-control'  id='$content_id' name='content' cols='$cols' rows='$rows'>".
                 $values['content']."</textarea></div>";
          echo "</td></tr>";
       }
@@ -3074,7 +3040,7 @@ class Ticket extends CommonITILObject {
             echo "<input type='hidden' name='_predefined_fields'
                    value=\"".Toolbox::prepareArrayForInput($predefined_fields)."\">";
          }
-         echo "<input type='submit' name='add' value=\"".__s('Submit message')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\"".__s('Create ticket')."\" class='submit'>";
          echo "</td></tr>";
       }
 
@@ -3586,7 +3552,7 @@ class Ticket extends CommonITILObject {
                }
             }
             $slaoptions = array();
-            if (Session::haveRight('sla', READ)) {
+            if (Session::haveRight('config', READ)) {
                $slaoptions['link'] = Toolbox::getItemTypeFormURL('SLA').
                                           "?id=".$this->fields["slas_id"];
             }
@@ -3848,9 +3814,7 @@ class Ticket extends CommonITILObject {
          $idurgency = "value_urgency".mt_rand();
          echo "<input id='$idurgency' type='hidden' name='urgency' value='".
                 $this->fields["urgency"]."'>";
-         echo $tt->getBeginHiddenFieldValue('urgency');
          echo parent::getUrgencyName($this->fields["urgency"]);
-         echo $tt->getEndHiddenFieldValue('urgency', $this);
       }
       echo "</td>";
       // Display validation state
@@ -3930,7 +3894,7 @@ class Ticket extends CommonITILObject {
       echo $tt->getEndHiddenFieldText('locations_id')."</th>";
       echo "<td>";
       echo $tt->getBeginHiddenFieldValue('locations_id');
-      if ($canupdate || !$ID) {
+      if ($canupdate) {
          Location::dropdown(array('value'  => $this->fields['locations_id'],
                                   'entity' => $this->fields['entities_id']));
       } else {
@@ -3942,9 +3906,7 @@ class Ticket extends CommonITILObject {
 
 
       echo "<tr class='tab_bg_1'>";
-      echo "<th>".$tt->getBeginHiddenFieldText('priority');
-      printf(__('%1$s%2$s'), __('Priority'), $tt->getMandatoryMark('priority'));
-      echo $tt->getEndHiddenFieldText('priority')."</th>";
+      echo "<th>".sprintf(__('%1$s%2$s'), __('Priority'), $tt->getMandatoryMark('priority'))."</th>";
       echo "<td>";
       $idajax = 'change_priority_' . mt_rand();
 
@@ -4062,7 +4024,7 @@ class Ticket extends CommonITILObject {
       if (!$ID
           || $canupdate_descr) {
          echo $tt->getBeginHiddenFieldValue('name');
-         echo "<input type='text' size='90' maxlength=250 name='name' ".
+         echo "<input type='text' size='90' maxlength=250 name='name' class='form-control' ".
                 " value=\"".Html::cleanInputText($this->fields["name"])."\">";
          echo $tt->getEndHiddenFieldValue('name', $this);
       } else {
@@ -4104,7 +4066,7 @@ class Ticket extends CommonITILObject {
          }
 
          echo "<div id='content$rand_text'>";
-         echo "<textarea id='$content_id' name='content' cols='$cols' rows='$rows'>".
+         echo "<textarea class='form-control'  id='$content_id' name='content' cols='$cols' rows='$rows'>".
                 $this->fields["content"]."</textarea></div>";
          echo $tt->getEndHiddenFieldValue('content', $this);
 
@@ -4196,7 +4158,7 @@ class Ticket extends CommonITILObject {
       if ((!$ID
            || $canupdate
            || $canupdate_descr
-           || Session::haveRightsOr(self::$rightname, array(self::ASSIGN, self::STEAL, DELETE, PURGE)))
+           || Session::haveRightsOr(self::$rightname, array(self::ASSIGN, self::STEAL)))
           && !$options['template_preview']) {
 
          echo "<tr class='tab_bg_1'>";
@@ -4448,7 +4410,7 @@ class Ticket extends CommonITILObject {
       }
 
       if ($numrows > 0) {
-         echo "<table class='tab_cadrehov'>";
+         echo "<table class='tab_cadrehov table-bordered table-striped table-hover table-striped'>";
          echo "<tr class='noHover'><th colspan='4'>";
 
          $options['reset'] = 'reset';
@@ -4796,7 +4758,7 @@ class Ticket extends CommonITILObject {
       $options['criteria'][0]['link']       = 'AND';
       $options['reset']         ='reset';
 
-      echo "<table class='tab_cadrehov' >";
+      echo "<table class='tab_cadrehov table-bordered table-striped table-hover table-striped' >";
       echo "<tr class='noHover'><th colspan='2'>";
 
       if ($_SESSION["glpiactiveprofile"]["interface"] != "central") {
@@ -4855,7 +4817,7 @@ class Ticket extends CommonITILObject {
          $options['criteria'][0]['link']       = 'AND';
          $options['reset']         ='reset';
 
-         echo "<div class='center'><table class='tab_cadre_fixe'>";
+         echo "<div class='center'><table class='tab_cadre_fixe table'>";
          //TRANS: %d is the number of new tickets
          echo "<tr><th colspan='12'>".sprintf(_n('%d new ticket','%d new tickets', $number), $number);
          echo "<a href='".$CFG_GLPI["root_doc"]."/front/ticket.php?".
@@ -5025,7 +4987,7 @@ class Ticket extends CommonITILObject {
                                     'items_id' => $item->getID()));
       }
       echo "</div><div>";
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
 
       if ($number > 0) {
          if (Session::haveRight(self::$rightname, self::READALL)) {
@@ -5432,7 +5394,6 @@ class Ticket extends CommonITILObject {
       foreach ($tabentities as $entity => $rate) {
          $parent        = Entity::getUsedConfig('inquest_config', $entity, 'entities_id');
          $delay         = Entity::getUsedConfig('inquest_config', $entity, 'inquest_delay');
-         $duration      = Entity::getUsedConfig('inquest_config', $entity, 'inquest_duration');
          $type          = Entity::getUsedConfig('inquest_config', $entity);
          $max_closedate = Entity::getUsedConfig('inquest_config', $entity, 'max_closedate');
 
@@ -5442,18 +5403,13 @@ class Ticket extends CommonITILObject {
                    FROM `glpi_tickets`
                    LEFT JOIN `glpi_ticketsatisfactions`
                        ON `glpi_ticketsatisfactions`.`tickets_id` = `glpi_tickets`.`id`
-                   LEFT JOIN `glpi_entities`
-                       ON `glpi_tickets`.`entities_id` = `glpi_entities`.`id`
                    WHERE `glpi_tickets`.`entities_id` = '$entity'
                          AND `glpi_tickets`.`is_deleted` = 0
                          AND `glpi_tickets`.`status` = '".self::CLOSED."'
                          AND `glpi_tickets`.`closedate` > '$max_closedate'
                          AND ADDDATE(`glpi_tickets`.`closedate`, INTERVAL $delay DAY)<=NOW()
-                         AND ADDDATE(`glpi_entities`.`max_closedate`, INTERVAL $duration DAY)<=NOW()
                          AND `glpi_ticketsatisfactions`.`id` IS NULL
                    ORDER BY `closedate` ASC";
-
-         Toolbox::logDebug($entity.' '.$rate.' '.$parent.' '.$delay.' '.$type.' '.$max_closedate);
 
          $nb            = 0;
          $max_closedate = '';
@@ -5620,8 +5576,19 @@ class Ticket extends CommonITILObject {
             $mime     = '';
             if (isset($image['filepath'])) {
                $fullpath = GLPI_DOC_DIR."/".$image['filepath'];
-               $mime = Toolbox::getMime($fullpath);
-               $ok   = Toolbox::getMime($fullpath, 'image');
+               if (function_exists('finfo_open')
+                   && ($finfo = finfo_open(FILEINFO_MIME))) {
+                  $mime = finfo_file($finfo, $fullpath);
+                  finfo_close($finfo);
+
+               } else if (function_exists('mime_content_type')) {
+                  $mime = mime_content_type($fullpath);
+               }
+               switch (substr($mime, 0, strrpos($mime, ';'))) {
+                  case 'image/gif':case 'image/jpg':case 'image/jpeg':case 'image/png' :
+                     $ok = true;
+                     break;
+               }
             }
             if (isset($image['tag'])) {
                 if ($ok || empty($mime)) {

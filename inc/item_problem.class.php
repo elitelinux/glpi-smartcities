@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: item_problem.class.php 23436 2015-04-09 14:06:48Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -158,7 +158,7 @@ class Item_Problem extends CommonDBRelation{
          $massiveactionparams = array('container' => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';

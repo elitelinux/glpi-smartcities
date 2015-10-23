@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: taskcategory.class.php 23173 2014-10-04 18:21:49Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

@@ -195,6 +195,8 @@ $grfsat2 = implode("','",$grfsat);
 $grfsat3 = "'$grfsat2'";
 $quantsat2 = implode(',',$quantsat);
 
+$satisf = round(array_sum($quantsat),0);
+
 
 echo "
 <script type='text/javascript'>
@@ -318,7 +320,7 @@ if(array_sum($quantsat) != 0) {
        		 
           echo  "                    
 					{ // satisfacao
-                name: '".__('Satisfaction','dashboard')."',
+                name: '".__('Satisfaction','dashboard')." (".$satisf.")',
                 
                 type: 'column',
                 yAxis: 1,         

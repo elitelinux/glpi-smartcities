@@ -312,10 +312,13 @@ echo "</div>";
 ?>
 
 </div>
-
+</div>
+</div>
+</div>
 </div>
 
-</div>
-</div>
-</div>
-</body> </html>
+<!-- Highcharts export xls, csv -->
+<script src="../js/export-csv.js"></script>
+
+</body>
+</html>

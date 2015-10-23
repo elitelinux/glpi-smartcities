@@ -256,7 +256,7 @@
 						<?php //include ("grafpie_tipo.inc.php");  ?>
 						<div class="cf-bars"></div>
 							<div class="cf-figs "></div>
-								<div class="cf-txts "></div> 
+								<div class="cf-txts"></div> 
 						</div>
 					</div>				
 			</div> 	<!-- //end cf-item -->	

@@ -58,18 +58,7 @@ else {
 $month = date("Y-m");
 $datahoje = date("Y-m-d");  
 
-# entity
-$sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' AND users_id = ".$_SESSION['glpiID']."";
-$result_e = $DB->query($sql_e);
-$sel_ent = $DB->result($result_e,0,'value');
 
-if($sel_ent == '' || $sel_ent == -1) {
-	$sel_ent = 0;
-}
-else {
-	$entidade = "AND glpi_tickets.entities_id IN (".$sel_ent.")";
-}
-	  
 ?>
 <div id='content' >
 <div id='container-fluid' style="margin: 0px 8% 0px 8%;"> 
@@ -137,9 +126,7 @@ else {
 </div>
 
 <div id="graf1" class="row-fluid">
-<?php 
-include ("./inc/grafbar_cat_mes.inc.php");
-?>
+	<?php include ("./inc/grafbar_cat_mes.inc.php"); ?>
 </div>
 
 </div>
@@ -147,5 +134,9 @@ include ("./inc/grafbar_cat_mes.inc.php");
 </div>
 </div>
 </div>
+
+<!-- Highcharts export xls, csv -->
+<script src="../js/export-csv.js"></script>
+
 </body>
 </html>

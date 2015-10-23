@@ -13,7 +13,9 @@ $datas = "BETWEEN '".$data_ini." 00:00:00' AND '".$data_fin." 23:59:59'";
 $query_p = "
 SELECT COUNT(id) AS total
 FROM glpi_problems
-WHERE glpi_problems.is_deleted = 0";		
+WHERE glpi_problems.is_deleted = 0
+$periodp
+$ent_problem";		
  
 $result_p = $DB->query($query_p) or die('erro');
 $problems = $DB->fetch_assoc($result_p);
@@ -22,7 +24,9 @@ $problems = $DB->fetch_assoc($result_p);
 $query2 = "
 SELECT COUNT(glpi_tickets.id) as tick, glpi_tickets.type AS tipo
 FROM glpi_tickets
-WHERE glpi_tickets.is_deleted = 0      
+WHERE glpi_tickets.is_deleted = 0
+$period  
+$entidade    
 GROUP BY glpi_tickets.type
 ORDER BY type  ASC ";
 		

@@ -196,7 +196,7 @@ $ent_name = $DB->result($result_n, 0, 'name');
 				</table>
 			<p></p>
 			</div>	
-		<div id="lista_chamados" class="well info_box row-fluid report" style="width: 95%; margin-top: 160px !important;">
+		<div id="lista_chamados" class="well info_box row-fluid report" style="width: 98%; margin-left:1%; margin-top: 160px !important;">
 		
 		<?php 
 		

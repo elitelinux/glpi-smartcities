@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: tickettask.class.php 22656 2014-02-12 16:15:25Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -128,9 +128,7 @@ class TicketTask  extends CommonITILTask {
 
       $ticket = new Ticket();
 
-      if ($ticket->getFromDB($this->fields['tickets_id'])
-          // No validation for closed tickets
-          && !in_array($ticket->fields['status'],$ticket->getClosedStatusArray())) {
+      if ($ticket->getFromDB($this->fields['tickets_id'])) {
          return (Session::haveRight(self::$rightname, self::ADDALLTICKET)
                  || $ticket->isUser(CommonITILActor::ASSIGN, Session::getLoginUserID())
                  || (isset($_SESSION["glpigroups"])

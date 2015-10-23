@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: dropdown.class.php 23464 2015-04-25 15:54:47Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -118,7 +118,7 @@ class Dropdown {
       $limit_length = $_SESSION["glpidropdown_chars_limit"];
 
       // Check default value for dropdown : need to be a numeric
-      if ((strlen($params['value']) == 0) || !is_numeric($params['value']) && $params['value'] != 'mygroups') {
+      if ((strlen($params['value']) == 0) || !is_numeric($params['value'])) {
          $params['value'] = 0;
       }
 
@@ -185,7 +185,7 @@ class Dropdown {
                  'condition'            => $params['condition'],
                  'used'                 => $params['used'],
                  'toadd'                => $params['toadd'],
-                 'entity_restrict'      => (is_array($params['entity']) ? json_encode(array_values($params['entity'])) : $params['entity']),
+                 'entity_restrict'      => $params['entity'],
                  'limit'                => $limit_length,
                  'on_change'            => $params['on_change'],
                  'permit_select_parent' => $params['permit_select_parent'],
@@ -568,7 +568,7 @@ class Dropdown {
                }
             }
             Dropdown::showFromArray($myname, $values,
-                                    array('value' => $value));
+                                    array('value' => $file));
 
          } else {
             //TRANS: %s is the store path
@@ -906,7 +906,7 @@ class Dropdown {
    **/
    static function showItemTypeMenu($title, $optgroup, $value='') {
 
-      echo "<table class='tab_cadre' width='50%'>";
+      echo "<table class='tab_cadre table-striped table-hover' width='30%'>";
       echo "<tr class='tab_bg_1'><td class='b'>&nbsp;".$title."&nbsp; ";
       $values   = array('' => self::EMPTY_VALUE);
       $selected = '';
@@ -943,8 +943,8 @@ class Dropdown {
          $nb += count($dp);
       }
       $step = ($nb > 15 ? ($nb/3) : $nb);
-      echo "<table class='tab_glpi'><tr class='top'><td width='33%' class='center'>";
-      echo "<table class='tab_cadre'>";
+      echo "<table class='tab_glpi' border='0' style='width:900px;'><tr class='top'><td style='vertical-align:top;' class='center'>";
+      echo "<table class='tab_cadre table-striped table-hover table' width='33%'>";
       $i = 1;
 
       foreach ($optgroup as $label => $dp) {
@@ -954,7 +954,7 @@ class Dropdown {
             $class="class='tab_bg_4'";
             if (($itemtype = getItemForItemtype($key))
                 && $itemtype->isEntityAssign()) {
-               $class="class='tab_bg_2'";
+               $class="class='tab_bg_2' width='30%'";
             }
             echo "<tr $class><td><a href='".$key::getSearchURL()."'>";
             echo "$val</a></td></tr>\n";
@@ -962,7 +962,7 @@ class Dropdown {
          }
 
          if (($i >= $step) && ($i < $nb)) {
-            echo "</table></td><td width='25'>&nbsp;</td><td><table class='tab_cadre'>";
+            echo "</table></td><td width='25'>&nbsp;</td><td style='vertical-align:top !important;'><table class='tab_cadre table-hover table-striped table' width='33%'>";
             $step += $step;
          }
       }
@@ -1218,7 +1218,6 @@ class Dropdown {
     *    - showItemSpecificity : given an item, the AJAX file to open if there is special
     *                            treatment. For instance, select a Item_Device* for CommonDevice
     *    - emptylabel          : Empty choice's label (default self::EMPTY_VALUE)
-    *    - used                : array / Already used items ID: not to display in dropdown (default empty)
    *
     * @return randomized value used to generate HTML IDs
    **/
@@ -1235,7 +1234,6 @@ class Dropdown {
       $params['checkright']          = false;
       $params['showItemSpecificity'] = '';
       $params['emptylabel']          = self::EMPTY_VALUE;
-      $params['used']                = array();
 
       if (is_array($options) && count($options)) {
          foreach ($options as $key => $val) {
@@ -1256,10 +1254,7 @@ class Dropdown {
 
          // manage condition
          if ($params['onlyglobal']) {
-            $p['condition'] = static::addNewCondition("`is_global` = 1");
-         }
-         if ($params['used']) {
-            $p['used'] = $params['used'];
+            $p['condition'] = static::addNewCondition("`is_global` = 1");  ;
          }
 
          $field_id = Html::cleanId("dropdown_".$params['itemtype_name'].$rand);
@@ -1798,7 +1793,7 @@ class Dropdown {
 
          $output .= "</select>";
          if ($param['other'] !== false) {
-            $output .= "<input name='$other_select_option' id='$other_select_option' type='text'";
+            $output .= "<input name='$other_select_option' id='$other_select_option' type='text' class='form-control'";
             if (is_string($param['other'])) {
                $output .= " value=\"" . $param['other'] . "\"";
             } else {
@@ -1988,7 +1983,7 @@ class Dropdown {
       $values['-'.Search::CSV_OUTPUT]           = __('All pages in CSV');
 
       Dropdown::showFromArray('display_type', $values);
-      echo "<input type='image' name='export' src='".$CFG_GLPI["root_doc"]."/pics/greenbutton.png'
+      echo "<input type='image' style='margin-left:5px;' name='export' src='".$CFG_GLPI["root_doc"]."/pics/export.png'
              title=\""._sx('button', 'Export')."\" value=\""._sx('button', 'Export')."\">";
    }
 

@@ -215,8 +215,18 @@ echo "</div>";
 	<?php include ("./inc/grafcat_geral_mes.inc.php"); ?>
 </div>
 
+</div>
+</div>
+</div>
 
-</div>
-</div>
-</div>
-</body> </html>
+<!-- Highcharts export dependencies -->
+<script src="../js/modules/canvas-tools.js"></script>
+<script src="../js/export-csv.js"></script>
+<script src="../js/jspdf.min.js"></script>
+
+<!-- This module, after the dependencies -->
+<script src="../js/highcharts-export-clientside.js"></script>
+
+
+</body>
+</html>

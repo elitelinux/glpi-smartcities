@@ -93,7 +93,7 @@ function chart(theme) {
 					<div id="tabela" class="row-fluid" >		
 					<?php
 					
-					# selected entity for index
+					// selected entity for index
 					$sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' AND users_id = ".$_SESSION['glpiID']."";
 					$result_e = $DB->query($sql_e);
 					//$prev_ent = $DB->result($result_e,0,'value');
@@ -165,7 +165,13 @@ function chart(theme) {
 					//reload page	
 					if(isset($_REQUEST['due']) || isset($_REQUEST['loc']) ) {						
 						echo "<meta HTTP-EQUIV='refresh' CONTENT='0.1;URL=config.php'>";						
-						}		
+						}				
+						
+					//reload page	
+					if(isset($_REQUEST['met'])) {						
+						echo "<meta HTTP-EQUIV='refresh' CONTENT='0.1;URL=config.php'>";						
+						}													
+																		
 										
 					
 		echo '<div id="datas-tecx" class="col-md-12 row-fluid">'; 																															 
@@ -211,7 +217,7 @@ function chart(theme) {
 					}				
 								    
 			
-					# years in index
+					// years in index
 					$sql_y = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'num_years' AND users_id = ".$_SESSION['glpiID']."";
 					$result_y = $DB->query($sql_y);
 					$prev_years = $DB->result($result_y,0,'value');
@@ -279,70 +285,139 @@ function chart(theme) {
 										if(isset($_REQUEST['colors'])) {				
 												$colors = $_REQUEST['colors'];													
 												
-												$query = "INSERT INTO glpi_plugin_dashboard_config (name, value, users_id)
-														$que	  VALUES ('charts_colors', '".$colors."', '".$_SESSION['glpiID']."') ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), value = '".$colors."' ";																
+												$query = "INSERT INTO glpi_plugin_dashboard_config (name, value, users_id) 
+															VALUES ('charts_colors', '".$colors."', '".$_SESSION['glpiID']."') ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), value = '".$colors."' ";																
 												$result = $DB->query($query);	
 												
 												$_SESSION['charts_colors'] = $colors;
 												
 												//reload page
 												echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=config.php'>";																																													
-										}																						 
+										}		
+										
+									// metricas			
+									if(isset($_REQUEST['met']))  {	      	
+										
+											$metric = $_REQUEST['metric'];												
+											
+											$query = "INSERT INTO glpi_plugin_dashboard_config (name, value, users_id)
+														  VALUES ('metric', '".$metric."', '".$_SESSION['glpiID']."') ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), value = '".$metric."' ";																
+											$result = $DB->query($query);	
+											
+											//reload page
+											echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=config.php'>";		
+																																														
+										}			
+																							 
 					                               
 		echo "<tr>";
 		echo "<td>";					
-					
-			 		echo '<form id="form1" name="form1" method="post" action="config.php?conf=1">';   						
-					echo "-- ".__('Period in index page','dashboard').":&nbsp; 
-							<select id='num' name='num' style='width: 130px;' onChange='reload(\"form1\")'>
-								<option value=''>".__('Select','dashboard')."</option>
-								<option value='0'>".__('All')."</option>
-								<option value='1'>".__('Current year','dashboard')."</option>";
-							
-							$year = date("Y");		
-							for($i=2; $i <= $conta_y; $i++) {	
-								echo "<option value='".$i."'>".$year." - ".($arr_years[0]-($i-1))."</option>";
-						   }							   			
-					Html::closeForm(); 
+				
+		 		echo '<form id="form1" name="form1" method="post" action="config.php?conf=1">';   						
+				echo "-- ".__('Period in index page','dashboard').":&nbsp; ";  
+				echo "<select id='num' name='num' style='width: 130px;' onChange='reload(\"form1\")'> 
+							<option value=''>".__('Select','dashboard')."</option>
+							<option value='0'>".__('All')."</option>
+							<option value='1'>".__('Current year','dashboard')."</option>";
+						
+						$year = date("Y");		
+						for($i=2; $i <= $conta_y; $i++) {	
+							echo "<option value='".$i."'>".$year." - ".($arr_years[0]-($i-1))."</option>";
+					   }							   			
+				Html::closeForm(); 
 
 		echo "</td>";					 	
 		echo "</tr>";	
-					//get update option
-					$query_up = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'update'";																
-					$result_up = $DB->query($query_up);
-					
-					$up_option = $DB->result($result_up,0,'value');	
 		
+
+		// metric period
+		$query_met = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'metric' AND users_id = ".$_SESSION['glpiID']." ";																
+		$result_met = $DB->query($query_met);
+		
+		$sel_period = $DB->result($result_met,0,'value');	
+		
+
+		if($sel_period == 0) {
+			$period0 = 'selected';
+			$period1 = ""; $period2 = ""; $period3 = ""; $period4 = ""; 
+		}
+		if($sel_period == 1) {
+			$period1 = 'selected';
+			$period0 = ""; $period2 = ""; $period3 = ""; $period4 = ""; 
+		}	
+		if($sel_period == 2) {
+			$period2 = 'selected';
+			$period0 = ""; $period1 = ""; $period3 = ""; $period4 = ""; 
+		}
+		if($sel_period == 3) {
+			$period3 = 'selected';
+			$period0 = ""; $period1 = ""; $period2 = ""; $period4 = ""; 
+		}
+		if($sel_period == 4) {
+			$period4 = 'selected';
+			$period0 = ""; $period1 = ""; $period2 = ""; $period3 = ""; 
+		}
+		if($sel_period == '') {
+			$period0 = 'selected';
+			$period1 = ""; $period2 = ""; $period3 = ""; $period4 = ""; 
+		}
+
+					
 		echo "<tr>";
 		echo "<td>";									
-					echo '<form id="form3" name="form3" class="form3" method="post" action="config.php?up=1">';   						
-					echo "-- ".__('Check for new updates').":&nbsp; 
-							<select id='up' name='up' style='width: 130px;' onChange='reload(\"form3\")'> ";
-								if($up_option == 1) {							
-									echo "					
-										<option value='0'>".__('No')."</option>
-										<option value='1' selected>".__('Yes')."</option>
-									</select>";						   			
-									}
-								else 	{							
-									echo "					
-										<option value='0' selected>".__('No')."</option>
-										<option value='1'>".__('Yes')."</option>
-									</select>";						   			
-									}
-					Html::closeForm();	
+				echo '<form id="form_met" name="form_met" class="form_met" method="post" action="config.php?met=1">';   						
+				echo "-- ".__('Period for Metrics','dashboard').":&nbsp; ";
+				echo "<select id='metric' name='metric' style='width: 160px;' onChange='reload(\"form_met\")'> ";												
+								echo "					
+									<option value='0' ".$period0.">".__('All')."</option>
+									<option value='1' ".$period1.">".__('Current year','dashboard')."</option>
+									<option value='2' ".$period2.">".__('Current month','dashboard')."</option>
+									<option value='3' ".$period3.">".__('Last 30 days','dashboard')."</option>
+									<option value='4' ".$period4.">".__('Last 60 days','dashboard')."</option>
+								</select>";						   			
+
+				Html::closeForm();	
+			
+			echo "</td>";
+			echo "</tr>";				
+
+		
+		//get update option
+		$query_up = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'update'";																
+		$result_up = $DB->query($query_up);
+		
+		$up_option = $DB->result($result_up,0,'value');	
+					
+		echo "<tr>";
+		echo "<td>";									
+				echo '<form id="form3" name="form3" class="form3" method="post" action="config.php?up=1">';   						
+				echo "-- ".__('Check for new updates').":&nbsp; 
+						<select id='up' name='up' style='width: 130px;' onChange='reload(\"form3\")'> ";
+							if($up_option == 1) {							
+								echo "					
+									<option value='0'>".__('No')."</option>
+									<option value='1' selected>".__('Yes')."</option>
+								</select>";						   			
+								}
+							else 	{							
+								echo "					
+									<option value='0' selected>".__('No')."</option>
+									<option value='1'>".__('Yes')."</option>
+								</select>";						   			
+								}
+				Html::closeForm();	
 			
 			echo "</td>";
 			echo "</tr>";				
 			
 			if(isset($_POST['up']))  {	      	
-							
-								$update = $_POST['up'];												
-								
-								$query = "INSERT INTO glpi_plugin_dashboard_config (name, value, users_id)
-											  VALUES ('update', '".$update."', 'x') ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), value = '".$update."' ";																
-								$result = $DB->query($query);																																					
-					}																	
+				
+					$update = $_POST['up'];												
+					
+					$query = "INSERT INTO glpi_plugin_dashboard_config (name, value, users_id)
+								  VALUES ('update', '".$update."', 'x') ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), value = '".$update."' ";																
+					$result = $DB->query($query);																																					
+				}																	
 
 					
 			// index layout
@@ -391,7 +466,7 @@ function chart(theme) {
 			echo "<tr>";
 			echo "<td>";								
 					echo '<form id="form5" name="form5" class="form5" method="post" action="config.php?info=1">';   						
-					echo "-- ".__('Show Server info').":&nbsp; 
+					echo "-- ".__('Show Server info','dashboard').":&nbsp; 
 							<select id='info' name='info' style='width: 130px;' onChange='reload(\"form5\")'> ";
 								if($info == 1) {							
 									echo "					
@@ -411,10 +486,10 @@ function chart(theme) {
 			
 			if(isset($_POST['info']))  {	      	
 							
-								$update = $_POST['info'];												
+								$info = $_POST['info'];												
 								
 								$query = "INSERT INTO glpi_plugin_dashboard_config (name, value, users_id)
-											  VALUES ('info', '".$update."', '".$_SESSION['glpiID']."') ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), value = '".$update."' ";																
+											  VALUES ('info', '".$info."', '".$_SESSION['glpiID']."') ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), value = '".$info."' ";																
 								$result = $DB->query($query);																																					
 					}	
 					
@@ -434,7 +509,7 @@ function chart(theme) {
 			echo "<td>";								
 					echo '<form id="form6" name="form6" class="form6" method="post" action="config.php?due=1&loc=1">';
 					
-					echo "-- ".__('Tickets Page settings').":&nbsp; <br><p>";
+					echo "-- ".__('Tickets Page','dashboard').":&nbsp; <br><p>";
 					
 					echo "<table><tr><td>";   						
 					echo _sx('button', 'Show')." ".__('Due date').":&nbsp; 
@@ -630,22 +705,22 @@ function chart(theme) {
 						#clean-s { display:none; } 
 					</style>  		
 					  		
-					<div id="default-s" style="position:absolute; margin-left:18%; margin-top: -45%; cursor:pointer;">
+					<div id="default-s" style="position:absolute; margin-left:16%; margin-top: -60%; cursor:pointer;">
 						<img src="./img/default-s.png" alt="default" />
 					</div>
-					<div id="material-s" style="position:absolute; margin-left:18%; margin-top: -45%; cursor:pointer;">
+					<div id="material-s" style="position:absolute; margin-left:16%; margin-top: -60%; cursor:pointer;">
 						<img src="./img/material-s.png" alt="default" />
 					</div>
-					<div id="glpi-s" style="position:absolute; margin-left:18%; margin-top: -45%; cursor:pointer;">
+					<div id="glpi-s" style="position:absolute; margin-left:16%; margin-top: -60%; cursor:pointer;">
 						<img src="./img/glpi-s.png" alt="glpi" />
 					</div>   		
-					<div id="graphite-s" style="position:absolute; margin-left:18%; margin-top: -45%; cursor:pointer;">
+					<div id="graphite-s" style="position:absolute; margin-left:16%; margin-top: -60%; cursor:pointer;">
 						<img src="./img/graphite-s.png" alt="graphite" />
 					</div>
-					<div id="nature-s" style="position:absolute; margin-left:18%; margin-top: -45%; cursor:pointer;">
+					<div id="nature-s" style="position:absolute; margin-left:16%; margin-top: -60%; cursor:pointer;">
 						<img src="./img/nature-s.png" alt="nature" />
 					</div>  
-					<div id="trans-s" style="position:absolute; margin-left:18%; margin-top: -45%; cursor:pointer;">
+					<div id="trans-s" style="position:absolute; margin-left:16%; margin-top: -60%; cursor:pointer;">
 						<img src="./img/trans-s.png" alt="nature" />
 					</div>	
 					
@@ -675,6 +750,8 @@ function chart(theme) {
 $(document).ready(function() { $("#num").select2(); });
 
 $(document).ready(function() { $("#sel_ent1").select2(); });
+
+$(document).ready(function() { $("#metric").select2(); });
 
 $(document).ready(function() { $("#up").select2(); });
 

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: entity.class.php 23428 2015-04-09 10:27:44Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -98,8 +98,7 @@ class Entity extends CommonTreeDropdown {
                                        'entity_helpdesk'
                                           => array('calendars_id', 'tickettype', 'auto_assign_mode',
                                                    'autoclose_delay', 'inquest_config',
-                                                   'inquest_rate', 'inquest_delay',
-                                                   'inquest_duration','inquest_URL',
+                                                   'inquest_rate', 'inquest_delay', 'inquest_URL',
                                                    'max_closedate', 'tickettemplates_id'));
 
 
@@ -255,7 +254,7 @@ class Entity extends CommonTreeDropdown {
                || is_null($this->fields['max_closedate']))
            && ($input['inquest_rate'] != $this->fields['inquest_rate']))
           || (isset($input['inquest_config'])
-              && (($this->fields['inquest_config'] == self::CONFIG_PARENT)
+              && (($this->fields['inquest_config'] == 0)
                   || is_null($this->fields['max_closedate']))
               && ($input['inquest_config'] != $this->fields['inquest_config']))) {
 
@@ -568,8 +567,8 @@ class Entity extends CommonTreeDropdown {
       $tab[61]['name']          = __('Enable notifications by default');
       $tab[61]['massiveaction'] = false;
       $tab[61]['nosearch']      = true;
-      $tab[61]['datatype']      = 'string';
-
+      $tab[61]['datatype']      = 'bool';
+      
       $tab[18]['table']         = $this->getTable();
       $tab[18]['field']         = 'admin_email';
       $tab[18]['name']          = __('Administrator email');
@@ -837,10 +836,8 @@ class Entity extends CommonTreeDropdown {
              __s('Show all')."\">".str_replace(" ","&nbsp;",__('Show all'))."</a></div>";
 
       echo "<div class='left' style='width:100%'>";
-      echo "<form id='entsearchform'>";
       echo Html::input('entsearchtext', array('id' => 'entsearchtext'));
       echo Html::submit(__('Search'), array('id' => 'entsearch'));
-      echo "</form>";
 
       echo "<script type='text/javascript'>";
       echo Html::jsGetElementbyID("tree_projectcategory$rand")."
@@ -895,15 +892,12 @@ class Entity extends CommonTreeDropdown {
         function (e, data) {
             document.location.href = data.rslt.obj.children('a').attr('href');
         });
-
-         $('#entsearchform').submit(function( event ) {
-            // cancel submit of entity search form
-            event.preventDefault();
-
+         $('#entsearch').click(function () {
             ".Html::jsGetElementbyID("tree_projectcategory$rand").".jstree('close_all');;
             ".Html::jsGetElementbyID("tree_projectcategory$rand").
             ".jstree('search',".Html::jsGetDropdownValue('entsearchtext').");
          });
+
         ";
 
 
@@ -1034,7 +1028,7 @@ class Entity extends CommonTreeDropdown {
       echo "</td>";
       echo "<td rowspan='7'>".__('Address')."</td>";
       echo "<td rowspan='7'>";
-      echo "<textarea cols='45' rows='8' name='address'>". $entity->fields["address"]."</textarea>";
+      echo "<textarea cols='45' rows='8' name='address' class='form-control'>". $entity->fields["address"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
@@ -1387,25 +1381,24 @@ class Entity extends CommonTreeDropdown {
       Alert::dropdownYesNo(array('name'           => "is_notif_enable_default",
                                  'value'          =>  $entity->getField('is_notif_enable_default'),
                                  'inherit_parent' => (($ID > 0) ? 1 : 0)));
-
+      
 
       if ($entity->fields['is_notif_enable_default'] == self::CONFIG_PARENT) {
          $tid = self::getUsedConfig('is_notif_enable_default', $entity->getField('entities_id'));
          echo "<font class='green'><br>";
-         echo self::getSpecificValueToDisplay('is_notif_enable_default', $tid);
+         echo $entity->getValueToDisplay('is_notif_enable_default', $tid, array('html' => true));
          echo "</font>";
       }
-
       echo "</td>";
       echo "<td colspan='2'>&nbsp;</td>";
-
+      
       echo "</tr>";
-
-
+      
+      
       echo "<tr class='tab_bg_1'>";
       echo "<td class='middle right'>" . __('Email signature') . "</td>";
       echo "<td colspan='3'>";
-      echo "<textarea cols='60' rows='5' name='mailing_signature'>".
+      echo "<textarea cols='60' rows='5' name='mailing_signature' class='form-control' >".
              $entity->fields["mailing_signature"]."</textarea>";
       echo "</td></tr>";
       echo "</table>";
@@ -2226,7 +2219,6 @@ class Entity extends CommonTreeDropdown {
          case 'use_licenses_alert' :
          case 'use_contracts_alert' :
          case 'use_infocoms_alert' :
-         case 'is_notif_enable_default' :
             if ($values[$field] == self::CONFIG_PARENT) {
                return __('Inheritance of the parent entity');
             }

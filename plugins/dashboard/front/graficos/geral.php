@@ -139,5 +139,9 @@ $total_mes = $DB->fetch_assoc($result);
 			</div>
 		</div>
 </div>
+
+<!-- Highcharts export xls, csv -->
+<script src="../js/export-csv.js"></script>
+
 </body>
 </html>

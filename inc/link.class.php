@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: link.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -52,12 +52,9 @@ class Link extends CommonDBTM {
 
       if (self::canView()) {
          if ($_SESSION['glpishow_count_on_tabs']) {
-            $restrict = "`glpi_links_itemtypes`.`links_id` = `glpi_links`.`id`
-                         AND `glpi_links_itemtypes`.`itemtype` = '".$item->getType()."'".
-                          getEntitiesRestrictRequest(" AND ", "glpi_links", '', '', true);
             return self::createTabEntry(_n('Link','Links', Session::getPluralNumber()),
-                                        countElementsInTable(array('glpi_links_itemtypes','glpi_links'),
-                                                             $restrict));
+                                        countElementsInTable('glpi_links_itemtypes',
+                                                             "`itemtype` = '".$item->getType()."'"));
          }
          return _n('Link','Links', Session::getPluralNumber());
       }
@@ -139,7 +136,7 @@ class Link extends CommonDBTM {
 
       echo "<tr class='tab_bg_1'><td>".__('File content')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea name='data' rows='10' cols='96'>".$this->fields["data"]."</textarea>";
+      echo "<textarea name='data' rows='10' cols='96' class='form-control'>".$this->fields["data"]."</textarea>";
       echo "</td></tr>";
 
       $this->showFormButtons($options);
@@ -532,9 +529,7 @@ class Link extends CommonDBTM {
       $tab[145]['joinparams']        = array('beforejoin'
                                               => array('table'      => 'glpi_links_itemtypes',
                                                        'joinparams' => array('jointype'
-                                                                              => 'itemtypeonly')),
-                                             'condition'
-                                              => getEntitiesRestrictRequest('AND', 'NEWTABLE'));
+                                                                              => 'itemtypeonly')));
 
       return $tab;
    }

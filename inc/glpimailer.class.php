@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: glpimailer.class.php 23120 2014-08-11 15:45:42Z remi $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

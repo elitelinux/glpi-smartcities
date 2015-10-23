@@ -125,7 +125,7 @@ $tec = $DB->fetch_assoc($result_tec);
 
 ?>
 <div id='content' >
-<div id='container-fluid' style="margin: 0px 5% 0px 5%;">
+<div id='container-fluid' style="margin: 0px 2% 0px 2%;">
 
 <div id="charts" class="row-fluid chart" >
 
@@ -319,13 +319,13 @@ while($row = $DB->fetch_assoc($result_cham)){
 	
 	echo "
 	<tr>
-	<td style='text-align:center;'><a href=".$CFG_GLPI['url_base']."/front/ticket.form.php?id=". $row['id'] ." target=_blank >" . $row['id'] . "</a></td>
-	<td style='text-align:center;'> ". conv_data_hora($row['date']) ." </td>
-	<td> ". $row_nome['firstname'] ." ".$row_nome['realname']." </td>
-	<td style='max-width:350px;'> ". $row['content'] ." </td>
-	<td> ". time_ext($row['actiontime']) ."</td>
-	<td style='text-align:center;'> ". conv_data_hora($row['begin']) ."</td>
-	<td style='text-align:center;'> ". conv_data_hora($row['end']) ."</td>
+	<td style='text-align:center; vertical-align:middle;'><a href=".$CFG_GLPI['url_base']."/front/ticket.form.php?id=". $row['id'] ." target=_blank >" . $row['id'] . "</a></td>
+	<td style='text-align:center; vertical-align:middle;'> ". conv_data_hora($row['date']) ." </td>
+	<td style='vertical-align:middle;'> ". $row_nome['firstname'] ." ".$row_nome['realname']." </td>
+	<td style='max-width:350px; vertical-align:middle;'> ". $row['content'] ." </td>
+	<td style='text-align:center; vertical-align:middle;'> ". time_ext($row['actiontime']) ."</td>
+	<td style='text-align:center; vertical-align:middle;'> ". conv_data_hora($row['begin']) ."</td>
+	<td style='text-align:center; vertical-align:middle;'> ". conv_data_hora($row['end']) ."</td>
 	</tr>";
 }
 
@@ -344,12 +344,13 @@ $(document).ready(function() {
         "bJQueryUI": true,
         "sPaginationType": "full_numbers",
         "bFilter": false,
-        "aaSorting": [[0,'desc']], 
+        "aaSorting": [[0,'desc'],[1,'desc'],[2,'desc'],[3,'desc'],[4,'desc'],[5,'desc'],[6,'desc']],
         "iDisplayLength": 25,
     	  "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]], 
 
         "sDom": 'T<"clear">lfrtip',
          "oTableTools": {
+			"sRowSelect": "os",           	
          "aButtons": [
              {
                  "sExtends": "copy",

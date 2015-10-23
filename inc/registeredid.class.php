@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: registeredid.class.php 22656 2014-02-12 16:15:25Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -106,7 +106,7 @@ class RegisteredID  extends CommonDBChild {
             }
             echo ">$label</option>";
          }
-         echo "</select> : <input type='text' size='30' name='$main_field' value='$value'>\n";
+         echo "</select> : <input type='text' size='30' name='$main_field' value='$value' class='form-control'>\n";
       } else {
          echo "<input type='hidden' name='$main_field' value='$value'>";
          if (!empty($this->fields['device_type'])) {

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: budget.class.php 23441 2015-04-10 09:08:51Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -126,12 +126,12 @@ class Budget extends CommonDropdown{
 
       echo "<td rowspan='$rowspan' class='middle right'>".__('Comments')."</td>";
       echo "<td class='center middle' rowspan='$rowspan'>".
-           "<textarea cols='45' rows='4' name='comment' >".$this->fields["comment"]."</textarea>".
+           "<textarea cols='45' rows='4' name='comment' class='form-control' >".$this->fields["comment"]."</textarea>".
            "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
       echo "<td>"._x('price', 'Value')."</td>";
-      echo "<td><input type='text' name='value' size='14'
+      echo "<td><input type='text' name='value' size='14' class='form-control'
                  value='".Html::formatNumber($this->fields["value"], true)."'></td></tr>";
 
       echo "<tr class='tab_bg_1'>";
@@ -521,7 +521,6 @@ class Budget extends CommonDropdown{
       $itemtypes[] = 'Contract';
       $itemtypes[] = 'Ticket';
       $itemtypes[] = 'Problem';
-      $itemtypes[] = 'Project';
       $itemtypes[] = 'Change';
 
       foreach ($itemtypes as $itemtype) {
@@ -542,17 +541,7 @@ class Budget extends CommonDropdown{
                                       AND `$table`.`is_template` = '0'
                                 GROUP BY `$table`.`entities_id`";
                break;
-            case 'Project' :
-               $costtable = getTableForItemType($item->getType().'Cost');
-               $query_infos = "SELECT SUM(`glpi_projectcosts`.`cost`) AS `sumvalue`,
-                                       `$table`.`entities_id`
-                                FROM `glpi_projectcosts`
-                                INNER JOIN `$table`
-                                    ON (`glpi_projectcosts`.`projects_id` = `$table`.`id`)
-                                WHERE `glpi_projectcosts`.`budgets_id` = '$budgets_id' ".
-                                      getEntitiesRestrictRequest(" AND", $table, "entities_id")."
-                                GROUP BY `$table`.`entities_id`";
-               break;
+
             case 'Ticket' :
             case 'Problem' :
             case 'Change' :
@@ -613,7 +602,7 @@ class Budget extends CommonDropdown{
       $budget->getFromDB($budgets_id);
 
       $colspan = count($found_types)+2;
-      echo "<div class='spaced'><table class='tab_cadre_fixehov'>";
+      echo "<div class='spaced'><table class='tab_cadre_fixehov table-striped table-hover'>";
       echo "<tr class='noHover'><th colspan='$colspan'>".__('Total spent on the budget')."</th></tr>";
       echo "<tr><th>".__('Entity')."</th>";
       if (count($found_types)) {

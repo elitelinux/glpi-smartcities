@@ -420,12 +420,13 @@ $(document).ready(function() {
         "bJQueryUI": true,
         "sPaginationType": "full_numbers",
         "bFilter": false,
-        "aaSorting": [[1,'desc']], 
+        "aaSorting": [[1,'desc'],[0,'desc'],[2,'desc'],[3,'desc'],[4,'desc'],[5,'desc']], 
         "iDisplayLength": 15,
     	  "aLengthMenu": [[15, 25, 50, 100, -1], [15, 25, 50, 100, "All"]], 
 
         "sDom": 'T<"clear">lfrtip',
          "oTableTools": {
+			"sRowSelect": "os",
          "aButtons": [
              {
                  "sExtends": "copy",

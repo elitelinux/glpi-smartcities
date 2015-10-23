@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: subvisibility.php 22800 2014-03-19 09:43:21Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

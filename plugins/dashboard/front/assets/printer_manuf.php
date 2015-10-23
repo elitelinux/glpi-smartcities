@@ -5,6 +5,7 @@ $query_unk = "SELECT count(*) AS total
 FROM `glpi_printers`
 WHERE `is_deleted` = 0
 AND `manufacturers_id` = 0
+AND is_template = 0 
 ".$ent_print." ";
 
 $result = $DB->query($query_unk) or die('erro');
@@ -16,6 +17,7 @@ SELECT glpi_manufacturers.name AS name, count( glpi_printers.id ) AS conta
 FROM glpi_manufacturers, glpi_printers
 WHERE glpi_printers.is_deleted =0
 AND glpi_manufacturers.id = glpi_printers.manufacturers_id
+AND is_template = 0 
 ".$ent_print." 
 GROUP BY glpi_manufacturers.name
 ORDER BY count( glpi_printers.id ) DESC ";

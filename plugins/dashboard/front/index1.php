@@ -154,7 +154,8 @@ else {
     
     <link rel="icon" href="img/dash.ico" type="image/x-icon" />
 	 <link rel="shortcut icon" href="img/dash.ico" type="image/x-icon" />    
-    <link href="css/bootstrap.css" rel="stylesheet">	  
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/material.min.css" rel="stylesheet">	  
 
     <!-- Styles -->   
     <!-- Color theme -->       		   
@@ -172,7 +173,8 @@ else {
     <link href="css/yamm.css" rel="stylesheet" type="text/css" />  
  
 	<script src="js/jquery.js"></script>
-	<script src="js/menu.js"></script>     		
+	<script src="js/menu.js"></script>
+	<script src="js/material.min.js"></script>      		
 	
 <script type="text/javascript">
 function setIframeHeight(iframe) {
@@ -318,7 +320,7 @@ $(window).load(function () {
                         <li><a href="./reports/rel_tickets.php" target="iframe1" > <?php echo _n('Ticket','Tickets',2); ?> </a></li>
                         <li><a href="./reports/rel_tarefa.php" target="iframe1" > <?php echo _n('Task','Tasks',2)." - ". __('Technician'); ?> </a></li>
                         <li><a href="./reports/rel_tarefa_cham.php" target="iframe1" > <?php echo _n('Task','Tasks',2)." - ". __('Tickets','dashboard'); ?> </a></li>
-                        <li><a href="./reports/rel_projects.php" target="iframe1" > <?php echo _n('Project','Projects',2); ?> </a></li>                        
+                        <li><a href="./reports/rel_projects.php?con=1" target="iframe1" > <?php echo _n('Project','Projects',2); ?> </a></li>                        
                       </ul>
 
                       <ul class="col-sm-2 list-unstyled menu1" style="width:180px;"> 
@@ -383,8 +385,20 @@ $(window).load(function () {
             <!-- Classic dropdown -->	            
             <li class="nav-link"><span onclick="window.open('./assets/assets.php','iframe1');"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-icon"><i class='fa fa-desktop'></i>&nbsp;<?php echo __('Assets');?></a></span></li>
             <li class="nav-link"><span onclick="window.open('./metrics/index.php','self');"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-icon"><i class='fa fa-line-chart'></i>&nbsp;<?php echo __('Metrics','dashboard');?></a></span></li>	                    
-          </ul>         
-	         <ul class="dropdown pull-right">
+          </ul>     
+ 
+ <!-- Right aligned menu below button -->
+<button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon pull-right" style="margin-top:6px;" >
+  <!--<i class="material-icons">more_vert</i>
+  <img src="./img/settingsm.png" alt="Menu" /> -->
+</button>
+
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right" style="color:#888 !important;" >
+  <li class="mdl-menu__item"><span onclick="window.open('./config.php','iframe1');"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class='fa fa-gears' title="<?php echo __('Setup');?>" ></i><?php echo " ". __('Setup');?></a></span></li>
+  <li class="mdl-menu__item"><span onclick="window.open('https://forge.indepnet.net/projects/dashboard/wiki','_blank');"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class='fa fa fa-question-circle' title="<?php echo __('Help');?>" ></i><?php echo " ". __('Help');?></a></span></li>  
+  <li class="mdl-menu__item"><span onclick="window.open('./info.php','iframe1');"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class='fa fa-info-circle' title="<?php echo __('Info');?>" ></i><?php echo " ". __('Info');?></a></span></li>
+</ul>             
+	<!--         <ul class="dropdown pull-right">
 					<li class="nav-link"><span onclick="window.open('./config.php','iframe1');"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-icon"><i class='fa fa-gears' title="<?php echo __('Setup');?>" ></i></a></span></li>
 				</ul>         
 				<ul class="dropdown pull-right">			
@@ -393,7 +407,7 @@ $(window).load(function () {
 				<ul class="dropdown pull-right">			
 					<li class="nav-link"><span onclick="window.open('./info.php','iframe1');"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-icon"><i class='fa fa-info-circle' title="<?php echo __('Info');?>" ></i></a></span></li>
 	         </ul>             
-
+-->
         </div>
         </div>      
         

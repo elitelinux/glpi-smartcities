@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: commonglpi.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -473,7 +473,8 @@ class CommonGLPI {
 
       if ($nb) {
          //TRANS: %1$s is the name of the tab, $2$d is number of items in the tab between ()
-         $text = sprintf(__('%1$s %2$s'), $text, "<sup>($nb)</sup>");
+         //$text = sprintf(__('%1$s %2$s'), $text, "<sup>($nb)</sup>");
+         $text = sprintf(__('%1$s %2$s'), $text, "<span class='label label-default' style='font-size:7pt;'>$nb</span>");
       }
       return $text;
    }
@@ -620,6 +621,19 @@ class CommonGLPI {
          $extraparamhtml = "&amp;".Toolbox::append_params($cleaned_options,'&amp;');
          $extraparam     = "&".Toolbox::append_params($cleaned_options);
       }
+
+    //Stats - Stevenes
+    
+    $profid = $_SESSION['glpiactiveprofile']['id'];
+	 $url = $_SERVER['REQUEST_URI'];
+	 $central = "central.php";    
+    
+    if(strstr($url,$central)) {
+	    if ($profid == 3 || $profid == 4 || $profid == 7) {
+	      include('stats.inc.php');
+	    }
+ 	 }
+
       echo "<div id='tabspanel' class='center-h'></div>";
       $current_tab = 0;
       $onglets     = $this->defineAllTabs($options);
@@ -1169,7 +1183,7 @@ class CommonGLPI {
          echo "<table class='tab_cadre'>";
          echo "<tr><th colspan='2'>".__s('Display options')."</th></tr>\n";
          echo "<tr><td colspan='2'>";
-         echo "<input type='submit' class='submit' name='reset' value=\"".
+         echo "<input type='submit btn btn-primary' class='submit btn btn-primary' name='reset' value=\"".
                 __('Reset display options')."\">";
          echo "</td></tr>\n";
 
@@ -1188,7 +1202,7 @@ class CommonGLPI {
             }
          }
          echo "<tr><td colspan='2' class='center'>";
-         echo "<input type='submit' class='submit' name='update' value=\""._sx('button','Save')."\">";
+         echo "<input type='submit btn btn-primary' class='submit btn btn-primary' name='update' value=\""._sx('button','Save')."\">";
          echo "</td></tr>\n";
          echo "</table>";
          echo "</form>";

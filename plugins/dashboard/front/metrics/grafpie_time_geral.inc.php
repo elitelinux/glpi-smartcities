@@ -5,6 +5,8 @@ SELECT count( id ) AS chamados , DATEDIFF( solvedate, date ) AS days
 FROM glpi_tickets
 WHERE solvedate IS NOT NULL
 AND is_deleted = 0
+$period
+$entidade
 GROUP BY days ";
 		
 $result2 = $DB->query($query2) or die('erro');

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: solutiontemplate.class.php 22810 2014-03-21 12:04:41Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -100,12 +100,11 @@ class SolutionTemplate extends CommonDropdown {
             echo "<tr class='center'><td colspan='5'>";
             $rand = mt_rand();
             Html::initEditorSystem($field['name'].$rand);
-            echo "<textarea id='".$field['name']."$rand' name='".$field['name']."' rows='3'>".
+            echo "<textarea id='".$field['name']."$rand' name='".$field['name']."' rows='3' class='form-control'>".
                    $this->fields[$field['name']]."</textarea>";
             break;
       }
    }
-
 
 }
 ?>

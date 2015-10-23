@@ -233,15 +233,15 @@ $conta_cons = $DB->numrows($result_cham);
 	<table id='tarefa' class='display' style='font-size: 13px; font-weight:bold;' cellpadding = 2px>
 		<thead>
 			<tr>
-				<th style='text-align:center; cursor:pointer;'> ". __('ID') ."  </th>
-				<th style='text-align:center; cursor:pointer;'> ". __('Name') ."  </th>
-				<th style='text-align:center; cursor:pointer;'> ". __('Status') ." </th>								
-				<th style='text-align:center; cursor:pointer;'> ". __('Planned start date') ." </th>
-				<th style='text-align:center; cursor:pointer;'> ". __('Planned end date') ." </th>
-				<th style='text-align:center; cursor:pointer;'> ". __('Manager') ."  </th>
-				<th style='text-align:center; cursor:pointer;'> ". _n('Task', 'Tasks',2) ." </th>
-				<th style='text-align:center; cursor:pointer;'> ". __('Progress') ."</th>
-				<th style='text-align:center; cursor:pointer;'> ". __('Due Date','dashboard') ."</th>				
+				<th style='text-align:center; cursor:pointer; vertical-align:middle'> ". __('ID') ."  </th>
+				<th style='text-align:center; cursor:pointer; vertical-align:middle'> ". __('Name') ."  </th>
+				<th style='text-align:center; cursor:pointer; vertical-align:middle'> ". __('Status') ." </th>								
+				<th style='text-align:center; cursor:pointer; vertical-align:middle'> ". __('Planned start date') ." </th>
+				<th style='text-align:center; cursor:pointer; vertical-align:middle'> ". __('Planned end date') ." </th>
+				<th style='text-align:center; cursor:pointer; vertical-align:middle'> ". __('Manager') ."  </th>
+				<th style='text-align:center; cursor:pointer; vertical-align:middle'> ". _n('Task', 'Tasks',2) ." </th>
+				<th style='text-align:center; cursor:pointer; vertical-align:middle'> ". __('Progress') ."</th>
+				<th style='text-align:center; cursor:pointer; vertical-align:middle'> ". __('Due Date','dashboard') ."</th>				
 			</tr>
 		</thead>
 	<tbody>
@@ -254,7 +254,7 @@ while($row = $DB->fetch_assoc($result_cham)){
 
 	//status
 	$sql_stat = "
-	SELECT id, name, color
+	SELECT id, name, color, is_finished
 	FROM glpi_projectstates
 	WHERE id = ".$row['projectstates_id']." ";
 	
@@ -276,29 +276,30 @@ while($row = $DB->fetch_assoc($result_cham)){
 	$plan_time = $DB->result($res_time,0,'time');
 	
 	//real time
-	$sql_timen = "SELECT TIMESTAMPDIFF(SECOND,plan_start_date,NOW()) AS timen FROM glpi_projects WHERE id = ".$row['id']."";
-	$res_timen = $DB->query($sql_timen);
-	$plan_timen = $DB->result($res_timen,0,'timen');
+	$sql_timer = "SELECT TIMESTAMPDIFF(SECOND,plan_start_date,NOW()) AS timer FROM glpi_projects WHERE id = ".$row['id']."";
+	$res_timer = $DB->query($sql_timer);
+	$plan_timer = $DB->result($res_timer,0,'timer');
 
 		
 	//time percent	
 	$now = date("Y-m-d H:i:s");
-	
-	if($row['plan_end_date'] <= $now) {
-		//$time_plan = "<span style='color:red;'>" . strtoupper(__('Late')) ."</span>";		
-    $barra = 100;
-    $cor_due = "progress-bar-danger";
-    $message = __('Late');
-	}	
-	
-	//if($row['plan_end_date'] >= $now) {
+		
+		if($row['plan_end_date'] <= $now and $row_stat['is_finished'] == 0) {				
+			if($row['real_end_date'] <= $now ) {		
+		   	$barra = 100;
+		    	$cor_due = "progress-bar-danger";
+		    	$message = __('Late');
+			}	
+		}
+		
 	else {	
+
+	//if($row_stat['is_finished'] == 0) {
+							
+		$time_plan = round(($plan_timer * 100)/$plan_time,0);		
+		$message = $time_plan.'%';
 		
-		$time_plan = round(($plan_timen * 100)/$plan_time,2);		
-		$message = '';
-		
-		//porcentagem
-		//$perc = round(($abertos*100)/$conta_cons,1);
+		//porcentagem		
 		$barra = $time_plan;
 		
 		// cor barra
@@ -306,10 +307,17 @@ while($row = $DB->fetch_assoc($result_cham)){
 		if($barra >= 80 and $barra < 100) { $cor_due = "progress-bar-warning "; }
 		if($barra > 51 and $barra < 80) { $cor_due = "progress-bar-warning"; }
 		if($barra > 0 and $barra <= 50) { $cor_due = " "; }
-		if($barra < 0) { $cor_due = "progress-bar-success"; $barra = 0; }
-
+		if($barra < 0) { $cor_due = "progress-bar-success"; $barra = 0; }				
+	/*	
+		}
+	else {
+		$cor_due = ' ';
+		$barra = '';
+		$message = '';
+		
 	}
-
+	*/			
+	}
 
 	// progress bar color
 	if($row['percent_done'] == 100) { $cor = "progress-bar-success"; }
@@ -341,8 +349,6 @@ while($row = $DB->fetch_assoc($result_cham)){
 	</tr>";
 }
 
-//echo 	<td> ". $row_nome['firstname'] ." ".$row_nome['realname']." </td>;
-
 echo "</tbody>
 		</table>
 		</div>"; ?>
@@ -358,12 +364,13 @@ $(document).ready(function() {
         "bJQueryUI": true,
         "sPaginationType": "full_numbers",
         "bFilter": false,
-        //"aaSorting": [[0,'desc']], 
+        "aaSorting": [[0,'asc'],[1,'desc'],[2,'desc'],[3,'desc'],[4,'desc'],[5,'desc'],[6,'desc'],[7,'desc'],[8,'desc']], 
         "iDisplayLength": 25,
     	  "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]], 
 
         "sDom": 'T<"clear">lfrtip',
          "oTableTools": {
+         "sRowSelect": "os",
          "aButtons": [
              {
                  "sExtends": "copy",

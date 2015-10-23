@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: reminder.class.php 23400 2015-03-20 08:02:17Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -1194,7 +1194,7 @@ class Reminder extends CommonDBTM {
          }
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';

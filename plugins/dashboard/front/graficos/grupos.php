@@ -126,9 +126,7 @@ $datahoje = date("Y-m-d");
 				</div>
 			
 			<div id="graf1" class="row-fluid">
-			<?php 
-			include ("./inc/grafbar_grupo_mes.inc.php");
-			?>
+				<?php include ("./inc/grafbar_grupo_mes.inc.php"); ?>
 			</div>
 			
 			</div>
@@ -136,4 +134,9 @@ $datahoje = date("Y-m-d");
 		</div>
 	</div>
 </div>
-</body> </html>
+
+<!-- Highcharts export xls, csv -->
+<script src="../js/export-csv.js"></script>
+
+</body>
+</html>

@@ -142,9 +142,7 @@ else {
 </div>
 
 <div id="graf1" class="row-fluid">
-<?php 
-include ("./inc/grafbar_ent_mes.inc.php");
-?>
+	<?php include ("./inc/grafbar_ent_mes.inc.php"); ?>
 </div>
 
 </div>
@@ -152,5 +150,9 @@ include ("./inc/grafbar_ent_mes.inc.php");
 </div>
 </div>
 </div>
+
+<!-- Highcharts export xls, csv -->
+<script src="../js/export-csv.js"></script>
+
 </body>
 </html>

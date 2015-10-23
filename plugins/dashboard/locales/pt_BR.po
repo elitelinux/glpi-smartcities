@@ -453,3 +453,21 @@ msgstr "No prazo"
 
 msgid "Metrics"
 msgstr "Métricas"
+
+msgid "Period for Metrics"
+msgstr "Período para Métricas"
+
+msgid "Current month"
+msgstr "Mês atual"
+
+msgid "Last 60 days"
+msgstr "Últimos 60 dias"
+
+msgid "Show Server info"
+msgstr "Exibir informação do servidor"
+
+msgid "Tickets Page"
+msgstr "Página de Chamados"
+
+msgid "Widgets settings"
+msgstr "Configuração de Widgets"

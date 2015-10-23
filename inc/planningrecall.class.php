@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: planningrecall.class.php 22938 2014-04-17 15:37:33Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

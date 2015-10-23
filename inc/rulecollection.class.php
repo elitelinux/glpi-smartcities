@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: rulecollection.class.php 23304 2015-01-21 14:46:37Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -458,7 +458,7 @@ class RuleCollection extends CommonDBTM {
          Html::showMassiveActions($massiveactionparams);
       }
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       $colspan = 6;
 
       if ($display_entities) {
@@ -837,8 +837,7 @@ class RuleCollection extends CommonDBTM {
       unset($rulecollection->fields['id']);
 
       //add new duplicate
-      $input = toolbox::addslashes_deep($rulecollection->fields);
-      $newID = $rulecollection->add($input);
+      $newID = $rulecollection->add($rulecollection->fields);
       $rule  = $rulecollection->getRuleClass();
       if (!$newID) {
          return false;
@@ -846,7 +845,6 @@ class RuleCollection extends CommonDBTM {
       //find and duplicate actions
       $ruleaction = new RuleAction(get_class($rule));
       $actions    = $ruleaction->find("`rules_id` = '$ID'");
-      $actions    = toolbox::addslashes_deep($actions);
       foreach ($actions as $action) {
          $action['rules_id'] = $newID;
          unset($action['id']);
@@ -858,7 +856,6 @@ class RuleCollection extends CommonDBTM {
       //find and duplicate criterias
       $rulecritera = new RuleCriteria(get_class($rule));
       $criteria   = $rulecritera->find("`rules_id` = '$ID'");
-      $criteria = toolbox::addslashes_deep($criteria);
       foreach ($criteria as $criterion) {
          $criterion['rules_id'] = $newID;
          unset($criterion['id']);

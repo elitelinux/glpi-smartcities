@@ -9,22 +9,36 @@ else {
 	$datas = "BETWEEN '".$data_ini." 00:00:00' AND '".$data_fin." 23:59:59'";	
 }
 
-if($sel_ent == 0) { $limit = "LIMIT 40"; } 
+
+// entity
+$sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' AND users_id = ".$_SESSION['glpiID']."";
+$result_e = $DB->query($sql_e);
+$sel_ent = $DB->result($result_e,0,'value');
+
+if($sel_ent == '' || $sel_ent == -1) {
+	$sel_ent = 0;
+}
+else {
+	$entidade = "AND glpi_tickets.entities_id IN (".$sel_ent.")";
+}	  
+
+//limits
+if($sel_ent == 0) { $limit = "LIMIT 25"; } 
 else { $limit = "";}
 
 
-$sql_tec = "
-SELECT count(glpi_tickets.id) AS conta, glpi_itilcategories.name AS name
+$sql_cat = "
+SELECT glpi_itilcategories.id, glpi_itilcategories.completename AS name, count(glpi_tickets.id) AS total
 FROM `glpi_itilcategories`, glpi_tickets
-WHERE glpi_tickets.`itilcategories_id` = glpi_itilcategories.id
-AND glpi_tickets.is_deleted = 0
+WHERE glpi_tickets.is_deleted = 0
+AND glpi_tickets.`itilcategories_id` = glpi_itilcategories.id 
 AND glpi_tickets.date ".$datas."
 ". $entidade ."
-GROUP BY name
-ORDER BY conta DESC
+GROUP BY id
+ORDER BY total DESC
 ". $limit ." ";
 
-$query_tec = $DB->query($sql_tec);
+$query_cat = $DB->query($sql_cat);
 
 echo "
 <script type='text/javascript'>
@@ -33,7 +47,7 @@ $(function () {
         $('#graf1').highcharts({
             chart: {
                 type: 'bar',
-                height: 800
+                height: 950
             },
             title: {
                 text: ''
@@ -44,14 +58,14 @@ $(function () {
             xAxis: { 
             categories: [ ";
 
-while ($entity = $DB->fetch_assoc($query_tec)) {
+while ($entity = $DB->fetch_assoc($query_cat)) {
 
 echo "'". $entity['name']."',";
 
 }   
 
 //zerar rows para segundo while
-$DB->data_seek($query_tec, 0) ;               
+$DB->data_seek($query_cat, 0) ;               
 
 echo "    ],
                 title: {
@@ -117,10 +131,10 @@ echo "    ],
                 data: [  
 ";
              
-while ($entity = $DB->fetch_assoc($query_tec)) 
+while ($entity = $DB->fetch_assoc($query_cat)) 
 
 {
-echo $entity['conta'].",";
+echo $entity['total'].",";
 }    
 
 echo "]

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: softwareversion.class.php 23327 2015-02-02 17:15:33Z tsmr $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -121,7 +121,7 @@ class SoftwareVersion extends CommonDBChild {
       echo "</td>";
       echo "<td rowspan='4' class='middle'>".__('Comments')."</td>";
       echo "<td class='center middle' rowspan='4'>";
-      echo "<textarea cols='45' rows='3' name='comment' >".$this->fields["comment"];
+      echo "<textarea cols='45' rows='3' name='comment' class='form-control'>".$this->fields["comment"];
       echo "</textarea></td></tr>\n";
 
       echo "<tr class='tab_bg_1'><td>".__('Name')."</td>";

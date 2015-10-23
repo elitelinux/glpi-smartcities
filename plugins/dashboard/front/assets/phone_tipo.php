@@ -7,7 +7,8 @@ FROM glpi_tickets, glpi_computers, glpi_items_tickets
 WHERE glpi_items_tickets.itemtype = 'computer'
 AND glpi_items_tickets.items_id = glpi_computers.id
 AND glpi_items_tickets.tickets_id = glpi_tickets.id
-AND glpi_computers.is_deleted =0
+AND glpi_computers.is_deleted = 0
+AND is_template = 0 
 ".$ent_comp."
 GROUP BY items_id
 ORDER BY `conta` DESC ";
@@ -61,7 +62,7 @@ $(document).ready(function() {
              },
              {
                  "sExtends":    "collection",
-                 "sButtonText": "<?php echo __('Export'); ?>",
+                 "sButtonText": "<?php echo _x('button', 'Export'); ?>",
                  "aButtons":    [ "csv", "xls",
                   {
                  "sExtends": "pdf",

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: searchoptionvalue.php 22656 2014-02-12 16:15:25Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -144,7 +144,7 @@ if (isset($_POST['searchtype'])) {
 
    // Default case : text field
    if (!$display) {
-        echo "<input type='text' size='13' name='$inputname' value=\"".
+        echo "<input type='text' size='13' style='width:180px; height:30px;' class='form-control' name='$inputname' value=\"".
                Html::cleanInputText($_POST['value'])."\">";
    }
 }

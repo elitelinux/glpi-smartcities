@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: devicedrive.class.php 22884 2014-04-09 11:48:04Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

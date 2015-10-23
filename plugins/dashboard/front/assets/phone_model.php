@@ -5,6 +5,7 @@ $query_unk = "SELECT count(*) AS total
 FROM `glpi_phones`
 WHERE `is_deleted` = 0
 AND `phonemodels_id` = 0
+AND is_template = 0 
 ".$ent_phone." ";
 
 $result = $DB->query($query_unk) or die('erro');
@@ -14,8 +15,9 @@ $unk = $DB->result($result,0,'total');
 $query_os = "
 SELECT glpi_phonemodels.name AS name, count( glpi_phones.id ) AS conta
 FROM glpi_phonemodels, glpi_phones
-WHERE glpi_phones.is_deleted =0
+WHERE glpi_phones.is_deleted = 0
 AND glpi_phonemodels.id = glpi_phones.phonemodels_id
+AND is_template = 0 
 ".$ent_phone." 
 GROUP BY glpi_phonemodels.name
 ORDER BY count( glpi_phones.id ) DESC ";

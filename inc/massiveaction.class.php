@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: massiveaction.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

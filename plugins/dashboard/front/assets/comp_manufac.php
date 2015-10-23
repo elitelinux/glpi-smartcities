@@ -47,6 +47,7 @@ $(document).ready(function() {
         "aoColumnDefs": [{ "sWidth": "60%", "aTargets": [1] }],
          "sDom": 'T<"clear">lfrtip',
          "oTableTools": {
+         "sRowSelect": "os",
          "aButtons": [
              {
                  "sExtends": "copy",
@@ -59,7 +60,7 @@ $(document).ready(function() {
              },
              {
                  "sExtends":    "collection",
-                 "sButtonText": "<?php echo __('Export'); ?>",
+                 "sButtonText": "<?php echo _x('button', 'Export'); ?>",
                  "aButtons":    [ "csv", "xls",
                   {
                  "sExtends": "pdf",

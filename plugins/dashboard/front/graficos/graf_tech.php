@@ -438,8 +438,7 @@ echo '<div id="name"  style="margin-top: 15px;"><span>'.$tec_name['name'].' '.$t
 	<div id="graf_linhas" class="span12" style="height: 450px; margin-top: 10px; margin-left: -5px;">
 		<?php  include ("./inc/graflinhas_tec.inc.php"); ?>
 	</div>
-	
-	
+		
 	<div id="graf2" class="span6" >
 		<?php  include ("./inc/grafpie_stat_tec.inc.php");  ?>
 	</div>
@@ -460,23 +459,27 @@ echo '<div id="name"  style="margin-top: 15px;"><span>'.$tec_name['name'].' '.$t
 		<?php include ("./inc/grafpie_prio_tech.inc.php");  ?>
 	</div>
 	
-	<div id="graf_time1" class="span12" style="height: 450px; margin-top:30px; margin-bottom:100px; margin-left: -5px;">
+	<div id="graf_time1" class="span12" style="height: 450px; margin-top:30px; margin-bottom:30px; margin-left: -5px;">
 		<?php  include ("./inc/grafpie_time_tech.inc.php"); ?>
 	</div>
 
-	<div id="graf_sat" class="span12" style="height: 450px; margin-top:30px; margin-bottom:30px; margin-left: -5px;">
+	<div id="graf_sat" class="span12" style="height: 450px; margin-top:0px; margin-bottom:30px; margin-left: -5px;">
 		<?php include ("./inc/grafcol_sat_tec.inc.php"); ?>
 	</div>
 
-<?php 
-
-}
-?>
+	<?php 
+	
+	}
+	?>
 
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<!-- Highcharts export xls, csv -->
+<script src="../js/export-csv.js"></script>
+
 </body>
 </html>

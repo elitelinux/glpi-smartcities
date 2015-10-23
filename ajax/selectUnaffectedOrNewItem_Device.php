@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: selectUnaffectedOrNewItem_Device.php 22889 2014-04-09 14:46:31Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

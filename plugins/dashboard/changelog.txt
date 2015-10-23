@@ -1,35 +1,31 @@
-Versão 0.6.5:
+Versão 0.6.6:
 
-- Página com Métricas do GLPI, ideal para TV's;
+- Novo menu para opções / configurações;
 
-- Alterações no temas;
+- Selecção de períodos de tempo para Métricas, em Configurações;
 
-- Correções em Ativos;
+- Gráficos podem ser exportados em formato CSV ou XLS;
 
-- Modificações no relatório de Projetos;
+- Correções do gráfico de Categorias;
 
-- Modificações em Tarefas de projetos;
+- Nos relatórios é possível selecionar linhas para exportar, usando Ctrl ou Shift;
 
-- Correções nos relatórios de Ativos;
-
-- Correção de bugs diversos;
+- Correções de pequenos erros;
 
 - Você agora pode me comprar uma cerveja pelo paypal; :)
 
 
-Version 0.6.5:
+Version 0.6.6:
 
-- Page with GPI Metrics, ideal for TV's;
+- New Settings menu;
 
-- Changes in themes;
+- Time periods for Metrics, in settings page;
 
-- Fixes in Assets;
+- Charts can be exported in CSV or XLS format;
 
-- Changes in Project report;
+- Fixes in Categories chart;
 
-- Changes in project tasks;
-
-- Fixes in Asset reports;
+- You can select rows to export in Reports, using Ctrl or Shift keys;
 
 - Fixed various bugs.
 

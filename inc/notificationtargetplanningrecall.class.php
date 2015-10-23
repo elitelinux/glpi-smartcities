@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: notificationtargetplanningrecall.class.php 23346 2015-02-03 15:11:10Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

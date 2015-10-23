@@ -143,5 +143,9 @@ else {
 </div>
 </div>
 </div>
+
+<!-- Highcharts export xls, csv -->
+<script src="../js/export-csv.js"></script>
+
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: autoload.function.php 23200 2014-10-24 07:40:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -83,9 +83,6 @@ function isPluginItemType($classname) {
 function __($str, $domain='glpi') {
    global $TRANSLATE;
 
-   if (is_null($TRANSLATE)) { // before login
-      return $str;
-   }
    $trans = $TRANSLATE->translate($str, $domain);
    // Wrong call when plural defined
    if (is_array($trans)) {

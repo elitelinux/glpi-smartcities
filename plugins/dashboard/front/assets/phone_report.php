@@ -1,12 +1,11 @@
-
 <?php
 
 $query2 = "
 SELECT id, name, contact, users_id, groups_id, phonetypes_id, phonemodels_id, brand, manufacturers_id, states_id 
 FROM glpi_phones
 WHERE glpi_phones.is_deleted = 0
+AND is_template = 0 
 ".$ent_phone."
-
 ORDER BY id ASC ";
 	
 $result2 = $DB->query($query2) or die('erro');
@@ -22,8 +21,7 @@ echo '
 		<th style="color:#555;">'. __('Type').'</th>
 		<th style="color:#555;">'. __('Model').'</th>
 		<th style="color:#555;">'. __('User').'</th>
-		<th style="color:#555;">'. __('Group').'</th>
-		
+		<th style="color:#555;">'. __('Group').'</th>		
 		</tr>
 	</thead>
 	<tbody>'; 		
@@ -46,11 +44,7 @@ $type = $DB->result($res_type,0,'name');
 $sql_model = "SELECT name FROM glpi_phonemodels WHERE id = ".$row['phonemodels_id']." ";
 $res_model = $DB->query($sql_model);
 $model = $DB->result($res_model,0,'name');
-/*
-$sql_user = "SELECT name FROM glpi_users WHERE id = ".$row['users_id']." ";
-$res_user = $DB->query($sql_user);
-$user = $DB->result($res_user,0,'name');
-*/
+
 $sql_group = "SELECT name FROM glpi_groups WHERE id = ".$row['groups_id']." ";
 $res_group = $DB->query($sql_group);
 $group = $DB->result($res_group,0,'name');
@@ -83,6 +77,7 @@ $(document).ready(function() {
         //"aoColumnDefs": [{ "sWidth": "60%", "aTargets": [1] }],
          "sDom": 'T<"clear">lfrtip',
          "oTableTools": {
+			"sRowSelect": "os",
          "aButtons": [
              {
                  "sExtends": "copy",
@@ -95,7 +90,7 @@ $(document).ready(function() {
              },
              {
                  "sExtends":    "collection",
-                 "sButtonText": "<?php echo __('Export'); ?>",
+                 "sButtonText": "<?php echo _x('button', 'Export'); ?>",
                  "aButtons":    [ "csv", "xls",
                   {
                  "sExtends": "pdf",

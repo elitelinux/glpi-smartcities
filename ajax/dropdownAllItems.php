@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: dropdownAllItems.php 22656 2014-02-12 16:15:25Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -67,10 +67,6 @@ if ($_POST["idtable"] && class_exists($_POST["idtable"])) {
    if (isset($_POST['condition'])) {
       $p['condition'] = $_POST['condition'];
    }
-   if (isset($_POST['used'][$_POST['idtable']])) {
-      $p['used'] = $_POST['used'][$_POST['idtable']];
-   }
-
    echo  Html::jsAjaxDropdown($_POST["name"], $field_id,
                               $CFG_GLPI['root_doc']."/ajax/".$link,
                               $p);

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: knowbase.class.php 23228 2014-11-14 09:50:02Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: notificationmailsetting.class.php 23304 2015-01-21 14:46:37Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -135,27 +135,27 @@ class NotificationMailSetting extends CommonDBTM {
 
          echo "<tr class='tab_bg_2'>";
          echo "<td>" . __('Administrator email') . "</td>";
-         echo "<td><input type='text' name='admin_email' size='40' value='".
+         echo "<td><input type='text' name='admin_email' size='40' class='form-control' value='".
                     $CFG_GLPI["admin_email"]."'>";
          if (!NotificationMail::isUserAddressValid($CFG_GLPI["admin_email"])) {
              echo "<span class='red'>&nbsp;".__('Invalid email address')."</span>";
          }
          echo "</td>";
          echo "<td >" . __('Administrator name') . "</td>";
-         echo "<td><input type='text' name='admin_email_name' size='40' value='" .
+         echo "<td><input type='text' name='admin_email_name' size='40' class='form-control' value='" .
                     $CFG_GLPI["admin_email_name"] . "'>";
          echo " </td></tr>";
 
          echo "<tr class='tab_bg_2'>";
          echo "<td >" . __('Administrator reply-to email (if needed)') . "</td>";
-         echo "<td><input type='text' name='admin_reply' size='40' value='" .
+         echo "<td><input type='text' name='admin_reply' size='40' class='form-control' value='" .
                     $CFG_GLPI["admin_reply"] . "'>";
          if (!NotificationMail::isUserAddressValid($CFG_GLPI["admin_reply"])) {
             echo "<span class='red'>&nbsp;".__('Invalid email address')."</span>";
          }
          echo " </td>";
          echo "<td >" . __('Response name (if needed)') . "</td>";
-         echo "<td><input type='text' name='admin_reply_name' size='40' value='" .
+         echo "<td><input type='text' name='admin_reply_name' size='40' class='form-control' value='" .
                     $CFG_GLPI["admin_reply_name"] . "'>";
          echo " </td></tr>";
          
@@ -175,7 +175,7 @@ class NotificationMailSetting extends CommonDBTM {
 
          echo "<tr class='tab_bg_2'>";
          echo "<td>" . __('Email signature') . "</td>";
-         echo "<td colspan='3'><textarea cols='60' rows='3' name='mailing_signature'>".
+         echo "<td colspan='3'><textarea cols='60' rows='3' class='form-control name='mailing_signature'>".
                                 $CFG_GLPI["mailing_signature"]."</textarea></td></tr>";
 
          echo "<tr class='tab_bg_1'><th colspan='4'>".__('Mail server')."</th></tr>";
@@ -190,21 +190,21 @@ class NotificationMailSetting extends CommonDBTM {
          echo "</tr>";
 
          echo "<tr class='tab_bg_2'><td >" . __('SMTP host') . "</td>";
-         echo "<td><input type='text' name='smtp_host' size='40' value='".$CFG_GLPI["smtp_host"]."'>";
+         echo "<td><input type='text' name='smtp_host' size='40' class='form-control' value='".$CFG_GLPI["smtp_host"]."'>";
          echo "</td>";
          //TRANS: SMTP port
          echo "<td >" . __('Port') . "</td>";
-         echo "<td><input type='text' name='smtp_port' size='5' value='".$CFG_GLPI["smtp_port"]."'>";
+         echo "<td><input type='text' name='smtp_port' size='5' class='form-control' value='".$CFG_GLPI["smtp_port"]."'>";
          echo "</td>";
          echo "</tr>";
          
          echo "<tr class='tab_bg_2'>";
          echo "<td >" . __('SMTP login (optional)') . "</td>";
-         echo "<td><input type='text' name='smtp_username' size='40' value='" .
+         echo "<td><input type='text' name='smtp_username' size='40' class='form-control' value='" .
                     $CFG_GLPI["smtp_username"] . "'></td>";
          
          echo "<td >" . __('SMTP password (optional)') . "</td>";
-         echo "<td><input type='password' name='smtp_passwd' size='40' value='' autocomplete='off'>";
+         echo "<td><input type='password' name='smtp_passwd' size='40' class='form-control' value='' autocomplete='off'>";
          echo "<br><input type='checkbox' name='_blank_smtp_passwd'>&nbsp;".__('Clear');
 
          echo "</td></tr>";

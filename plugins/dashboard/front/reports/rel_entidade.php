@@ -521,7 +521,7 @@ else {
 		        "bJQueryUI": true,
 		        "sPaginationType": "full_numbers",
 		        "bFilter": false,
-		        "aaSorting": [[0,'desc']],
+		        "aaSorting": [[0,'desc'],[1,'desc'],[2,'desc'],[3,'desc'],[4,'desc'],[5,'desc'],[6,'desc'],[7,'desc'],[8,'desc'],[9,'desc'],[10,'desc']],
 		        "iDisplayLength": 25,
 		    	  "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],        		         
 		        "sDom": 'T<"clear">lfrtip',   //"sDom": 'CT<"clear">lfrtip',
@@ -531,6 +531,7 @@ else {
 		            ],        
 		        
 		         "oTableTools": {
+		         "sRowSelect": "os",	
 		         "aButtons": [
 		             {
 		                 "sExtends": "copy",
@@ -593,8 +594,7 @@ else {
 		</script>
 		
 		</div>
-		</div>
-	
+		</div>	
 	</div>
 </div>
 

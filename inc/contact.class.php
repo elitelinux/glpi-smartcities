@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: contact.class.php 23304 2015-01-21 14:46:37Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -157,7 +157,7 @@ class Contact extends CommonDBTM{
       echo "</td>";
       echo "<td rowspan='4' class='middle right'>".__('Comments')."</td>";
       echo "<td class='middle' rowspan='4'>";
-      echo "<textarea cols='45' rows='7' name='comment' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea cols='45' rows='7' name='comment' class='form-control'>".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
@@ -185,7 +185,7 @@ class Contact extends CommonDBTM{
       echo "</td>";
       echo "<td class='middle'>".__('Address')."</td>";
       echo "<td class='middle'>";
-      echo "<textarea cols='37' rows='3' name='address'>".$this->fields["address"]."</textarea>";
+      echo "<textarea cols='37' rows='3' name='address' class='form-control'>".$this->fields["address"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
@@ -196,7 +196,13 @@ class Contact extends CommonDBTM{
       echo "<td>".__('Postal code')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "postcode", array('size' => 10));
-      echo "&nbsp;&nbsp;". __('City'). "&nbsp;";
+      //echo "&nbsp;&nbsp;". __('City'). "&nbsp;";
+      //Html::autocompletionTextField($this, "town", array('size' => 23));
+      echo "</td></tr>";
+      
+      echo "<tr class='tab_bg_1'>";      
+      echo "<td></td><td></td><td>". __('City'). "</td>";
+      echo "<td>";
       Html::autocompletionTextField($this, "town", array('size' => 23));
       echo "</td></tr>";
 

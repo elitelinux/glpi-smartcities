@@ -1,12 +1,13 @@
 .ui-dialog { z-index: 1000 !important ;}
 
-.ui-widget-content a { color: #659900; }
-.ui-widget-content span.vsubmit, a.vsubmit {color: #8f5a0a;}
+.ui-widget-content a { color: #555; //#659900; }
+.ui-widget-content span.vsubmit, a.vsubmit {color: #fff;}
 /* css for timepicker */
-.ui-datepicker {z-index:10000 !important; }
+.ui-datepicker {z-index:10000 !important; width:370px; }
+.ui-datepicker-month { font-size:14px; }
 .ui-timepicker-div .ui-widget-header {margin-bottom: 8px; }
 .ui-timepicker-div dl { text-align: left; }
-.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; font-size:14px; }
 .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
 .ui-timepicker-div td { font-size: 90%; }
 .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
@@ -15,7 +16,7 @@
 .ui-timepicker-rtl dl { text-align: right; }
 .ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
 
-.hasDatepicker {margin-right:3px;}
+.hasDatepicker {margin-right:3px; width: 140px; display: inline-block;}
 
 /* css styles for tabs */
 
@@ -44,7 +45,7 @@
 }
 .ui-tabs-vertical .ui-tabs-nav li a {
    display: block;
-   width: 145px;
+   width: 165px;
    text-align: left;
    text-overflow: ellipsis;     /** IE6+, Firefox 7+, Opera 11+, Chrome, Safari **/
    -o-text-overflow: ellipsis;
@@ -99,7 +100,7 @@ html .ui-autocomplete {
    -moz-border-radius: 10px;
    -webkit-border-radius: 10px;
    -o-border-radius: 10px;
-   border: 1px solid  #CC9900;
+   border: 1px solid #286090;  //#247495;  //#CC9900;
    background: url("../pics/fd_hoverlink.png") 0 0 repeat;
    max-width: 350px;
    margin : auto;
@@ -110,7 +111,7 @@ html .ui-autocomplete {
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button
 {
   font-family: 'Bitstream Vera Sans', arial, Tahoma, 'Sans serif';
-  font-size: 11px;
+  font-size: 11px;  
 }
 .select2-results li {
    font-family: 'Bitstream Vera Sans', arial, Tahoma, 'Sans serif';
@@ -155,51 +156,54 @@ html .ui-autocomplete {
 #BackToTop {
    float: left;
    display:none;
-   color: #8f5a0a;
+  /* color: #8f5a0a; */
+   color: white;
    margin: 0 5px;
    padding: 3px;
    text-decoration: none;
-   border: 1px solid #831608;
+   border: 0px solid #337AB7;
    font: bold 12px Arial, Helvetica;
    position:fixed;
    bottom:10px;
    right:10px;
    z-index:9000;
-
+   
+    background-color: #337AB7; //rgb(255, 185, 75);
+    border-radius: 3px 3px 3px 3px;
+/*	 background-image: -webkit-gradient(linear, left top, left bottom, from(#247495), to(#58a7eb));    
+    background-image: -moz-linear-gradient(center top , #247495, #58a7eb);
+    background-image: -webkit-linear-gradient(center top , #247495, #58a7eb);
+    
+    text-shadow: 0px 1px 0px #000000;
+    box-shadow: 0px 0px 1px #000000, 0px 1px 0px #000000 inset;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #D2E3F4 #D2E3F4 #D2E3F4;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#247495', endColorstr='#58a7eb');
+*/
    /** Background gradient **/
-   background-color: #8f5a0a;
-   background-image: -moz-linear-gradient(#fddb6f, #ffb94b);
-   background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
-   background-image: -webkit-linear-gradient(#fddb6f, #ffb94b);
-   background-image: -o-linear-gradient(#fddb6f, #ffb94b);
-   background-image: -ms-linear-gradient(#fddb6f, #ffb94b);
-   background-image: linear-gradient(#fddb6f, #ffb94b);
 
-   border-radius: 3px;
-   -moz-border-radius: 3px;
-   -webkit-border-radius: 3px;
-   text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-   -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
-   -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
-   box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
-   border-width: 1px;
-   border-style: solid;
-   border-color: #d69e31 #e3a037 #d5982d #e3a037
 }
 
 #BackToTop span
 {
    display: block;
    cursor: pointer;
-
-   /** Background gradient **/
-   background-color: #8f5a0a;
-   background-image: -moz-linear-gradient(#fddb6f, #ffb94b);
-   background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
-   background-image: -webkit-linear-gradient(#fddb6f, #ffb94b);
-   background-image: -o-linear-gradient(#fddb6f, #ffb94b);
-   background-image: -ms-linear-gradient(#fddb6f, #ffb94b);
-   background-image: linear-gradient(#fddb6f, #ffb94b);
+   
+    background-color: #337AB7; //rgb(255, 185, 75);
+    border-radius: 3px 3px 3px 3px;
+   /* 
+	 background-image: -webkit-gradient(linear, left top, left bottom, from(#247495), to(#58a7eb));    
+    background-image: -moz-linear-gradient(center top , #247495, #58a7eb);
+    background-image: -webkit-linear-gradient(center top , #247495, #58a7eb);
+    border-radius: 3px 3px 3px 3px;
+    text-shadow: 0px 1px 0px #000000;
+   // box-shadow: 0px 0px 1px #000000, 0px 1px 0px #000000 inset; 
+    border-width: 0px;
+    border-style: none;
+    */
+    /* border-color: #D2E3F4 #D2E3F4 #D2E3F4; */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#247495', endColorstr='#58a7eb');
 }
 
 input.submit {
@@ -222,4 +226,8 @@ input.submit {
 
 .fn-gantt .ganttMilestone {
     background-color: #000000;
+}
+
+#BackToTop {
+	margin-bottom: 40px;
 }

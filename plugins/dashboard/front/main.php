@@ -311,7 +311,7 @@ $total_users = $DB->fetch_assoc($result_users);
     <!-- main-content -->
    <div class="main-content masked-relative masked">
       
-						<div class="row" style="margin-left: 3%;">
+						<div id="panels" class="row" style="margin-left: 3%;">
 							<!-- COLUMN 1 -->															
 								  <div class="col-sm-3 col-md-3 stat">
 									 <div class="dashbox shad panel panel-default db-red">
@@ -448,6 +448,7 @@ setTimeout(function(){
       <p id="choices" style=" margin-right: 20px; margin-top: 5px; text-align:right; width:<?php echo $width_os; ?>;"></p>	  	
 		<div class="demo-container" style="margin-bottom:10px;">						
 			<div id="graflinhas1" class="demo-placeholder" style="float:left; width: <?php echo $width_os; ?> ;"></div>
+				
 				<div id="srvinfo">					
 					<?php	
 					
@@ -542,7 +543,7 @@ setTimeout(function(){
 <div id="widgets" class="row" style="margin-top: 50px;">	
 	
 <div class="col-sm-6 col-md-6" > 	 				              
-   <div id="tickets_status" class="widget widget-table action-table striped" >
+   <div id="tickets_status" class="widget widget-table action-table striped card1" >
       <div class="widget-header wred">                 
       	<h3><i class="fa fa-pie-chart" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><?php echo __('Opened Tickets by Status','dashboard'); ?></h3>
       	 <span  class="fa fa-times hide-widget"></span>               
@@ -558,7 +559,7 @@ setTimeout(function(){
 
 
 <div class="col-sm-6 col-md-6" > 	 				              
-   <div id="last_week" class="widget widget-table action-table striped" >
+   <div id="last_week" class="widget widget-table action-table striped card1" >
       <div class="widget-header wred">                
       	<h3><i class="fa fa-bar-chart-o" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><?php echo __('Tickets')." - ". __('Last 7 days','dashboard') ; ?></h3>
       	 <span  class="fa fa-times hide-widget"></span>             
@@ -573,7 +574,7 @@ setTimeout(function(){
   </div>   
   	
 <div class="col-sm-6 col-md-6" > 	 				              
-   <div id="tickets_age" class="widget widget-table action-table striped" >
+   <div id="tickets_age" class="widget widget-table action-table striped card1" >
       <div class="widget-header wpurple">                
       	<h3><i class="fa fa-pie-chart" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><?php echo __('Ticket Solving Period','dashboard'); ?></h3>
       	 <span  class="fa fa-times hide-widget"></span>             
@@ -589,7 +590,7 @@ setTimeout(function(){
 
 
 <div class="col-sm-6 col-md-6" > 	 				              
-   <div id="tickets_time" class="widget widget-table action-table striped" >
+   <div id="tickets_time" class="widget widget-table action-table striped card1" >
       <div class="widget-header wpurple">                
       	<h3><i class="fa fa-bar-chart-o" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><?php echo __('Open Tickets Age','dashboard'); ?></h3>
       	 <span  class="fa fa-times hide-widget"></span>             
@@ -604,7 +605,7 @@ setTimeout(function(){
 </div> 
 	
 <div class="col-sm-6 col-md-6" > 	 				              
-      <div id="last_tickets" class="widget widget-table action-table striped">
+      <div id="last_tickets" class="widget widget-table action-table striped card1">
       <div class="widget-header wyellow">                
       	<h3><i class="fa fa-list-alt" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><a href="../../../front/ticket.php" target="_blank" style="color: #525252;"><?php echo __('Last Tickets','dashboard'); ?></a></h3>
       	 <span  class="fa fa-times hide-widget"></span>             
@@ -643,7 +644,7 @@ setTimeout(function(){
 
 <!--  open tickets by tech-->
 	<div class="col-sm-6 col-md-6" > 	
-		<div id="open_tickets" class="widget widget-table action-table striped">
+		<div id="open_tickets" class="widget widget-table action-table striped card1">
             <div class="widget-header wyellow">
            		<h3><i class="fa fa-list-alt" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><a href="../../../front/ticket.php" target="_blank" style="color: #525252;"><?php echo __('Open Tickets','dashboard'). " " .__('by Technician','dashboard') ?></a></h3>
            		 <span  class="fa fa-times hide-widget"></span>           
@@ -690,7 +691,7 @@ setTimeout(function(){
 <div class="row ">
 -->
 <div class="col-sm-6 col-md-6" >  	 				              
-		 <div id="events" class="widget widget-table action-table striped">
+		 <div id="events" class="widget widget-table action-table striped card1">
             <div class="widget-header wblue">
               <h3><i class="fa fa-list-alt" style="margin-left:7px;">&nbsp;&nbsp;&nbsp;</i><a href="../../../front/event.php" target="_blank" style="color: #525252;"><?php echo __('Last Events','dashboard'); ?></a></h3>
                <span  class="fa fa-times hide-widget"></span>
@@ -949,8 +950,10 @@ function scrollWin()
 
 <script src="js/widgets.js"></script>
 
- <!-- Remove below two lines in production --> 
- 
+<!-- Highcharts export xls, csv -->
+<script src="js/export-csv.js"></script>
+
+ <!-- Remove below two lines in production -->  
  <script src="js/theme-options.js"></script>       
  <script src="js/core.js"></script>
 </body>

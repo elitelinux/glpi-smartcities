@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: ticketsatisfaction.php 22656 2014-02-12 16:15:25Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -43,17 +43,15 @@ $entity = new Entity();
 
 if (isset($_POST['inquest_config']) && isset($_POST['entities_id'])) {
    if ($entity->getFromDB($_POST['entities_id'])) {
-      $inquest_config    = $entity->getfield('inquest_config');
-      $inquest_delay     = $entity->getfield('inquest_delay');
-      $inquest_rate      = $entity->getfield('inquest_rate');
-      $inquest_duration  = $entity->getfield('inquest_duration');
-      $max_closedate     = $entity->getfield('max_closedate');
+      $inquest_config = $entity->getfield('inquest_config');
+      $inquest_delay  = $entity->getfield('inquest_delay');
+      $inquest_rate   = $entity->getfield('inquest_rate');
+      $max_closedate  = $entity->getfield('max_closedate');
    } else {
-      $inquest_config    = $_POST['inquest_config'];
-      $inquest_delay     = -1;
-      $inquest_rate      = -1;
-      $inquest_duration  = -1;
-      $max_closedate     = '';
+      $inquest_config = $_POST['inquest_config'];
+      $inquest_delay  = -1;
+      $inquest_rate   = -1;
+      $max_closedate  = '';
    }
 
    if ($_POST['inquest_config'] > 0) {
@@ -80,22 +78,9 @@ if (isset($_POST['inquest_config']) && isset($_POST['entities_id'])) {
                                                  'unit'    => '%'));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td width='50%'>".__('Duration of survey')."</td>";
-      echo "<td>";
-      Dropdown::showNumber('inquest_duration',
-                           array('value' => $inquest_duration,
-                                 'min'   => 1,
-                                 'max'   => 180,
-                                 'step'  => 1,
-                                 'toadd' => array('0' => __('Unspecified')),
-                                 'unit'  => 'day'));
-      echo "</td></tr>";
-
       if ($max_closedate != '') {
-         echo "<tr class='tab_bg_1'><td>". __('For tickets closed after')."</td><td>";
-         Html::showDateTimeField("max_closedate", array('value'      => $max_closedate,
-                                                        'timestep'   => 1));
-         echo "</td></tr>";
+         echo "<tr class='tab_bg_1'><td>". __('For tickets closed after')."</td>";
+         echo "<td>" . Html::convDateTime($max_closedate)."</td></tr>";
       }
 
       if ($_POST['inquest_config'] == 2) {

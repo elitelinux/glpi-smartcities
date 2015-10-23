@@ -5,6 +5,7 @@ $query_unk = "SELECT count(*) AS total
 FROM `glpi_printers`
 WHERE `is_deleted` = 0
 AND `printermodels_id` = 0
+AND is_template = 0 
 ".$ent_print." ";
 
 $result = $DB->query($query_unk) or die('erro');
@@ -16,6 +17,7 @@ SELECT glpi_printermodels.name AS name, count( glpi_printers.id ) AS conta
 FROM glpi_printermodels, glpi_printers
 WHERE glpi_printers.is_deleted = 0
 AND glpi_printermodels.id = glpi_printers.printermodels_id
+AND is_template = 0 
 ".$ent_print." 
 GROUP BY glpi_printermodels.name
 ORDER BY count( glpi_printers.id ) DESC ";
@@ -63,7 +65,7 @@ $(function () {
                 pie: {
                     allowPointSelect: true,
                     cursor: 'pointer',
-                    size: '85%',
+                    //size: '85%',
  					dataLabels: {
 								format: '{point.y} - ( {point.percentage:.1f}% )',
                    		style: {

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: auth.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -263,6 +263,31 @@ class Auth extends CommonGLPI {
 
 
    /**
+    * Check is new password functions works properly
+    *
+    * From https://raw.github.com/ircmaxell/password_compat/master/version-test.php
+    *
+    * @since version 0.85
+    *
+    * @return boolean
+   **/
+   static function isCryptOk() {
+      static $pass = NULL;
+
+      if (is_null($pass)) {
+         if (function_exists('crypt')) {
+            $hash = '$2y$04$usesomesillystringfore7hnbRJHxXVLeakoG8K30oukPsA.ztMG';
+            $test = crypt("password", $hash);
+            $pass = ($test == $hash);
+         } else {
+            $pass = false;
+         }
+      }
+      return $pass;
+   }
+
+
+   /**
     * Check is a password match the stored hash
     *
     * @since version 0.85
@@ -275,7 +300,7 @@ class Auth extends CommonGLPI {
    static function checkPassword($pass, $hash) {
 
       $tmp = NULL;
-      if (PasswordCompat\binary\check()) {
+      if (self::isCryptOk()) {
          $tmp = password_get_info($hash);
       }
 
@@ -308,7 +333,7 @@ class Auth extends CommonGLPI {
    **/
    static function needRehash($hash) {
 
-      if (PasswordCompat\binary\check()) {
+      if (self::isCryptOk()) {
          return password_needs_rehash($hash, PASSWORD_DEFAULT);
       }
       // sha1(40) + salt(8)
@@ -327,7 +352,7 @@ class Auth extends CommonGLPI {
    **/
    static function getPasswordHash($pass) {
 
-      if (PasswordCompat\binary\check()) {
+      if (self::isCryptOk()) {
          return password_hash($pass, PASSWORD_DEFAULT);
       }
       $salt = sprintf("%08x", mt_rand());
@@ -797,11 +822,11 @@ class Auth extends CommonGLPI {
 
          } else {
             if (GLPI_DEMO_MODE) {
-               Event::log(-1, "system", 1, "login", "login",
+               Event::log(-1, "system", 3, "login", "login",
                           "Connection failed for " . $login_name . " ($ip)");
             } else {
                //TRANS: %1$s is the login of the user and %2$s its IP address
-               Event::log(-1, "system", 1, "login", sprintf(__('Failed login for %1$s from IP %2$s'),
+               Event::log(-1, "system", 3, "login", sprintf(__('Failed login for %1$s from IP %2$s'),
                                                             $login_name, $ip));
             }
          }
@@ -1196,16 +1221,16 @@ class Auth extends CommonGLPI {
 
          //TRANS: for CAS SSO system
          echo "<tr class='tab_bg_2'><td class='center'>" . __('CAS Host') . "</td>";
-         echo "<td><input type='text' name='cas_host' value=\"".$CFG_GLPI["cas_host"]."\"></td></tr>\n";
+         echo "<td><input type='text' class='form-control' name='cas_host' value=\"".$CFG_GLPI["cas_host"]."\"></td></tr>\n";
          //TRANS: for CAS SSO system
          echo "<tr class='tab_bg_2'><td class='center'>" . __('Port') . "</td>";
-         echo "<td><input type='text' name='cas_port' value=\"".$CFG_GLPI["cas_port"]."\"></td></tr>\n";
+         echo "<td><input type='text' class='form-control' name='cas_port' value=\"".$CFG_GLPI["cas_port"]."\"></td></tr>\n";
          //TRANS: for CAS SSO system
          echo "<tr class='tab_bg_2'><td class='center'>" . __('Root directory (optional)')."</td>";
-         echo "<td><input type='text' name='cas_uri' value=\"".$CFG_GLPI["cas_uri"]."\"></td></tr>\n";
+         echo "<td><input type='text' class='form-control' name='cas_uri' value=\"".$CFG_GLPI["cas_uri"]."\"></td></tr>\n";
          //TRANS: for CAS SSO system
          echo "<tr class='tab_bg_2'><td class='center'>" . __('Log out fallback URL') . "</td>";
-         echo "<td><input type='text' name='cas_logout' value=\"".$CFG_GLPI["cas_logout"]."\"></td>".
+         echo "<td><input type='text' class='form-control' name='cas_logout' value=\"".$CFG_GLPI["cas_logout"]."\"></td>".
               "</tr>\n";
       } else {
          echo "<tr class='tab_bg_2'><td class='center' colspan='2'>";
@@ -1221,19 +1246,19 @@ class Auth extends CommonGLPI {
       echo "</th></tr>\n";
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>". __('Email attribute for x509 authentication') ."</td>";
-      echo "<td><input type='text' name='x509_email_field' value=\"".$CFG_GLPI["x509_email_field"]."\">";
+      echo "<td><input type='text' class='form-control' name='x509_email_field' value=\"".$CFG_GLPI["x509_email_field"]."\">";
       echo "</td></tr>\n";
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>". sprintf(__('Restrict %s field for x509 authentication (separator $)'),'OU') ."</td>";
-      echo "<td><input type='text' name='x509_ou_restrict' value=\"".$CFG_GLPI["x509_ou_restrict"]."\">";
+      echo "<td><input type='text' class='form-control' name='x509_ou_restrict' value=\"".$CFG_GLPI["x509_ou_restrict"]."\">";
       echo "</td></tr>\n";
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>". sprintf(__('Restrict %s field for x509 authentication (separator $)'),'CN') ."</td>";
-      echo "<td><input type='text' name='x509_cn_restrict' value=\"".$CFG_GLPI["x509_cn_restrict"]."\">";
+      echo "<td><input type='text' class='form-control' name='x509_cn_restrict' value=\"".$CFG_GLPI["x509_cn_restrict"]."\">";
       echo "</td></tr>\n";
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>". sprintf(__('Restrict %s field for x509 authentication (separator $)'),'O') ."</td>";
-      echo "<td><input type='text' name='x509_o_restrict' value=\"".$CFG_GLPI["x509_o_restrict"]."\">";
+      echo "<td><input type='text' class='form-control' name='x509_o_restrict' value=\"".$CFG_GLPI["x509_o_restrict"]."\">";
       echo "</td></tr>\n";
 
 
@@ -1259,87 +1284,87 @@ class Auth extends CommonGLPI {
 
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>" . __('Surname') . "</td>";
-      echo "<td><input type='text' name='realname_ssofield' value='".
+      echo "<td><input type='text' class='form-control' name='realname_ssofield' value='".
                  $CFG_GLPI['realname_ssofield']."'></td>";
       echo "</tr>\n";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>" . __('First name') . "</td>";
-      echo "<td><input type='text' name='firstname_ssofield' value='".
+      echo "<td><input type='text' class='form-control' name='firstname_ssofield' value='".
                  $CFG_GLPI['firstname_ssofield']."'></td>";
       echo "</tr>\n";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>" . __('Comments') . "</td>";
-      echo "<td><input type='text' name='comment_ssofield' value='".
+      echo "<td><input type='text' class='form-control' name='comment_ssofield' value='".
                  $CFG_GLPI['comment_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>" . __('Administrative number') . "</td>";
-      echo "<td><input type='text' name='registration_number_ssofield' value='".
+      echo "<td><input type='text' class='form-control' name='registration_number_ssofield' value='".
                   $CFG_GLPI['registration_number_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>" . __('Email') . "</td>";
-      echo "<td><input type='text' name='email1_ssofield' value='".$CFG_GLPI['email1_ssofield']."'>";
+      echo "<td><input type='text' class='form-control' name='email1_ssofield' value='".$CFG_GLPI['email1_ssofield']."'>";
       echo "</td>";
        echo "</tr>\n";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>" . sprintf(__('%1$s %2$s'),_n('Email','Emails',1), '2') . "</td>";
-      echo "<td><input type='text' name='email2_ssofield' value='".$CFG_GLPI['email2_ssofield']."'>";
+      echo "<td><input type='text' class='form-control' name='email2_ssofield' value='".$CFG_GLPI['email2_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>" . sprintf(__('%1$s %2$s'),_n('Email','Emails',1),  '3') . "</td>";
-      echo "<td><input type='text' name='email3_ssofield' value='".$CFG_GLPI['email3_ssofield']."'>";
+      echo "<td><input type='text' class='form-control' name='email3_ssofield' value='".$CFG_GLPI['email3_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>" . sprintf(__('%1$s %2$s'),_n('Email','Emails',1),  '4') . "</td>";
-      echo "<td><input type='text' name='email4_ssofield' value='".$CFG_GLPI['email4_ssofield']."'>";
+      echo "<td><input type='text' class='form-control' name='email4_ssofield' value='".$CFG_GLPI['email4_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>" . __('Phone') . "</td>";
-      echo "<td><input type='text' name='phone_ssofield' value='".$CFG_GLPI['phone_ssofield']."'>";
+      echo "<td><input type='text' class='form-control' name='phone_ssofield' value='".$CFG_GLPI['phone_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>" .  __('Phone 2') . "</td>";
-      echo "<td><input type='text' name='phone2_ssofield' value='".$CFG_GLPI['phone2_ssofield']."'>";
+      echo "<td><input type='text' class='form-control' name='phone2_ssofield' value='".$CFG_GLPI['phone2_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>" . __('Mobile phone') . "</td>";
-      echo "<td><input type='text' name='mobile_ssofield' value='".$CFG_GLPI['mobile_ssofield']."'>";
+      echo "<td><input type='text' class='form-control' name='mobile_ssofield' value='".$CFG_GLPI['mobile_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>" . _x('person','Title') . "</td>";
-      echo "<td><input type='text' name='title_ssofield' value='".$CFG_GLPI['title_ssofield']."'>";
+      echo "<td><input type='text' class='form-control' name='title_ssofield' value='".$CFG_GLPI['title_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>" . __('Category') . "</td>";
-      echo "<td><input type='text' name='category_ssofield' value='".
+      echo "<td><input type='text' class='form-control' name='category_ssofield' value='".
                  $CFG_GLPI['category_ssofield']."'></td>";
       echo "</tr>\n";
 
       echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>" . __('Language') . "</td>";
-      echo "<td><input type='text' name='language_ssofield' value='".
+      echo "<td><input type='text' class='form-control' name='language_ssofield' value='".
                  $CFG_GLPI['language_ssofield']."'></td></tr>";
 
       echo "<tr class='tab_bg_1'><td class='center' colspan='2'>";

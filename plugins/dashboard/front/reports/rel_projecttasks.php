@@ -275,12 +275,13 @@ $(document).ready(function() {
         "bJQueryUI": true,
         "sPaginationType": "full_numbers",
         "bFilter": false,
-        "aaSorting": [[0,'asc']], 
+		  "aaSorting": [[0,'asc'],[1,'desc'],[2,'desc'],[3,'desc'],[4,'desc'],[5,'desc'],[6,'desc'],[7,'desc']], 
         "iDisplayLength": 25,
     	  "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]], 
 
         "sDom": 'T<"clear">lfrtip',
          "oTableTools": {
+			"sRowSelect": "os",         	
          "aButtons": [
              {
                  "sExtends": "copy",

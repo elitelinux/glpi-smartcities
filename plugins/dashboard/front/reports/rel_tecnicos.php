@@ -493,12 +493,12 @@ $(document).ready(function() {
         "bJQueryUI": true,
         "sPaginationType": "full_numbers",
         "bFilter": false,
-        "aaSorting": [[1,'desc']], 
+        "aaSorting": [[1,'desc']],  
         "iDisplayLength": 15,
     	  "aLengthMenu": [[15, 25, 50, 100, -1], [15, 25, 50, 100, "All"]], 
 
         "sDom": 'T<"clear">lfrtip',
-         "oTableTools": {
+         "oTableTools": {         
          "aButtons": [
              {
                  "sExtends": "copy",

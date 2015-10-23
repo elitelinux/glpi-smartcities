@@ -138,17 +138,16 @@ else {
 </div>
 
 <div id="graf1" class="row-fluid">
-
-<?php 
-include ("./inc/grafbar_user_mes.inc.php");
-?>
-
-</div>
-
+	<?php include ("./inc/grafbar_user_mes.inc.php"); ?>
 </div>
 
 </div>
 </div>
 </div>
+</div>
 
-</body> </html>
+<!-- Highcharts export xls, csv -->
+<script src="../js/export-csv.js"></script>
+
+</body>
+</html>

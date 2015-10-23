@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: projecttask_ticket.class.php 23442 2015-04-10 11:18:15Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -206,7 +206,7 @@ class ProjectTask_Ticket extends CommonDBRelation{
          Html::showMassiveActions($massiveactionparams);
       }
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       echo "<tr><th colspan='12'>".Ticket::getTypeName($numrows)."</th>";
       echo "</tr>";
       if ($numrows) {
@@ -332,7 +332,6 @@ class ProjectTask_Ticket extends CommonDBRelation{
       $query = "SELECT `glpi_projecttasks`.*,
                        `glpi_projecttasktypes`.`name` AS tname,
                        `glpi_projectstates`.`name` AS sname,
-                       `glpi_projectstates`.`color`,
                        `father`.`name` AS fname,
                        `father`.`id` AS fID,
                        `glpi_projects`.`name` AS projectname,
@@ -359,7 +358,7 @@ class ProjectTask_Ticket extends CommonDBRelation{
 
       if ($result = $DB->query($query)) {
          if ($DB->numrows($result)) {
-            echo "<table class='tab_cadre_fixehov'>";
+            echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
             echo "<tr><th colspan='10'>".ProjectTask::getTypeName($numrows)."</th>";
             echo "</tr>";
             $sort_img = "<img src=\"" . $CFG_GLPI["root_doc"] . "/pics/" .
@@ -402,9 +401,7 @@ class ProjectTask_Ticket extends CommonDBRelation{
                                                     'applyto' => "ProjectTask".$data["id"].$rand)));
                echo "</td>";
                echo "<td>".$data['tname']."</td>";
-               echo "<td";
-               echo " style=\"background-color:".$data['color']."\"";
-               echo ">".$data['sname']."</td>";
+               echo "<td>".$data['sname']."</td>";
                echo "<td>";
                echo Dropdown::getValueWithUnit($data["percent_done"],"%");
                echo "</td>";

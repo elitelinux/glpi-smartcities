@@ -291,7 +291,7 @@ else {
 
 if($id_fab == '' && $id_mod == '') {
 
-	if($type != 'software1') {
+	if($type != 'software') {
 			$sql_cham = 
 			"SELECT DISTINCT gi.id, gi.name
 			FROM glpi_".$type."s gi, glpi_items_tickets git, glpi_tickets gt
@@ -331,7 +331,7 @@ if($id_fab == '' && $id_mod == '') {
 
 if($id_fab != '' && $id_mod == '') {
 
-	if($type != 'software1') {
+	if($type != 'software') {
 			$sql_cham = 
 			"SELECT DISTINCT gi.id, gi.name
 			FROM glpi_".$type."s gi, glpi_items_tickets git, glpi_tickets gt
@@ -371,7 +371,7 @@ if($id_fab != '' && $id_mod == '') {
 //else {
 if($id_fab != '' && $id_mod != '') {	
 
-	if($type != 'software1') {
+	if($type != 'software') {
 			$sql_cham = 
 			"SELECT DISTINCT  gi.id, gi.name
 			FROM glpi_".$type."s gi, glpi_items_tickets git, glpi_tickets gt
@@ -569,12 +569,13 @@ $(document).ready(function() {
         "bJQueryUI": true,
         "sPaginationType": "full_numbers",
         "bFilter": false,
-        "aaSorting": [[0,'asc']], 
+        "aaSorting": [[0,'asc'],[1,'desc'],[2,'desc'],[3,'desc']], 
         "iDisplayLength": 25,
     	  "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]], 
 
         "sDom": 'T<"clear">lfrtip',
          "oTableTools": {
+         "sRowSelect": "os",
          "aButtons": [
              {
                  "sExtends": "copy",

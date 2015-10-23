@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: fieldblacklist.class.php 23266 2014-12-11 09:07:05Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

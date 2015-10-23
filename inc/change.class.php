@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: change.class.php 23436 2015-04-09 14:06:48Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -187,7 +187,7 @@ class Change extends CommonITILObject {
 
       return $actions;
    }
-
+   
    function getTabNameForItem(CommonGLPI $item, $withtemplate=0) {
 
       if (static::canView()) {
@@ -564,7 +564,7 @@ class Change extends CommonITILObject {
       $colsize2 = '37';
 
       $default_use_notif = Entity::getUsedConfig('is_notif_enable_default', $_SESSION['glpiactive_entity'], '', 1);
-
+      
       // Set default options
       if (!$ID) {
          $values = array('_users_id_requester'        => Session::getLoginUserID(),
@@ -761,7 +761,7 @@ class Change extends CommonITILObject {
       echo "<tr class='tab_bg_1'>";
       echo "<th width='$colsize1%'>".__('Title')."</th>";
       echo "<td colspan='3'>";
-      echo "<input type='text' size='90' maxlength=250 name='name' ".
+      echo "<input type='text' size='90' maxlength=250 name='name' class='form-control' ".
              " value=\"".Html::cleanInputText($this->fields["name"])."\">";
       echo "</td>";
       echo "</tr>";
@@ -770,7 +770,7 @@ class Change extends CommonITILObject {
       echo "<th>".__('Description')."</th>";
       echo "<td colspan='3'>";
       $rand = mt_rand();
-      echo "<textarea id='content$rand' name='content' cols='90' rows='6'>".
+      echo "<textarea id='content$rand' name='content' cols='90' rows='6' class='form-control'>".
             Html::clean(Html::entity_decode_deep($this->fields["content"]))."</textarea>";
       echo "</td>";
       echo "</tr>";
@@ -797,7 +797,7 @@ class Change extends CommonITILObject {
       echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Impacts')."</td><td colspan='3'>";
       if ($canedit) {
-         echo "<textarea id='impactcontent' name='impactcontent' rows='6' cols='110'>";
+         echo "<textarea id='impactcontent' name='impactcontent' rows='6' cols='110' class='form-control'>";
          echo $this->getField('impactcontent');
          echo "</textarea>";
       } else {
@@ -808,7 +808,7 @@ class Change extends CommonITILObject {
       echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Control list')."</td><td colspan='3'>";
       if ($canedit) {
-         echo "<textarea id='controlistcontent' name='controlistcontent' rows='6' cols='110'>";
+         echo "<textarea id='controlistcontent' name='controlistcontent' rows='6' cols='110' class='form-control'>";
          echo $this->getField('controlistcontent');
          echo "</textarea>";
       } else {
@@ -837,7 +837,7 @@ class Change extends CommonITILObject {
       echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Deployment plan')."</td><td colspan='3'>";
       if ($canedit) {
-         echo "<textarea id='rolloutplancontent' name='rolloutplancontent' rows='6' cols='110'>";
+         echo "<textarea id='rolloutplancontent' name='rolloutplancontent' rows='6' cols='110' class='form-control'>";
          echo $this->getField('rolloutplancontent');
          echo "</textarea>";
       } else {
@@ -848,7 +848,7 @@ class Change extends CommonITILObject {
       echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Backup plan')."</td><td colspan='3'>";
       if ($canedit) {
-         echo "<textarea id='backoutplancontent' name='backoutplancontent' rows='6' cols='110'>";
+         echo "<textarea id='backoutplancontent' name='backoutplancontent' rows='6' cols='110' class='form-control'>";
          echo $this->getField('backoutplancontent');
          echo "</textarea>";
       } else {
@@ -859,7 +859,7 @@ class Change extends CommonITILObject {
       echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Checklist')."</td><td colspan='3'>";
       if ($canedit) {
-         echo "<textarea id='checklistcontent' name='checklistcontent' rows='6' cols='110'>";
+         echo "<textarea id='checklistcontent' name='checklistcontent' rows='6' cols='110' class='form-control'>";
          echo $this->getField('checklistcontent');
          echo "</textarea>";
       } else {
@@ -906,7 +906,7 @@ class Change extends CommonITILObject {
 
       return $DB->result($result, 0, 0);
    }
-
+   
    static function getCommonSelect() {
 
       $SELECT = "";
@@ -938,7 +938,7 @@ class Change extends CommonITILObject {
                   ON (`glpi_changes`.`itilcategories_id` = `glpi_itilcategories`.`id`)
                $FROM";
    }
-
+   
    /**
     * Display changes for an item
     *
@@ -977,12 +977,12 @@ class Change extends CommonITILObject {
             $options['criteria'][1]['searchtype'] = 'equals';
             $options['criteria'][1]['value']      = $item->getID();
             $options['criteria'][1]['link']       = 'OR';
-
+            
             $options['criteria'][5]['field']      = 5; // status
             $options['criteria'][5]['searchtype'] = 'equals';
             $options['criteria'][5]['value']      = $item->getID();
             $options['criteria'][5]['link']       = 'OR';
-
+            
             break;
 
          case 'Supplier' :
@@ -1039,7 +1039,7 @@ class Change extends CommonITILObject {
                   ON (`glpi_changes`.`id` = `glpi_changes_items`.`changes_id`) ".
                 self::getCommonLeftJoin()."
                 WHERE $restrict ".
-                      getEntitiesRestrictRequest("AND","glpi_changes")."
+                      getEntitiesRestrictRequest("AND","changes")."
                 ORDER BY $order
                 LIMIT ".intval($_SESSION['glpilist_limit']);
       $result = $DB->query($query);
@@ -1132,6 +1132,6 @@ class Change extends CommonITILObject {
 
    }
 
-
+   
 }
 ?>

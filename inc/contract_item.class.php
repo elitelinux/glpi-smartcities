@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: contract_item.class.php 23304 2015-01-21 14:46:37Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -186,32 +186,10 @@ class Contract_Item extends CommonDBRelation{
     * @param $item   Contract object
    **/
    static function countForContract(Contract $item) {
-      global $DB;
 
-      $sql = "SELECT  DISTINCT `itemtype`
-              FROM `glpi_contracts_items`
-              WHERE `glpi_contracts_items`.`contracts_id` = '".$item->getField('id')."'";
+      $restrict = "`glpi_contracts_items`.`contracts_id` = '".$item->getField('id')."'";
 
-      $nb = 0;
-
-      foreach ($DB->request($sql) as $data) {
-         $itemt = getItemForItemtype($data['itemtype']);
-
-         $query = "SELECT COUNT(*) AS cpt
-                   FROM `glpi_contracts_items`, `".$itemt->getTable()."`
-                   WHERE `glpi_contracts_items`.`contracts_id` = '".$item->getField('id')."'
-                         AND `glpi_contracts_items`.`itemtype` = '".$data['itemtype']."'
-                         AND `".$itemt->getTable()."`.`id` = `glpi_contracts_items`.`items_id`";
-
-         if ($itemt->maybeTemplate()) {
-            $query .= " AND NOT `".$itemt->getTable()."`.`is_template`";
-         }
-
-         foreach($DB->request($query) as $row) {
-            $nb += $row['cpt'];
-         }
-      }
-      return $nb;
+      return countElementsInTable(array('glpi_contracts_items'), $restrict);
    }
 
 
@@ -395,8 +373,8 @@ class Contract_Item extends CommonDBRelation{
       $used      = array();
       if ($number = $DB->numrows($result)) {
          while ($data = $DB->fetch_assoc($result)) {
-            $contracts[$data['id']]      = $data;
-            $used[$data['contracts_id']] = $data['contracts_id'];
+            $contracts[$data['id']] = $data;
+            $used[$data['id']]      = $data['id'];
          }
       }
 
@@ -431,7 +409,7 @@ class Contract_Item extends CommonDBRelation{
             Html::showMassiveActions($massiveactionparams);
          }
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
 
       $header_begin = "<tr>";
       $header_top = '';
@@ -541,10 +519,8 @@ class Contract_Item extends CommonDBRelation{
       $result = $DB->query($query);
       $number = $DB->numrows($result);
 
-      $data    = array();
+      $data = array();
       $totalnb = 0;
-      $used    = array();
-
       for ($i=0 ; $i<$number ; $i++) {
          $itemtype = $DB->result($result, $i, "itemtype");
          if (!($item = getItemForItemtype($itemtype))) {
@@ -594,10 +570,8 @@ class Contract_Item extends CommonDBRelation{
                                                               $item->getTypeName($nb), $nb),
                                         'link'     => $link);
             } else if ($nb > 0) {
-               $data[$itemtype] = array();
-               while ($objdata = $DB->fetch_assoc($result_linked)) {
+               for ($prem=true ; $objdata=$DB->fetch_assoc($result_linked) ; $prem=false) {
                   $data[$itemtype][$objdata['id']] = $objdata;
-                  $used[$itemtype][$objdata['id']] = $objdata['id'];
                }
             }
             $totalnb += $nb;
@@ -623,9 +597,7 @@ class Contract_Item extends CommonDBRelation{
                                                                       $contract->fields['entities_id'])
                                                            :$contract->fields['entities_id']),
                                                      'checkright'
-                                                       => true,
-                                                     'used'
-                                                       => $used));
+                                                       => true));
          echo "</td><td class='center'>";
          echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
          echo "<input type='hidden' name='contracts_id' value='$instID'>";
@@ -641,7 +613,7 @@ class Contract_Item extends CommonDBRelation{
          $massiveactionparams = array('container' => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';

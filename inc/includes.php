@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: includes.php 22987 2014-06-04 06:22:20Z ddurieux $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

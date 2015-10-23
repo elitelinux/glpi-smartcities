@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: mailcollector.class.php 23458 2015-04-19 09:47:17Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -518,13 +518,11 @@ class MailCollector  extends CommonDBTM {
 
                $rejinput                      = array();
                $rejinput['mailcollectors_id'] = $mailgateID;
-               if (!$tkt['_blacklisted']) {
-                  $rejinput['from']              = $tkt['_head']['from'];
-                  $rejinput['to']                = $tkt['_head']['to'];
-                  $rejinput['users_id']          = $tkt['_users_id_requester'];
-                  $rejinput['subject']           = $this->textCleaner($tkt['_head']['subject']);
-                  $rejinput['messageid']         = $tkt['_head']['message_id'];
-               }
+               $rejinput['from']              = $tkt['_head']['from'];
+               $rejinput['to']                = $tkt['_head']['to'];
+               $rejinput['users_id']          = $tkt['_users_id_requester'];
+               $rejinput['subject']           = $this->textCleaner($tkt['_head']['subject']);
+               $rejinput['messageid']         = $tkt['_head']['message_id'];
                $rejinput['date']              = $_SESSION["glpi_currenttime"];
 
                // Manage blacklisted emails
@@ -752,8 +750,7 @@ class MailCollector  extends CommonDBTM {
       //If files are present and content is html
       if (isset($this->files)
           && count($this->files)
-          && ($tkt['content'] != strip_tags($tkt['content']))
-          && !isset($tkt['tickets_id'])) {
+          && ($tkt['content'] != strip_tags($tkt['content']))) {
          $is_html = true;
          $tkt['content'] = Ticket::convertContentForTicket($tkt['content'],
                                                            array_merge($this->files, $this->altfiles),
@@ -761,7 +758,7 @@ class MailCollector  extends CommonDBTM {
       }
       $tkt['content'] = $this->cleanMailContent($tkt['content']);
 
-      if ($is_html && !isset($tkt['tickets_id'])) {
+      if ($is_html) {
          $tkt['content'] = nl2br($tkt['content']);
       }
 
@@ -929,8 +926,6 @@ class MailCollector  extends CommonDBTM {
 
       $rand   = mt_rand();
       // Move line breaks to special CHARS
-      $string = str_replace(array("<br>"),"==$rand==", $string);
-
       $string = str_replace(array("\r\n", "\n", "\r"),"==$rand==", $string);
 
       // Wrap content for blacklisted items
@@ -1147,14 +1142,9 @@ class MailCollector  extends CommonDBTM {
          // Construct to and cc arrays
          $tos = array();
          $ccs = array();
-
          if (count($mail_header->to)) {
             foreach ($mail_header->to as $data) {
-               $mailto = Toolbox::strtolower($data->mailbox).'@'.$data->host;
-               if ($mailto === $this->fields['name']) {
-                  $to = $data;
-               }
-               $tos[] = $mailto;
+               $tos[] = Toolbox::strtolower($data->mailbox).'@'.$data->host;
             }
          }
          if (isset($mail_header->cc) && count($mail_header->cc)) {
@@ -1170,7 +1160,7 @@ class MailCollector  extends CommonDBTM {
 
          $mail_details = array('from'       => Toolbox::strtolower($sender->mailbox).'@'.$sender->host,
                                'subject'    => $mail_header->subject,
-                               'to'         =>  Toolbox::strtolower($to->mailbox).'@'.$to->host,
+                               'to'         => Toolbox::strtolower($to->mailbox).'@'.$to->host,
                                'message_id' => $mail_header->message_id,
                                'tos'        => $tos,
                                'ccs'        => $ccs,

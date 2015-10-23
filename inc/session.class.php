@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: session.class.php 23303 2015-01-21 14:24:35Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -572,7 +572,7 @@ class Session {
       $TRANSLATE = new Zend\I18n\Translator\Translator;
       try {
          $cache = Zend\Cache\StorageFactory::factory(array('adapter' => 'apc'));
-         $TRANSLATE->setCache($cache);
+
       } catch (Zend\Cache\Exception\ExtensionNotLoadedException $e) {
          // ignore when APC not available
          // toolbox::logDebug($e->getMessage());

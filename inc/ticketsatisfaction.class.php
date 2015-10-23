@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: ticketsatisfaction.class.php 23253 2014-11-27 20:31:31Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -145,7 +145,7 @@ class TicketSatisfaction extends CommonDBTM {
          echo "<tr class='tab_bg_2'>";
          echo "<td rowspan='1'>".__('Comments')."</td>";
          echo "<td rowspan='1' class='middle'>";
-         echo "<textarea cols='45' rows='7' name='comment' >".$this->fields["comment"]."</textarea>";
+         echo "<textarea cols='45' rows='7' name='comment' class='form-control'>".$this->fields["comment"]."</textarea>";
          echo "</td></tr>\n";
 
          if ($this->fields["date_answered"] > 0) {

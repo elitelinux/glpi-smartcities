@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: software.class.php 23435 2015-04-09 13:37:15Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -280,7 +280,7 @@ class Software extends CommonDBTM {
       echo "</td>";
       echo "<td rowspan='5' class='middle'>".__('Comments') . "</td>";
       echo "<td class='center middle' rowspan='5'>";
-      echo "<textarea cols='45' rows='8' name='comment' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea cols='45' rows='8' name='comment' class='form-control' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>\n";
 
       echo "<tr class='tab_bg_1'>";
@@ -958,7 +958,7 @@ class Software extends CommonDBTM {
                     'item'          => $this);
          Html::showMassiveActions($massiveactionparams);
 
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
          echo "<tr><th width='10'>";
          echo Html::checkAllAsCheckbox('mass'.__CLASS__.$rand);
          echo "</th>";

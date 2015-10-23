@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: updatecurrenttab.php 22857 2014-04-02 21:30:08Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

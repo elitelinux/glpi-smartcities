@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: calendarsegment.class.php 23305 2015-01-21 15:06:28Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -298,7 +298,7 @@ class CalendarSegment extends CommonDBChild {
                       AND `day` = '$day'
                       AND `begin` <= '$hour'
                       AND `end` >= '$hour'";
-
+ //     Toolbox::logDebug($query);
       if ($result = $DB->query($query)) {
          if ($DB->numrows($result)) {
             return true;

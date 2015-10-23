@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: project.class.php 23469 2015-04-30 12:36:16Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -472,7 +472,7 @@ class Project extends CommonDBTM {
       $tab[17]['nosearch']        = true;
       $tab[17]['massiveaction']   = false;
       $tab[17]['nosort']          = true;
-
+      
       $tab[9]['table']           = $this->getTable();
       $tab[9]['field']           = 'real_start_date';
       $tab[9]['name']            = __('Real start date');
@@ -490,7 +490,7 @@ class Project extends CommonDBTM {
       $tab[18]['nosearch']        = true;
       $tab[18]['massiveaction']   = false;
       $tab[18]['nosort']          = true;
-
+      
       $tab[16]['table']          = $this->getTable();
       $tab[16]['field']          = 'comment';
       $tab[16]['name']           = __('Comments');
@@ -619,18 +619,11 @@ class Project extends CommonDBTM {
          echo Search::showItem($p['output_type'], $id_col, $item_num, $p['row_num'], $align);
          // First column
          $first_col = '';
-         $color     = '';
+         /// TODO add color of project state
          if ($item->fields["projectstates_id"]) {
-            $query = "SELECT `color`
-                      FROM `glpi_projectstates`
-                      WHERE `id` = '".$item->fields["projectstates_id"]."'";
-            foreach ($DB->request($query) as $color) {
-               $color = $color['color'];
-            }
             $first_col = Dropdown::getDropdownName('glpi_projectstates', $item->fields["projectstates_id"]);
          }
-         echo Search::showItem($p['output_type'], $first_col, $item_num, $p['row_num'],
-                               "$align bgcolor='$color'");
+         echo Search::showItem($p['output_type'], $first_col, $item_num, $p['row_num'], $align);
 
          // Second column
          $second_col = sprintf(__('Opened on %s'),
@@ -690,7 +683,7 @@ class Project extends CommonDBTM {
          // Add link
          if ($item->canViewItem()) {
             $eigth_column = "<a id='".$item->getType().$item->fields["id"]."$rand' href=\"".
-                              $item->getLinkURL()."&amp;forcetab=Project$\">$eigth_column</a>";
+                              $item->getLinkURL()."\">$eigth_column</a>";
          }
 
          if ($p['output_type'] == Search::HTML_OUTPUT) {
@@ -764,20 +757,8 @@ class Project extends CommonDBTM {
          $numrows = $DB->numrows($result);
       }
 
-      if ($this->can($ID, UPDATE)) {
-         echo "<div class='firstbloc'>";
-         echo "<form name='project_form$rand' id='project_form$rand' method='post'
-         action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
-
-         echo "<a href='".Toolbox::getItemTypeFormURL('Project')."?projects_id=$ID'>";
-         _e('Create a sub project from this project');
-         echo "</a>";
-         Html::closeForm();
-         echo "</div>";
-      }
-
       echo "<div class='spaced'>";
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       echo "<tr class='noHover'><th colspan='12'>".Project::getTypeName($numrows)."</th></tr>";
       if ($numrows) {
          Project::commonListHeader();
@@ -946,7 +927,7 @@ class Project extends CommonDBTM {
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Description')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea id='content' name='content' cols='90' rows='6'>".$this->fields["content"].
+      echo "<textarea id='content' name='content' cols='90' rows='6' class='form-control'>".$this->fields["content"].
            "</textarea>";
       echo "</td>";
       echo "</tr>\n";
@@ -954,7 +935,7 @@ class Project extends CommonDBTM {
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Comments')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea id='comment' name='comment' cols='90' rows='6'>".$this->fields["comment"].
+      echo "<textarea id='comment' name='comment' cols='90' rows='6' class='form-control'>".$this->fields["comment"].
            "</textarea>";
       echo "</td>";
       echo "</tr>\n";
@@ -1060,7 +1041,7 @@ class Project extends CommonDBTM {
 //          }
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';

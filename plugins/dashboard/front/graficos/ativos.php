@@ -187,8 +187,12 @@ include ("./inc/grafbar_ativo_mes.inc.php");
 	$(document).ready(function() { $("#sel_item").select2(); });
 </script>
 
+</div>
+</div>
+</div>
 
-</div>
-</div>
-</div>
-</body> </html>
+<!-- Highcharts export xls, csv -->
+<script src="../js/export-csv.js"></script>
+
+</body>
+</html>

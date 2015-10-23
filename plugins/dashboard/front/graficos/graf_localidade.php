@@ -314,33 +314,34 @@ echo $ent_name['name']." - <span style = 'color:#000;'> ".$total['total']." ".__
 ?>
 
 <div id="graf_linhas" class="span12" style="height: 450px; margin-top: 25px; margin-left: -5px;">
-<?php include ("./inc/graflinhas_loc.inc.php"); ?>
+	<?php include ("./inc/graflinhas_loc.inc.php"); ?>
 </div>
 
 <div id="graf2" class="span6" >
-<?php include ("./inc/grafpie_stat_loc.inc.php"); ?>
+	<?php include ("./inc/grafpie_stat_loc.inc.php"); ?>
 </div>
 
 <div id="graf_tipo" class="span6" style="margin-left: 2.5%;">
-<?php include ("./inc/grafpie_tipo_loc.inc.php");  ?>
+	<?php include ("./inc/grafpie_tipo_loc.inc.php");  ?>
 </div>	
 
 <div id="graf4" class="span12" style="height: 450px; margin-left: -5px;">
-<?php include ("./inc/grafcat_loc.inc.php");  ?>
+	<?php include ("./inc/grafcat_loc.inc.php");  ?>
 </div>
 
-<?php 
-include ("./inc/grafbar_loc.inc.php");
+<?php include ("./inc/grafbar_loc.inc.php");
 
 }
 ?>
 
 </div>
-
+</div>
+</div>
+</div>
 </div>
 
-</div>
-</div>
-</div>
+<!-- Highcharts export xls, csv -->
+<script src="../js/export-csv.js"></script>
+
 </body>
 </html>

@@ -21,11 +21,24 @@ else {
 	$data_fin = date("Y-m-d");	
 	}  
 
-# entity
+/*
+// entity
 $sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' AND users_id = ".$_SESSION['glpiID']."";
 $result_e = $DB->query($sql_e);
 $sel_ent = $DB->result($result_e,0,'value');
 
+if($sel_ent == '' || $sel_ent == -1) {
+	$sel_ent = 0;
+}
+else {
+	$entidade = "AND glpi_tickets.entities_id IN (".$sel_ent.")";
+}
+*/	  
+
+// entity
+$sql_e = "SELECT value FROM glpi_plugin_dashboard_config WHERE name = 'entity' AND users_id = ".$_SESSION['glpiID']."";
+$result_e = $DB->query($sql_e);
+$sel_ent = $DB->result($result_e,0,'value');
 
 //select entity
 if($sel_ent == '' || $sel_ent == -1) {	
@@ -223,7 +236,7 @@ a:hover {
 		AND glpi_tickets.itilcategories_id = glpi_itilcategories.id
 		AND glpi_tickets.date ".$datas2."
 		".$entidade."		
-		GROUP BY name
+		GROUP BY id
 		ORDER BY total DESC ";			
 		
 		$result_cat = $DB->query($sql_cat);				
@@ -327,12 +340,13 @@ echo "
 			        "bJQueryUI": true,
 			        "sPaginationType": "full_numbers",
 			        "bFilter": false,
-			        "aaSorting": [[1,'desc']], 
+			        "aaSorting": [[1,'desc'],[0,'desc'],[2,'desc'],[3,'desc'],[4,'desc']], 
 			        "iDisplayLength": 25,
 			    	  "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]], 
 			
 			        "sDom": 'T<"clear">lfrtip',
 			         "oTableTools": {
+			         "sRowSelect": "os",	
 			         "aButtons": [
 			             {
 			                 "sExtends": "copy",
@@ -377,7 +391,7 @@ echo "
 			}							
 			?>			
 			<script type="text/javascript" >
-			$(document).ready(function() { $("#sel1").select2(); });
+				$(document).ready(function() { $("#sel1").select2(); });
 			</script>
 			</div>
 		</div>

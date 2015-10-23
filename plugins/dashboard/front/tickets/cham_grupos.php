@@ -210,7 +210,7 @@ else {
 			</table>
 			<p></p>
 		</div>
-<div id="lista_chamados" class="well info_box row-fluid report" style="width: 95%;">
+<div id="lista_chamados" class="well info_box row-fluid report" style="width: 98%; margin-left:1%;">
 
 <?php 
 

@@ -6,6 +6,8 @@ SELECT glpi_requesttypes.name AS request, count( glpi_tickets.id ) AS total
 FROM `glpi_tickets` , glpi_requesttypes
 WHERE glpi_tickets.is_deleted =0
 AND glpi_tickets.`requesttypes_id` = glpi_requesttypes.id
+$period
+$entidade
 GROUP BY request
 ORDER BY total DESC ";
 		

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: softwarelicense.class.php 23327 2015-02-02 17:15:33Z tsmr $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -293,7 +293,7 @@ class SoftwareLicense extends CommonDBTM {
       echo "</td>";
       echo "<td rowspan='".(($ID > 0) ?'4':'3')."' class='middle'>".__('Comments')."</td>";
       echo "<td class='center middle' rowspan='".(($ID > 0) ?'4':'3')."'>";
-      echo "<textarea cols='45' rows='5' name='comment' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea cols='45' rows='5' name='comment' class='form-control'>".$this->fields["comment"]."</textarea>";
       echo "</td></tr>\n";
 
       echo "<tr class='tab_bg_1'>";
@@ -728,7 +728,7 @@ class SoftwareLicense extends CommonDBTM {
             $sort_img = "<img src=\"" . $CFG_GLPI["root_doc"] . "/pics/" .
                           (($order == "DESC") ? "puce-down.png" : "puce-up.png") ."\" alt='' title=''>";
 
-            echo "<table class='tab_cadre_fixehov'>";
+            echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
 
 
             $header_begin  = "<tr><th>";

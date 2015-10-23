@@ -2050,7 +2050,9 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .nav-icon {
-	padding:17px; 
+	padding-top:18px !important;
+	padding-bottom:14px !important;
+	padding: 17px; 
 	color:#fff;
 }
 
@@ -2295,3 +2297,33 @@ td > a:hover {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
+
+.mdl-button {
+	background-image:  url("../img/settings.png");	
+	width: 30px;
+	height: 30px;
+	background-size: contain;
+}
+
+#demo-menu-lower-right {
+	margin-top: 10px !important;
+}
+
+.mdl-menu__item a {
+	color: #000;
+}	
+
+.mdl-menu__item a:hover, .mdl-menu__item a:focus {
+	color: #fff;
+}
+
+.mdl-menu > li:hover, .mdl-menu__item > li:focus {
+  color: #fff !important;
+  text-decoration: none;	
+  background-color: #424242;
+}
+
+.mdl-menu > li > a, .mdl-menu__item > li > a {
+  color: #000;
+  text-decoration: none;
+} 

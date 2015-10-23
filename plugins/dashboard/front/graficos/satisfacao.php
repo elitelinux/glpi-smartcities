@@ -158,20 +158,20 @@ $('#dp2').datepicker('update');
 <!-- DIV's -->
 
 <div id="graf_sat" class="row-fluid" style="margin-left: -5px;">
-<?php 
-include ("./inc/graflinhas_sat_cham.inc.php");
-?>
+	<?php include ("./inc/graflinhas_sat_cham.inc.php"); ?>
 </div>
 
 <div id="graf_sat_tec" class="row-fluid" style="margin-top: 25px; margin-left: -5px;">
-<?php 
-include ("./inc/grafbar_sat_tec.inc.php");
-?>
-</div>
-
+	<?php include ("./inc/grafbar_sat_tec.inc.php"); ?>
 </div>
 
 </div>
 </div>
 </div>
-</body> </html>
+</div>
+
+<!-- Highcharts export xls, csv -->
+<script src="../js/export-csv.js"></script>
+
+</body>
+</html>

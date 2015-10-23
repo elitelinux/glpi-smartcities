@@ -51,7 +51,7 @@ $ver = explode(" ",implode(" ",plugin_version_dashboard()));
      <a href="mailto:stevenesdonato@gmail.com"> stevenesdonato@gmail.com </b> </a>
     <br>
     <br>
-     <a href="https://forge.indepnet.net/projects/dashboard/files" target="_blank" >https://forge.indepnet.net/projects/dashboard/files</a>    
+     <a href="https://forge.glpi-project.org/projects/dashboard/files" target="_blank" >https://forge.glpi-project.org/projects/dashboard/files</a>    
     <br>
     <a href="https://sourceforge.net/projects/glpidashboard" target="_blank" >https://sourceforge.net/projects/glpidashboard</a>
     <br><p></p>

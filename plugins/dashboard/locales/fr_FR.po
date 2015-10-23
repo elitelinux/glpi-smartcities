@@ -452,3 +452,21 @@ msgstr "Dans"
 
 msgid "Metrics"
 msgstr "Métriques"
+
+msgid "Period for Metrics"
+msgstr "Métriques période"
+
+msgid "Current month"
+msgstr "Mois en cours"
+
+msgid "Last 60 days"
+msgstr "60 derniers jours"
+
+msgid "Show Server info"
+msgstr "Afficher les informations du serveur"
+
+msgid "Tickets Page"
+msgstr "Tickets Page"
+
+msgid "Widgets settings"
+msgstr "Configuration de Widgets"

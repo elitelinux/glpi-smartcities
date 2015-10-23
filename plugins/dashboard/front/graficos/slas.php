@@ -117,14 +117,16 @@ $datahoje = date("Y-m-d");
 </div>
 </div>
 </div>
-<div id="graf1" class="row-fluid">
-
-<?php include ("./inc/grafbar_sla_mes.inc.php"); ?>
-
-</div>
+	<div id="graf1" class="row-fluid">
+		<?php include ("./inc/grafbar_sla_mes.inc.php"); ?>
+	</div>
 </div>
 </div>
 </div>
 </div>
 
-</body> </html>
+<!-- Highcharts export xls, csv -->
+<script src="../js/export-csv.js"></script>
+
+</body> 
+</html>

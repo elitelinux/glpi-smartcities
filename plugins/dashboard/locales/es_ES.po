@@ -453,3 +453,21 @@ msgstr "Dentro"
 
 msgid "Metrics"
 msgstr "Métrica"
+
+msgid "Period for Metrics"
+msgstr "Periodo para Métricas"
+
+msgid "Current month"
+msgstr "Mes corriente"
+
+msgid "Last 60 days"
+msgstr "60 últimos días"
+
+msgid "Show Server info"
+msgstr "Ver información del servidor"
+
+msgid "Tickets Page"
+msgstr "Página de incidencias"
+
+msgid "Widgets settings"
+msgstr "Configuración de Widgets"

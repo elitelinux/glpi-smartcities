@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: rule.class.php 23395 2015-03-15 17:28:57Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -856,7 +856,7 @@ class Rule extends CommonDBTM {
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Comments')."</td>";
       echo "<td class='middle' colspan='3'>";
-      echo "<textarea cols='110' rows='3' name='comment' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea cols='110' rows='3' name='comment' class='form-control' >".$this->fields["comment"]."</textarea>";
 
       if (!$this->isNewID($ID)) {
          if ($this->fields["date_mod"]) {
@@ -1008,7 +1008,7 @@ class Rule extends CommonDBTM {
       }
 
       $canedit = $this->canEdit($rules_id);
-      $style   = "class='tab_cadre_fixehov'";
+      $style   = "class='tab_cadre_fixehov table-striped table-hover'";
 
       if ($p['readonly']) {
          $canedit = false;
@@ -1117,7 +1117,7 @@ class Rule extends CommonDBTM {
       }
 
       $canedit = $this->canEdit($rules_id);
-      $style   = "class='tab_cadre_fixehov'";
+      $style   = "class='tab_cadre_fixehov table-striped table-hover'";
 
       if ($p['readonly']) {
          $canedit = false;
@@ -2029,7 +2029,7 @@ class Rule extends CommonDBTM {
          echo "<td>".__('Result of the regular expression')."</td>";
          echo "<td>";
          if (!empty($this->regex_results[0])) {
-            echo "<table class='tab_cadre'>";
+            echo "<table class='tab_cadre table table-bordered'>";
             echo "<tr><th>".__('Key')."</th><th>".__('Value')."</th></tr>";
             foreach ($this->regex_results[0] as $key => $value) {
                echo "<tr class='tab_bg_1'>";
@@ -2730,7 +2730,7 @@ class Rule extends CommonDBTM {
       echo "<div class='spaced'>";
 
       if (!$nb) {
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
          echo "<tr><th>" . __('No item found') . "</th>";
          echo "</tr>\n";
          echo "</table>\n";
@@ -2748,7 +2748,7 @@ class Rule extends CommonDBTM {
                 //           => array('rule_class_name' => $this->getRuleClassName()));
             Html::showMassiveActions($massiveactionparams);
          }
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='tab_cadre_fixehov table-striped table-hover'>";
          $header_begin  = "<tr>";
          $header_top    = '';
          $header_bottom = '';

@@ -74,7 +74,7 @@ msgid "Tickets by Category"
 msgstr "Tickets nach Kategorie"
 
 msgid "Daily Evolution"
-msgstr "Tagesgang"
+msgstr "tagesgang"
 
 msgid "Tickets Total"
 msgstr "Tickets Gesamt"
@@ -227,13 +227,13 @@ msgid "Yesterday"
 msgstr "gestern"
 
 msgid "Last 7 days"
-msgstr "Die letzten 7 Tage"
+msgstr "Die letzten 7 tage"
 
 msgid "Last 15 days"
-msgstr "Die letzten 15 Tage"
+msgstr "Die letzten 15 tage"
 
 msgid "Last 30 days"
-msgstr "Die letzten 30 Tage"
+msgstr "Die letzten 30 tage"
 
 msgid "Last 3 months"
 msgstr "Letzte 3 Monate"
@@ -453,3 +453,21 @@ msgstr "Innerhalb"
 
 msgid "Metrics"
 msgstr "Metrik"
+
+msgid "Period for Metrics"
+msgstr "Metrik Zeit"
+
+msgid "Current month"
+msgstr "Laufenden monat"
+
+msgid "Last 60 days"
+msgstr "Die letzten 60 tage"
+
+msgid "Show Server info"
+msgstr "Serverinformationen anzeigen"
+
+msgid "Tickets Page"
+msgstr "Tickets Seite"
+
+msgid "Widgets settings"
+msgstr "Widgets konfiguration"

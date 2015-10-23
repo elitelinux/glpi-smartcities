@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: ruleimportcomputer.class.php 22656 2014-02-12 16:15:25Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -341,7 +341,7 @@ class RuleImportComputer extends Rule {
                if ($criteria->fields['condition'] == Rule::PATTERN_IS) {
                   $condition = " IN ";
                } else {
-                  $condition = " NOT IN ";
+                  $conditin = " NOT IN ";
                }
                $sql_where .= " AND `glpi_computers`.`states_id`
                                  $condition ('".$criteria->fields['pattern']."')";

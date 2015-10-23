@@ -68,7 +68,7 @@ $(function () {
                 floating: true,
                 borderWidth: 0,
                 backgroundColor: '#FFFFFF',
-                adjustChartSize: false,
+                adjustChartSize: true,
                 format: '{series.name}: <b>{point.percentage:.1f}%</b>'
             },
             tooltip: {

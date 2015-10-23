@@ -23,7 +23,7 @@ $(document).ready(function(){
 
 //if(ww > 768){
 	for (i = 1; i < 9; i++) {
-    $('#menu'+[i]).addClass('dropdown'); 	 
+    $('#menux'+[i]).addClass('dropdown'); 	 
 	}	
 
 $('.dropdown').hover(function(){ 
@@ -32,9 +32,9 @@ $('.dropdown').hover(function(){
 
 //}
 });
-*/
 
-/*
+
+
 
 $(document).ready(function(){	
 

@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: backup.class.php 23371 2015-02-27 14:22:59Z yllen $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.

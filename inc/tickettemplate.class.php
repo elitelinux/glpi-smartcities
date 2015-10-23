@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id$
+ * @version $Id: tickettemplate.class.php 23346 2015-02-03 15:11:10Z moyo $
  -------------------------------------------------------------------------
  GLPI - Gestionnaire Libre de Parc Informatique
  Copyright (C) 2003-2014 by the INDEPNET Development Team.
@@ -266,7 +266,7 @@ class TicketTemplate extends CommonDropdown {
    function defineTabs($options=array()) {
 
       $ong          = array();
-      $this->addDefaultFormTab($ong);
+      $ong['empty'] = $this->getTypeName(1);
       $this->addStandardTab('TicketTemplateMandatoryField', $ong, $options);
       $this->addStandardTab('TicketTemplatePredefinedField', $ong, $options);
       $this->addStandardTab('TicketTemplateHiddenField', $ong, $options);
